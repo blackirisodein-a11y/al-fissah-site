@@ -25,7 +25,7 @@ SITE = 'https://al-fissah.com'
 PREVIEW = False
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
-ASSET_VER = '9'
+ASSET_VER = '10'
 INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
@@ -55,6 +55,7 @@ PAGES = ['index', 'programmes', 'tarifs', 'faq', 'temoignages', 'reglement', 'a-
 
 # --- Deux parcours distincts : essai gratuit et inscription aux études ---
 # Chaque langue définit : les libellés des boutons, puis les textes des 2 pages.
+# Code couleur : « Commencer maintenant » (inscription) = orange ; « Demander un essai gratuit » = bleu marine.
 PARCOURS = {
  'fr': dict(
    box_kick="Deux façons de commencer", box_h2="Inscrivez-vous aux études, ou essayez d'abord", box_p="Vous êtes décidé ? Choisissez votre programme, votre formule et votre créneau. Vous hésitez encore ? Commencez par un cours d'essai gratuit de 30 minutes.",
@@ -120,7 +121,7 @@ PARCOURS = {
 
  'es': dict(
    box_kick="Dos formas de empezar", box_h2="Inscríbase en los cursos, o pruebe primero", box_p="¿Ya está decidido? Elija su programa, su tarifa y su horario. ¿Todavía duda? Empiece con una clase de prueba gratuita de 30 minutos.",
-   btn_essai="Solicitar una clase de prueba", btn_essai_court="Clase de prueba", btn_insc="Empezar ahora",
+   btn_essai="Solicitar clase de prueba", btn_essai_court="Clase de prueba", btn_insc="Empezar ahora",
    essai=dict(crumb="Clase de prueba", title="Solicitar una clase de prueba gratuita — AL-FISSAH",
      desc="Solicite su clase de prueba gratuita de 30 minutos: sin compromiso y sin datos de pago.",
      h1="Solicitar una clase de prueba gratuita",
@@ -340,7 +341,8 @@ class Builder:
 ''' if home else ''
         nav = [('index.html', n['accueil'], 'index'), ('programmes.html', n['programmes'], 'programmes'), ('tarifs.html', n['tarifs'], 'tarifs'),
                ('faq.html', n['faq'], 'faq'), ('temoignages.html', n['temoignages'], 'temoignages'), ('a-propos.html', n['apropos'], 'a-propos'), ('contact.html', n['contact'], 'contact')]
-        menu = '\n      '.join(f'<li><a href="{h}"{" class=\"active\"" if k == page else ""}>{l}</a></li>' for h, l, k in nav)
+        # menu de bureau sans « Accueil » (le logo y mène) pour laisser la place au bouton « Demander un essai gratuit » ; le menu mobile le garde
+        menu = '\n      '.join(f'<li><a href="{h}"{" class=\"active\"" if k == page else ""}>{l}</a></li>' for h, l, k in nav if k != 'index')
         mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav) + f'\n    <a href="reglement.html">{n["reglement"]}</a>'
         return loader + f'''<div id="progress" aria-hidden="true"></div>
 <button class="totop" id="totop" aria-label="{n['totop']}">↑</button>
@@ -363,7 +365,7 @@ class Builder:
     <div class="nav-right">
       {self.langswitch(page)}
       <a class="hd-login" href="{LOGIN}">{n['login']}</a>
-      <a class="btn btn-orange login" href="essai.html">{self.I['btn_essai_court']} <span class="login-sub">{L['nav']['essai_sub']}</span></a>
+      <a class="btn btn-navy login" id="hd-essai" href="essai.html"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
       <button class="burger" id="burger" aria-label="{n['menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -375,7 +377,7 @@ class Builder:
     <a href="https://livres.al-fissah.com">{n['livres']}</a>
     <a href="https://blog.al-fissah.com">{n['blog']}</a>
     <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']}</a>
-    <a class="btn btn-ghost" href="essai.html">{self.I['btn_essai']}</a>
+    <a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a>
     <a class="btn btn-navy" href="{LOGIN}">{n['login_full']}</a>
   </nav>
 </div>
@@ -487,7 +489,7 @@ class Builder:
       <p class="lead">{H['lead']}</p>
       <div class="hero-cta">
         <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="essai.html">{self.I['btn_essai']}</a>
+        <a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a>
       </div>
       <p class="hero-note">{' &nbsp;·&nbsp; '.join(f'<b>✓</b> {x}' for x in H['note'])}</p>
     </div>
@@ -686,7 +688,7 @@ class Builder:
   <div class="form-aside io io-l"><div class="support-grid one">
     <div class="sup"><div class="ico">✉</div><b>{C['mail_t']}</b><p>{C['mail_p']}</p><a class="btn btn-navy" href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a></div>
     <div class="sup"><div class="ico">🕘</div><b>{C['hours_t']}</b><p>{C['hours_p']}</p></div>
-    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-orange" href="essai.html">{self.I['btn_essai']}</a></div>
+    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a></div>
   </div></div>
   <form id="contact-form" class="card-form io io-r d1" novalidate>
     <fieldset>

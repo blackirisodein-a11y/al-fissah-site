@@ -67,6 +67,12 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
   - « Demander un essai gratuit » (bouton en haut à droite) → `essai.html` = **cours d'essai**
     30 min, gratuit, sans engagement
   Les libellés et textes des deux pages sont dans le dict `PARCOURS` de `build.py`.
+  **Code couleur** : orange = « Commencer maintenant » (inscription) partout ; bleu marine =
+  « Demander un essai gratuit » partout (en-tête, hero, menu mobile, contact). Ne pas inverser.
+  L'en-tête porte le libellé complet ; pour qu'il tienne, le menu de bureau n'a pas « Accueil »
+  (le logo y mène), le menu passe en « hamburger » sous 1180 px, et sous 560 px le bouton affiche
+  le libellé court (`btn_essai_court`). Contrôle : mesurer logo / menu / bloc droit à
+  1440-1366-1280-1181-1180-1000-800-700-641-640-480-390 px dans les 6 langues.
 - **Chaque page a son propre formulaire**, distinct de l'autre :
   - `essai.html` → `#trial-form` (profil, programme, niveau, coordonnées, disponibilités) ;
     textes dans `lang/*.py` dict `'form'`.

@@ -59,11 +59,16 @@ header .nav{display:flex;align-items:center;justify-content:space-between;height
 .logo{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:.6rem}
 .logomark{height:44px;width:auto;border-radius:12px;background:#fff;padding:4px;box-shadow:var(--shadow)}
 .mark{width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700}
-header ul.menu{display:flex;gap:1.6rem;list-style:none;align-items:center}
-header ul.menu a{text-decoration:none;font-weight:600;font-size:.88rem;color:var(--muted);transition:color .2s}
+header ul.menu{display:flex;gap:1.1rem;list-style:none;align-items:center}
+header ul.menu a{text-decoration:none;font-weight:600;font-size:.84rem;color:var(--muted);transition:color .2s}
 header ul.menu a:hover{color:var(--orange-deep)}
-.nav-right{display:flex;align-items:center;gap:.9rem}
+.nav-right{display:flex;align-items:center;gap:.7rem}
 .login{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;padding:.55rem 1.2rem;font-size:.85rem}
+/* bouton « Demander un essai gratuit » : libellé complet, bleu marine (l'orange = « Commencer maintenant ») */
+#hd-essai{white-space:nowrap;font-size:.8rem;padding:.5rem .9rem}
+#hd-essai .lbl-short{display:none}
+@media(max-width:760px){#hd-essai{font-size:.72rem;padding:.45rem .7rem}}
+@media(max-width:560px){#hd-essai .lbl-long{display:none}#hd-essai .lbl-short{display:inline}}   /* téléphone : libellé court, le complet est dans le menu */
 .hd-login{text-decoration:none;font-weight:700;font-size:.88rem;color:var(--muted);transition:color .2s;white-space:nowrap}
 .hd-login:hover{color:var(--navy)}
 .login-sub{font-size:.64rem;font-weight:700;opacity:.85;letter-spacing:.04em}
@@ -72,8 +77,8 @@ header ul.menu a:hover{color:var(--orange-deep)}
 .burger.open span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
-@media(max-width:920px){header ul.menu{display:none}.burger{display:flex}}
-@media(max-width:640px){.hd-login{display:none}}
+@media(max-width:1180px){header ul.menu{display:none}.burger{display:flex}}
+@media(max-width:760px){.hd-login{display:none}}   /* « Se connecter » reste dans le menu mobile */
 @media(max-width:460px){.login{display:none}}
 .mobmenu{position:fixed;inset:0;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);z-index:95;display:grid;place-items:center;clip-path:circle(0% at calc(100% - 46px) 38px);visibility:hidden;transition:clip-path .6s cubic-bezier(.72,0,.22,1),visibility .6s}
 .mobmenu.open{clip-path:circle(150% at calc(100% - 46px) 38px);visibility:visible}
@@ -602,7 +607,6 @@ footer.site .base a{color:var(--blue-soft)}
 .tcard-t footer{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:.9rem;padding-top:.8rem;border-top:1px dashed var(--line);font-size:.85rem}
 .tcard-t footer b{color:var(--navy-mid)}
 .tcard-t footer time{color:var(--muted)}
-@media(max-width:1060px){header ul.menu{gap:1.1rem}header ul.menu a{font-size:.84rem}}
 .logo{white-space:nowrap}
 .login{white-space:nowrap}
 
