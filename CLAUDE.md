@@ -105,9 +105,10 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
   téléverser » ne concerne que le FTP vers LWS.
 - **`ASSET_VER`** dans `build.py` : numéro de version sur `style.css`/`main.js` en mode non
   inline, pour contourner le cache navigateur. Sans effet en mode `--inline`.
-- **Écran d'ouverture** (accueil seulement) : fond vivant (dégradé bleu nuit → bleu roi qui
-  glisse, halos orange et bleu qui dérivent, trame de points), logo qui arrive en douceur avec
-  une onde lumineuse, titre tapé (`js.typew`, ≈ 85 ms/lettre) puis sous-titre en fondu
+- **Écran d'ouverture** (accueil seulement) : fond **clair** et vivant (dégradé blanc → bleu pâle
+  → pêche qui glisse, halos orange et bleu qui dérivent, trame de points, lettres arabes
+  `LD_SYMS` qui montent lentement — demande du client : « fond plus clair avec des animations »),
+  logo qui arrive en douceur avec une onde lumineuse, titre tapé (`js.typew`, ≈ 85 ms/lettre) puis sous-titre en fondu
   (`js.typew_sub`) et trait orange qui se remplit ; sortie en rideau vers le haut. ≈ 5 s au
   total — rythme voulu par le client, ne pas accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
   `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout

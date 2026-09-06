@@ -25,7 +25,7 @@ SITE = 'https://al-fissah.com'
 PREVIEW = False
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
-ASSET_VER = '12'
+ASSET_VER = '13'
 INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
@@ -259,6 +259,10 @@ if INLINE:
     JS_INLINE = open(os.path.join(ROOT, 'assets/main.js'), encoding='utf-8').read()
     MARK_B64 = _b64('assets/logo-mark.png', 124)
     FULL_B64 = _b64('assets/logo.png', 420)
+# Lettres arabes flottantes de l'écran d'ouverture : (lettre, position gauche %, délai s, durée s, orange ?)
+LD_SYMS = ''.join(f'<span class="ld-sym{" o" if o else ""}" style="left:{x}%;animation-delay:{d}s;animation-duration:{t}s" aria-hidden="true">{ch}</span>'
+                  for ch, x, d, t, o in [('ا', 6, -1, 9, 0), ('ب', 16, -4.5, 10, 1), ('ت', 27, -7, 8.5, 0), ('ج', 38, -2.2, 11, 0), ('د', 50, -5.8, 9.5, 1), ('ر', 61, -8.2, 10, 0),
+                                         ('س', 72, -3.6, 8.8, 1), ('ع', 83, -6.4, 10.5, 0), ('ف', 92, -0.5, 9.2, 0), ('م', 45, -9, 9.8, 1), ('ن', 22, -3, 10.4, 0), ('ي', 78, -7.5, 9, 0)])
 CLASSROOM_RAW = open(os.path.join(ROOT, 'part_classroom.html'), encoding='utf-8').read()
 sys.path.insert(0, os.path.join(ROOT, 'lang'))
 from testimonials import TESTI  # témoignages réels, en français
@@ -335,6 +339,7 @@ class Builder:
         L = self.L; n = L['nav']
         loader = f'''<div id="loader">
   <div class="ld-dots" aria-hidden="true"></div>
+  {LD_SYMS}
   <div class="ld-box">
     <span class="ld-ring" aria-hidden="true"></span>
     <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" alt="" onerror="this.style.display='none'">
