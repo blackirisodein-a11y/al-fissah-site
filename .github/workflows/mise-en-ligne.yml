@@ -37,6 +37,7 @@ jobs:
         run: |
           rm -rf _site && mkdir _site
           cp -r .htaccess robots.txt sitemap.xml *.html ar de en es ru _site/
+          rm -f _site/part_classroom.html   # fichier de travail (bloc du hero), pas une page
           echo "Fichiers à envoyer : $(find _site -type f | wc -l)"
 
       - name: Envoyer par FTP vers LWS
