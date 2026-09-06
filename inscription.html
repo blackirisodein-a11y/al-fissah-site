@@ -850,7 +850,7 @@ footer.site .logo-txt b{color:#fff}
     </ul>
     <div class="nav-right">
       <div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="Langue">FR ▾</button><div class="langmenu"><a href="inscription.html" hreflang="fr" lang="fr" class="on">Français</a><a href="en/inscription.html" hreflang="en" lang="en">English</a><a href="ar/inscription.html" hreflang="ar" lang="ar">العربية</a><a href="ru/inscription.html" hreflang="ru" lang="ru">Русский</a><a href="es/inscription.html" hreflang="es" lang="es">Español</a><a href="de/inscription.html" hreflang="de" lang="de">Deutsch</a></div></div>
-      <a class="hd-login" href="https://al-fissah.com/fr/login">Se connecter</a>
+      <a class="hd-login" href="https://al-fissah-app-nine.vercel.app/fr/login">Se connecter</a>
       <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">Demander un essai gratuit</span><span class="lbl-short">Essai gratuit</span> <span class="login-sub">30 min offertes</span></a>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -871,7 +871,7 @@ footer.site .logo-txt b{color:#fff}
     <a href="https://blog.al-fissah.com">Blog</a>
     <a class="btn btn-orange" href="inscription.html">Commencer maintenant</a>
     <a class="btn btn-navy" href="essai.html">Demander un essai gratuit</a>
-    <a class="btn btn-navy" href="https://al-fissah.com/fr/login">Se connecter — Espace étudiant</a>
+    <a class="btn btn-navy" href="https://al-fissah-app-nine.vercel.app/fr/login">Se connecter — Espace étudiant</a>
   </nav>
 </div>
 
@@ -892,56 +892,17 @@ footer.site .logo-txt b{color:#fff}
       <div class="assur"><span class="ar">بِسْمِ اللهِ</span><b>Ce qui se passe ensuite</b><p>L'administration vous répond dans les plus brefs délais, in chaa Allah : professeur, planning, puis règlement de la session. Vos cours commencent dès la confirmation.</p></div>
       <div class="iautre"><b>Vous préférez essayer d'abord ?</b> <a href="essai.html">Demander un cours d'essai gratuit →</a></div>
     </div>
-    <form id="signup-form" class="card-form io io-r d1" novalidate>
-    <fieldset>
-      <legend><i>1</i> L'élève</legend>
-      <div class="seg" role="radiogroup"><label><input type="radio" name="profil" value="adulte" checked><span>Un adulte</span></label><label><input type="radio" name="profil" value="enfant"><span>Un enfant</span></label></div>
-      <div id="s-enfant-fields" hidden><div class="row2">
-        <div class="field"><label for="s-enfant">Prénom de l'enfant</label><input id="s-enfant" name="enfant_prenom" type="text" autocomplete="off"></div>
-        <div class="field"><label for="s-age">Âge</label><select id="s-age" name="enfant_age"><option value="">—</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select></div>
-      </div></div>
-      <div class="row2">
-        <div class="field"><label for="s-programme">Programme</label><select id="s-programme" name="programme" required><option value="">Choisir…</option><option value="arabe-enfants">Langue arabe — enfant (individuel)</option><option value="arabe-adultes">Langue arabe — adulte (individuel)</option><option value="collectifs">Langue arabe — cours collectif (enfants)</option><option value="coran">Coran — enfant ou adulte</option><option value="mutun">Mémorisation des textes (Mutûn)</option><option value="lecture">Méthode facile pour maîtriser la lecture</option></select></div>
-        <div class="field"><label for="s-niveau">Niveau actuel</label><select id="s-niveau" name="niveau" required><option value="">Choisir…</option><option>Grand débutant (ne lit pas l'arabe)</option><option>Je déchiffre lentement</option><option>Je lis, je comprends un peu</option><option>Intermédiaire</option><option>Avancé</option></select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>2</i> Formule et rythme</legend>
-      <div class="field"><label for="s-heures">Formule <small>(même tarif langue arabe et Coran)</small></label><select id="s-heures" name="formule" required><option value="">Choisir…</option><option value="1">Formule 1 — 1 h par semaine — 28 € la session de 4 semaines</option><option value="2">Formule 2 — 2 h par semaine — 48 € la session de 4 semaines</option><option value="3">Formule 3 — 3 h par semaine — 72 € la session de 4 semaines</option><option value="4">Formule 4 — 4 h par semaine — 96 € la session de 4 semaines</option><option value="5">Formule 5 — 5 h par semaine — 120 € la session de 4 semaines</option><option value="6">Formule 6 — 6 h par semaine — 144 € la session de 4 semaines</option><option value="7">Formule 7 — 7 h par semaine — 168 € la session de 4 semaines</option><option value="duo">Formule binôme — 1 h par semaine pour 2 personnes — 36 € (langue arabe uniquement)</option><option value="collectif">Cours collectif — 3 h par semaine (tarif communiqué par l'administration)</option></select></div>
-      <div class="row2">
-        <div class="field"><label for="s-jours">Jours et heures souhaités <small>(précisez votre fuseau horaire)</small></label><input id="s-jours" name="jours" type="text" required placeholder="Ex. : mercredi 17h–19h, samedi matin (heure de Paris)"></div>
-        <div class="field"><label for="s-debut">Début souhaité</label><select id="s-debut" name="debut" required><option value="">Choisir…</option><option>Dès que possible</option><option>Dans les 2 à 4 semaines</option><option>Le mois prochain</option><option>À convenir avec l'administration</option></select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>3</i> Vos coordonnées</legend>
-      <div class="row2">
-        <div class="field"><label for="s-nom">Nom et prénom (du parent si l'élève est mineur)</label><input id="s-nom" name="nom" type="text" required autocomplete="name"></div>
-        <div class="field"><label for="s-email">E-mail</label><input id="s-email" name="email" type="email" required autocomplete="email"></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label for="s-tel">Téléphone / WhatsApp</label><input id="s-tel" name="tel" type="tel" required autocomplete="tel" placeholder="+33 6 …"></div>
-        <div class="field"><label for="s-pays">Pays</label><input id="s-pays" name="pays" type="text" autocomplete="country-name" required></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>4</i> Validation</legend>
-      <div class="field"><label for="s-msg">Message <small>(facultatif)</small></label><textarea id="s-msg" name="message" placeholder="Objectifs, professeur souhaité, précisions…"></textarea></div>
-      <label class="consent"><input type="checkbox" name="reglement" required><span>J'ai lu et j'accepte le <a href="reglement.html" target="_blank" rel="noopener">règlement intérieur</a> de l'école (engagement pour la session entière de 4 semaines).</span></label>
-      <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte que mes informations soient utilisées pour traiter mon inscription, conformément à la <a href="mentions-legales.html#confidentialite">politique de confidentialité</a>.</span></label>
-      <div class="hp" aria-hidden="true"><label>Website <input id="s-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
-    </fieldset>
-    <div class="form-actions">
-      <button type="submit" class="btn btn-orange">Envoyer ma demande d'inscription <span class="arr">→</span></button>
-      <span class="alt">ou <a id="signup-wa" href="#" target="_blank" rel="noopener">écrivez-nous sur WhatsApp</a></span>
+    <div class="card-form app-card io io-r d1" id="app-card">
+      <h3>Continuer sur la plateforme</h3>
+      <p>La suite se passe sur notre plateforme sécurisée : vous y créez votre compte, choisissez votre professeur et votre créneau, et retrouvez ensuite votre espace élève.</p>
+      <a class="btn btn-orange big" href="https://al-fissah-app-nine.vercel.app/fr/inscription">Continuer <span class="arr">→</span></a>
+      <p class="tarif-note" style="text-align:start"><b>Vous avez déjà un compte ?</b> <a href="https://al-fissah-app-nine.vercel.app/fr/login">Se connecter</a></p>
     </div>
-    <p id="signup-status" class="form-status" hidden role="status" aria-live="polite"></p>
-  </form>
   </section>
   <div class="psteps io d1">
     <h2>Les 6 étapes de ce parcours</h2>
     <ol class="isteps"><li class="istep"><span class="n">1</span><div><b>Informations de l'élève</b><span>Identité, contact, pays et fuseau horaire.</span></div></li><li class="istep"><span class="n">2</span><div><b>Programme et niveau</b><span>Langue arabe ou Coran, individuel ou collectif, niveau évalué.</span></div></li><li class="istep"><span class="n">3</span><div><b>Choix de la formule</b><span>De 1 h à 7 h par semaine, ou formule en binôme.</span></div></li><li class="istep"><span class="n">4</span><div><b>Choix du professeur</b><span>Selon votre programme et vos horaires.</span></div></li><li class="istep"><span class="n">5</span><div><b>Jours et créneaux</b><span>Le planning réel du professeur ; vous fixez vos cours hebdomadaires.</span></div></li><li class="istep"><span class="n">6</span><div><b>Paiement et confirmation</b><span>Règlement de la session, puis accès à l'espace étudiant.</span></div></li></ol>
-    <p class="tarif-note" style="text-align:start">Aujourd'hui, l'administration réalise avec vous les étapes 3 à 5 (professeur, planning, créneau) par e-mail ou WhatsApp, dès réception de votre formulaire.</p>
+    
   </div>
   <p class="tarif-note"><a href="index.html">← Retour à l'accueil</a></p>
 </div></div>
@@ -984,7 +945,7 @@ footer.site .logo-txt b{color:#fff}
     </div>
     <div class="base">
       <span>© 2020–2026 Al-Fissah — Cours en ligne</span>
-      <span><a href="https://al-fissah.com/fr/login">Se connecter</a> · <a href="https://al-fissah.com/fr/register">S'inscrire</a></span>
+      <span><a href="https://al-fissah-app-nine.vercel.app/fr/login">Se connecter</a> · <a href="https://al-fissah-app-nine.vercel.app/fr/register">S'inscrire</a></span>
     </div>
   </div>
 </footer>

@@ -850,7 +850,7 @@ footer.site .logo-txt b{color:#fff}
     </ul>
     <div class="nav-right">
       <div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="Язык">RU ▾</button><div class="langmenu"><a href="../inscription.html" hreflang="fr" lang="fr">Français</a><a href="../en/inscription.html" hreflang="en" lang="en">English</a><a href="../ar/inscription.html" hreflang="ar" lang="ar">العربية</a><a href="../ru/inscription.html" hreflang="ru" lang="ru" class="on">Русский</a><a href="../es/inscription.html" hreflang="es" lang="es">Español</a><a href="../de/inscription.html" hreflang="de" lang="de">Deutsch</a></div></div>
-      <a class="hd-login" href="https://al-fissah.com/fr/login">Войти</a>
+      <a class="hd-login" href="https://al-fissah-app-nine.vercel.app/ru/login">Войти</a>
       <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">Записаться на пробный урок</span><span class="lbl-short">Пробный урок</span> <span class="login-sub">30 минут бесплатно</span></a>
       <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -871,7 +871,7 @@ footer.site .logo-txt b{color:#fff}
     <a href="https://blog.al-fissah.com">Блог</a>
     <a class="btn btn-orange" href="inscription.html">Начать обучение</a>
     <a class="btn btn-navy" href="essai.html">Записаться на пробный урок</a>
-    <a class="btn btn-navy" href="https://al-fissah.com/fr/login">Войти — личный кабинет</a>
+    <a class="btn btn-navy" href="https://al-fissah-app-nine.vercel.app/ru/login">Войти — личный кабинет</a>
   </nav>
 </div>
 
@@ -892,56 +892,17 @@ footer.site .logo-txt b{color:#fff}
       <div class="assur"><span class="ar">بِسْمِ اللهِ</span><b>Что будет дальше</b><p>Администрация ответит вам в ближайшее время, ин ша Аллах: преподаватель, расписание, затем оплата цикла. Занятия начинаются сразу после подтверждения.</p></div>
       <div class="iautre"><b>Хотите сначала попробовать?</b> <a href="essai.html">Записаться на бесплатный пробный урок →</a></div>
     </div>
-    <form id="signup-form" class="card-form io io-r d1" novalidate>
-    <fieldset>
-      <legend><i>1</i> Ученик</legend>
-      <div class="seg" role="radiogroup"><label><input type="radio" name="profil" value="adulte" checked><span>Взрослый</span></label><label><input type="radio" name="profil" value="enfant"><span>Ребёнок</span></label></div>
-      <div id="s-enfant-fields" hidden><div class="row2">
-        <div class="field"><label for="s-enfant">Имя ребёнка</label><input id="s-enfant" name="enfant_prenom" type="text" autocomplete="off"></div>
-        <div class="field"><label for="s-age">Возраст</label><select id="s-age" name="enfant_age"><option value="">—</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select></div>
-      </div></div>
-      <div class="row2">
-        <div class="field"><label for="s-programme">Программа</label><select id="s-programme" name="programme" required><option value="">Выберите…</option><option value="arabe-enfants">Арабский язык — ребёнок (индивидуально)</option><option value="arabe-adultes">Арабский язык — взрослый (индивидуально)</option><option value="collectifs">Арабский язык — группа (дети)</option><option value="coran">Коран — дети или взрослые</option><option value="mutun">Заучивание матнов</option><option value="lecture">Простой метод освоения чтения</option></select></div>
-        <div class="field"><label for="s-niveau">Текущий уровень</label><select id="s-niveau" name="niveau" required><option value="">Выберите…</option><option>Полный новичок (не читаю по-арабски)</option><option>Читаю по слогам, медленно</option><option>Читаю, немного понимаю</option><option>Средний</option><option>Продвинутый</option></select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>2</i> Тариф и ритм</legend>
-      <div class="field"><label for="s-heures">Тариф <small>(одна цена для арабского и Корана)</small></label><select id="s-heures" name="formule" required><option value="">Выберите…</option><option value="1">Тариф 1 — 1 ч в неделю — 28 € за цикл из 4 недель</option><option value="2">Тариф 2 — 2 ч в неделю — 48 € за цикл из 4 недель</option><option value="3">Тариф 3 — 3 ч в неделю — 72 € за цикл из 4 недель</option><option value="4">Тариф 4 — 4 ч в неделю — 96 € за цикл из 4 недель</option><option value="5">Тариф 5 — 5 ч в неделю — 120 € за цикл из 4 недель</option><option value="6">Тариф 6 — 6 ч в неделю — 144 € за цикл из 4 недель</option><option value="7">Тариф 7 — 7 ч в неделю — 168 € за цикл из 4 недель</option><option value="duo">Тариф «вдвоём» — 1 ч в неделю на 2 человек — 36 € (только арабский язык)</option><option value="collectif">Группа — 3 ч в неделю (цену сообщает администрация)</option></select></div>
-      <div class="row2">
-        <div class="field"><label for="s-jours">Удобные дни и время <small>(укажите ваш часовой пояс)</small></label><input id="s-jours" name="jours" type="text" required placeholder="Например: среда 17–19, суббота утром (по Москве)"></div>
-        <div class="field"><label for="s-debut">Желаемое начало</label><select id="s-debut" name="debut" required><option value="">Выберите…</option><option>Как можно скорее</option><option>Через 2–4 недели</option><option>В следующем месяце</option><option>Согласовать с администрацией</option></select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>3</i> Ваши данные</legend>
-      <div class="row2">
-        <div class="field"><label for="s-nom">Имя и фамилия (родителя, если ученик несовершеннолетний)</label><input id="s-nom" name="nom" type="text" required autocomplete="name"></div>
-        <div class="field"><label for="s-email">Эл. почта</label><input id="s-email" name="email" type="email" required autocomplete="email"></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label for="s-tel">Телефон / WhatsApp</label><input id="s-tel" name="tel" type="tel" required autocomplete="tel" placeholder="+33 6 …"></div>
-        <div class="field"><label for="s-pays">Страна</label><input id="s-pays" name="pays" type="text" autocomplete="country-name" required></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>4</i> Подтверждение</legend>
-      <div class="field"><label for="s-msg">Сообщение <small>(необязательно)</small></label><textarea id="s-msg" name="message" placeholder="Цели, пожелания по преподавателю, уточнения…"></textarea></div>
-      <label class="consent"><input type="checkbox" name="reglement" required><span>Я прочитал(а) и принимаю <a href="reglement.html" target="_blank" rel="noopener">правила школы</a> (обязательство на весь цикл из 4 недель).</span></label>
-      <label class="consent"><input type="checkbox" name="consent" required><span>Я согласен(на) на использование моих данных для оформления записи в соответствии с <a href="mentions-legales.html#confidentialite">политикой конфиденциальности</a>.</span></label>
-      <div class="hp" aria-hidden="true"><label>Website <input id="s-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
-    </fieldset>
-    <div class="form-actions">
-      <button type="submit" class="btn btn-orange">Отправить заявку на обучение <span class="arr">→</span></button>
-      <span class="alt">или <a id="signup-wa" href="#" target="_blank" rel="noopener">напишите нам в WhatsApp</a></span>
+    <div class="card-form app-card io io-r d1" id="app-card">
+      <h3>Продолжить на платформе</h3>
+      <p>Следующий шаг проходит на нашей защищённой платформе: создайте аккаунт, выберите преподавателя и время занятий, затем пользуйтесь личным кабинетом ученика.</p>
+      <a class="btn btn-orange big" href="https://al-fissah-app-nine.vercel.app/ru/inscription">Продолжить <span class="arr">→</span></a>
+      <p class="tarif-note" style="text-align:start"><b>Уже есть аккаунт?</b> <a href="https://al-fissah-app-nine.vercel.app/ru/login">Войти</a></p>
     </div>
-    <p id="signup-status" class="form-status" hidden role="status" aria-live="polite"></p>
-  </form>
   </section>
   <div class="psteps io d1">
     <h2>6 шагов этого пути</h2>
     <ol class="isteps"><li class="istep"><span class="n">1</span><div><b>Данные ученика</b><span>Имя, контакты, страна и часовой пояс.</span></div></li><li class="istep"><span class="n">2</span><div><b>Программа и уровень</b><span>Арабский или Коран, индивидуально или в группе, оценка уровня.</span></div></li><li class="istep"><span class="n">3</span><div><b>Выбор тарифа</b><span>От 1 до 7 часов в неделю или тариф «вдвоём».</span></div></li><li class="istep"><span class="n">4</span><div><b>Выбор преподавателя</b><span>С учётом программы и вашего времени.</span></div></li><li class="istep"><span class="n">5</span><div><b>Дни и время</b><span>Реальное расписание преподавателя; вы назначаете свои уроки.</span></div></li><li class="istep"><span class="n">6</span><div><b>Оплата и подтверждение</b><span>Оплата цикла и доступ в личный кабинет.</span></div></li></ol>
-    <p class="tarif-note" style="text-align:start">Пока шаги 3–5 (преподаватель, расписание, время) администрация проходит вместе с вами по эл. почте или в WhatsApp, как только получит вашу форму.</p>
+    
   </div>
   <p class="tarif-note"><a href="index.html">← На главную</a></p>
 </div></div>
@@ -984,7 +945,7 @@ footer.site .logo-txt b{color:#fff}
     </div>
     <div class="base">
       <span>© 2020–2026 Al-Fissah — Онлайн-обучение</span>
-      <span><a href="https://al-fissah.com/fr/login">Войти</a> · <a href="https://al-fissah.com/fr/register">Регистрация</a></span>
+      <span><a href="https://al-fissah-app-nine.vercel.app/ru/login">Войти</a> · <a href="https://al-fissah-app-nine.vercel.app/ru/register">Регистрация</a></span>
     </div>
   </div>
 </footer>

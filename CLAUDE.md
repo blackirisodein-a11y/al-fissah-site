@@ -162,8 +162,9 @@ Contrôle : `grep -o 'href="https://…/[a-z]*/[a-z]*"' essai.html`.
 
 ## Suite prévue
 
-1. Mettre la plateforme en service (comptes Supabase, Vercel, Resend, Stripe), puis renseigner
-   `app=` dans `site.conf` et reconstruire.
+1. Plateforme en service sur **https://al-fissah-app-nine.vercel.app** (Supabase + Vercel,
+   06/09/2026) et `app=` renseigné : le site y envoie déjà. Restent : e-mails (Resend),
+   paiements (Stripe), puis domaine définitif (app.al-fissah.com) → mettre à jour `app=`.
 2. Compléter les mentions légales.
 3. Brancher le formulaire de contact sur Web3Forms.
 4. Basculer vers al-fissah.com en préservant les URL de l'application élève.
