@@ -25,7 +25,7 @@ SITE = 'https://al-fissah.com'
 PREVIEW = False
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
-ASSET_VER = '11'
+ASSET_VER = '12'
 INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
@@ -334,10 +334,13 @@ class Builder:
     def chrome(self, page, home=False):
         L = self.L; n = L['nav']
         loader = f'''<div id="loader">
+  <div class="ld-dots" aria-hidden="true"></div>
   <div class="ld-box">
+    <span class="ld-ring" aria-hidden="true"></span>
     <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" alt="" onerror="this.style.display='none'">
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
     <div class="word-sub" id="typew-sub"></div>
+    <div class="ld-line" aria-hidden="true"></div>
   </div>
 </div>
 ''' if home else ''
