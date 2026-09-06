@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://al-fissah.com/sitemap.xml
+Disallow: /

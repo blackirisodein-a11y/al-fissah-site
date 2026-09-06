@@ -1,5 +1,13 @@
+# Publication automatique — Netlify
+# Netlify récupère le dossier depuis GitHub, lance build.py pour régénérer
+# les 5 langues, puis publie le résultat. Rien à faire sur votre ordinateur.
+
 [build]
+  command = "python3 build.py"
   publish = "."
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
 
 [[headers]]
   for = "/*"

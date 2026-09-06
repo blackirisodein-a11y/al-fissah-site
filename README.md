@@ -5,7 +5,9 @@ Textes repris de al-fissah.com (accueil, à propos, programmes, tarifs, FAQ, rè
 ## Pages
 | Fichier | Contenu |
 |---|---|
-| `index.html` | Accueil : hero, parcours, 3 piliers (programme / immersion / suivi), 6 programmes, vidéo YouTube, adultes, application, tarifs (extrait), témoignages, FAQ (extrait), **formulaire de cours d'essai** |
+| `index.html` | Accueil : hero, parcours, 3 piliers (programme / immersion / suivi), 6 programmes, vidéo YouTube, adultes, application, tarifs (extrait), témoignages, FAQ (extrait), encart « deux façons de commencer » |
+| `inscription.html` | **Inscription aux études** (bouton « Commencer maintenant ») : formulaire d'inscription (programme, formule, jours, coordonnées, règlement) + les 6 étapes |
+| `essai.html` | **Cours d'essai gratuit** (bouton « Demander un essai gratuit », en haut à droite) : formulaire de demande d'essai + les 6 étapes |
 | `programmes.html` | Fiches détaillées : arabe enfants, arabe adultes, Coran, Mutûn (5 niveaux), méthode de lecture, cours collectifs |
 | `tarifs.html` | Grille complète arabe + Coran (formules 1 à 7, binôme), réduction famille, paiement |
 | `faq.html` | FAQ officielle complète (18 questions) |
@@ -18,7 +20,7 @@ Textes repris de al-fissah.com (accueil, à propos, programmes, tarifs, FAQ, rè
 
 Site 100 % statique : déposez le dossier tel quel sur n'importe quel hébergeur.
 
-## Formulaires (cours d'essai + contact) — à régler dans `assets/main.js`
+## Formulaires (inscription, cours d'essai, contact) — à régler dans `assets/main.js`
 ```js
 const FORM_ENDPOINT="";                       // ex. "https://formspree.io/f/xxxxxxxx"
 const CONTACT_EMAIL="c.alfissah@gmail.com";   // adresse qui reçoit les demandes
@@ -32,8 +34,8 @@ const WHATSAPP_NUMBER="";                     // ex. "33612345678" — affiche u
 2. **Témoignages** : les 24 avis réels du site sont intégrés (page `temoignages.html` + 3 extraits sur l'accueil).
 3. **Vidéo** : l'accueil intègre la vidéo YouTube « Livre 12 Unité 11 » ; changez l'ID dans `build.py` ou `index.html`.
 4. **Mentions légales** : rédigées pour **Al-Fissah LLC** (Nouveau-Mexique, USA). Restent à compléter : adresse du siège, NM Business ID, agent enregistré, directeur de publication, hébergeur.
-5. **Boutons « Choisir »** des tarifs : pointent vers le formulaire d'essai ; pour renvoyer vers la commande en ligne, mettez les liens `al-fissah.com/fr/commander/...`.
+5. **Boutons « Choisir »** des tarifs : pointent vers le formulaire d'inscription, formule préremplie ; pour renvoyer vers la commande en ligne, mettez les liens `al-fissah.com/fr/commander/...`.
 6. « Se connecter » → `https://al-fissah.com/fr/login`.
 
 ## Regénérer les pages
-`python3 build.py` (header/footer/textes communs dans ce fichier). Les fichiers HTML peuvent aussi être édités directement.
+`python3 build.py --inline` (header/footer/textes communs dans ce fichier). Ne pas éditer les fichiers HTML à la main : ils sont régénérés depuis `lang/`.

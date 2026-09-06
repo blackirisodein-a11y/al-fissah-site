@@ -5,7 +5,7 @@ L = {
   title_home="AL-FISSAH — École internationale de langue arabe et Coran",
   desc_home="École internationale de langue arabe et Coran, en ligne, pour enfants et adultes non-arabophones. Professeurs arabophones formés, immersion 100 % arabe, cours d'essai de 30 minutes.",
   org_desc="École internationale de langue arabe et Coran, en ligne, pour enfants et adultes non-arabophones."),
-'js': dict(typew="Al-Fissah — École internationale de langue arabe et Coran", sending="Envoi en cours…",
+'js': dict(typew="Bienvenue à Al-Fissah — École internationale de langue arabe et Coran", sending="Envoi en cours…",
   trial_ok="Demande envoyée. L'administration vous contacte pour fixer votre cours d'essai, in chaa Allah.",
   contact_ok="Message envoyé. Notre conseiller vous répondra dans les plus brefs délais, in chaa Allah.",
   err="L'envoi a échoué. Réessayez, ou écrivez-nous directement à {email}.",
@@ -272,3 +272,23 @@ L = {
 'nf': dict(title="Page introuvable — AL-FISSAH", h1="Cette page n'existe pas", p="Le lien est peut-être ancien, ou l'adresse contient une faute de frappe. Voici où aller :", home="Retour à l'accueil"),
 }
 L['form']['or'] = L['form'].pop('or_')
+
+# ---- Page inscription.html : formulaire d'inscription aux études (parcours distinct du cours d'essai).
+# Les libellés communs aux deux formulaires (adulte/enfant, niveau, e-mail, pays…) sont repris de L['form'].
+L['signup'] = dict(kick="Inscription aux études", h2="Inscrivez-vous à une session de 4 semaines",
+  p="Choisissez le programme, la formule et vos jours. L'administration vous contacte pour confirmer le professeur et le planning avant tout paiement.",
+  checks=["Cours individuels en direct avec un professeur arabophone","Sessions de 4 semaines, renouvelables","Espace étudiant : suivi, planning, remarques du professeur"],
+  next_t="Ce qui se passe ensuite", next_p="L'administration vous répond dans les plus brefs délais, in chaa Allah : professeur, planning, puis règlement de la session. Vos cours commencent dès la confirmation.",
+  who="L'élève", programme="Programme",
+  programmes=[('arabe-enfants',"Langue arabe — enfant (individuel)"),('arabe-adultes',"Langue arabe — adulte (individuel)"),('collectifs',"Langue arabe — cours collectif (enfants)"),('coran',"Coran — enfant ou adulte"),('mutun',"Mémorisation des textes (Mutûn)"),('lecture',"Méthode facile pour maîtriser la lecture")],
+  rythme_t="Formule et rythme", hours="Formule", hours_hint="même tarif langue arabe et Coran", hours_opt="Formule {h} — {h} h par semaine — {e} € la session de 4 semaines",
+  duo_opt="Formule binôme — 1 h par semaine pour 2 personnes — 36 € (langue arabe uniquement)", group_opt="Cours collectif — 3 h par semaine (tarif communiqué par l'administration)",
+  days="Jours et heures souhaités", start="Début souhaité", start_opts=["Dès que possible","Dans les 2 à 4 semaines","Le mois prochain","À convenir avec l'administration"],
+  name="Nom et prénom (du parent si l'élève est mineur)",
+  valid_t="Validation", msg_ph="Objectifs, professeur souhaité, précisions…",
+  rules_pre="J'ai lu et j'accepte le", rules_link="règlement intérieur", rules_post=" de l'école (engagement pour la session entière de 4 semaines).",
+  consent="J'accepte que mes informations soient utilisées pour traiter mon inscription, conformément à la",
+  submit="Envoyer ma demande d'inscription")
+L['js'].update(signup_ok="Demande d'inscription envoyée. L'administration vous contacte pour confirmer le professeur et le planning, in chaa Allah.",
+  subject_signup="Inscription aux études — {name}", wa_signup="Bonjour, je souhaite m'inscrire aux cours (inscription aux études, et non un cours d'essai).",
+  summary_signup=["Inscription aux études — Al-Fissah","Nom","E-mail","Téléphone / WhatsApp","Pays","Profil","ans","Programme","Niveau actuel","Formule","Jours et heures souhaités","Début souhaité","Message"])

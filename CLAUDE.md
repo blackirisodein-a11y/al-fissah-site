@@ -1,0 +1,137 @@
+# Al-Fissah — note de reprise
+
+Site vitrine statique de l'**École internationale de langue arabe et Coran** (Al-Fissah LLC,
+Nouveau-Mexique, USA). 6 langues, 12 pages par langue, aucun serveur applicatif.
+
+En ligne (préproduction) : **https://al-fissah.blackirys.com** — hébergement LWS, dépôt par FTP.
+Destination finale : al-fissah.com (le domaine héberge déjà l'application élève : `/fr/login`,
+`/fr/register`, paiements Stripe — **ne pas écraser**).
+
+---
+
+## Comment ça marche
+
+Les fichiers `.html` sont **générés**, jamais édités à la main. Tout part de :
+
+```
+build.py              assemble les pages ; contient la structure HTML et le dict PARCOURS
+lang/fr.py            tous les textes français (dict L)
+lang/{en,es,de,ru,ar}.py   mêmes clés, autres langues
+lang/testimonials.py  les 24 témoignages réels (restent en français partout)
+assets/style.css      styles
+assets/main.js        scripts (loader, menu, formulaires, sélecteur de langue)
+assets/logo*.png      logo officiel
+site.conf             adresse de publication + mode aperçu
+pics.json             illustrations SVG des 6 programmes (extraites du template d'origine)
+part_classroom.html   bloc "classe virtuelle" du hero
+```
+
+### Construire
+
+```bash
+python3 build.py --inline        # ← MODE UTILISÉ EN PRODUCTION
+python3 build.py                 # version avec assets externes (non déployée)
+python3 build.py fr en           # seulement certaines langues
+python3 build.py --site https://exemple.fr --preview
+```
+
+**`--inline` est important.** Il intègre CSS, JS et logos (base64) dans chaque page.
+Raison : les transferts FTP par FileZilla créaient le dossier `assets` sans y déposer les
+fichiers, ce qui cassait tout le site en silence. Avec `--inline`, chaque page est autonome ;
+si une page manque au transfert, elle seule est concernée. Pages ~300 Ko, ~11 Mo au total.
+
+### Vérifier
+
+Playwright est installé. Le contrôle systématique après chaque build :
+
+```js
+// 72 pages : erreurs JS, débordement horizontal, logo chargé
+for (const l of ['','ar/','en/','es/','de/','ru/'])
+  for (const f of ['index','programmes','tarifs','faq','temoignages','reglement',
+                   'a-propos','contact','essai','inscription','mentions-legales','404'])
+    // goto → forcer loader.done + body.ready → scrollWidth <= viewport, pageerror vide
+```
+
+Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes allemands longs).
+
+---
+
+## Décisions à connaître
+
+- **`site.conf`** : `site=` alimente les balises canoniques et le sitemap ; `preview=oui`
+  ajoute `noindex` + `robots.txt` bloquant. À passer sur `non` uniquement le jour de la
+  bascule vers al-fissah.com, sinon le domaine de test concurrence le vrai site.
+- **Deux parcours distincts, à ne pas confondre** :
+  - « Commencer maintenant » → `inscription.html` = **inscription aux études** (programme,
+    formule, professeur, créneaux, paiement)
+  - « Demander un essai gratuit » (bouton en haut à droite) → `essai.html` = **cours d'essai**
+    30 min, gratuit, sans engagement
+  Les libellés et textes des deux pages sont dans le dict `PARCOURS` de `build.py`.
+- **Chaque page a son propre formulaire**, distinct de l'autre :
+  - `essai.html` → `#trial-form` (profil, programme, niveau, coordonnées, disponibilités) ;
+    textes dans `lang/*.py` dict `'form'`.
+  - `inscription.html` → `#signup-form` (élève, programme, niveau, **formule 1–7 h / binôme /
+    collectif**, jours souhaités, début souhaité, coordonnées, acceptation du règlement) ;
+    textes dans `lang/*.py` dict `'signup'` (en fin de fichier) + messages `L['js']`.
+  - Les deux passent par le même mécanisme que le contact (`assets/main.js` : Web3Forms si
+    `FORM_ENDPOINT` est rempli, sinon e-mail pré-rempli). Le champ `_type` vaut
+    `inscription` pour l'inscription, ce qui permet de trier les demandes reçues.
+  - Les boutons « Choisir » des tarifs et les CTA des programmes préremplissent le
+    formulaire d'inscription (`inscription.html?formule=2&programme=coran`).
+  - Sous le formulaire, les 6 étapes du parcours cible restent décrites (`PARCOURS`,
+    `steps`), avec une note (`steps_p`) précisant que l'administration réalise pour l'instant
+    les étapes 3 à 5 à la main. Le parcours réel viendra d'une plateforme existante (voir
+    « suite » plus bas).
+- **Textes** : repris de al-fissah.com (FAQ 18 questions, règlement 9 articles, tarifs,
+  programmes). Ne pas les réécrire sans raison, ce sont les textes officiels de l'école.
+- **Témoignages** : verbatim, en français dans les 6 langues. Une note l'explique sur les
+  versions traduites. Ne pas traduire sans accord du client.
+- **Mentions légales** : rédigées pour une LLC américaine servant des élèves européens
+  (droit du Nouveau-Mexique + RGPD + transferts hors UE). Cinq champs restent entre
+  crochets : adresse du siège, NM Business ID, agent enregistré, gérant, hébergeur.
+- **Formulaires (contact, essai, inscription)** : `assets/main.js`, en haut. `FORM_ENDPOINT` vide → ouvre la
+  messagerie du visiteur vers `c.alfissah@gmail.com`. Renseigner `FORM_ENDPOINT` +
+  `FORM_KEY` (Web3Forms) pour recevoir les demandes directement.
+- **Dépôt GitHub** : `blackirisodein-a11y/al-fissah-site` contient tout le dossier `site` (y compris
+  `build.py`, `lang/`, `assets/`) — Netlify en a besoin pour reconstruire. La règle « ne pas
+  téléverser » ne concerne que le FTP vers LWS.
+- **`ASSET_VER`** dans `build.py` : numéro de version sur `style.css`/`main.js` en mode non
+  inline, pour contourner le cache navigateur. Sans effet en mode `--inline`.
+- L'écran d'ouverture a un **filet de sécurité CSS** (`@keyframes ldfailsafe`) : il s'efface
+  au bout de 7 s même si le JS ne se charge pas. Ne pas le retirer — sans lui, un JS absent
+  bloquait tout le site derrière l'écran bleu.
+
+---
+
+## Déploiement
+
+FTP (FileZilla), hôte `193.37.145.67`, **FTP simple sans chiffrement** — le TLS échoue,
+le certificat LWS ne correspond pas au domaine. Déposer le contenu (pas le dossier) dans
+`/al-fissah.blackirys.com`.
+
+**Piège vérifié plusieurs fois** : FileZilla crée les dossiers mais n'y copie pas toujours
+les fichiers. Toujours contrôler ensuite qu'une ressource répond, p. ex. ouvrir
+`al-fissah.blackirys.com/ru/` dans un navigateur. La formule LWS du client ne donne accès
+ni au gestionnaire de fichiers ni à PHP.
+
+Ne jamais téléverser : `build.py`, `lang/`, `site.conf`, `pics.json`, `part_classroom.html`,
+les `.md`, `netlify.toml`, `_redirects`.
+
+---
+
+## Suite prévue
+
+1. Le client doit fournir une **plateforme d'inscription existante** (utilisée par une autre
+   école) : l'étudier, en reprendre le fonctionnement, la reconfigurer pour Al-Fissah,
+   l'habiller aux couleurs du site, retirer tout ce qui est propre à l'autre école, et la
+   brancher sur `essai.html` et `inscription.html`.
+2. Compléter les mentions légales.
+3. Brancher les formulaires sur Web3Forms.
+4. Basculer vers al-fissah.com en préservant les URL de l'application élève.
+
+## Style de travail attendu
+
+Le client n'est pas technicien : instructions pas à pas, une action à la fois, pas de jargon.
+Il travaille sous Windows avec FileZilla. Vérifier soi-même le rendu (captures Playwright)
+avant d'annoncer que quelque chose fonctionne — plusieurs allers-retours ont été perdus à
+supposer qu'un transfert avait réussi.

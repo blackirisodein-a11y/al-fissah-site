@@ -17,12 +17,16 @@ import os, sys, json, re, importlib.util
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOGO_ABS = 'https://al-fissah.com/assets/images/Logo.png'   # utilisé pour le partage social et Schema.org
-LOGO_FILE = 'assets/logo.svg'                               # fichier local affiché sur le site
+LOGO_FILE = 'assets/logo-mark.png'                          # calligraphie seule, dans l'en-tête et le pied de page
+LOGO_FULL = 'assets/logo.png'                               # logo complet, sur l'écran de chargement
 LOGIN = 'https://al-fissah.com/fr/login'
 REGISTER = 'https://al-fissah.com/fr/register'
 SITE = 'https://al-fissah.com'
 PREVIEW = False
 YEAR = '2026'
+MAIL = 'c.alfissah@gmail.com'
+ASSET_VER = '9'
+INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
 _conf = os.path.join(ROOT, 'site.conf')
@@ -42,13 +46,218 @@ if '--public' in sys.argv:
 LANGS = [c for c in ['fr', 'en', 'ar', 'ru', 'es', 'de'] if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lang', c + '.py'))]
 LANG_NAMES = {'fr': 'Français', 'en': 'English', 'ar': 'العربية', 'ru': 'Русский', 'es': 'Español', 'de': 'Deutsch'}
 FONTS = {
-  'default': "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Karla:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap",
-  'ar': "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap",
-  'ru': "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap",
+  'default': "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Karla:wght@400;500;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
+  'ar': "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
+  'ru': "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
 }
-PAGES = ['index', 'programmes', 'tarifs', 'faq', 'temoignages', 'reglement', 'a-propos', 'contact', 'mentions-legales', '404']
+PAGES = ['index', 'programmes', 'tarifs', 'faq', 'temoignages', 'reglement', 'a-propos', 'contact', 'essai', 'inscription', 'mentions-legales', '404']
 
+
+# --- Deux parcours distincts : essai gratuit et inscription aux études ---
+# Chaque langue définit : les libellés des boutons, puis les textes des 2 pages.
+PARCOURS = {
+ 'fr': dict(
+   box_kick="Deux façons de commencer", box_h2="Inscrivez-vous aux études, ou essayez d'abord", box_p="Vous êtes décidé ? Choisissez votre programme, votre formule et votre créneau. Vous hésitez encore ? Commencez par un cours d'essai gratuit de 30 minutes.",
+   btn_essai="Demander un essai gratuit", btn_essai_court="Essai gratuit", btn_insc="Commencer maintenant",
+   essai=dict(crumb="Cours d'essai", title="Demander un cours d'essai gratuit — AL-FISSAH",
+     desc="Demandez votre cours d'essai gratuit de 30 minutes : sans engagement et sans moyen de paiement.",
+     h1="Demander un cours d'essai gratuit",
+     lead="30 minutes avec un professeur, gratuitement et sans engagement. Aucun paiement n'est demandé à cette étape.",
+     badge="Gratuit · 30 minutes · sans engagement",
+     steps=[("Vos informations","Nom, contact et pays de résidence."),
+            ("Niveau et besoins","Adulte ou enfant, programme souhaité et niveau actuel."),
+            ("Choix du professeur","Les professeurs disponibles pour votre programme."),
+            ("Disponibilités","Le planning réel du professeur, à votre fuseau horaire."),
+            ("Choix du créneau","Vous réservez l'horaire de votre essai."),
+            ("Confirmation","Vous recevez le lien de connexion à la classe virtuelle.")],
+     autre_b="Vous souhaitez vous inscrire directement ?", autre_a="Inscription aux études"),
+   etudes=dict(crumb="Inscription", title="S'inscrire aux études — AL-FISSAH",
+     desc="Inscription aux cours d'arabe et de Coran : programme, formule, professeur, créneaux et paiement.",
+     h1="S'inscrire aux études",
+     lead="L'inscription définitive à nos cours. Vous choisissez votre programme, votre formule et votre créneau hebdomadaire.",
+     badge="Sessions de 4 semaines · à partir de 28 €",
+     steps=[("Informations de l'élève","Identité, contact, pays et fuseau horaire."),
+            ("Programme et niveau","Langue arabe ou Coran, individuel ou collectif, niveau évalué."),
+            ("Choix de la formule","De 1 h à 7 h par semaine, ou formule en binôme."),
+            ("Choix du professeur","Selon votre programme et vos horaires."),
+            ("Jours et créneaux","Le planning réel du professeur ; vous fixez vos cours hebdomadaires."),
+            ("Paiement et confirmation","Règlement de la session, puis accès à l'espace étudiant.")],
+     autre_b="Vous préférez essayer d'abord ?", autre_a="Demander un cours d'essai gratuit"),
+   steps_h2="Les 6 étapes de ce parcours",
+   steps_p="Aujourd'hui, l'administration réalise avec vous les étapes 3 à 5 (professeur, planning, créneau) par e-mail ou WhatsApp, dès réception de votre formulaire.",
+   back="Retour à l'accueil"),
+
+ 'en': dict(
+   box_kick="Two ways to start", box_h2="Enrol in the courses, or try first", box_p="Made up your mind? Choose your programme, your plan and your time slot. Still unsure? Start with a free 30-minute trial lesson.",
+   btn_essai="Request a free trial", btn_essai_court="Free trial", btn_insc="Get started now",
+   essai=dict(crumb="Trial lesson", title="Request a free trial lesson — AL-FISSAH",
+     desc="Request your free 30-minute trial lesson: no commitment, no payment details required.",
+     h1="Request a free trial lesson",
+     lead="30 minutes with a teacher, free and with no commitment. No payment is asked for at this stage.",
+     badge="Free · 30 minutes · no commitment",
+     steps=[("Your details","Name, contact and country of residence."),
+            ("Level and needs","Adult or child, chosen programme and current level."),
+            ("Choose a teacher","Teachers available for your programme."),
+            ("Availability","The teacher's real timetable, in your time zone."),
+            ("Choose a slot","You book the time of your trial lesson."),
+            ("Confirmation","You receive the link to the virtual classroom.")],
+     autre_b="Would you rather enrol straight away?", autre_a="Enrol in the courses"),
+   etudes=dict(crumb="Enrolment", title="Enrol in the courses — AL-FISSAH",
+     desc="Enrolment in Arabic and Quran lessons: programme, plan, teacher, time slots and payment.",
+     h1="Enrol in the courses",
+     lead="Full enrolment in our lessons. You choose your programme, your plan and your weekly time slot.",
+     badge="4-week sessions · from €28",
+     steps=[("Student details","Identity, contact, country and time zone."),
+            ("Programme and level","Arabic or Quran, individual or group, assessed level."),
+            ("Choose a plan","From 1 to 7 hours per week, or the two-student plan."),
+            ("Choose a teacher","Based on your programme and your schedule."),
+            ("Days and slots","The teacher's real timetable; you set your weekly lessons."),
+            ("Payment and confirmation","Payment of the session, then access to the student area.")],
+     autre_b="Would you rather try first?", autre_a="Request a free trial lesson"),
+   steps_h2="The 6 steps of this journey",
+   steps_p="For now, the administration carries out steps 3 to 5 with you (teacher, timetable, slot) by e-mail or WhatsApp, as soon as your form is received.",
+   back="Back to home"),
+
+ 'es': dict(
+   box_kick="Dos formas de empezar", box_h2="Inscríbase en los cursos, o pruebe primero", box_p="¿Ya está decidido? Elija su programa, su tarifa y su horario. ¿Todavía duda? Empiece con una clase de prueba gratuita de 30 minutos.",
+   btn_essai="Solicitar una clase de prueba", btn_essai_court="Clase de prueba", btn_insc="Empezar ahora",
+   essai=dict(crumb="Clase de prueba", title="Solicitar una clase de prueba gratuita — AL-FISSAH",
+     desc="Solicite su clase de prueba gratuita de 30 minutos: sin compromiso y sin datos de pago.",
+     h1="Solicitar una clase de prueba gratuita",
+     lead="30 minutos con un profesor, gratis y sin compromiso. En esta etapa no se solicita ningún pago.",
+     badge="Gratis · 30 minutos · sin compromiso",
+     steps=[("Sus datos","Nombre, contacto y país de residencia."),
+            ("Nivel y necesidades","Adulto o niño, programa deseado y nivel actual."),
+            ("Elección del profesor","Los profesores disponibles para su programa."),
+            ("Disponibilidad","El horario real del profesor, en su zona horaria."),
+            ("Elección del horario","Usted reserva la hora de su clase de prueba."),
+            ("Confirmación","Recibe el enlace para conectarse al aula virtual.")],
+     autre_b="¿Prefiere inscribirse directamente?", autre_a="Inscripción en los cursos"),
+   etudes=dict(crumb="Inscripción", title="Inscribirse en los cursos — AL-FISSAH",
+     desc="Inscripción en las clases de árabe y Corán: programa, tarifa, profesor, horarios y pago.",
+     h1="Inscribirse en los cursos",
+     lead="La inscripción definitiva en nuestras clases. Elige su programa, su tarifa y su horario semanal.",
+     badge="Ciclos de 4 semanas · desde 28 €",
+     steps=[("Datos del alumno","Identidad, contacto, país y zona horaria."),
+            ("Programa y nivel","Árabe o Corán, individual o en grupo, nivel evaluado."),
+            ("Elección de la tarifa","De 1 a 7 horas por semana, o tarifa para dos."),
+            ("Elección del profesor","Según su programa y sus horarios."),
+            ("Días y horarios","El horario real del profesor; usted fija sus clases semanales."),
+            ("Pago y confirmación","Pago del ciclo y acceso al espacio del estudiante.")],
+     autre_b="¿Prefiere probar primero?", autre_a="Solicitar una clase de prueba gratuita"),
+   steps_h2="Las 6 etapas de este proceso",
+   steps_p="Por ahora, la administración realiza contigo las etapas 3 a 5 (profesor, horario, franja) por correo o WhatsApp, en cuanto recibe tu formulario.",
+   back="Volver al inicio"),
+
+ 'de': dict(
+   box_kick="Zwei Wege zum Start", box_h2="Zum Unterricht anmelden oder erst ausprobieren", box_p="Schon entschieden? Wählen Sie Programm, Tarif und Termin. Noch unsicher? Beginnen Sie mit einer kostenlosen 30-minütigen Probestunde.",
+   btn_essai="Kostenlose Probestunde anfragen", btn_essai_court="Probestunde", btn_insc="Jetzt anmelden",
+   essai=dict(crumb="Probestunde", title="Kostenlose Probestunde anfragen — AL-FISSAH",
+     desc="Fragen Sie Ihre kostenlose 30-minütige Probestunde an: unverbindlich und ohne Zahlungsdaten.",
+     h1="Kostenlose Probestunde anfragen",
+     lead="30 Minuten mit einer Lehrkraft, kostenlos und unverbindlich. In diesem Schritt wird keine Zahlung verlangt.",
+     badge="Kostenlos · 30 Minuten · unverbindlich",
+     steps=[("Ihre Angaben","Name, Kontakt und Wohnsitzland."),
+            ("Niveau und Bedarf","Erwachsener oder Kind, gewünschtes Programm und aktuelles Niveau."),
+            ("Wahl der Lehrkraft","Die für Ihr Programm verfügbaren Lehrkräfte."),
+            ("Verfügbarkeit","Der tatsächliche Stundenplan der Lehrkraft, in Ihrer Zeitzone."),
+            ("Terminwahl","Sie buchen die Uhrzeit Ihrer Probestunde."),
+            ("Bestätigung","Sie erhalten den Link zum virtuellen Klassenzimmer.")],
+     autre_b="Möchten Sie sich lieber direkt anmelden?", autre_a="Anmeldung zum Unterricht"),
+   etudes=dict(crumb="Anmeldung", title="Zum Unterricht anmelden — AL-FISSAH",
+     desc="Anmeldung zum Arabisch- und Koranunterricht: Programm, Tarif, Lehrkraft, Termine und Zahlung.",
+     h1="Zum Unterricht anmelden",
+     lead="Die verbindliche Anmeldung zu unserem Unterricht. Sie wählen Programm, Tarif und wöchentlichen Termin.",
+     badge="4-Wochen-Blöcke · ab 28 €",
+     steps=[("Angaben zum Schüler","Identität, Kontakt, Land und Zeitzone."),
+            ("Programm und Niveau","Arabisch oder Koran, einzeln oder in der Gruppe, geprüftes Niveau."),
+            ("Tarifwahl","Von 1 bis 7 Stunden pro Woche oder Tarif zu zweit."),
+            ("Wahl der Lehrkraft","Passend zu Programm und Zeiten."),
+            ("Tage und Termine","Der tatsächliche Stundenplan; Sie legen Ihre wöchentlichen Stunden fest."),
+            ("Zahlung und Bestätigung","Bezahlung des Blocks, dann Zugang zum Schülerbereich.")],
+     autre_b="Möchten Sie es lieber erst ausprobieren?", autre_a="Kostenlose Probestunde anfragen"),
+   steps_h2="Die 6 Schritte dieser Strecke",
+   steps_p="Derzeit führt die Verwaltung die Schritte 3 bis 5 (Lehrkraft, Stundenplan, Termin) mit Ihnen per E-Mail oder WhatsApp durch, sobald Ihr Formular eingegangen ist.",
+   back="Zurück zur Startseite"),
+
+ 'ru': dict(
+   box_kick="Два способа начать", box_h2="Записаться на обучение или сначала попробовать", box_p="Уже решили? Выберите программу, тариф и время. Ещё сомневаетесь? Начните с бесплатного пробного урока на 30 минут.",
+   btn_essai="Записаться на пробный урок", btn_essai_court="Пробный урок", btn_insc="Начать обучение",
+   essai=dict(crumb="Пробный урок", title="Бесплатный пробный урок — AL-FISSAH",
+     desc="Запишитесь на бесплатный пробный урок 30 минут: без обязательств и без платёжных данных.",
+     h1="Записаться на бесплатный пробный урок",
+     lead="30 минут с преподавателем, бесплатно и без обязательств. На этом этапе оплата не требуется.",
+     badge="Бесплатно · 30 минут · без обязательств",
+     steps=[("Ваши данные","Имя, контакты и страна проживания."),
+            ("Уровень и цели","Взрослый или ребёнок, программа и текущий уровень."),
+            ("Выбор преподавателя","Преподаватели, доступные для вашей программы."),
+            ("Расписание","Реальное расписание преподавателя, в вашем часовом поясе."),
+            ("Выбор времени","Вы бронируете время пробного урока."),
+            ("Подтверждение","Вы получаете ссылку на виртуальный класс.")],
+     autre_b="Хотите записаться сразу?", autre_a="Запись на обучение"),
+   etudes=dict(crumb="Запись на обучение", title="Записаться на обучение — AL-FISSAH",
+     desc="Запись на уроки арабского и Корана: программа, тариф, преподаватель, расписание и оплата.",
+     h1="Записаться на обучение",
+     lead="Полная запись на наши занятия. Вы выбираете программу, тариф и еженедельное время.",
+     badge="Циклы по 4 недели · от 28 €",
+     steps=[("Данные ученика","Имя, контакты, страна и часовой пояс."),
+            ("Программа и уровень","Арабский или Коран, индивидуально или в группе, оценка уровня."),
+            ("Выбор тарифа","От 1 до 7 часов в неделю или тариф «вдвоём»."),
+            ("Выбор преподавателя","С учётом программы и вашего времени."),
+            ("Дни и время","Реальное расписание преподавателя; вы назначаете свои уроки."),
+            ("Оплата и подтверждение","Оплата цикла и доступ в личный кабинет.")],
+     autre_b="Хотите сначала попробовать?", autre_a="Записаться на бесплатный пробный урок"),
+   steps_h2="6 шагов этого пути",
+   steps_p="Пока шаги 3–5 (преподаватель, расписание, время) администрация проходит вместе с вами по эл. почте или в WhatsApp, как только получит вашу форму.",
+   back="На главную"),
+
+ 'ar': dict(
+   box_kick="طريقتان للبدء", box_h2="سجِّل في الدراسة، أو جرِّب أولًا", box_p="حسمت أمرك؟ اختر برنامجك وصيغتك وموعدك. ما زلت متردّدًا؟ ابدأ بحصة تجريبية مجانية مدتها 30 دقيقة.",
+   btn_essai="اطلب حصة تجريبية مجانية", btn_essai_court="حصة تجريبية", btn_insc="ابدأ الدراسة الآن",
+   essai=dict(crumb="حصة تجريبية", title="طلب حصة تجريبية مجانية — الفصاح",
+     desc="اطلب حصتك التجريبية المجانية (30 دقيقة): دون التزام ودون بيانات دفع.",
+     h1="اطلب حصة تجريبية مجانية",
+     lead="30 دقيقة مع أستاذ، مجانًا ودون أي التزام. ولا يُطلب أي دفع في هذه المرحلة.",
+     badge="مجانًا · 30 دقيقة · دون التزام",
+     steps=[("بياناتك","الاسم ووسيلة التواصل وبلد الإقامة."),
+            ("المستوى والاحتياج","كبير أو طفل، البرنامج المطلوب والمستوى الحالي."),
+            ("اختيار الأستاذ","الأساتذة المتاحون لبرنامجك."),
+            ("المواعيد المتاحة","الجدول الفعلي للأستاذ، بتوقيتك المحلي."),
+            ("اختيار الموعد","تحجز موعد حصتك التجريبية."),
+            ("التأكيد","تستلم رابط الدخول إلى الفصل الافتراضي.")],
+     autre_b="تفضّل التسجيل مباشرةً؟", autre_a="التسجيل في الدراسة"),
+   etudes=dict(crumb="التسجيل", title="التسجيل في الدراسة — الفصاح",
+     desc="التسجيل في دروس العربية والقرآن: البرنامج، الصيغة، الأستاذ، المواعيد والدفع.",
+     h1="التسجيل في الدراسة",
+     lead="التسجيل النهائي في دروسنا. تختار برنامجك وصيغتك وموعدك الأسبوعي.",
+     badge="دورات من 4 أسابيع · ابتداءً من 28 €",
+     steps=[("بيانات الطالب","الهوية ووسيلة التواصل والبلد والمنطقة الزمنية."),
+            ("البرنامج والمستوى","لغة عربية أو قرآن، فردي أو جماعي، مع تقييم المستوى."),
+            ("اختيار الصيغة","من ساعة إلى 7 ساعات أسبوعيًا، أو صيغة الثنائي."),
+            ("اختيار الأستاذ","حسب برنامجك وأوقاتك."),
+            ("الأيام والمواعيد","الجدول الفعلي للأستاذ؛ وتحدّد دروسك الأسبوعية."),
+            ("الدفع والتأكيد","دفع الدورة ثم الدخول إلى فضاء الطالب.")],
+     autre_b="تفضّل التجربة أولًا؟", autre_a="اطلب حصة تجريبية مجانية"),
+   steps_h2="المراحل الست لهذا المسار",
+   steps_p="حاليًا تُنجز الإدارة معك المراحل 3 إلى 5 (الأستاذ والجدول والموعد) عبر البريد الإلكتروني أو واتساب، فور استلام استمارتك.",
+   back="العودة إلى الرئيسية"),
+}
+
+FORMULES = [(1, 28), (2, 48), (3, 72), (4, 96), (5, 120), (6, 144), (7, 168)]   # heures par semaine → prix de la session de 4 semaines
 PICS = json.load(open(os.path.join(ROOT, 'pics.json')))
+if INLINE:
+    import base64, io
+    from PIL import Image
+    def _b64(path, height):
+        im = Image.open(os.path.join(ROOT, path))
+        r = height / im.height
+        im = im.resize((max(1, int(im.width * r)), height), Image.LANCZOS)
+        buf = io.BytesIO(); im.save(buf, 'PNG', optimize=True)
+        return 'data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode()
+    CSS_INLINE = open(os.path.join(ROOT, 'assets/style.css'), encoding='utf-8').read()
+    JS_INLINE = open(os.path.join(ROOT, 'assets/main.js'), encoding='utf-8').read()
+    MARK_B64 = _b64('assets/logo-mark.png', 124)
+    FULL_B64 = _b64('assets/logo.png', 420)
 CLASSROOM_RAW = open(os.path.join(ROOT, 'part_classroom.html'), encoding='utf-8').read()
 sys.path.insert(0, os.path.join(ROOT, 'lang'))
 from testimonials import TESTI  # témoignages réels, en français
@@ -65,6 +274,13 @@ class Builder:
         self.out = ROOT if code == 'fr' else os.path.join(ROOT, code)
         self.rel = '' if code == 'fr' else '../'
         os.makedirs(self.out, exist_ok=True)
+
+    def rel_page(self, page):
+        return page + '.html'
+
+    @property
+    def I(self):
+        return PARCOURS.get(self.c, PARCOURS['fr'])
 
     def url(self, page):
         p = '' if page == 'index' else page + '.html'
@@ -87,7 +303,7 @@ class Builder:
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#0D204E">{noindex}
-<link rel="icon" type="image/svg+xml" href="{self.rel}assets/logo.svg">
+<link rel="icon" type="image/png" href="{MARK_B64 if INLINE else self.rel + 'assets/favicon.png'}">
 <link rel="canonical" href="{self.url(page)}">
 {hreflang}
 <link rel="alternate" hreflang="x-default" href="{SITE}/{pp}">
@@ -100,7 +316,7 @@ class Builder:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
-<link rel="stylesheet" href="{self.rel}assets/style.css">
+{("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
 <script type="application/ld+json">{org}</script>
 <script>window.I18N={json.dumps(L['js'], ensure_ascii=False)};</script>
 {extra}
@@ -117,7 +333,7 @@ class Builder:
         L = self.L; n = L['nav']
         loader = f'''<div id="loader">
   <div class="ld-box">
-    <img class="ld-logo" src="{self.rel}{LOGO_FILE}" alt="" onerror="this.style.display='none'">
+    <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" alt="" onerror="this.style.display='none'">
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
   </div>
 </div>
@@ -128,7 +344,7 @@ class Builder:
         mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav) + f'\n    <a href="reglement.html">{n["reglement"]}</a>'
         return loader + f'''<div id="progress" aria-hidden="true"></div>
 <button class="totop" id="totop" aria-label="{n['totop']}">↑</button>
-<a class="btn btn-orange cta-float" id="ctafloat" href="index.html#inscription">{n['cta_float']}</a>
+<a class="btn btn-orange cta-float" id="ctafloat" href="inscription.html">{self.I['btn_insc']}</a>
 
 <div class="dots" aria-hidden="true"></div>
 <div class="aur a1" aria-hidden="true"></div>
@@ -140,14 +356,14 @@ class Builder:
 
 <header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="index.html"><img class="logomark" src="{self.rel}{LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt">AL-FISSAH<small>{self.L["meta"].get("tagline","")}</small></span></a>
+    <a class="logo" href="index.html"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
     <ul class="menu">
       {menu}
     </ul>
     <div class="nav-right">
       {self.langswitch(page)}
       <a class="hd-login" href="{LOGIN}">{n['login']}</a>
-      <a class="btn btn-orange login" href="index.html#inscription">{n['essai']} <span class="login-sub">{n['essai_sub']}</span></a>
+      <a class="btn btn-orange login" href="essai.html">{self.I['btn_essai_court']} <span class="login-sub">{L['nav']['essai_sub']}</span></a>
       <button class="burger" id="burger" aria-label="{n['menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -158,7 +374,8 @@ class Builder:
     {mob}
     <a href="https://livres.al-fissah.com">{n['livres']}</a>
     <a href="https://blog.al-fissah.com">{n['blog']}</a>
-    <a class="btn btn-orange" href="index.html#inscription">{n['essai_mob']}</a>
+    <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']}</a>
+    <a class="btn btn-ghost" href="essai.html">{self.I['btn_essai']}</a>
     <a class="btn btn-navy" href="{LOGIN}">{n['login_full']}</a>
   </nav>
 </div>
@@ -172,7 +389,7 @@ class Builder:
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel}{LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt">AL-FISSAH<small>{self.L["meta"].get("tagline","")}</small></span></a>
+        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
           <a href="http://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
@@ -189,7 +406,7 @@ class Builder:
           <li><a href="programmes.html#collectifs">{f['prog_col']}</a></li>
           <li><a href="tarifs.html">{n['tarifs']}</a></li>
           <li><a href="temoignages.html">{n['temoignages']}</a></li>
-          <li><a href="index.html#inscription">{f['essai']}</a></li>
+          <li><a href="essai.html">{f['essai']}</a></li>
         </ul>
       </div>
       <div>
@@ -211,7 +428,7 @@ class Builder:
   </div>
 </footer>
 
-<script src="{self.rel}assets/main.js"></script>
+{("<script>" + JS_INLINE + "</script>") if INLINE else f'<script src="{self.rel}assets/main.js?v={ASSET_VER}"></script>'}
 </body>
 </html>
 '''
@@ -262,9 +479,6 @@ class Builder:
         videos = ''.join(f'<a class="vid" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span>{H["book"]} {b} · {H["unit"]} {u}</span></a>' for v, b, u in vids)
         quotes = ''.join(f'<blockquote class="quote io {x}"><span class="stars">★★★★★</span><p>{q}</p><footer>{w}</footer></blockquote>' for (q, w), x in zip(H['quotes'], ['io-l', 'io-z d1', 'io-r d2']))
         faq = ''.join(self.qa(q, a) for q, a in H['faq'])
-        ages = ''.join(f'<option>{a}</option>' for a in range(5, 18))
-        progopts = ''.join(f'<option>{o}</option>' for o in F['programmes'])
-        nivopts = ''.join(f'<option>{o}</option>' for o in F['niveaux'])
         html = f'''<div class="hero">
   <div class="wrap hero-grid">
     <div class="reveal-seq">
@@ -272,8 +486,8 @@ class Builder:
       <h1>{H['h1_pre']} <span class="hl">{H['h1_hl']}<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M4 10 C 60 3, 120 12, 180 7 S 270 4, 296 9"/></svg></span>{H['h1_post']}</h1>
       <p class="lead">{H['lead']}</p>
       <div class="hero-cta">
-        <a class="btn btn-orange" href="#inscription">{H['cta1']} <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="programmes.html">{H['cta2']} ▸</a>
+        <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="essai.html">{self.I['btn_essai']}</a>
       </div>
       <p class="hero-note">{' &nbsp;·&nbsp; '.join(f'<b>✓</b> {x}' for x in H['note'])}</p>
     </div>
@@ -345,49 +559,17 @@ class Builder:
   <p class="tarif-note"><a href="faq.html">{H['faq_all']} →</a></p>
 </div></section>
 
-<section id="inscription" class="formsec"><div class="wrap form-grid">
-  <div class="form-aside io io-l">
-    <div class="head"><span class="kick">{F['kick']}</span><h2>{F['h2']}</h2><p>{F['p']}</p></div>
+<section id="inscription" class="ctasec"><div class="wrap">
+  <div class="ctabox io io-z">
+    <span class="kick">{self.I['box_kick']}</span>
+    <h2>{self.I['box_h2']}</h2>
+    <p>{self.I['box_p']}</p>
     <ul class="checks">{''.join(f'<li>{x}</li>' for x in F['checks'])}</ul>
-    <div class="assur"><span class="ar">بِسْمِ اللهِ</span><b>{F['next_t']}</b><p>{F['next_p']}</p></div>
-  </div>
-  <form id="trial-form" class="card-form io io-r d1" novalidate>
-    <fieldset>
-      <legend><i>1</i> {F['who']}</legend>
-      <div class="seg" role="radiogroup"><label><input type="radio" name="profil" value="adulte" checked><span>{F['adult']}</span></label><label><input type="radio" name="profil" value="enfant"><span>{F['child']}</span></label></div>
-      <div id="enfant-fields" hidden><div class="row2">
-        <div class="field"><label for="f-enfant">{F['child_name']}</label><input id="f-enfant" name="enfant_prenom" type="text" autocomplete="off"></div>
-        <div class="field"><label for="f-age">{F['age']}</label><select id="f-age" name="enfant_age"><option value="">—</option>{ages}</select></div>
-      </div></div>
-      <div class="row2">
-        <div class="field"><label for="f-programme">{F['programme']}</label><select id="f-programme" name="programme" required><option value="">{F['choose']}</option>{progopts}</select></div>
-        <div class="field"><label for="f-niveau">{F['niveau']}</label><select id="f-niveau" name="niveau" required><option value="">{F['choose']}</option>{nivopts}</select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>2</i> {F['coords']}</legend>
-      <div class="row2">
-        <div class="field"><label for="f-nom">{F['name']}</label><input id="f-nom" name="nom" type="text" required autocomplete="name"></div>
-        <div class="field"><label for="f-email">{F.get("email","E-mail")}</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label for="f-tel">{F['tel']} <small>({F['optional']})</small></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="+33 6 …"></div>
-        <div class="field"><label for="f-pays">{F['country']}</label><input id="f-pays" name="pays" type="text" autocomplete="country-name" required></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><i>3</i> {F['dispo_t']}</legend>
-      <div class="field"><label for="f-dispo">{F['dispo']} <small>({F['dispo_hint']})</small></label><input id="f-dispo" name="dispo" type="text" placeholder="{F['dispo_ph']}"></div>
-      <div class="field"><label for="f-msg">{F['message']} <small>({F['optional']})</small></label><textarea id="f-msg" name="message" placeholder="{F['msg_ph']}"></textarea></div>
-      <label class="consent"><input type="checkbox" name="consent" required><span>{F['consent']} <a href="mentions-legales.html#confidentialite">{F['privacy']}</a>.</span></label>
-      <div class="hp" aria-hidden="true"><label>Website <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
-    </fieldset>
-    <div class="form-actions">
-      <button type="submit" class="btn btn-orange">{F['submit']} <span class="arr">→</span></button>
-      <span class="alt">{F['or']} <a id="wa-link" href="#" target="_blank" rel="noopener">{F['whatsapp']}</a></span>
+    <div class="cta-duo">
+      <a class="btn btn-orange big" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
+      <a class="btn btn-ghost big" href="essai.html">{self.I['btn_essai']}</a>
     </div>
-    <p id="form-status" class="form-status" hidden role="status" aria-live="polite"></p>
-  </form>
+  </div>
 </div></section>
 '''
         self.write('index.html', self.head(L['meta']['title_home'], L['meta']['desc_home'], 'index') + self.chrome('index', home=True) + html + self.footer())
@@ -400,7 +582,7 @@ class Builder:
             secs += f'''<article class="pdetail io {'io-l' if i % 2 == 0 else 'io-r'}" id="{p['id']}">
   <div class="pd-head"><div class="pd-ar">{p['ar']}</div><div><span class="kick">{p['tag']}</span><h2>{p['titre']}</h2><div class="facts">{''.join(f'<span>{x}</span>' for x in p['facts'])}</div></div></div>
   <div class="prose">{p['long']}</div>
-  <div class="pd-actions"><a class="btn btn-orange" href="index.html#inscription">{p['cta']} <span class="arr">→</span></a><a class="btn btn-ghost" href="tarifs.html">{c['see_prices']}</a></div>
+  <div class="pd-actions"><a class="btn btn-orange" href="inscription.html?programme={p['id']}">{p['cta']} <span class="arr">→</span></a><a class="btn btn-ghost" href="tarifs.html">{c['see_prices']}</a></div>
 </article>
 '''
         html = self.page_hero(L['nav']['programmes'], P['h1'], P['lead']) + f'''<div class="page"><div class="wrap">
@@ -413,8 +595,8 @@ class Builder:
     def build_tarifs(self):
         L = self.L; T = L['tarifs']; c = L['common']
         def grid(duo):
-            rows = [(1, 28), (2, 48), (3, 72), (4, 96), (5, 120), (6, 144), (7, 168)]
-            s = ''.join(f'<div class="tcard{" featured" if h == 2 else ""}"{f' data-badge="{T.get("badge","")}"' if h == 2 else ""}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 2 else "btn-navy"}" href="index.html#inscription">{T["choose"]}</a></div>' for h, e in rows)
+            prog = 'arabe-adultes' if duo else 'coran'
+            s = ''.join(f'<div class="tcard{" featured" if h == 2 else ""}"{f' data-badge="{T.get("badge","")}"' if h == 2 else ""}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 2 else "btn-navy"}" href="inscription.html?formule={h}&amp;programme={prog}">{T["choose"]}</a></div>' for h, e in FORMULES)
             if duo: s += f'<div class="tcard duo"><span class="tf">{T["duo"]}</span><div class="price">36&nbsp;€</div><div class="per">{T["duo_per"]}</div><a class="btn btn-navy" href="contact.html">{T["ask"]}</a></div>'
             return s
         values = ''.join(f'<div class="value"><div class="ar">{a}</div><b>{b}</b><p>{p}</p></div>' for a, b, p in T['values'])
@@ -426,7 +608,7 @@ class Builder:
   <article class="prose" style="margin-top:4rem">
     <h2>{T['good_h2']}</h2><div class="values">{values}</div>
     <h2>{T['pay_h2']}</h2>{T['pay_body']}
-    <div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="index.html#inscription">{c['request']}</a></div>
+    <div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="essai.html">{c['request']}</a></div>
   </article>
 </div></div>
 '''
@@ -492,7 +674,7 @@ class Builder:
   <h2>{A['is_h2']}</h2><div class="values">{values}</div>
   <h2>{A['coran_h2']}</h2>{A['coran_body']}
   <h2>{A['more_h2']}</h2><ul class="timeline">{links}</ul>
-  <div class="note"><b>{A['note_b']}</b> {A['note_p']} <a href="index.html#inscription">{L['common']['request']}</a></div>
+  <div class="note"><b>{A['note_b']}</b> {A['note_p']} <a href="essai.html">{L['common']['request']}</a></div>
 </article></div></div>
 '''
         self.write('a-propos.html', self.head(A['title'], A['desc'], 'a-propos') + self.chrome('a-propos') + html + self.footer())
@@ -504,7 +686,7 @@ class Builder:
   <div class="form-aside io io-l"><div class="support-grid one">
     <div class="sup"><div class="ico">✉</div><b>{C['mail_t']}</b><p>{C['mail_p']}</p><a class="btn btn-navy" href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a></div>
     <div class="sup"><div class="ico">🕘</div><b>{C['hours_t']}</b><p>{C['hours_p']}</p></div>
-    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-orange" href="index.html#inscription">{L['nav']['cta_float']}</a></div>
+    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-orange" href="essai.html">{self.I['btn_essai']}</a></div>
   </div></div>
   <form id="contact-form" class="card-form io io-r d1" novalidate>
     <fieldset>
@@ -544,9 +726,146 @@ class Builder:
 '''
         self.write('404.html', self.head(N['title'], N['p'], '404', '<meta name="robots" content="noindex">') + self.chrome('404') + html + self.footer())
 
+
+    # Formulaire de demande de cours d'essai (essai.html). Ids et noms de champs attendus par assets/main.js
+    # (#trial-form, #enfant-fields, #wa-link, #form-status) : ne pas les renommer.
+    def trial_form(self):
+        F = self.L['form']
+        ages = ''.join(f'<option>{a}</option>' for a in range(5, 18))
+        progopts = ''.join(f'<option>{o}</option>' for o in F['programmes'])
+        nivopts = ''.join(f'<option>{o}</option>' for o in F['niveaux'])
+        return f'''<form id="trial-form" class="card-form io io-r d1" novalidate>
+    <fieldset>
+      <legend><i>1</i> {F['who']}</legend>
+      <div class="seg" role="radiogroup"><label><input type="radio" name="profil" value="adulte" checked><span>{F['adult']}</span></label><label><input type="radio" name="profil" value="enfant"><span>{F['child']}</span></label></div>
+      <div id="enfant-fields" hidden><div class="row2">
+        <div class="field"><label for="f-enfant">{F['child_name']}</label><input id="f-enfant" name="enfant_prenom" type="text" autocomplete="off"></div>
+        <div class="field"><label for="f-age">{F['age']}</label><select id="f-age" name="enfant_age"><option value="">—</option>{ages}</select></div>
+      </div></div>
+      <div class="row2">
+        <div class="field"><label for="f-programme">{F['programme']}</label><select id="f-programme" name="programme" required><option value="">{F['choose']}</option>{progopts}</select></div>
+        <div class="field"><label for="f-niveau">{F['niveau']}</label><select id="f-niveau" name="niveau" required><option value="">{F['choose']}</option>{nivopts}</select></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><i>2</i> {F['coords']}</legend>
+      <div class="row2">
+        <div class="field"><label for="f-nom">{F['name']}</label><input id="f-nom" name="nom" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="f-email">{F.get("email","E-mail")}</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-tel">{F['tel']} <small>({F['optional']})</small></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="+33 6 …"></div>
+        <div class="field"><label for="f-pays">{F['country']}</label><input id="f-pays" name="pays" type="text" autocomplete="country-name" required></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><i>3</i> {F['dispo_t']}</legend>
+      <div class="field"><label for="f-dispo">{F['dispo']} <small>({F['dispo_hint']})</small></label><input id="f-dispo" name="dispo" type="text" placeholder="{F['dispo_ph']}"></div>
+      <div class="field"><label for="f-msg">{F['message']} <small>({F['optional']})</small></label><textarea id="f-msg" name="message" placeholder="{F['msg_ph']}"></textarea></div>
+      <label class="consent"><input type="checkbox" name="consent" required><span>{F['consent']} <a href="mentions-legales.html#confidentialite">{F['privacy']}</a>.</span></label>
+      <div class="hp" aria-hidden="true"><label>Website <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+    </fieldset>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-orange">{F['submit']} <span class="arr">→</span></button>
+      <span class="alt">{F['or']} <a id="wa-link" href="#" target="_blank" rel="noopener">{F['whatsapp']}</a></span>
+    </div>
+    <p id="form-status" class="form-status" hidden role="status" aria-live="polite"></p>
+  </form>'''
+
+    # Formulaire d'inscription aux études (inscription.html) — champs propres à l'inscription : programme, formule,
+    # jours, début souhaité, acceptation du règlement. Traité par le bloc « signup-form » de assets/main.js.
+    def signup_form(self):
+        L = self.L; S = L['signup']; F = L['form']
+        ages = ''.join(f'<option>{a}</option>' for a in range(5, 18))
+        progopts = ''.join(f'<option value="{k}">{o}</option>' for k, o in S['programmes'])
+        nivopts = ''.join(f'<option>{o}</option>' for o in F['niveaux'])
+        hours = ''.join(f'<option value="{h}">{S["hours_opt"].format(h=h, e=e)}</option>' for h, e in FORMULES)
+        hours += f'<option value="duo">{S["duo_opt"]}</option><option value="collectif">{S["group_opt"]}</option>'
+        starts = ''.join(f'<option>{o}</option>' for o in S['start_opts'])
+        return f'''<form id="signup-form" class="card-form io io-r d1" novalidate>
+    <fieldset>
+      <legend><i>1</i> {S['who']}</legend>
+      <div class="seg" role="radiogroup"><label><input type="radio" name="profil" value="adulte" checked><span>{F['adult']}</span></label><label><input type="radio" name="profil" value="enfant"><span>{F['child']}</span></label></div>
+      <div id="s-enfant-fields" hidden><div class="row2">
+        <div class="field"><label for="s-enfant">{F['child_name']}</label><input id="s-enfant" name="enfant_prenom" type="text" autocomplete="off"></div>
+        <div class="field"><label for="s-age">{F['age']}</label><select id="s-age" name="enfant_age"><option value="">—</option>{ages}</select></div>
+      </div></div>
+      <div class="row2">
+        <div class="field"><label for="s-programme">{S['programme']}</label><select id="s-programme" name="programme" required><option value="">{F['choose']}</option>{progopts}</select></div>
+        <div class="field"><label for="s-niveau">{F['niveau']}</label><select id="s-niveau" name="niveau" required><option value="">{F['choose']}</option>{nivopts}</select></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><i>2</i> {S['rythme_t']}</legend>
+      <div class="field"><label for="s-heures">{S['hours']} <small>({S['hours_hint']})</small></label><select id="s-heures" name="formule" required><option value="">{F['choose']}</option>{hours}</select></div>
+      <div class="row2">
+        <div class="field"><label for="s-jours">{S['days']} <small>({F['dispo_hint']})</small></label><input id="s-jours" name="jours" type="text" required placeholder="{F['dispo_ph']}"></div>
+        <div class="field"><label for="s-debut">{S['start']}</label><select id="s-debut" name="debut" required><option value="">{F['choose']}</option>{starts}</select></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><i>3</i> {F['coords']}</legend>
+      <div class="row2">
+        <div class="field"><label for="s-nom">{S['name']}</label><input id="s-nom" name="nom" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="s-email">{F.get("email","E-mail")}</label><input id="s-email" name="email" type="email" required autocomplete="email"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="s-tel">{F['tel']}</label><input id="s-tel" name="tel" type="tel" required autocomplete="tel" placeholder="+33 6 …"></div>
+        <div class="field"><label for="s-pays">{F['country']}</label><input id="s-pays" name="pays" type="text" autocomplete="country-name" required></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><i>4</i> {S['valid_t']}</legend>
+      <div class="field"><label for="s-msg">{F['message']} <small>({F['optional']})</small></label><textarea id="s-msg" name="message" placeholder="{S['msg_ph']}"></textarea></div>
+      <label class="consent"><input type="checkbox" name="reglement" required><span>{S['rules_pre']} <a href="reglement.html" target="_blank" rel="noopener">{S['rules_link']}</a>{S['rules_post']}</span></label>
+      <label class="consent"><input type="checkbox" name="consent" required><span>{S['consent']} <a href="mentions-legales.html#confidentialite">{F['privacy']}</a>.</span></label>
+      <div class="hp" aria-hidden="true"><label>Website <input id="s-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+    </fieldset>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-orange">{S['submit']} <span class="arr">→</span></button>
+      <span class="alt">{F['or']} <a id="signup-wa" href="#" target="_blank" rel="noopener">{F['whatsapp']}</a></span>
+    </div>
+    <p id="signup-status" class="form-status" hidden role="status" aria-live="polite"></p>
+  </form>'''
+
+    def _parcours(self, kind, fichier, autre_href):
+        """Page d'un parcours : son formulaire propre (avec encart d'accompagnement), puis les 6 étapes, et le renvoi vers l'autre parcours."""
+        I = self.I; P = I[kind]
+        A = self.L['signup'] if kind == 'etudes' else self.L['form']     # textes de l'encart à côté du formulaire
+        form = self.signup_form() if kind == 'etudes' else self.trial_form()
+        steps = ''.join(
+            f'<li class="istep"><span class="n">{i+1}</span><div><b>{ti}</b><span>{de}</span></div></li>'
+            for i, (ti, de) in enumerate(P['steps']))
+        html = self.page_hero(P['crumb'], P['h1'], P['lead']) + f'''<div class="page parcours"><div class="wrap single">
+  <p class="ibadge io">{P['badge']}</p>
+  <section class="form-grid" id="formulaire">
+    <div class="form-aside io io-l">
+      <div class="head"><span class="kick">{A['kick']}</span><h2>{A['h2']}</h2><p>{A['p']}</p></div>
+      <ul class="checks">{''.join(f'<li>{x}</li>' for x in A['checks'])}</ul>
+      <div class="assur"><span class="ar">بِسْمِ اللهِ</span><b>{A['next_t']}</b><p>{A['next_p']}</p></div>
+      <div class="iautre"><b>{P['autre_b']}</b> <a href="{autre_href}">{P['autre_a']} →</a></div>
+    </div>
+    {form}
+  </section>
+  <div class="psteps io d1">
+    <h2>{I['steps_h2']}</h2>
+    <ol class="isteps">{steps}</ol>
+    <p class="tarif-note" style="text-align:start">{I['steps_p']}</p>
+  </div>
+  <p class="tarif-note"><a href="index.html">← {I['back']}</a></p>
+</div></div>
+'''
+        self.write(fichier, self.head(P['title'], P['desc'], fichier[:-5]) + self.chrome(fichier[:-5]) + html + self.footer())
+
+    def build_essai(self):
+        self._parcours('essai', 'essai.html', 'inscription.html')
+
+    def build_inscription(self):
+        self._parcours('etudes', 'inscription.html', 'essai.html')
+
     def build(self):
         for f in [self.build_index, self.build_programmes, self.build_tarifs, self.build_faq, self.build_temoignages,
-                  self.build_reglement, self.build_apropos, self.build_contact, self.build_mentions, self.build_404]:
+                  self.build_reglement, self.build_apropos, self.build_contact, self.build_mentions, self.build_essai, self.build_inscription, self.build_404]:
             f()
         print('✓', self.c, '→', os.path.relpath(self.out, ROOT) or '.')
 

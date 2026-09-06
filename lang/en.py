@@ -5,7 +5,7 @@ L = {
   title_home="AL-FISSAH — International School of Arabic Language and Quran",
   desc_home="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults. Trained native Arabic teachers, 100% Arabic immersion, 30-minute trial lesson.",
   org_desc="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults."),
-'js': dict(typew="Al-Fissah — International School of Arabic Language and Quran", sending="Sending…",
+'js': dict(typew="Welcome to Al-Fissah — International School of Arabic Language and Quran", sending="Sending…",
   trial_ok="Request sent. The administration will contact you to schedule your trial lesson, in shaa Allah.",
   contact_ok="Message sent. Our advisor will reply as soon as possible, in shaa Allah.",
   err="Sending failed. Please try again, or write to us directly at {email}.",
@@ -272,3 +272,23 @@ L = {
 
 'nf': dict(title="Page not found — AL-FISSAH", h1="This page does not exist", p="The link may be old, or the address contains a typo. Here is where to go:", home="Back to home"),
 }
+
+# ---- Page inscription.html : formulaire d'inscription aux études (parcours distinct du cours d'essai).
+# Les libellés communs aux deux formulaires (adulte/enfant, niveau, e-mail, pays…) sont repris de L['form'].
+L['signup'] = dict(kick="Enrolment", h2="Enrol in a 4-week session",
+  p="Choose the programme, the plan and your days. The administration contacts you to confirm the teacher and the timetable before any payment.",
+  checks=["Live one-to-one lessons with a native Arabic teacher","4-week sessions, renewable","Student area: follow-up, timetable, teacher's remarks"],
+  next_t="What happens next", next_p="The administration replies as soon as possible, in shaa Allah: teacher, timetable, then payment of the session. Your lessons start as soon as it is confirmed.",
+  who="The student", programme="Programme",
+  programmes=[('arabe-enfants',"Arabic language — child (one-to-one)"),('arabe-adultes',"Arabic language — adult (one-to-one)"),('collectifs',"Arabic language — group lesson (children)"),('coran',"Quran — child or adult"),('mutun',"Memorisation of texts (Mutūn)"),('lecture',"Easy method to master reading")],
+  rythme_t="Plan and pace", hours="Plan", hours_hint="same price for Arabic and Quran", hours_opt="Plan {h} — {h} h per week — €{e} per 4-week session",
+  duo_opt="Two-student plan — 1 h per week for 2 people — €36 (Arabic language only)", group_opt="Group lesson — 3 h per week (price given by the administration)",
+  days="Preferred days and times", start="Preferred start", start_opts=["As soon as possible","Within 2 to 4 weeks","Next month","To be agreed with the administration"],
+  name="Full name (of the parent if the student is a minor)",
+  valid_t="Confirmation", msg_ph="Goals, preferred teacher, details…",
+  rules_pre="I have read and accept the", rules_link="school rules", rules_post=" (commitment for the whole 4-week session).",
+  consent="I agree that my information is used to process my enrolment, in accordance with the",
+  submit="Send my enrolment request")
+L['js'].update(signup_ok="Enrolment request sent. The administration will contact you to confirm the teacher and the timetable, in shaa Allah.",
+  subject_signup="Enrolment — {name}", wa_signup="Hello, I would like to enrol in the courses (enrolment, not a trial lesson).",
+  summary_signup=["Enrolment — Al-Fissah","Name","E-mail","Phone / WhatsApp","Country","Profile","years old","Programme","Current level","Plan","Preferred days and times","Preferred start","Message"])
