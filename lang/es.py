@@ -5,7 +5,7 @@ L = {
   title_home="AL-FISSAH — Escuela Internacional de Lengua Árabe y Corán",
   desc_home="Instituto en línea de árabe y Corán para niños y adultos no arabófonos. Profesores nativos formados, inmersión 100 % en árabe, clase de prueba de 30 minutos.",
   org_desc="Escuela Internacional de Lengua Árabe y Corán, en línea, para niños y adultos no arabófonos."),
-'js': dict(typew="Bienvenido a Al-Fissah — Escuela Internacional de Lengua Árabe y Corán", sending="Enviando…",
+'js': dict(typew="Bienvenido a Al-Fissah", typew_sub="Escuela Internacional de Lengua Árabe y Corán", sending="Enviando…",
   trial_ok="Solicitud enviada. La administración se pondrá en contacto contigo para fijar tu clase de prueba, in sha Allah.",
   contact_ok="Mensaje enviado. Nuestro asesor te responderá lo antes posible, in sha Allah.",
   err="El envío ha fallado. Inténtalo de nuevo o escríbenos directamente a {email}.",

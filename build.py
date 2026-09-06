@@ -25,7 +25,7 @@ SITE = 'https://al-fissah.com'
 PREVIEW = False
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
-ASSET_VER = '10'
+ASSET_VER = '11'
 INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
@@ -320,6 +320,7 @@ class Builder:
 {("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
 <script type="application/ld+json">{org}</script>
 <script>window.I18N={json.dumps(L['js'], ensure_ascii=False)};</script>
+{'<script>try{if(sessionStorage.getItem("af-intro"))document.documentElement.classList.add("intro-seen")}catch(e){}</script>' if page == 'index' else ''}
 {extra}
 </head>
 <body class="lang-{self.c}">
@@ -336,6 +337,7 @@ class Builder:
   <div class="ld-box">
     <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" alt="" onerror="this.style.display='none'">
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
+    <div class="word-sub" id="typew-sub"></div>
   </div>
 </div>
 ''' if home else ''
@@ -365,7 +367,7 @@ class Builder:
     <div class="nav-right">
       {self.langswitch(page)}
       <a class="hd-login" href="{LOGIN}">{n['login']}</a>
-      <a class="btn btn-navy login" id="hd-essai" href="essai.html"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
+      <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
       <button class="burger" id="burger" aria-label="{n['menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -488,8 +490,8 @@ class Builder:
       <h1>{H['h1_pre']} <span class="hl">{H['h1_hl']}<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M4 10 C 60 3, 120 12, 180 7 S 270 4, 296 9"/></svg></span>{H['h1_post']}</h1>
       <p class="lead">{H['lead']}</p>
       <div class="hero-cta">
-        <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
-        <a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a>
+        <a class="btn btn-orange btn-hero" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-hero" href="programmes.html"><span class="ico">▸</span> {H['cta2']}</a>
       </div>
       <p class="hero-note">{' &nbsp;·&nbsp; '.join(f'<b>✓</b> {x}' for x in H['note'])}</p>
     </div>

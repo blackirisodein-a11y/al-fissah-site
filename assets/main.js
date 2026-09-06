@@ -6,22 +6,29 @@ const mq=matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ---------- Préloader (page d'accueil uniquement) ---------- */
 const loader=$('#loader');
-if(loader){
-  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à l'école Al-Fissah",twEl=$('#typew');let twI=0,twDone=false;
-  // La vitesse s'adapte à la longueur du message : le texte finit toujours de
-  // s'écrire en ~2,6 s, quelle que soit la langue.
-  const twSpeed=Math.min(70,Math.max(22,Math.round(2600/Math.max(twMsg.length,1))));
+let introSeen=false;try{introSeen=!!sessionStorage.getItem('af-intro')}catch(e){}
+if(loader&&introSeen){
+  // Déjà vu dans cette session (clic sur le logo, retour à l'accueil) : on n'affiche pas l'écran d'ouverture.
+  loader.remove();document.body.classList.add('ready');
+}else if(loader){
+  try{sessionStorage.setItem('af-intro','1')}catch(e){}
+  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à Al-Fissah",twEl=$('#typew'),subEl=$('#typew-sub');
+  if(subEl)subEl.textContent=T.typew_sub||"École internationale de langue arabe et du Coran";
+  let twI=0,twDone=false;
+  // Rythme volontairement posé : le titre s'écrit en ~1,8 s (≈ 85 ms par lettre), puis le sous-titre
+  // apparaît en fondu et l'ensemble reste affiché ~2 s avant l'ouverture du site (≈ 4,6 s au total).
+  const twSpeed=Math.min(110,Math.max(60,Math.round(1800/Math.max(twMsg.length,1))));
   (function type(){
     if(twI<twMsg.length){twEl.textContent+=twMsg[twI++];setTimeout(type,twSpeed)}
-    else{twDone=true}
+    else{loader.classList.add('typed');setTimeout(()=>{twDone=true},2200)}
   })();
   const closeLoader=()=>{if(loader.classList.contains('done')||loader.classList.contains('closing'))return;
-    // ne jamais fermer avant la fin du message : on repousse tant qu'il s'écrit
+    // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
     setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
-  setTimeout(closeLoader,3400);
+  setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}
 
 /* ---------- Header au scroll ---------- */

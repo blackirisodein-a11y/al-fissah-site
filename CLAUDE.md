@@ -67,8 +67,10 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
   - « Demander un essai gratuit » (bouton en haut à droite) → `essai.html` = **cours d'essai**
     30 min, gratuit, sans engagement
   Les libellés et textes des deux pages sont dans le dict `PARCOURS` de `build.py`.
-  **Code couleur** : orange = « Commencer maintenant » (inscription) partout ; bleu marine =
-  « Demander un essai gratuit » partout (en-tête, hero, menu mobile, contact). Ne pas inverser.
+  **Boutons** (demande du client) : en-tête, « Demander un essai gratuit » **orange** ; hero,
+  « Commencer maintenant » orange mis en avant (`.btn-hero`) + « Voir le programme » (`home.cta2`,
+  contour bleu marine) — le bouton d'essai n'est plus dans le hero. Ailleurs (menu mobile,
+  contact) le bouton d'essai est bleu marine.
   L'en-tête porte le libellé complet ; pour qu'il tienne, le menu de bureau n'a pas « Accueil »
   (le logo y mène), le menu passe en « hamburger » sous 1180 px, et sous 560 px le bouton affiche
   le libellé court (`btn_essai_court`). Contrôle : mesurer logo / menu / bloc droit à
@@ -103,8 +105,12 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
   téléverser » ne concerne que le FTP vers LWS.
 - **`ASSET_VER`** dans `build.py` : numéro de version sur `style.css`/`main.js` en mode non
   inline, pour contourner le cache navigateur. Sans effet en mode `--inline`.
-- L'écran d'ouverture a un **filet de sécurité CSS** (`@keyframes ldfailsafe`) : il s'efface
-  au bout de 7 s même si le JS ne se charge pas. Ne pas le retirer — sans lui, un JS absent
+- **Écran d'ouverture** (accueil seulement) : titre tapé (`js.typew`, ≈ 85 ms/lettre) puis
+  sous-titre en fondu (`js.typew_sub`), ≈ 5 s au total — rythme voulu par le client, ne pas
+  accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
+  `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout
+  flash au clic sur le logo). Filet de sécurité CSS (`@keyframes ldfailsafe`) : il s'efface au
+  bout de 7 s même si le JS ne se charge pas. Ne pas le retirer — sans lui, un JS absent
   bloquait tout le site derrière l'écran bleu.
 
 ---

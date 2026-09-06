@@ -56,6 +56,7 @@ a{color:inherit}
 /* Sécurité : si le script ne se charge pas (fichier absent, réseau coupé…), l'écran d'ouverture s'efface quand même au bout de 7 s et le site reste utilisable. */
 @keyframes ldfailsafe{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%);visibility:hidden}}
 #loader.done{clip-path:circle(0% at 50% 50%);visibility:hidden}
+html.intro-seen #loader{display:none;animation:none}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
 #loader.closing .ld-box{animation:boxout .55s ease forwards}
 @keyframes boxout{to{opacity:0;transform:scale(.82) translateY(-12px);filter:blur(4px)}}
 .ld-box{display:grid;place-items:center;gap:1.4rem}
@@ -63,6 +64,9 @@ a{color:inherit}
 @keyframes logopulse{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
 #loader .word{font-family:var(--display);font-weight:600;text-align:center;padding:0 20px;font-size:clamp(1.4rem,4.4vw,2.4rem);color:#fff}
 .caret{display:inline-block;width:3px;height:1em;background:var(--orange);margin-left:6px;vertical-align:-.12em;animation:caret .8s steps(1) infinite}
+#loader .word-sub{font-family:var(--body);font-weight:500;font-size:clamp(.95rem,2.2vw,1.2rem);letter-spacing:.06em;color:var(--blue-soft);text-align:center;padding:0 20px;opacity:0;transform:translateY(8px);transition:opacity .9s ease,transform .9s ease}
+#loader.typed .word-sub{opacity:1;transform:none}
+#loader.typed .caret{animation:none;opacity:0;transition:opacity .4s}
 @keyframes caret{50%{opacity:0}}
 
 /* ========== BOUTONS ========== */
@@ -150,6 +154,16 @@ header ul.menu a:hover{color:var(--orange-deep)}
 @keyframes draw{to{stroke-dashoffset:0}}
 .hero p.lead{color:var(--muted);font-size:1.02rem;max-width:30rem;margin-bottom:2rem}
 .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+/* boutons du bandeau d'accueil : « Commencer maintenant » mis en avant, « Voir le programme » en second */
+.btn-hero{font-size:1.02rem;padding:1.05rem 2rem;border-radius:16px}
+.btn-orange.btn-hero{background:linear-gradient(135deg,#FFA94D 0%,var(--orange) 45%,var(--orange-deep) 100%);box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35);animation:heroglow 3s ease-in-out infinite}
+.btn-orange.btn-hero:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 44px rgba(245,135,31,.5),inset 0 1px 0 rgba(255,255,255,.35)}
+@keyframes heroglow{0%,100%{box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 14px 40px rgba(245,135,31,.58),inset 0 1px 0 rgba(255,255,255,.35)}}
+.btn-ghost.btn-hero{border:1.5px solid var(--navy);color:var(--navy);background:rgba(255,255,255,.85);backdrop-filter:blur(6px)}
+.btn-ghost.btn-hero:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-ghost.btn-hero .ico{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);font-size:.8rem}
+.btn-ghost.btn-hero:hover .ico{background:rgba(255,255,255,.18);color:#fff}
+@media(prefers-reduced-motion:reduce){.btn-orange.btn-hero{animation:none}}
 .hero-note{margin-top:1.1rem;font-size:.88rem;color:var(--muted)}
 .hero-note b{color:var(--navy)}
 .reveal-seq>*{opacity:0;transform:translateY(24px);animation:up .75s ease forwards;animation-play-state:paused}
@@ -775,7 +789,8 @@ footer.site .logo-txt b{color:#fff}
 @media(max-width:560px){.cta-duo{flex-direction:column}.cta-duo .btn{justify-content:center}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Al-Fissah", "url": "https://al-fissah.blackirys.com", "logo": "https://al-fissah.com/assets/images/Logo.png", "description": "International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults.", "email": "c.alfissah@gmail.com", "sameAs": ["http://www.facebook.com/Ecole.al.fissah1", "https://www.instagram.com/ecolealfissah/", "https://twitter.com/AlFissah", "https://blog.al-fissah.com"]}</script>
-<script>window.I18N={"typew": "Welcome to Al-Fissah — International School of Arabic Language and Quran", "sending": "Sending…", "trial_ok": "Request sent. The administration will contact you to schedule your trial lesson, in shaa Allah.", "contact_ok": "Message sent. Our advisor will reply as soon as possible, in shaa Allah.", "err": "Sending failed. Please try again, or write to us directly at {email}.", "mail_ok": "Your e-mail app is opening with the message pre-filled. Just press send.", "subject_trial": "Trial lesson request — {name}", "wa": "Hello, I would like to book a free 30-minute trial lesson.", "summary": ["Trial lesson request — Al-Fissah", "Name", "E-mail", "Phone / WhatsApp", "Country", "Profile", "Child's first name", "years old", "Requested programme", "Current level", "Availability", "Message"], "adult": "adult", "child": "child", "signup_ok": "Enrolment request sent. The administration will contact you to confirm the teacher and the timetable, in shaa Allah.", "subject_signup": "Enrolment — {name}", "wa_signup": "Hello, I would like to enrol in the courses (enrolment, not a trial lesson).", "summary_signup": ["Enrolment — Al-Fissah", "Name", "E-mail", "Phone / WhatsApp", "Country", "Profile", "years old", "Programme", "Current level", "Plan", "Preferred days and times", "Preferred start", "Message"]};</script>
+<script>window.I18N={"typew": "Welcome to Al-Fissah", "typew_sub": "International School of Arabic Language and Quran", "sending": "Sending…", "trial_ok": "Request sent. The administration will contact you to schedule your trial lesson, in shaa Allah.", "contact_ok": "Message sent. Our advisor will reply as soon as possible, in shaa Allah.", "err": "Sending failed. Please try again, or write to us directly at {email}.", "mail_ok": "Your e-mail app is opening with the message pre-filled. Just press send.", "subject_trial": "Trial lesson request — {name}", "wa": "Hello, I would like to book a free 30-minute trial lesson.", "summary": ["Trial lesson request — Al-Fissah", "Name", "E-mail", "Phone / WhatsApp", "Country", "Profile", "Child's first name", "years old", "Requested programme", "Current level", "Availability", "Message"], "adult": "adult", "child": "child", "signup_ok": "Enrolment request sent. The administration will contact you to confirm the teacher and the timetable, in shaa Allah.", "subject_signup": "Enrolment — {name}", "wa_signup": "Hello, I would like to enrol in the courses (enrolment, not a trial lesson).", "summary_signup": ["Enrolment — Al-Fissah", "Name", "E-mail", "Phone / WhatsApp", "Country", "Profile", "years old", "Programme", "Current level", "Plan", "Preferred days and times", "Preferred start", "Message"]};</script>
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I enrol?", "acceptedAnswer": {"@type": "Answer", "text": "Group lessons.  Times, days and the start and end of the session are to be confirmed with the administration. After confirmation, click “Take this course”, provide an e-mail to receive your login details, then complete the order by paying for your enrolment. Studying a level is generally divided into several sessions, shown when you order; you can pay for one session, two… or all of them. \n  One-to-one lessons.    Choose the programme you want (Quran adult, Quran child, Arabic child, Arabic adult…).  Click “Take this course”.  Fill in all the requested information (gender, days, teacher…).  The administration contacts you to confirm your enrolment and payment.  All that remains is to order your book according to your level; the administration will guide you.  \n Once enrolment is validated, you receive an e-mail. In your dedicated area you will find your timetable, the programmes you have subscribed to (sessions, lessons, grades, homework…), your order and payment history, your profile, your testimonials and the news. \n  Note:  books and materials are not provided on enrolment; you must order them."}}, {"@type": "Question", "name": "What are the prerequisites?", "acceptedAnswer": {"@type": "Answer", "text": "No particular level is required to join the institute: all levels are accepted."}}, {"@type": "Question", "name": "What is your teaching method?", "acceptedAnswer": {"@type": "Answer", "text": "We offer an “immersion” teaching method: our lessons are exclusively in Arabic, and they are accessible to complete beginners (no prerequisites required). Lessons take place in a virtual classroom. At lesson time, students and teacher log in and interact orally, in writing and visually through screen sharing."}}, {"@type": "Question", "name": "Which book is used?", "acceptedAnswer": {"@type": "Answer", "text": "For children , we use the new series “Arabic in our children's hands (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا)”, specially designed for non-Arabic speakers and aimed at children aged 5 to 18. Developed by an elite of academics specialised in teaching, this programme consists of 12 textbooks with audio. \n  For adults , we use the series “Arabic in your hands (العَرَبِيَّةُ بَيْنَ يَدَيْكَ)”, for non-Arabic speakers and written by the same authors. \n  Note:  these books are not provided on enrolment; you must order them at  livres.al-fissah.com ."}}, {"@type": "Question", "name": "What language are lessons taught in?", "acceptedAnswer": {"@type": "Answer", "text": "Lessons are taught in Arabic. It is a 100% Arabic immersion method, which gives fast and effective results in shaa Allah. Our teachers are Egyptian and have been trained to teach non-Arabic speakers; moreover, the programmes used were specially designed for non-Arabic speakers."}}, {"@type": "Question", "name": "How long is a session?", "acceptedAnswer": {"@type": "Answer", "text": "A session lasts 4 weeks, with the option to renew as you wish.  Please note , do not confuse the session and the level. A session lasts 4 weeks; the level (1, 2, 3, 4…) is the book being studied, which generally takes more than 4 weeks depending on the student's level."}}, {"@type": "Question", "name": "How big is the group?", "acceptedAnswer": {"@type": "Answer", "text": "A class generally consists of 3 to 10 students at most."}}, {"@type": "Question", "name": "I can't see a group at my level, what should I do?", "acceptedAnswer": {"@type": "Answer", "text": "Contact us: we will put you on a waiting list and form a group with other students at your level if there are any."}}, {"@type": "Question", "name": "Can the Quran be studied in a group?", "acceptedAnswer": {"@type": "Answer", "text": "No, it is not possible to study the Quran in a group."}}, {"@type": "Question", "name": "Is it possible to study for 30 minutes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it is possible to study for 30 minutes, for the Quran only."}}, {"@type": "Question", "name": "Is it possible to study in pairs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, this is possible for the Arabic language; please contact the administration."}}, {"@type": "Question", "name": "What is the price of one hour for a lesson in pairs?", "acceptedAnswer": {"@type": "Answer", "text": "The price is €4.50 per student. Example: for 1 hour per week for 4 weeks, €4.50 × 2 (pair) = €9 × 4 (weeks) =  €36 ."}}, {"@type": "Question", "name": "Is there a trial lesson or trial period?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a 30-minute trial is possible; please contact the administration (or use the  request form ). But be aware that once enrolled for a 4-week session, you have reserved a place: you are therefore committed to studying for the whole session."}}, {"@type": "Question", "name": "What if I change my mind?", "acceptedAnswer": {"@type": "Answer", "text": "All enrolments are final; no postponement or refund will be granted. Enrol only if you are available and motivated to learn."}}, {"@type": "Question", "name": "How is payment made?", "acceptedAnswer": {"@type": "Answer", "text": "Payment is made by bank card through Stripe, or by bank transfer. Payments are secure (you can see the padlock when the payment page appears)."}}, {"@type": "Question", "name": "What equipment do I need to study?", "acceptedAnswer": {"@type": "Answer", "text": "A stable internet connection.  A computer.  A headset (optional).  A microphone (optional).    Our classrooms work on all devices : Windows, Mac, as well as tablets and smartphones. However, for more comfort, we advise studying on a computer, especially for Arabic lessons."}}, {"@type": "Question", "name": "Where do lessons take place? On Skype?", "acceptedAnswer": {"@type": "Answer", "text": "Lessons take place in a virtual classroom built into your “Student area”; you access your classroom through it."}}, {"@type": "Question", "name": "Once payment is made, when do lessons start?", "acceptedAnswer": {"@type": "Answer", "text": "Group lessons:  session dates are shown in the description of the group lessons and when you order.   One-to-one lessons:  lessons start right after enrolment, on the days you have chosen. The session start and end dates are shown at payment."}}]}</script>
 </head>
 <body class="lang-en">
@@ -805,7 +820,7 @@ footer.site .logo-txt b{color:#fff}
     <div class="nav-right">
       <div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="Language">EN ▾</button><div class="langmenu"><a href="../faq.html" hreflang="fr" lang="fr">Français</a><a href="../en/faq.html" hreflang="en" lang="en" class="on">English</a><a href="../ar/faq.html" hreflang="ar" lang="ar">العربية</a><a href="../ru/faq.html" hreflang="ru" lang="ru">Русский</a><a href="../es/faq.html" hreflang="es" lang="es">Español</a><a href="../de/faq.html" hreflang="de" lang="de">Deutsch</a></div></div>
       <a class="hd-login" href="https://al-fissah.com/fr/login">Log in</a>
-      <a class="btn btn-navy login" id="hd-essai" href="essai.html"><span class="lbl-long">Request a free trial</span><span class="lbl-short">Free trial</span> <span class="login-sub">30 min free</span></a>
+      <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">Request a free trial</span><span class="lbl-short">Free trial</span> <span class="login-sub">30 min free</span></a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -898,22 +913,29 @@ const mq=matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ---------- Préloader (page d'accueil uniquement) ---------- */
 const loader=$('#loader');
-if(loader){
-  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à l'école Al-Fissah",twEl=$('#typew');let twI=0,twDone=false;
-  // La vitesse s'adapte à la longueur du message : le texte finit toujours de
-  // s'écrire en ~2,6 s, quelle que soit la langue.
-  const twSpeed=Math.min(70,Math.max(22,Math.round(2600/Math.max(twMsg.length,1))));
+let introSeen=false;try{introSeen=!!sessionStorage.getItem('af-intro')}catch(e){}
+if(loader&&introSeen){
+  // Déjà vu dans cette session (clic sur le logo, retour à l'accueil) : on n'affiche pas l'écran d'ouverture.
+  loader.remove();document.body.classList.add('ready');
+}else if(loader){
+  try{sessionStorage.setItem('af-intro','1')}catch(e){}
+  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à Al-Fissah",twEl=$('#typew'),subEl=$('#typew-sub');
+  if(subEl)subEl.textContent=T.typew_sub||"École internationale de langue arabe et du Coran";
+  let twI=0,twDone=false;
+  // Rythme volontairement posé : le titre s'écrit en ~1,8 s (≈ 85 ms par lettre), puis le sous-titre
+  // apparaît en fondu et l'ensemble reste affiché ~2 s avant l'ouverture du site (≈ 4,6 s au total).
+  const twSpeed=Math.min(110,Math.max(60,Math.round(1800/Math.max(twMsg.length,1))));
   (function type(){
     if(twI<twMsg.length){twEl.textContent+=twMsg[twI++];setTimeout(type,twSpeed)}
-    else{twDone=true}
+    else{loader.classList.add('typed');setTimeout(()=>{twDone=true},2200)}
   })();
   const closeLoader=()=>{if(loader.classList.contains('done')||loader.classList.contains('closing'))return;
-    // ne jamais fermer avant la fin du message : on repousse tant qu'il s'écrit
+    // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
     setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
-  setTimeout(closeLoader,3400);
+  setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}
 
 /* ---------- Header au scroll ---------- */

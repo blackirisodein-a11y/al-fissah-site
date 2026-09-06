@@ -5,7 +5,7 @@ L = {
   title_home="AL-FISSAH — International School of Arabic Language and Quran",
   desc_home="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults. Trained native Arabic teachers, 100% Arabic immersion, 30-minute trial lesson.",
   org_desc="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults."),
-'js': dict(typew="Welcome to Al-Fissah — International School of Arabic Language and Quran", sending="Sending…",
+'js': dict(typew="Welcome to Al-Fissah", typew_sub="International School of Arabic Language and Quran", sending="Sending…",
   trial_ok="Request sent. The administration will contact you to schedule your trial lesson, in shaa Allah.",
   contact_ok="Message sent. Our advisor will reply as soon as possible, in shaa Allah.",
   err="Sending failed. Please try again, or write to us directly at {email}.",

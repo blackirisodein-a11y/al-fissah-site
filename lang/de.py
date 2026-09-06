@@ -5,7 +5,7 @@ L = {
   title_home="AL-FISSAH — Internationale Schule für arabische Sprache und Koran",
   desc_home="Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene. Ausgebildete muttersprachliche Lehrer, 100 % arabische Immersion, 30-minütige Probestunde.",
   org_desc="Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene."),
-'js': dict(typew="Willkommen bei Al-Fissah — Internationale Schule für arabische Sprache und Koran", sending="Wird gesendet…",
+'js': dict(typew="Willkommen bei Al-Fissah", typew_sub="Internationale Schule für arabische Sprache und Koran", sending="Wird gesendet…",
   trial_ok="Anfrage gesendet. Die Verwaltung meldet sich bei Ihnen, um Ihre Probestunde zu vereinbaren, in shaa Allah.",
   contact_ok="Nachricht gesendet. Unser Berater antwortet Ihnen so schnell wie möglich, in shaa Allah.",
   err="Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an {email}.",

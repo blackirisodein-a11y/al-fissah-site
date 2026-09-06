@@ -56,6 +56,7 @@ a{color:inherit}
 /* Sécurité : si le script ne se charge pas (fichier absent, réseau coupé…), l'écran d'ouverture s'efface quand même au bout de 7 s et le site reste utilisable. */
 @keyframes ldfailsafe{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%);visibility:hidden}}
 #loader.done{clip-path:circle(0% at 50% 50%);visibility:hidden}
+html.intro-seen #loader{display:none;animation:none}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
 #loader.closing .ld-box{animation:boxout .55s ease forwards}
 @keyframes boxout{to{opacity:0;transform:scale(.82) translateY(-12px);filter:blur(4px)}}
 .ld-box{display:grid;place-items:center;gap:1.4rem}
@@ -63,6 +64,9 @@ a{color:inherit}
 @keyframes logopulse{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
 #loader .word{font-family:var(--display);font-weight:600;text-align:center;padding:0 20px;font-size:clamp(1.4rem,4.4vw,2.4rem);color:#fff}
 .caret{display:inline-block;width:3px;height:1em;background:var(--orange);margin-left:6px;vertical-align:-.12em;animation:caret .8s steps(1) infinite}
+#loader .word-sub{font-family:var(--body);font-weight:500;font-size:clamp(.95rem,2.2vw,1.2rem);letter-spacing:.06em;color:var(--blue-soft);text-align:center;padding:0 20px;opacity:0;transform:translateY(8px);transition:opacity .9s ease,transform .9s ease}
+#loader.typed .word-sub{opacity:1;transform:none}
+#loader.typed .caret{animation:none;opacity:0;transition:opacity .4s}
 @keyframes caret{50%{opacity:0}}
 
 /* ========== BOUTONS ========== */
@@ -150,6 +154,16 @@ header ul.menu a:hover{color:var(--orange-deep)}
 @keyframes draw{to{stroke-dashoffset:0}}
 .hero p.lead{color:var(--muted);font-size:1.02rem;max-width:30rem;margin-bottom:2rem}
 .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+/* boutons du bandeau d'accueil : « Commencer maintenant » mis en avant, « Voir le programme » en second */
+.btn-hero{font-size:1.02rem;padding:1.05rem 2rem;border-radius:16px}
+.btn-orange.btn-hero{background:linear-gradient(135deg,#FFA94D 0%,var(--orange) 45%,var(--orange-deep) 100%);box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35);animation:heroglow 3s ease-in-out infinite}
+.btn-orange.btn-hero:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 44px rgba(245,135,31,.5),inset 0 1px 0 rgba(255,255,255,.35)}
+@keyframes heroglow{0%,100%{box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 14px 40px rgba(245,135,31,.58),inset 0 1px 0 rgba(255,255,255,.35)}}
+.btn-ghost.btn-hero{border:1.5px solid var(--navy);color:var(--navy);background:rgba(255,255,255,.85);backdrop-filter:blur(6px)}
+.btn-ghost.btn-hero:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-ghost.btn-hero .ico{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);font-size:.8rem}
+.btn-ghost.btn-hero:hover .ico{background:rgba(255,255,255,.18);color:#fff}
+@media(prefers-reduced-motion:reduce){.btn-orange.btn-hero{animation:none}}
 .hero-note{margin-top:1.1rem;font-size:.88rem;color:var(--muted)}
 .hero-note b{color:var(--navy)}
 .reveal-seq>*{opacity:0;transform:translateY(24px);animation:up .75s ease forwards;animation-play-state:paused}
@@ -775,7 +789,8 @@ footer.site .logo-txt b{color:#fff}
 @media(max-width:560px){.cta-duo{flex-direction:column}.cta-duo .btn{justify-content:center}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Al-Fissah", "url": "https://al-fissah.blackirys.com", "logo": "https://al-fissah.com/assets/images/Logo.png", "description": "Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene.", "email": "c.alfissah@gmail.com", "sameAs": ["http://www.facebook.com/Ecole.al.fissah1", "https://www.instagram.com/ecolealfissah/", "https://twitter.com/AlFissah", "https://blog.al-fissah.com"]}</script>
-<script>window.I18N={"typew": "Willkommen bei Al-Fissah — Internationale Schule für arabische Sprache und Koran", "sending": "Wird gesendet…", "trial_ok": "Anfrage gesendet. Die Verwaltung meldet sich bei Ihnen, um Ihre Probestunde zu vereinbaren, in shaa Allah.", "contact_ok": "Nachricht gesendet. Unser Berater antwortet Ihnen so schnell wie möglich, in shaa Allah.", "err": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an {email}.", "mail_ok": "Ihr E-Mail-Programm öffnet sich mit der vorausgefüllten Nachricht. Sie müssen sie nur noch absenden.", "subject_trial": "Anfrage Probestunde — {name}", "wa": "Hallo, ich möchte eine kostenlose 30-minütige Probestunde buchen.", "summary": ["Anfrage Probestunde — Al-Fissah", "Name", "E-Mail", "Telefon / WhatsApp", "Land", "Profil", "Vorname des Kindes", "Jahre", "Gewünschtes Programm", "Aktuelles Niveau", "Verfügbarkeit", "Nachricht"], "adult": "Erwachsener", "child": "Kind", "signup_ok": "Anmeldung gesendet. Die Verwaltung meldet sich bei Ihnen, um Lehrkraft und Stundenplan zu bestätigen, in shaa Allah.", "subject_signup": "Anmeldung — {name}", "wa_signup": "Hallo, ich möchte mich zum Unterricht anmelden (Anmeldung, keine Probestunde).", "summary_signup": ["Anmeldung — Al-Fissah", "Name", "E-Mail", "Telefon / WhatsApp", "Land", "Profil", "Jahre", "Programm", "Aktuelles Niveau", "Formel", "Gewünschte Tage und Uhrzeiten", "Gewünschter Beginn", "Nachricht"]};</script>
+<script>window.I18N={"typew": "Willkommen bei Al-Fissah", "typew_sub": "Internationale Schule für arabische Sprache und Koran", "sending": "Wird gesendet…", "trial_ok": "Anfrage gesendet. Die Verwaltung meldet sich bei Ihnen, um Ihre Probestunde zu vereinbaren, in shaa Allah.", "contact_ok": "Nachricht gesendet. Unser Berater antwortet Ihnen so schnell wie möglich, in shaa Allah.", "err": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an {email}.", "mail_ok": "Ihr E-Mail-Programm öffnet sich mit der vorausgefüllten Nachricht. Sie müssen sie nur noch absenden.", "subject_trial": "Anfrage Probestunde — {name}", "wa": "Hallo, ich möchte eine kostenlose 30-minütige Probestunde buchen.", "summary": ["Anfrage Probestunde — Al-Fissah", "Name", "E-Mail", "Telefon / WhatsApp", "Land", "Profil", "Vorname des Kindes", "Jahre", "Gewünschtes Programm", "Aktuelles Niveau", "Verfügbarkeit", "Nachricht"], "adult": "Erwachsener", "child": "Kind", "signup_ok": "Anmeldung gesendet. Die Verwaltung meldet sich bei Ihnen, um Lehrkraft und Stundenplan zu bestätigen, in shaa Allah.", "subject_signup": "Anmeldung — {name}", "wa_signup": "Hallo, ich möchte mich zum Unterricht anmelden (Anmeldung, keine Probestunde).", "summary_signup": ["Anmeldung — Al-Fissah", "Name", "E-Mail", "Telefon / WhatsApp", "Land", "Profil", "Jahre", "Programm", "Aktuelles Niveau", "Formel", "Gewünschte Tage und Uhrzeiten", "Gewünschter Beginn", "Nachricht"]};</script>
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wie melde ich mich an?", "acceptedAnswer": {"@type": "Answer", "text": "Gruppenunterricht.  Uhrzeiten, Tage sowie Beginn und Ende der Sitzung sind mit der Verwaltung abzustimmen. Nach der Bestätigung klicken Sie auf „Diesen Kurs belegen“, geben eine E-Mail-Adresse an, um Ihre Zugangsdaten zu erhalten, und schließen die Bestellung mit der Zahlung Ihrer Anmeldung ab. Das Lernen eines Niveaus ist in der Regel in mehrere Sitzungen unterteilt, die bei der Bestellung angezeigt werden; Sie können eine Sitzung, zwei … oder alle bezahlen. \n  Einzelunterricht.    Wählen Sie das gewünschte Programm (Koran Erwachsener, Koran Kind, Arabisch Kind, Arabisch Erwachsener…).  Klicken Sie auf „Diesen Kurs belegen“.  Füllen Sie alle erforderlichen Angaben aus (Geschlecht, Tage, Lehrer…).  Die Verwaltung kontaktiert Sie, um Ihre Anmeldung und die Zahlung zu bestätigen.  Sie müssen nur noch Ihr Buch entsprechend Ihrem Niveau bestellen; die Verwaltung berät Sie dabei.  \n Sobald die Anmeldung bestätigt ist, erhalten Sie eine E-Mail. In Ihrem persönlichen Bereich finden Sie Ihren Stundenplan, die abonnierten Programme (Sitzungen, Stunden, Noten, Hausaufgaben…), Ihre Bestell- und Zahlungshistorie, Ihr Profil, Ihre Erfahrungsberichte und die Neuigkeiten. \n  Hinweis:  Bücher und Material werden bei der Anmeldung nicht mitgeliefert; Sie müssen sie bestellen."}}, {"@type": "Question", "name": "Welche Voraussetzungen gibt es?", "acceptedAnswer": {"@type": "Answer", "text": "Es ist kein bestimmtes Niveau erforderlich, um an der Schule aufgenommen zu werden: Alle Niveaus sind willkommen."}}, {"@type": "Question", "name": "Wie ist Ihre Lernmethode?", "acceptedAnswer": {"@type": "Answer", "text": "Wir bieten eine Unterrichtsmethode im „Immersionsmodus“: Unser Unterricht findet ausschließlich auf Arabisch statt und ist auch für absolute Anfänger zugänglich (keine Voraussetzungen). Der Unterricht findet in einem virtuellen Klassenzimmer statt. Zur Unterrichtszeit melden sich Schüler und Lehrer an und kommunizieren mündlich, schriftlich und visuell per Bildschirmfreigabe."}}, {"@type": "Question", "name": "Welches Buch wird verwendet?", "acceptedAnswer": {"@type": "Answer", "text": "Für Kinder  verwenden wir die neue Reihe „Arabisch in den Händen unserer Kinder (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا)“, speziell für Nicht-Arabischsprachige entwickelt und an Kinder von 5 bis 18 Jahren gerichtet. Dieses von einer Elite von Fachakademikern entwickelte Programm besteht aus 12 Lehrbüchern mit Audio. \n  Für Erwachsene  verwenden wir die Reihe „Arabisch in deinen Händen (العَرَبِيَّةُ بَيْنَ يَدَيْكَ)“, ebenfalls für Nicht-Arabischsprachige und von denselben Autoren verfasst. \n  Hinweis:  Diese Bücher werden bei der Anmeldung nicht mitgeliefert; Sie müssen sie auf  livres.al-fissah.com  bestellen."}}, {"@type": "Question", "name": "In welcher Sprache findet der Unterricht statt?", "acceptedAnswer": {"@type": "Answer", "text": "Der Unterricht findet auf Arabisch statt. Es ist eine 100 % arabische Immersionsmethode, die schnelle und wirksame Ergebnisse liefert, in shaa Allah. Unsere Lehrer sind Ägypter und wurden für den Unterricht von Nicht-Arabischsprachigen ausgebildet; zudem wurden die verwendeten Programme speziell für Nicht-Arabischsprachige entwickelt."}}, {"@type": "Question", "name": "Wie lange dauert eine Sitzung?", "acceptedAnswer": {"@type": "Answer", "text": "Eine Sitzung dauert 4 Wochen und kann nach Wunsch verlängert werden.  Achtung , nicht zu verwechseln: die Sitzung und das Niveau. Eine Sitzung dauert 4 Wochen; das Niveau (1, 2, 3, 4…) ist das gelernte Buch, das je nach Niveau des Schülers meist länger als 4 Wochen dauert."}}, {"@type": "Question", "name": "Wie groß ist die Gruppe?", "acceptedAnswer": {"@type": "Answer", "text": "Eine Klasse besteht in der Regel aus höchstens 3 bis 10 Schülern."}}, {"@type": "Question", "name": "Ich finde keine Gruppe auf meinem Niveau, was tun?", "acceptedAnswer": {"@type": "Answer", "text": "Kontaktieren Sie uns: Wir setzen Sie auf eine Warteliste und bilden eine Gruppe mit anderen Schülern Ihres Niveaus, falls vorhanden."}}, {"@type": "Question", "name": "Kann man den Koran in der Gruppe lernen?", "acceptedAnswer": {"@type": "Answer", "text": "Nein, es ist nicht möglich, den Koran in der Gruppe zu lernen."}}, {"@type": "Question", "name": "Kann man 30 Minuten lernen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, 30-minütige Stunden sind möglich, allerdings nur für den Koran."}}, {"@type": "Question", "name": "Kann man zu zweit lernen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, das ist für die arabische Sprache möglich; wenden Sie sich dazu an die Verwaltung."}}, {"@type": "Question", "name": "Was kostet eine Stunde zu zweit?", "acceptedAnswer": {"@type": "Answer", "text": "Der Preis beträgt 4,50 € pro Schüler. Beispiel: für 1 Stunde pro Woche über 4 Wochen: 4,50 € × 2 (zu zweit) = 9 € × 4 (Wochen) =  36 € ."}}, {"@type": "Question", "name": "Gibt es eine Probestunde oder Probezeit?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, eine 30-minütige Probestunde ist möglich; wenden Sie sich dazu an die Verwaltung (oder nutzen Sie das  Anfrageformular ). Beachten Sie jedoch: Sobald Sie für eine 4-Wochen-Sitzung angemeldet sind, haben Sie einen Platz reserviert und sind für die gesamte Sitzung verpflichtet."}}, {"@type": "Question", "name": "Und wenn ich es mir anders überlege?", "acceptedAnswer": {"@type": "Answer", "text": "Jede Anmeldung ist endgültig; es wird keine Verschiebung und keine Rückerstattung gewährt. Melden Sie sich nur an, wenn Sie verfügbar und motiviert sind zu lernen."}}, {"@type": "Question", "name": "Wie erfolgt die Zahlung?", "acceptedAnswer": {"@type": "Answer", "text": "Die Zahlung erfolgt per Bankkarte über Stripe oder per Überweisung. Die Zahlungen sind sicher (Sie sehen das Schloss-Symbol, wenn die Zahlungsseite erscheint)."}}, {"@type": "Question", "name": "Welche Ausrüstung brauche ich zum Lernen?", "acceptedAnswer": {"@type": "Answer", "text": "Eine stabile Internetverbindung.  Einen Computer.  Ein Headset (optional).  Ein Mikrofon (optional).    Unsere Klassenzimmer funktionieren auf allen Geräten : Windows, Mac sowie Tablets und Smartphones. Für mehr Komfort empfehlen wir jedoch, an einem Computer zu lernen, vor allem für den Arabischunterricht."}}, {"@type": "Question", "name": "Wo findet der Unterricht statt? Über Skype?", "acceptedAnswer": {"@type": "Answer", "text": "Der Unterricht findet in einem virtuellen Klassenzimmer statt, das in Ihren „Schülerbereich“ integriert ist; Sie gelangen darüber in Ihr Klassenzimmer."}}, {"@type": "Question", "name": "Wann beginnt der Unterricht nach der Zahlung?", "acceptedAnswer": {"@type": "Answer", "text": "Gruppenunterricht:  Die Sitzungstermine werden in der Beschreibung des Gruppenunterrichts und bei der Bestellung angezeigt.   Einzelunterricht:  Der Unterricht beginnt direkt nach der Anmeldung an den von Ihnen gewählten Tagen. Beginn und Ende der Sitzung werden bei der Zahlung angezeigt."}}]}</script>
 </head>
 <body class="lang-de">
@@ -805,7 +820,7 @@ footer.site .logo-txt b{color:#fff}
     <div class="nav-right">
       <div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="Sprache">DE ▾</button><div class="langmenu"><a href="../faq.html" hreflang="fr" lang="fr">Français</a><a href="../en/faq.html" hreflang="en" lang="en">English</a><a href="../ar/faq.html" hreflang="ar" lang="ar">العربية</a><a href="../ru/faq.html" hreflang="ru" lang="ru">Русский</a><a href="../es/faq.html" hreflang="es" lang="es">Español</a><a href="../de/faq.html" hreflang="de" lang="de" class="on">Deutsch</a></div></div>
       <a class="hd-login" href="https://al-fissah.com/fr/login">Anmelden</a>
-      <a class="btn btn-navy login" id="hd-essai" href="essai.html"><span class="lbl-long">Kostenlose Probestunde anfragen</span><span class="lbl-short">Probestunde</span> <span class="login-sub">30 Min. gratis</span></a>
+      <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">Kostenlose Probestunde anfragen</span><span class="lbl-short">Probestunde</span> <span class="login-sub">30 Min. gratis</span></a>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -898,22 +913,29 @@ const mq=matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ---------- Préloader (page d'accueil uniquement) ---------- */
 const loader=$('#loader');
-if(loader){
-  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à l'école Al-Fissah",twEl=$('#typew');let twI=0,twDone=false;
-  // La vitesse s'adapte à la longueur du message : le texte finit toujours de
-  // s'écrire en ~2,6 s, quelle que soit la langue.
-  const twSpeed=Math.min(70,Math.max(22,Math.round(2600/Math.max(twMsg.length,1))));
+let introSeen=false;try{introSeen=!!sessionStorage.getItem('af-intro')}catch(e){}
+if(loader&&introSeen){
+  // Déjà vu dans cette session (clic sur le logo, retour à l'accueil) : on n'affiche pas l'écran d'ouverture.
+  loader.remove();document.body.classList.add('ready');
+}else if(loader){
+  try{sessionStorage.setItem('af-intro','1')}catch(e){}
+  const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à Al-Fissah",twEl=$('#typew'),subEl=$('#typew-sub');
+  if(subEl)subEl.textContent=T.typew_sub||"École internationale de langue arabe et du Coran";
+  let twI=0,twDone=false;
+  // Rythme volontairement posé : le titre s'écrit en ~1,8 s (≈ 85 ms par lettre), puis le sous-titre
+  // apparaît en fondu et l'ensemble reste affiché ~2 s avant l'ouverture du site (≈ 4,6 s au total).
+  const twSpeed=Math.min(110,Math.max(60,Math.round(1800/Math.max(twMsg.length,1))));
   (function type(){
     if(twI<twMsg.length){twEl.textContent+=twMsg[twI++];setTimeout(type,twSpeed)}
-    else{twDone=true}
+    else{loader.classList.add('typed');setTimeout(()=>{twDone=true},2200)}
   })();
   const closeLoader=()=>{if(loader.classList.contains('done')||loader.classList.contains('closing'))return;
-    // ne jamais fermer avant la fin du message : on repousse tant qu'il s'écrit
+    // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
     setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
-  setTimeout(closeLoader,3400);
+  setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}
 
 /* ---------- Header au scroll ---------- */
