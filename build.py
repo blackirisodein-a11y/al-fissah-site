@@ -23,9 +23,10 @@ LOGIN = 'https://al-fissah.com/fr/login'
 REGISTER = 'https://al-fissah.com/fr/register'
 SITE = 'https://al-fissah.com'
 PREVIEW = False
+APP = ''        # adresse de la plateforme des comptes (site.conf, clé app=) ; vide = pas encore reliée
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
-ASSET_VER = '13'
+ASSET_VER = '14'
 INLINE = '--inline' in sys.argv   # pages autonomes : style, script et logos intégrés   # à incrémenter à chaque modification de style.css ou main.js
 
 # --- adresse du site : site.conf, puis --site / --preview en ligne de commande ---
@@ -37,6 +38,8 @@ if os.path.exists(_conf):
             SITE = _l[5:].strip().rstrip('/')
         elif _l.startswith('preview='):
             PREVIEW = _l[8:].strip().lower() in ('1', 'true', 'oui', 'yes')
+        elif _l.startswith('app='):
+            APP = _l[4:].strip().rstrip('/')
 if '--site' in sys.argv:
     SITE = sys.argv[sys.argv.index('--site') + 1].rstrip('/')
 if '--preview' in sys.argv:
@@ -60,6 +63,7 @@ PARCOURS = {
  'fr': dict(
    box_kick="Deux façons de commencer", box_h2="Inscrivez-vous aux études, ou essayez d'abord", box_p="Vous êtes décidé ? Choisissez votre programme, votre formule et votre créneau. Vous hésitez encore ? Commencez par un cours d'essai gratuit de 30 minutes.",
    btn_essai="Demander un essai gratuit", btn_essai_court="Essai gratuit", btn_insc="Commencer maintenant",
+   app_b="Continuer sur la plateforme", app_p="La suite se passe sur notre plateforme sécurisée : vous y créez votre compte, choisissez votre professeur et votre créneau, et retrouvez ensuite votre espace élève.", app_btn="Continuer", app_acc="Vous avez déjà un compte ?", app_login="Se connecter",
    essai=dict(crumb="Cours d'essai", title="Demander un cours d'essai gratuit — AL-FISSAH",
      desc="Demandez votre cours d'essai gratuit de 30 minutes : sans engagement et sans moyen de paiement.",
      h1="Demander un cours d'essai gratuit",
@@ -91,6 +95,7 @@ PARCOURS = {
  'en': dict(
    box_kick="Two ways to start", box_h2="Enrol in the courses, or try first", box_p="Made up your mind? Choose your programme, your plan and your time slot. Still unsure? Start with a free 30-minute trial lesson.",
    btn_essai="Request a free trial", btn_essai_court="Free trial", btn_insc="Get started now",
+   app_b="Continue on the platform", app_p="The next step takes place on our secure platform: create your account, choose your teacher and your time slot, then find your student area there.", app_btn="Continue", app_acc="Already have an account?", app_login="Log in",
    essai=dict(crumb="Trial lesson", title="Request a free trial lesson — AL-FISSAH",
      desc="Request your free 30-minute trial lesson: no commitment, no payment details required.",
      h1="Request a free trial lesson",
@@ -122,6 +127,7 @@ PARCOURS = {
  'es': dict(
    box_kick="Dos formas de empezar", box_h2="Inscríbase en los cursos, o pruebe primero", box_p="¿Ya está decidido? Elija su programa, su tarifa y su horario. ¿Todavía duda? Empiece con una clase de prueba gratuita de 30 minutos.",
    btn_essai="Solicitar clase de prueba", btn_essai_court="Clase de prueba", btn_insc="Empezar ahora",
+   app_b="Continuar en la plataforma", app_p="El siguiente paso se realiza en nuestra plataforma segura: cree su cuenta, elija su profesor y su horario, y acceda después a su espacio de alumno.", app_btn="Continuar", app_acc="¿Ya tiene una cuenta?", app_login="Iniciar sesión",
    essai=dict(crumb="Clase de prueba", title="Solicitar una clase de prueba gratuita — AL-FISSAH",
      desc="Solicite su clase de prueba gratuita de 30 minutos: sin compromiso y sin datos de pago.",
      h1="Solicitar una clase de prueba gratuita",
@@ -153,6 +159,7 @@ PARCOURS = {
  'de': dict(
    box_kick="Zwei Wege zum Start", box_h2="Zum Unterricht anmelden oder erst ausprobieren", box_p="Schon entschieden? Wählen Sie Programm, Tarif und Termin. Noch unsicher? Beginnen Sie mit einer kostenlosen 30-minütigen Probestunde.",
    btn_essai="Kostenlose Probestunde anfragen", btn_essai_court="Probestunde", btn_insc="Jetzt anmelden",
+   app_b="Auf der Plattform fortfahren", app_p="Der nächste Schritt findet auf unserer sicheren Plattform statt: Konto anlegen, Lehrkraft und Termin wählen, danach steht Ihnen Ihr Schülerbereich zur Verfügung.", app_btn="Weiter", app_acc="Sie haben bereits ein Konto?", app_login="Anmelden",
    essai=dict(crumb="Probestunde", title="Kostenlose Probestunde anfragen — AL-FISSAH",
      desc="Fragen Sie Ihre kostenlose 30-minütige Probestunde an: unverbindlich und ohne Zahlungsdaten.",
      h1="Kostenlose Probestunde anfragen",
@@ -184,6 +191,7 @@ PARCOURS = {
  'ru': dict(
    box_kick="Два способа начать", box_h2="Записаться на обучение или сначала попробовать", box_p="Уже решили? Выберите программу, тариф и время. Ещё сомневаетесь? Начните с бесплатного пробного урока на 30 минут.",
    btn_essai="Записаться на пробный урок", btn_essai_court="Пробный урок", btn_insc="Начать обучение",
+   app_b="Продолжить на платформе", app_p="Следующий шаг проходит на нашей защищённой платформе: создайте аккаунт, выберите преподавателя и время занятий, затем пользуйтесь личным кабинетом ученика.", app_btn="Продолжить", app_acc="Уже есть аккаунт?", app_login="Войти",
    essai=dict(crumb="Пробный урок", title="Бесплатный пробный урок — AL-FISSAH",
      desc="Запишитесь на бесплатный пробный урок 30 минут: без обязательств и без платёжных данных.",
      h1="Записаться на бесплатный пробный урок",
@@ -215,6 +223,7 @@ PARCOURS = {
  'ar': dict(
    box_kick="طريقتان للبدء", box_h2="سجِّل في الدراسة، أو جرِّب أولًا", box_p="حسمت أمرك؟ اختر برنامجك وصيغتك وموعدك. ما زلت متردّدًا؟ ابدأ بحصة تجريبية مجانية مدتها 30 دقيقة.",
    btn_essai="اطلب حصة تجريبية مجانية", btn_essai_court="حصة تجريبية", btn_insc="ابدأ الدراسة الآن",
+   app_b="المتابعة على المنصة", app_p="تتم الخطوة التالية على منصتنا الآمنة: أنشئ حسابك، واختر أستاذك وموعدك، ثم ستجد فضاءك الطلابي هناك.", app_btn="متابعة", app_acc="لديك حساب بالفعل؟", app_login="تسجيل الدخول",
    essai=dict(crumb="حصة تجريبية", title="طلب حصة تجريبية مجانية — الفصاح",
      desc="اطلب حصتك التجريبية المجانية (30 دقيقة): دون التزام ودون بيانات دفع.",
      h1="اطلب حصة تجريبية مجانية",
@@ -290,6 +299,17 @@ class Builder:
     def url(self, page):
         p = '' if page == 'index' else page + '.html'
         return f"{SITE}/{p}" if self.c == 'fr' else f"{SITE}/{self.c}/{p}"
+
+    def app_url(self, path):
+        """Adresse d'une page de la plateforme des comptes (site.conf, clé app=) dans la langue de la page.
+        La plateforme existe en fr/en/ar/ru ; les pages es/de renvoient vers l'anglais."""
+        return f"{APP}/{self.c if self.c in ('fr', 'en', 'ar', 'ru') else 'en'}/{path}"
+
+    def login_url(self):
+        return self.app_url('login') if APP else LOGIN
+
+    def register_url(self):
+        return self.app_url('register') if APP else REGISTER
 
     def head(self, title, desc, page, extra=''):
         L = self.L; m = L['meta']
@@ -374,7 +394,7 @@ class Builder:
     </ul>
     <div class="nav-right">
       {self.langswitch(page)}
-      <a class="hd-login" href="{LOGIN}">{n['login']}</a>
+      <a class="hd-login" href="{self.login_url()}">{n['login']}</a>
       <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
       <button class="burger" id="burger" aria-label="{n['menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -388,7 +408,7 @@ class Builder:
     <a href="https://blog.al-fissah.com">{n['blog']}</a>
     <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']}</a>
     <a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a>
-    <a class="btn btn-navy" href="{LOGIN}">{n['login_full']}</a>
+    <a class="btn btn-navy" href="{self.login_url()}">{n['login_full']}</a>
   </nav>
 </div>
 
@@ -435,7 +455,7 @@ class Builder:
     </div>
     <div class="base">
       <span>© 2020–{YEAR} Al-Fissah — {f['copy']}</span>
-      <span><a href="{LOGIN}">{n['login']}</a> · <a href="{REGISTER}">{f['register']}</a></span>
+      <span><a href="{self.login_url()}">{n['login']}</a> · <a href="{self.register_url()}">{f['register']}</a></span>
     </div>
   </div>
 </footer>
@@ -659,7 +679,7 @@ class Builder:
   </div>
   {note_lang}
   <div class="tcols">{cards}</div>
-  <div class="prose"><div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="{LOGIN}">{T['note_a']}</a>.</div></div>
+  <div class="prose"><div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="{self.login_url()}">{T['note_a']}</a>.</div></div>
 </div></div>
 '''
         self.write('temoignages.html', self.head(T['title'], T['desc'], 'temoignages', f'<script type="application/ld+json">{ld}</script>') + self.chrome('temoignages') + html + self.footer())
@@ -845,6 +865,13 @@ class Builder:
         I = self.I; P = I[kind]
         A = self.L['signup'] if kind == 'etudes' else self.L['form']     # textes de l'encart à côté du formulaire
         form = self.signup_form() if kind == 'etudes' else self.trial_form()
+        if APP:   # plateforme reliée : la demande se fait sur la plateforme, le formulaire local disparaît
+            form = f'''<div class="card-form app-card io io-r d1" id="app-card">
+      <h3>{I['app_b']}</h3>
+      <p>{I['app_p']}</p>
+      <a class="btn btn-orange big" href="{self.app_url('essai' if kind == 'essai' else 'inscription')}">{I['app_btn']} <span class="arr">→</span></a>
+      <p class="tarif-note" style="text-align:start"><b>{I['app_acc']}</b> <a href="{self.login_url()}">{I['app_login']}</a></p>
+    </div>'''
         steps = ''.join(
             f'<li class="istep"><span class="n">{i+1}</span><div><b>{ti}</b><span>{de}</span></div></li>'
             for i, (ti, de) in enumerate(P['steps']))
@@ -862,7 +889,7 @@ class Builder:
   <div class="psteps io d1">
     <h2>{I['steps_h2']}</h2>
     <ol class="isteps">{steps}</ol>
-    <p class="tarif-note" style="text-align:start">{I['steps_p']}</p>
+    {'' if APP else f'<p class="tarif-note" style="text-align:start">{I["steps_p"]}</p>'}
   </div>
   <p class="tarif-note"><a href="index.html">← {I['back']}</a></p>
 </div></div>

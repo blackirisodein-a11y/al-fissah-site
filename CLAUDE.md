@@ -140,14 +140,32 @@ les `.md`, `netlify.toml`, `_redirects`.
 
 ---
 
+## Plateforme des comptes (dépôt `blackirisodein-a11y/al-fissah-app`)
+
+Décision du client (09/2026) : **ce site reste la vitrine, tel quel.** La plateforme
+(adaptée de celle d'une autre école : Next.js + Supabase) ne sert qu'aux **comptes** :
+inscription aux études (`/fr/inscription`), demande d'essai gratuit (`/fr/essai`),
+connexion et espace élève (`/fr/login`), espace bureau. Ses anciennes pages vitrine
+renvoient vers ce site.
+
+Le branchement se fait par **une seule ligne de `site.conf`** : `app=` (adresse de la
+plateforme, sans barre finale). Tant qu'elle est vide, rien ne change. Une fois renseignée
+et le site reconstruit :
+- « Se connecter » / « S'inscrire » (en-tête, menu mobile, pied de page) → `{app}/{langue}/login`
+  et `/register` ;
+- `essai.html` et `inscription.html` gardent leur en-tête et leurs 6 étapes, mais le
+  formulaire local est remplacé par un encart « Continuer sur la plateforme » (`.app-card`,
+  textes `app_*` du dict `PARCOURS`) → `{app}/{langue}/essai` ou `/inscription` ;
+- les pages es/de renvoient vers la version anglaise de la plateforme (elle n'existe qu'en
+  fr/en/ar/ru).
+Contrôle : `grep -o 'href="https://…/[a-z]*/[a-z]*"' essai.html`.
+
 ## Suite prévue
 
-1. Le client doit fournir une **plateforme d'inscription existante** (utilisée par une autre
-   école) : l'étudier, en reprendre le fonctionnement, la reconfigurer pour Al-Fissah,
-   l'habiller aux couleurs du site, retirer tout ce qui est propre à l'autre école, et la
-   brancher sur `essai.html` et `inscription.html`.
+1. Mettre la plateforme en service (comptes Supabase, Vercel, Resend, Stripe), puis renseigner
+   `app=` dans `site.conf` et reconstruire.
 2. Compléter les mentions légales.
-3. Brancher les formulaires sur Web3Forms.
+3. Brancher le formulaire de contact sur Web3Forms.
 4. Basculer vers al-fissah.com en préservant les URL de l'application élève.
 
 ## Style de travail attendu

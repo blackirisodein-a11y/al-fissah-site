@@ -785,3 +785,9 @@ footer.site .logo-txt b{color:#fff}
 .cta-duo .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(169,188,232,.35)}
 .cta-duo .btn-ghost:hover{background:rgba(255,255,255,.16)}
 @media(max-width:560px){.cta-duo{flex-direction:column}.cta-duo .btn{justify-content:center}}
+
+/* Parcours reliés à la plateforme des comptes (site.conf, clé app=) : encart qui remplace le formulaire */
+.app-card{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.app-card h3{font-family:var(--display);font-size:1.35rem;margin:0}
+.app-card p{margin:0;color:var(--muted)}
+.app-card .btn.big{margin-top:.4rem}
