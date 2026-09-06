@@ -1,0 +1,6 @@
+# Netlify / Cloudflare Pages — page 404 par langue
+/ar/*   /ar/404.html   404
+/en/*   /en/404.html   404
+/es/*   /es/404.html   404
+/de/*   /de/404.html   404
+/*      /404.html      404
