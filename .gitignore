@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .netlify/
+_site/
+.ftp-deploy-sync-state.json

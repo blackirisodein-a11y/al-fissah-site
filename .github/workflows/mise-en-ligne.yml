@@ -1,0 +1,54 @@
+# Mise en ligne automatique sur LWS (FTP).
+# À chaque modification poussée sur la branche main, GitHub :
+#   1. reconstruit les 72 pages (python3 build.py --inline),
+#   2. envoie le résultat par FTP dans /al-fissah.blackirys.com.
+# Les identifiants FTP sont dans les « secrets » du dépôt (Settings → Secrets and variables → Actions) :
+#   FTP_HOST = 193.37.145.67    FTP_USERNAME = …    FTP_PASSWORD = …
+# On peut aussi lancer l'envoi à la main : onglet Actions → « Mise en ligne (FTP LWS) » → Run workflow.
+name: Mise en ligne (FTP LWS)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: mise-en-ligne
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Construire les pages (mode --inline)
+        run: |
+          pip install --quiet pillow
+          python3 build.py --inline
+
+      - name: Préparer le dossier à envoyer (pages générées uniquement, sans build.py ni lang/)
+        run: |
+          rm -rf _site && mkdir _site
+          cp -r .htaccess robots.txt sitemap.xml *.html ar de en es ru _site/
+          echo "Fichiers à envoyer : $(find _site -type f | wc -l)"
+
+      - name: Envoyer par FTP vers LWS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: _site/
+          server-dir: /al-fissah.blackirys.com/
+          state-name: .ftp-deploy-sync-state.json
+          timeout: 120000
+          log-level: standard

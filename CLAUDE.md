@@ -111,7 +111,13 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
 
 ## Déploiement
 
-FTP (FileZilla), hôte `193.37.145.67`, **FTP simple sans chiffrement** — le TLS échoue,
+**Automatique depuis GitHub** (`.github/workflows/mise-en-ligne.yml`) : chaque push sur `main`
+reconstruit les pages (`--inline`) et les envoie par FTP dans `/al-fissah.blackirys.com`.
+Les identifiants sont des secrets du dépôt (`FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`),
+jamais dans le code ni dans la conversation. Suivi : onglet *Actions* du dépôt ; on peut y
+relancer l'envoi à la main (*Run workflow*). Le poste du client n'a plus besoin de FileZilla.
+
+Méthode manuelle de secours — FTP (FileZilla), hôte `193.37.145.67`, **FTP simple sans chiffrement** — le TLS échoue,
 le certificat LWS ne correspond pas au domaine. Déposer le contenu (pas le dossier) dans
 `/al-fissah.blackirys.com`.
 
