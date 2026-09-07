@@ -311,6 +311,14 @@ class Builder:
     def register_url(self):
         return self.app_url('register') if APP else REGISTER
 
+    # Parcours : dès que la plateforme est reliée (app=), « Demander un essai gratuit » et
+    # « Commencer maintenant » y mènent DIRECTEMENT — aucune page intermédiaire sur le site.
+    def essai_url(self):
+        return self.app_url('essai') if APP else 'essai.html'
+
+    def insc_url(self, query=''):
+        return (self.app_url('inscription') if APP else 'inscription.html') + (('?' + query) if query else '')
+
     def head(self, title, desc, page, extra=''):
         L = self.L; m = L['meta']
         fonts = FONTS.get(self.c, FONTS['default'])
@@ -376,7 +384,7 @@ class Builder:
         mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav) + f'\n    <a href="reglement.html">{n["reglement"]}</a>'
         return loader + f'''<div id="progress" aria-hidden="true"></div>
 <button class="totop" id="totop" aria-label="{n['totop']}">↑</button>
-<a class="btn btn-orange cta-float" id="ctafloat" href="inscription.html">{self.I['btn_insc']}</a>
+<a class="btn btn-orange cta-float" id="ctafloat" href="{self.insc_url()}">{self.I['btn_insc']}</a>
 
 <div class="dots" aria-hidden="true"></div>
 <div class="aur a1" aria-hidden="true"></div>
@@ -395,7 +403,7 @@ class Builder:
     <div class="nav-right">
       {self.langswitch(page)}
       <a class="hd-login" href="{self.login_url()}">{n['login']}</a>
-      <a class="btn btn-orange login" id="hd-essai" href="essai.html"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
+      <a class="btn btn-orange login" id="hd-essai" href="{self.essai_url()}"><span class="lbl-long">{self.I['btn_essai']}</span><span class="lbl-short">{self.I['btn_essai_court']}</span> <span class="login-sub">{L['nav']['essai_sub']}</span></a>
       <button class="burger" id="burger" aria-label="{n['menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -406,8 +414,8 @@ class Builder:
     {mob}
     <a href="https://livres.al-fissah.com">{n['livres']}</a>
     <a href="https://blog.al-fissah.com">{n['blog']}</a>
-    <a class="btn btn-orange" href="inscription.html">{self.I['btn_insc']}</a>
-    <a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a>
+    <a class="btn btn-orange" href="{self.insc_url()}">{self.I['btn_insc']}</a>
+    <a class="btn btn-navy" href="{self.essai_url()}">{self.I['btn_essai']}</a>
     <a class="btn btn-navy" href="{self.login_url()}">{n['login_full']}</a>
   </nav>
 </div>
@@ -438,7 +446,7 @@ class Builder:
           <li><a href="programmes.html#collectifs">{f['prog_col']}</a></li>
           <li><a href="tarifs.html">{n['tarifs']}</a></li>
           <li><a href="temoignages.html">{n['temoignages']}</a></li>
-          <li><a href="essai.html">{f['essai']}</a></li>
+          <li><a href="{self.essai_url()}">{f['essai']}</a></li>
         </ul>
       </div>
       <div>
@@ -518,7 +526,7 @@ class Builder:
       <h1>{H['h1_pre']} <span class="hl">{H['h1_hl']}<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M4 10 C 60 3, 120 12, 180 7 S 270 4, 296 9"/></svg></span>{H['h1_post']}</h1>
       <p class="lead">{H['lead']}</p>
       <div class="hero-cta">
-        <a class="btn btn-orange btn-hero" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
+        <a class="btn btn-orange btn-hero" href="{self.insc_url()}">{self.I['btn_insc']} <span class="arr">→</span></a>
         <a class="btn btn-ghost btn-hero" href="programmes.html"><span class="ico">▸</span> {H['cta2']}</a>
       </div>
       <p class="hero-note">{' &nbsp;·&nbsp; '.join(f'<b>✓</b> {x}' for x in H['note'])}</p>
@@ -598,8 +606,8 @@ class Builder:
     <p>{self.I['box_p']}</p>
     <ul class="checks">{''.join(f'<li>{x}</li>' for x in F['checks'])}</ul>
     <div class="cta-duo">
-      <a class="btn btn-orange big" href="inscription.html">{self.I['btn_insc']} <span class="arr">→</span></a>
-      <a class="btn btn-ghost big" href="essai.html">{self.I['btn_essai']}</a>
+      <a class="btn btn-orange big" href="{self.insc_url()}">{self.I['btn_insc']} <span class="arr">→</span></a>
+      <a class="btn btn-ghost big" href="{self.essai_url()}">{self.I['btn_essai']}</a>
     </div>
   </div>
 </div></section>
@@ -614,7 +622,7 @@ class Builder:
             secs += f'''<article class="pdetail io {'io-l' if i % 2 == 0 else 'io-r'}" id="{p['id']}">
   <div class="pd-head"><div class="pd-ar">{p['ar']}</div><div><span class="kick">{p['tag']}</span><h2>{p['titre']}</h2><div class="facts">{''.join(f'<span>{x}</span>' for x in p['facts'])}</div></div></div>
   <div class="prose">{p['long']}</div>
-  <div class="pd-actions"><a class="btn btn-orange" href="inscription.html?programme={p['id']}">{p['cta']} <span class="arr">→</span></a><a class="btn btn-ghost" href="tarifs.html">{c['see_prices']}</a></div>
+  <div class="pd-actions"><a class="btn btn-orange" href="{self.insc_url(f"programme={p['id']}")}">{p['cta']} <span class="arr">→</span></a><a class="btn btn-ghost" href="tarifs.html">{c['see_prices']}</a></div>
 </article>
 '''
         html = self.page_hero(L['nav']['programmes'], P['h1'], P['lead']) + f'''<div class="page"><div class="wrap">
@@ -628,7 +636,7 @@ class Builder:
         L = self.L; T = L['tarifs']; c = L['common']
         def grid(duo):
             prog = 'arabe-adultes' if duo else 'coran'
-            s = ''.join(f'<div class="tcard{" featured" if h == 2 else ""}"{f' data-badge="{T.get("badge","")}"' if h == 2 else ""}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 2 else "btn-navy"}" href="inscription.html?formule={h}&amp;programme={prog}">{T["choose"]}</a></div>' for h, e in FORMULES)
+            s = ''.join(f'<div class="tcard{" featured" if h == 2 else ""}"{f' data-badge="{T.get("badge","")}"' if h == 2 else ""}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 2 else "btn-navy"}" href="{self.insc_url(f"formule={h}&amp;programme={prog}")}">{T["choose"]}</a></div>' for h, e in FORMULES)
             if duo: s += f'<div class="tcard duo"><span class="tf">{T["duo"]}</span><div class="price">36&nbsp;€</div><div class="per">{T["duo_per"]}</div><a class="btn btn-navy" href="contact.html">{T["ask"]}</a></div>'
             return s
         values = ''.join(f'<div class="value"><div class="ar">{a}</div><b>{b}</b><p>{p}</p></div>' for a, b, p in T['values'])
@@ -640,7 +648,7 @@ class Builder:
   <article class="prose" style="margin-top:4rem">
     <h2>{T['good_h2']}</h2><div class="values">{values}</div>
     <h2>{T['pay_h2']}</h2>{T['pay_body']}
-    <div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="essai.html">{c['request']}</a></div>
+    <div class="note"><b>{T['note_b']}</b> {T['note_p']} <a href="{self.essai_url()}">{c['request']}</a></div>
   </article>
 </div></div>
 '''
@@ -706,7 +714,7 @@ class Builder:
   <h2>{A['is_h2']}</h2><div class="values">{values}</div>
   <h2>{A['coran_h2']}</h2>{A['coran_body']}
   <h2>{A['more_h2']}</h2><ul class="timeline">{links}</ul>
-  <div class="note"><b>{A['note_b']}</b> {A['note_p']} <a href="essai.html">{L['common']['request']}</a></div>
+  <div class="note"><b>{A['note_b']}</b> {A['note_p']} <a href="{self.essai_url()}">{L['common']['request']}</a></div>
 </article></div></div>
 '''
         self.write('a-propos.html', self.head(A['title'], A['desc'], 'a-propos') + self.chrome('a-propos') + html + self.footer())
@@ -718,7 +726,7 @@ class Builder:
   <div class="form-aside io io-l"><div class="support-grid one">
     <div class="sup"><div class="ico">✉</div><b>{C['mail_t']}</b><p>{C['mail_p']}</p><a class="btn btn-navy" href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a></div>
     <div class="sup"><div class="ico">🕘</div><b>{C['hours_t']}</b><p>{C['hours_p']}</p></div>
-    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-navy" href="essai.html">{self.I['btn_essai']}</a></div>
+    <div class="sup"><div class="ico">▶</div><b>{C['new_t']}</b><p>{C['new_p']}</p><a class="btn btn-navy" href="{self.essai_url()}">{self.I['btn_essai']}</a></div>
   </div></div>
   <form id="contact-form" class="card-form io io-r d1" novalidate>
     <fieldset>
@@ -861,8 +869,27 @@ class Builder:
   </form>'''
 
     def _parcours(self, kind, fichier, autre_href):
-        """Page d'un parcours : son formulaire propre (avec encart d'accompagnement), puis les 6 étapes, et le renvoi vers l'autre parcours."""
+        """Page d'un parcours : son formulaire propre (avec encart d'accompagnement), puis les 6 étapes, et le renvoi vers l'autre parcours.
+        Plateforme reliée (app=) : la page n'existe plus que pour les anciens liens — elle renvoie aussitôt vers la plateforme."""
         I = self.I; P = I[kind]
+        if APP:
+            dest = self.app_url('essai' if kind == 'essai' else 'inscription')
+            self.write(fichier, f'''<!DOCTYPE html>
+<html lang="{self.L['meta']['html_lang']}" dir="{self.L['meta'].get('dir','ltr')}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="0; url={dest}">
+<link rel="canonical" href="{dest}">
+<title>{P['title']}</title>
+<script>location.replace({json.dumps(dest)});</script>
+<style>body{{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Karla,system-ui,sans-serif;background:#F6F8FD;color:#0D204E}}a{{color:#D96F0F;font-weight:700}}</style>
+</head>
+<body><p>{I['app_p']} <a href="{dest}">{I['app_btn']} →</a></p></body>
+</html>
+''')
+            return
         A = self.L['signup'] if kind == 'etudes' else self.L['form']     # textes de l'encart à côté du formulaire
         form = self.signup_form() if kind == 'etudes' else self.trial_form()
         if APP:   # plateforme reliée : la demande se fait sur la plateforme, le formulaire local disparaît
@@ -897,10 +924,10 @@ class Builder:
         self.write(fichier, self.head(P['title'], P['desc'], fichier[:-5]) + self.chrome(fichier[:-5]) + html + self.footer())
 
     def build_essai(self):
-        self._parcours('essai', 'essai.html', 'inscription.html')
+        self._parcours('essai', 'essai.html', self.insc_url())
 
     def build_inscription(self):
-        self._parcours('etudes', 'inscription.html', 'essai.html')
+        self._parcours('etudes', 'inscription.html', self.essai_url())
 
     def build(self):
         for f in [self.build_index, self.build_programmes, self.build_tarifs, self.build_faq, self.build_temoignages,
@@ -912,7 +939,7 @@ def sitemap(codes):
     with open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n')
         for p in PAGES:
-            if p == '404': continue
+            if p == '404' or (APP and p in ('essai', 'inscription')): continue
             for c in codes:
                 loc = f"{SITE}/{'' if c == 'fr' else c + '/'}{'' if p == 'index' else p + '.html'}"
                 alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{a}" href="{SITE}/{"" if a == "fr" else a + "/"}{"" if p == "index" else p + ".html"}"/>' for a in codes)

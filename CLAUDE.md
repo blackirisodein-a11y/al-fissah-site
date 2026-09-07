@@ -153,12 +153,18 @@ plateforme, sans barre finale). Tant qu'elle est vide, rien ne change. Une fois 
 et le site reconstruit :
 - « Se connecter » / « S'inscrire » (en-tête, menu mobile, pied de page) → `{app}/{langue}/login`
   et `/register` ;
-- `essai.html` et `inscription.html` gardent leur en-tête et leurs 6 étapes, mais le
-  formulaire local est remplacé par un encart « Continuer sur la plateforme » (`.app-card`,
-  textes `app_*` du dict `PARCOURS`) → `{app}/{langue}/essai` ou `/inscription` ;
+- **« Demander un essai gratuit » et « Commencer maintenant » mènent directement à la
+  plateforme** (`{app}/{langue}/essai` et `/inscription`) — demande du client (09/2026) :
+  aucune page intermédiaire « S'inscrire aux études » entre le site et la plateforme.
+  Idem pour les boutons « Choisir » des tarifs et les CTA des programmes (paramètres
+  `?formule=…&programme=…` conservés) et pour tous les liens « essai » du site
+  (`essai_url()` / `insc_url()` dans `build.py`).
+- `essai.html` et `inscription.html` ne sont plus que des pages de renvoi immédiat
+  (`meta refresh` + `location.replace`, `noindex`, hors sitemap) pour les anciens liens ;
+  leur formulaire local et l'encart `.app-card` ne servent que si `app=` est vide.
 - les pages es/de renvoient vers la version anglaise de la plateforme (elle n'existe qu'en
   fr/en/ar/ru).
-Contrôle : `grep -o 'href="https://…/[a-z]*/[a-z]*"' essai.html`.
+Contrôle : `grep -o 'href="https://[^"]*/fr/\(essai\|inscription\)[^"]*"' index.html tarifs.html`.
 
 ## Suite prévue
 
