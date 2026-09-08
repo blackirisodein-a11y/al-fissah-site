@@ -166,6 +166,13 @@ et le site reconstruit :
   fr/en/ar/ru).
 Contrôle : `grep -o 'href="https://[^"]*/fr/\(essai\|inscription\)[^"]*"' index.html tarifs.html`.
 
+**Cours d'essai : validation du bureau (09/2026).** Sur la plateforme, la demande d'essai
+n'est plus acceptée d'office : l'élève choisit une demi-heure, sa demande arrive « en
+attente » et il voit un message le disant. Le bureau accepte ou refuse depuis
+« Demandes d'essai » ; l'acceptation crée seule le compte, le cours et l'e-mail
+d'identifiants. Rien ne part avant. Détail dans `ADAPTATION-AL-FISSAH.md` du dépôt de
+la plateforme.
+
 ## Suite prévue
 
 1. Plateforme en service sur **https://al-fissah-app-nine.vercel.app** (Supabase + Vercel,
