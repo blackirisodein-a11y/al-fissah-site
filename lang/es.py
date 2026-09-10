@@ -65,11 +65,11 @@ L = {
     ("«Aunque las clases sean totalmente en árabe, ella lo explica todo con mucha claridad. Recomiendo el instituto al 100 %, tanto a principiantes como a quienes quieren perfeccionarse.»","Maeva Thezenas — lengua árabe"),
     ("«Llevo varios años dando clases de Corán en Al-Fissah y estoy muy satisfecha, sobre todo con el seguimiento; el instituto siempre responde y busca soluciones.»","Linda Bitam — Corán")],
   faq_h2="Preguntas frecuentes", faq_all="Ver todas las preguntas",
-  faq=[("¿Cuáles son los requisitos previos?","No se exige ningún nivel particular para entrar en el instituto: se aceptan todos los niveles."),
+  faq=[("¿Cuáles son los requisitos previos?","No se exige ningún nivel particular para entrar en el instituto: se aceptan todos los niveles, desde principiante hasta avanzado."),
     ("¿En qué idioma se imparten las clases?","Las clases se imparten en árabe. Es un método de inmersión al 100 % en la lengua árabe, que da resultados rápidos y eficaces in sha Allah. Nuestros profesores son egipcios y han sido formados para enseñar a no arabófonos."),
-    ("¿Hay una clase de prueba?","Sí, es posible hacer una prueba de 30 minutos: basta con solicitarla a la administración. Una vez inscrito para una sesión de 4 semanas, has reservado una plaza y te comprometes para toda la sesión."),
+    ("¿Hay una clase de prueba?","Sí, una clase de prueba gratuita de 30 minutos: haz clic en « Solicitar clase de prueba » y sigue los pasos. La prueba es totalmente gratuita y sin compromiso."),
     ("¿Cuánto dura una sesión?","Una sesión dura 4 semanas y es renovable. No confundir con el nivel: el nivel es el libro estudiado, que suele durar más de 4 semanas según el estudiante."),
-    ("¿Qué material necesito?","Una conexión a internet estable y un ordenador; los auriculares y el micrófono son opcionales. Nuestras aulas son compatibles con Windows, Mac, tabletas y smartphones, pero recomendamos un ordenador, sobre todo para las clases de árabe."),
+    ("¿Qué material necesito?","Una conexión a Internet estable, un ordenador, unos auriculares y un micrófono. Nuestras aulas virtuales son compatibles con Windows, Mac y tabletas; el uso de un teléfono móvil está muy desaconsejado."),
     ("¿Dónde tienen lugar las clases?","En un aula virtual integrada en tu área del estudiante: a la hora de la clase, alumnos y profesor se conectan e interactúan oralmente, por escrito y compartiendo pantalla.")],
 ),
 
@@ -145,31 +145,36 @@ L = {
 
 'faq': dict(title="FAQ — Preguntas frecuentes — AL-FISSAH", desc="Inscripción, método de inmersión, libros utilizados, sesiones, clase de prueba, pago, material: todas las respuestas del instituto Al-Fissah.",
   h1="Preguntas frecuentes", lead="Todo lo que hay que saber antes de empezar: inscripción, método, libros, sesiones, pago y material.",
-  note_b="¿No encuentras la respuesta a tu pregunta?", note_a="Contáctanos", note_p=", nuestro asesor te responderá lo antes posible, in sha Allah.",
+  note_b="¿No encuentras la respuesta a tu pregunta?", note_a="Contáctanos", note_p=", nuestro equipo te responderá lo antes posible, in sha Allah.",
   items=[
- ("¿Cómo inscribirse?", """<p><b>Clases en grupo.</b> Los horarios, los días, así como el inicio y el final de la sesión se confirman con la administración. Tras la confirmación, haz clic en «Tomar este curso», indica un correo para recibir tus datos de acceso y termina el pedido pagando tu inscripción. El estudio de un nivel suele dividirse en varias sesiones, indicadas en el pedido; puedes pagar una sesión, dos… o todas.</p>
-<p><b>Clases individuales.</b></p><ol><li>Elige el programa deseado (Corán adulto, Corán niño, árabe niño, árabe adulto…).</li><li>Haz clic en «Tomar este curso».</li><li>Rellena toda la información solicitada (género, días, profesor…).</li><li>La administración se pone en contacto contigo para confirmar tu inscripción y el pago.</li><li>Solo te queda pedir tu libro según tu nivel; la administración te orientará.</li></ol>
-<p>Una vez validada la inscripción, recibes un correo. En tu área dedicada encontrarás tu horario, los programas contratados (sesiones, clases, notas, deberes…), el historial de tus pedidos y pagos, tu perfil, tus testimonios y las novedades.</p>
-<p><b>Nota:</b> los libros y el material no se entregan con la inscripción; debes pedirlos.</p>"""),
- ("¿Cuáles son los requisitos previos?", "<p>No se exige ningún nivel particular para entrar en el instituto: se aceptan todos los niveles.</p>"),
- ("¿Cuál es vuestro método de aprendizaje?", "<p>Proponemos un método de enseñanza por «inmersión»: nuestras clases son exclusivamente en árabe y son accesibles a principiantes absolutos (no se exige ningún requisito previo). Las clases se desarrollan en un aula virtual. A la hora de la clase, alumnos y profesor se conectan e interactúan oralmente, por escrito y visualmente compartiendo pantalla.</p>"),
- ("¿Qué libro se utiliza?", """<p><b>Para los niños</b>, utilizamos la nueva serie «El árabe en manos de nuestros hijos (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا)», especialmente diseñada para no arabófonos y dirigida a niños de 5 a 18 años. Elaborado por una élite de académicos especialistas en enseñanza, este programa se compone de 12 manuales con audio.</p>
-<p><b>Para los adultos</b>, utilizamos la serie «El árabe en tus manos (العَرَبِيَّةُ بَيْنَ يَدَيْكَ)», destinada a no arabófonos y diseñada por los mismos autores.</p>
-<p><b>Nota:</b> estos libros no se entregan con la inscripción; debes pedirlos en <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>"""),
- ("¿En qué idioma se imparten las clases?", "<p>Las clases se imparten en árabe. Es un método de inmersión al 100 % en la lengua árabe y da resultados rápidos y eficaces in sha Allah. Nuestros profesores son egipcios y han sido formados para enseñar a no arabófonos; además, los programas utilizados fueron diseñados especialmente para no arabófonos.</p>"),
- ("¿Cuánto dura una sesión?", "<p>Una sesión dura 4 semanas, con posibilidad de renovar según se desee. <b>Atención</b>, no confundir la sesión con el nivel. Una sesión dura 4 semanas; el nivel (1, 2, 3, 4…) es el libro estudiado, que suele durar más de 4 semanas según el nivel del estudiante.</p>"),
- ("¿Cuántos alumnos tiene el grupo?", "<p>La clase se compone en general de 3 a 10 alumnos como máximo.</p>"),
- ("No veo un grupo de mi nivel, ¿qué hago?", "<p>Contáctanos: te pondremos en lista de espera y formaremos un grupo con otros alumnos de tu nivel si los hay.</p>"),
- ("¿Es posible estudiar el Corán en grupo?", "<p>No, no es posible estudiar el Corán en grupo.</p>"),
- ("¿Es posible estudiar 30 minutos?", "<p>Sí, es posible estudiar 30 minutos, solo para el Corán.</p>"),
- ("¿Es posible estudiar en pareja?", "<p>Sí, es posible para la lengua árabe; para ello debes contactar con la administración.</p>"),
- ("¿Cuál es el precio de una hora de clase en pareja?", "<p>El precio es de 4,50 € por alumno. Ejemplo: para 1 hora por semana durante 4 semanas, 4,50 € × 2 (pareja) = 9 € × 4 (semanas) = <b>36 €</b>.</p>"),
- ("¿Hay una clase o un período de prueba?", "<p>Sí, es posible hacer una prueba de 30 minutos; para ello debes contactar con la administración (o usar el <a href=\"index.html#inscription\">formulario de solicitud</a>). Pero ten en cuenta que, una vez inscrito para una sesión de 4 semanas, has reservado una plaza: te comprometes a estudiar durante toda la sesión.</p>"),
- ("¿Y si cambio de opinión?", "<p>Toda inscripción es definitiva; no se concederá ningún aplazamiento ni reembolso. Inscríbete solo si estás disponible y motivado para aprender.</p>"),
- ("¿Cómo se realiza el pago?", "<p>El pago se realiza con tarjeta bancaria a través de Stripe, o por transferencia bancaria. Los pagos son seguros (puedes ver el candado cuando aparece la página de pago).</p>"),
- ("¿Qué material necesito para estudiar?", "<ul><li>Una conexión a internet estable.</li><li>Un ordenador.</li><li>Auriculares (opcional).</li><li>Un micrófono (opcional).</li></ul><p><b>Nuestras aulas son compatibles con todos los dispositivos</b>: Windows, Mac, así como tabletas y smartphones. Sin embargo, para mayor comodidad, te aconsejamos estudiar en un ordenador, sobre todo para las clases de árabe.</p>"),
- ("¿Dónde tienen lugar las clases? ¿Por Skype?", "<p>Las clases tienen lugar en un aula virtual integrada en tu «Área del estudiante»; accedes a tu aula a través de ella.</p>"),
- ("Una vez realizado el pago, ¿cuándo empiezan las clases?", "<p><b>Clases en grupo:</b> las fechas de sesión se muestran en la descripción de las clases en grupo y en el momento del pedido.</p><p><b>Clases individuales:</b> las clases empiezan directamente después de la inscripción, en los días que hayas elegido. La fecha de inicio y de fin de sesión se indica en el pago.</p>"),
+ ('¿Cómo inscribirse?', """<p>La inscripción se realiza directamente en línea. Basta con hacer clic en « Empezar ahora » y seguir los distintos pasos.</p>
+<p>Puedes elegir entre:</p>
+<ul><li>una clase individual;</li><li>una clase en pareja;</li><li>una clase colectiva.</li></ul>
+<p>Para las clases en pareja y en grupo, los estudiantes deben agruparse en el momento de la inscripción. Es obligatorio designar a un responsable de la pareja o del grupo para la gestión de los pagos.</p>"""),
+ ('¿Cuáles son los requisitos previos?', '<p>No se exige ningún nivel concreto para entrar en el instituto. Se aceptan todos los niveles, desde principiante hasta avanzado.</p>'),
+ ('¿Qué método de aprendizaje utilizáis?', '<p>Nuestras clases siguen un método de aprendizaje progresivo y adaptado al nivel de cada estudiante. El programa y los materiales se definen según la materia estudiada y el nivel del alumno.</p>'),
+ ('¿Qué libros se utilizan?', """<p>Los libros utilizados dependen del programa y del nivel del estudiante.</p>
+<p>Si los libros necesarios no se entregan en el momento de la inscripción, encontrarás en el apartado « Observaciones » la información necesaria para pedirlos en el sitio indicado.</p>"""),
+ ('¿En qué idioma se imparten las clases?', '<p>Las clases se imparten en árabe. Es un método de inmersión al 100 % en la lengua árabe y da resultados rápidos y eficaces in sha Allah. Nuestros profesores son egipcios y han sido formados para enseñar a no arabófonos; además, los programas utilizados fueron diseñados especialmente para no arabófonos.</p>'),
+ ('¿Cuánto dura una sesión?', '<p>Una sesión dura 4 semanas, con posibilidad de renovar según se desee. <b>Atención</b>, no confundir la sesión con el nivel. Una sesión dura 4 semanas; el nivel (1, 2, 3, 4…) es el libro estudiado, que suele durar más de 4 semanas según el nivel del estudiante.</p>'),
+ ('¿Cuántos alumnos tiene un grupo?', '<p>La clase se compone en general de 3 a 10 alumnos como máximo.</p>'),
+ ('¿Es posible estudiar el Corán en grupo?', '<p>No, no es posible estudiar el Corán en grupo.</p>'),
+ ('¿Es posible estudiar durante 30 minutos?', '<p>Sí, es posible estudiar 30 minutos, solo para el Corán.</p>'),
+ ('¿Es posible estudiar en pareja?', """<p>Sí, es posible para la lengua árabe.</p>
+<p>Para ello, debes inscribirte directamente en pareja durante tu inscripción.</p>"""),
+ ('¿Cuál es el precio de una pareja?', '<p>El precio es de 4,50 € por alumno. Ejemplo: para 1 hora por semana durante 4 semanas, 4,50 € × 2 (pareja) = 9 € × 4 (semanas) = <b>36 €</b>.</p>'),
+ ('¿Hay una clase o un período de prueba?', """<p>Sí. Es posible disfrutar de una clase de prueba gratuita de 30 minutos.</p>
+<p>Para ello, haz clic en « Solicitar clase de prueba » y sigue los distintos pasos para enviar tu solicitud.</p>
+<p>La prueba es totalmente gratuita y sin compromiso.</p>"""),
+ ('Si cambio de opinión, ¿puedo anular mi inscripción?', '<p>Toda inscripción es definitiva; no se concederá ningún aplazamiento ni reembolso. Inscríbete solo si estás disponible y motivado para aprender.</p>'),
+ ('¿Cómo se efectúa el pago?', '<p>El pago se efectúa con tarjeta bancaria o por transferencia bancaria.</p>'),
+ ('¿Qué material es necesario para seguir las clases?', """<p>Para seguir las clases en buenas condiciones, te recomendamos:</p>
+<ul><li>una conexión a Internet estable;</li><li>un ordenador;</li><li>unos auriculares;</li><li>un micrófono.</li></ul>
+<p>Nuestras aulas virtuales son compatibles con ordenadores Windows y Mac, así como con tabletas.</p>
+<p>El uso de un teléfono móvil está muy desaconsejado, para garantizar una experiencia óptima durante las clases.</p>"""),
+ ('¿Dónde tienen lugar las clases?', """<p>Las clases se imparten a distancia, en un aula virtual integrada directamente en el espacio del estudiante.</p>
+<p>Una vez conectado a tu cuenta, podrás acceder a tu aula desde tu espacio personal.</p>"""),
+ ('Una vez realizado el pago, ¿cuándo empiezan las clases?', '<p>Las clases empiezan tras la inscripción y la validación de tu solicitud por parte de la administración.</p>'),
   ]),
 
 'temoignages': dict(title="Testimonios — AL-FISSAH", desc="Cuentan su experiencia: padres y estudiantes del instituto Al-Fissah, clases de árabe y Corán en línea.",

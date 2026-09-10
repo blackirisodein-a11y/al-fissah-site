@@ -65,11 +65,11 @@ L = {
     ("« Malgré le fait que les cours soient entièrement en arabe, elle rend les choses très claires. Je recommande l'institut à 100 %, pour les débutants comme pour ceux qui veulent se perfectionner. »","Maeva Thezenas — langue arabe"),
     ("« Cela fait plusieurs années que je fais cours de Coran chez Al-Fissah et je suis très satisfaite, surtout concernant le suivi ; l'institut est toujours réactif et arrangeant. »","Linda Bitam — Coran")],
   faq_h2="Questions fréquentes", faq_all="Voir toutes les questions",
-  faq=[("Quels sont les prérequis ?","Aucun niveau particulier n'est requis pour intégrer l'institut : tous les niveaux sont acceptés."),
+  faq=[("Quels sont les prérequis ?","Aucun niveau particulier n'est requis pour intégrer l'institut : tous les niveaux sont acceptés, du débutant au niveau avancé."),
     ("En quelle langue se déroulent les cours ?","Les cours se déroulent en arabe. C'est une méthode d'immersion à 100 % dans la langue arabe, qui donne des résultats rapides et efficaces in chaa Allah. Nos professeurs sont égyptiens et ont été formés à enseigner aux non-arabophones."),
-    ("Y a-t-il un cours d'essai ?","Oui, il est possible de faire un essai de 30 minutes : il suffit d'en faire la demande à l'administration. Une fois inscrit pour une session de 4 semaines, vous avez réservé une place et vous êtes engagé pour la session entière."),
+    ("Y a-t-il un cours d'essai ?","Oui, un cours d'essai gratuit de 30 minutes : cliquez sur « Demander un essai gratuit » et suivez les étapes. L'essai est totalement gratuit et sans engagement."),
     ("Combien de temps dure une session ?","Une session dure 4 semaines, renouvelable. À ne pas confondre avec le niveau : le niveau est le livre étudié, qui dure en général plus de 4 semaines selon l'étudiant."),
-    ("De quel matériel ai-je besoin ?","Une connexion internet stable et un ordinateur ; casque et micro sont facultatifs. Nos classes sont compatibles Windows, Mac, tablettes et smartphones, mais nous conseillons un ordinateur, surtout pour les cours d'arabe."),
+    ("De quel matériel ai-je besoin ?","Une connexion Internet stable, un ordinateur, un casque et un micro. Nos classes virtuelles sont compatibles Windows, Mac et tablettes ; l'utilisation d'un smartphone est fortement déconseillée."),
     ("Où se déroulent les cours ?","Dans une salle de classe virtuelle intégrée à votre espace étudiant : à l'heure du cours, élèves et professeur s'y connectent et interagissent à l'oral, à l'écrit et par partage d'écran.")],
 ),
 
@@ -145,31 +145,36 @@ L = {
 
 'faq': dict(title="FAQ — Foire aux questions — AL-FISSAH", desc="Inscription, méthode d'immersion, livres utilisés, sessions, cours d'essai, paiement, matériel : toutes les réponses de l'école Al-Fissah.",
   h1="Foire aux questions", lead="Tout ce qu'il faut savoir avant de commencer : inscription, méthode, livres, sessions, paiement et matériel.",
-  note_b="Vous ne trouvez pas la réponse à votre question ?", note_a="Contactez-nous", note_p=", notre conseiller vous répondra dans les plus brefs délais, in chaa Allah.",
+  note_b="Vous ne trouvez pas la réponse à votre question ?", note_a="Contactez-nous", note_p=" ; notre équipe vous répondra dans les meilleurs délais, in chaa Allah.",
   items=[
- ("Comment s'inscrire ?", """<p><b>Cours collectifs.</b> Les horaires, les jours ainsi que le début et la fin de la session sont à confirmer avec l'administration. Après confirmation, cliquez sur « Prenez ce cours », fournissez un e-mail pour recevoir vos informations d'identification, puis terminez la commande en réglant votre inscription. L'étude d'un niveau est en général divisée en plusieurs sessions, indiquées lors de votre commande ; vous pouvez régler une session, deux… ou l'intégralité.</p>
-<p><b>Cours individuels.</b></p><ol><li>Choisissez le programme désiré (Coran adulte, Coran enfant, arabe enfant, arabe adulte…).</li><li>Cliquez sur « Prenez ce cours ».</li><li>Remplissez toutes les informations demandées (genre, jours, professeur…).</li><li>L'administration vous contacte pour confirmer votre inscription et le paiement.</li><li>Il ne vous reste plus qu'à commander votre livre en fonction de votre niveau ; l'administration vous guide pour cela.</li></ol>
-<p>Une fois l'inscription validée, vous recevez un e-mail. Dans votre espace dédié, vous trouvez votre planning, les programmes souscrits (sessions, cours, notes, devoirs…), l'historique de vos commandes et paiements, votre profil, vos témoignages et les actualités.</p>
-<p><b>Remarque :</b> les livres et supports ne sont pas fournis lors de l'inscription, il vous faut les commander.</p>"""),
- ("Quels sont les prérequis ?", "<p>Aucun niveau particulier n'est requis pour intégrer l'institut : tous les niveaux sont acceptés.</p>"),
- ("Quelle est votre méthode d'apprentissage ?", "<p>Nous proposons une méthode d'enseignement en mode « immersion » : nos cours sont exclusivement en langue arabe, et ils sont accessibles aux grands débutants (aucun prérequis n'est demandé). Les cours se déroulent via une salle de classe virtuelle. À l'heure du cours, les élèves et le professeur s'y connectent et ont une interaction orale, écrite et visuelle via le partage d'écran.</p>"),
- ("Quel livre est utilisé ?", """<p><b>Pour les enfants</b>, nous utilisons la nouvelle série « L'arabe entre les mains de nos enfants (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا) », spécialement conçue pour les non-arabophones et visant les enfants de 5 à 18 ans. Élaboré par une élite d'académiciens spécialistes dans l'enseignement, ce programme se compose de 12 manuels accompagnés d'audio.</p>
-<p><b>Pour les adultes</b>, nous utilisons la série « L'arabe entre tes mains (العَرَبِيَّةُ بَيْنَ يَدَيْكَ) », destinée aux non-arabophones et conçue par les mêmes auteurs.</p>
-<p><b>Remarque :</b> ces livres ne sont pas fournis lors de l'inscription, il vous faut les commander sur <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>"""),
- ("En quelle langue se déroulent les cours ?", "<p>Les cours se déroulent en arabe. C'est une méthode d'immersion à 100 % dans la langue arabe et cela donne des résultats rapides et efficaces in chaa Allah. Nos professeurs sont égyptiens et ont été formés à enseigner aux non-arabophones ; de plus, les programmes utilisés ont été conçus spécialement pour les non-arabophones.</p>"),
- ("Combien de temps dure une session ?", "<p>Une session dure 4 semaines, avec la possibilité de renouveler selon votre désir. <b>Attention</b>, à ne pas confondre : la session et le niveau. Une session dure 4 semaines ; le niveau (1, 2, 3, 4…) est le livre étudié, qui dure en général plus de 4 semaines selon le niveau de l'étudiant.</p>"),
- ("Quel est l'effectif du groupe ?", "<p>La classe est composée en général de 3 à 10 élèves maximum.</p>"),
- ("Je ne vois pas de groupe de mon niveau, que faire ?", "<p>Contactez-nous : nous vous mettrons sur une liste d'attente et formerons un groupe avec d'autres élèves de votre niveau s'il y en a.</p>"),
+ ("Comment s'inscrire ?", """<p>L'inscription se fait directement en ligne. Il vous suffit de cliquer sur « Commencer maintenant » et de suivre les différentes étapes.</p>
+<p>Vous pouvez choisir entre :</p>
+<ul><li>un cours individuel ;</li><li>un cours en binôme ;</li><li>un cours collectif.</li></ul>
+<p>Pour les cours en binôme et en groupe, les étudiants doivent être regroupés au moment de l'inscription. Un responsable du binôme ou du groupe doit obligatoirement être désigné pour la gestion des paiements.</p>"""),
+ ('Quels sont les prérequis ?', "<p>Aucun niveau particulier n'est requis pour intégrer l'institut. Tous les niveaux sont acceptés, du débutant au niveau avancé.</p>"),
+ ("Quelle méthode d'apprentissage utilisez-vous ?", "<p>Nos cours suivent une méthode d'apprentissage progressive et adaptée au niveau de chaque étudiant. Le programme et les supports sont définis en fonction de la matière étudiée et du niveau de l'élève.</p>"),
+ ('Quels livres sont utilisés ?', """<p>Les livres utilisés dépendent du programme et du niveau de l'étudiant.</p>
+<p>Si les livres nécessaires ne sont pas fournis lors de l'inscription, vous trouverez dans la rubrique « Remarques » les informations nécessaires pour les commander sur le site indiqué.</p>"""),
+ ('En quelle langue se déroulent les cours ?', "<p>Les cours se déroulent en arabe. C'est une méthode d'immersion à 100 % dans la langue arabe et cela donne des résultats rapides et efficaces in chaa Allah. Nos professeurs sont égyptiens et ont été formés à enseigner aux non-arabophones ; de plus, les programmes utilisés ont été conçus spécialement pour les non-arabophones.</p>"),
+ ('Combien de temps dure une session ?', "<p>Une session dure 4 semaines, avec la possibilité de renouveler selon votre désir. <b>Attention</b>, à ne pas confondre : la session et le niveau. Une session dure 4 semaines ; le niveau (1, 2, 3, 4…) est le livre étudié, qui dure en général plus de 4 semaines selon le niveau de l'étudiant.</p>"),
+ ("Quel est l'effectif d'un groupe ?", '<p>La classe est composée en général de 3 à 10 élèves maximum.</p>'),
  ("Est-il possible d'étudier le Coran en groupe ?", "<p>Non, il n'est pas possible d'étudier le Coran en groupe.</p>"),
- ("Est-il possible d'étudier 30 minutes ?", "<p>Oui, il est possible d'étudier 30 minutes, pour le Coran seulement.</p>"),
- ("Est-il possible d'étudier en duo ?", "<p>Oui, c'est possible pour la langue arabe ; il vous faut pour cela contacter l'administration.</p>"),
- ("Quel est le prix d'une heure pour un cours en duo ?", "<p>Le prix est de 4,50 € par élève. Exemple : pour 1 heure par semaine pendant 4 semaines, 4,50 € × 2 (duo) = 9 € × 4 (semaines) = <b>36 €</b>.</p>"),
- ("Y a-t-il un cours d'essai ou une période d'essai ?", "<p>Oui, il est possible de venir faire un essai de 30 minutes ; il vous faut pour cela contacter l'administration (ou utiliser le <a href=\"index.html#inscription\">formulaire de demande</a>). Mais sachez qu'une fois inscrit pour une session de 4 semaines, vous avez réservé une place : vous êtes donc engagé à étudier pour la session entière.</p>"),
- ("Et si j'ai changé d'avis ?", "<p>Toute inscription est définitive ; aucun report ou remboursement ne sera accordé. Inscrivez-vous uniquement si vous êtes disponible et motivé à apprendre.</p>"),
- ("Comment s'effectue le paiement ?", "<p>Le paiement s'effectue par carte bancaire par l'intermédiaire de Stripe, ou par virement bancaire. Les paiements sont sécurisés (vous pouvez voir le cadenas lorsque la page de paiement apparaît).</p>"),
- ("De quel matériel ai-je besoin pour étudier ?", "<ul><li>Une connexion internet stable.</li><li>Un ordinateur.</li><li>Un casque (facultatif).</li><li>Un micro (facultatif).</li></ul><p><b>Nos classes sont compatibles avec tous les supports</b> : Windows, Mac ainsi que les tablettes et les smartphones. Cependant, pour plus de confort, nous vous conseillons d'étudier sur un ordinateur, surtout pour les cours d'arabe.</p>"),
- ("Où se déroulent les cours ? Par Skype ?", "<p>Les cours se déroulent via une salle de classe virtuelle intégrée à votre « Espace étudiant » ; vous accédez à votre salle de cours via celui-ci.</p>"),
- ("Une fois le paiement effectué, quand commencent les cours ?", "<p><b>Cours collectifs :</b> les dates de session sont affichées dans la description des cours collectifs et au moment de votre commande.</p><p><b>Cours individuels :</b> les cours commencent directement après l'inscription, selon les jours que vous avez choisis. La date de début et de fin de session est indiquée lors du paiement.</p>"),
+ ("Est-il possible d'étudier pendant 30 minutes ?", "<p>Oui, il est possible d'étudier 30 minutes, pour le Coran seulement.</p>"),
+ ("Est-il possible d'étudier en duo ?", """<p>Oui, c'est possible pour la langue arabe.</p>
+<p>Pour cela, vous devez vous inscrire directement en binôme lors de votre inscription.</p>"""),
+ ("Quel est le prix d'un duo ?", '<p>Le prix est de 4,50 € par élève. Exemple : pour 1 heure par semaine pendant 4 semaines, 4,50 € × 2 (duo) = 9 € × 4 (semaines) = <b>36 €</b>.</p>'),
+ ("Y a-t-il un cours d'essai ou une période d'essai ?", """<p>Oui. Il est possible de bénéficier d'un cours d'essai gratuit de 30 minutes.</p>
+<p>Pour cela, cliquez sur « Demander un essai gratuit » et suivez les différentes étapes afin d'effectuer votre demande.</p>
+<p>L'essai est totalement gratuit et sans engagement.</p>"""),
+ ("Si je change d'avis, puis-je annuler mon inscription ?", '<p>Toute inscription est définitive ; aucun report ou remboursement ne sera accordé. Inscrivez-vous uniquement si vous êtes disponible et motivé à apprendre.</p>'),
+ ('Comment effectuer le paiement ?', "<p>Le paiement s'effectue par carte bancaire ou par virement bancaire.</p>"),
+ ('Quel matériel est nécessaire pour suivre les cours ?', """<p>Pour suivre les cours dans de bonnes conditions, nous vous recommandons :</p>
+<ul><li>une connexion Internet stable ;</li><li>un ordinateur ;</li><li>un casque ;</li><li>un micro.</li></ul>
+<p>Nos classes virtuelles sont compatibles avec les ordinateurs Windows et Mac, ainsi qu'avec les tablettes.</p>
+<p>L'utilisation d'un smartphone est fortement déconseillée, afin de garantir une expérience optimale pendant les cours.</p>"""),
+ ('Où se déroulent les cours ?', """<p>Les cours se déroulent à distance, via une salle virtuelle intégrée directement dans l'espace étudiant.</p>
+<p>Une fois connecté à votre compte, vous pourrez accéder à votre salle de cours depuis votre espace personnel.</p>"""),
+ ('Une fois le paiement effectué, quand commencent les cours ?', "<p>Les cours commencent après l'inscription et la validation de votre demande par le bureau.</p>"),
   ]),
 
 'temoignages': dict(title="Témoignages — AL-FISSAH", desc="Ils témoignent de leur expérience : parents et étudiants de l'école Al-Fissah, cours d'arabe et de Coran en ligne.",

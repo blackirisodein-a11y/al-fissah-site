@@ -65,11 +65,11 @@ L = {
     ("„Obwohl der Unterricht komplett auf Arabisch ist, macht sie alles sehr klar. Ich empfehle die Schule zu 100 %, für Anfänger wie für Fortgeschrittene.“","Maeva Thezenas — Arabisch"),
     ("„Ich nehme seit mehreren Jahren Koranunterricht bei Al-Fissah und bin sehr zufrieden, besonders mit der Begleitung; die Schule ist immer reaktionsschnell und entgegenkommend.“","Linda Bitam — Koran")],
   faq_h2="Häufige Fragen", faq_all="Alle Fragen ansehen",
-  faq=[("Welche Voraussetzungen gibt es?","Es ist kein bestimmtes Niveau erforderlich, um an der Schule aufgenommen zu werden: Alle Niveaus sind willkommen."),
+  faq=[("Welche Voraussetzungen gibt es?","Es ist kein bestimmtes Niveau erforderlich, um an der Schule aufgenommen zu werden: Alle Niveaus sind willkommen, vom Anfänger bis zum Fortgeschrittenen."),
     ("In welcher Sprache findet der Unterricht statt?","Der Unterricht findet auf Arabisch statt. Es ist eine 100 % arabische Immersionsmethode, die schnelle und wirksame Ergebnisse liefert, in shaa Allah. Unsere Lehrer sind Ägypter und wurden für den Unterricht von Nicht-Arabischsprachigen ausgebildet."),
-    ("Gibt es eine Probestunde?","Ja, eine 30-minütige Probestunde ist möglich: Fragen Sie einfach bei der Verwaltung an. Sobald Sie für eine 4-Wochen-Sitzung angemeldet sind, haben Sie einen Platz reserviert und sind für die gesamte Sitzung verpflichtet."),
+    ("Gibt es eine Probestunde?","Ja, eine kostenlose Probestunde von 30 Minuten: Klicken Sie auf « Kostenlose Probestunde anfragen » und folgen Sie den Schritten. Die Probestunde ist völlig kostenlos und unverbindlich."),
     ("Wie lange dauert eine Sitzung?","Eine Sitzung dauert 4 Wochen und kann verlängert werden. Nicht zu verwechseln mit dem Niveau: Das Niveau ist das Buch, das gerade gelernt wird, und dauert je nach Schüler meist länger als 4 Wochen."),
-    ("Welche Ausrüstung brauche ich?","Eine stabile Internetverbindung und einen Computer; Headset und Mikrofon sind optional. Unsere Klassenzimmer funktionieren auf Windows, Mac, Tablets und Smartphones, aber wir empfehlen einen Computer, vor allem für den Arabischunterricht."),
+    ("Welche Ausrüstung brauche ich?","Eine stabile Internetverbindung, einen Computer, ein Headset und ein Mikrofon. Unsere virtuellen Klassenräume laufen auf Windows, Mac und Tablets; von der Nutzung eines Smartphones wird dringend abgeraten."),
     ("Wo findet der Unterricht statt?","In einem virtuellen Klassenzimmer in Ihrem Schülerbereich: Zur Unterrichtszeit melden sich Schüler und Lehrer an und kommunizieren mündlich, schriftlich und per Bildschirmfreigabe.")],
 ),
 
@@ -145,31 +145,36 @@ L = {
 
 'faq': dict(title="FAQ — Häufige Fragen — AL-FISSAH", desc="Anmeldung, Immersionsmethode, verwendete Bücher, Sitzungen, Probestunde, Zahlung, Ausrüstung: alle Antworten der Schule Al-Fissah.",
   h1="Häufige Fragen", lead="Alles, was Sie vor dem Start wissen müssen: Anmeldung, Methode, Bücher, Sitzungen, Zahlung und Ausrüstung.",
-  note_b="Sie finden keine Antwort auf Ihre Frage?", note_a="Kontaktieren Sie uns", note_p=", unser Berater antwortet so schnell wie möglich, in shaa Allah.",
+  note_b="Sie finden keine Antwort auf Ihre Frage?", note_a="Kontaktieren Sie uns", note_p=", unser Team antwortet Ihnen so schnell wie möglich, in shaa Allah.",
   items=[
- ("Wie melde ich mich an?", """<p><b>Gruppenunterricht.</b> Uhrzeiten, Tage sowie Beginn und Ende der Sitzung sind mit der Verwaltung abzustimmen. Nach der Bestätigung klicken Sie auf „Diesen Kurs belegen“, geben eine E-Mail-Adresse an, um Ihre Zugangsdaten zu erhalten, und schließen die Bestellung mit der Zahlung Ihrer Anmeldung ab. Das Lernen eines Niveaus ist in der Regel in mehrere Sitzungen unterteilt, die bei der Bestellung angezeigt werden; Sie können eine Sitzung, zwei … oder alle bezahlen.</p>
-<p><b>Einzelunterricht.</b></p><ol><li>Wählen Sie das gewünschte Programm (Koran Erwachsener, Koran Kind, Arabisch Kind, Arabisch Erwachsener…).</li><li>Klicken Sie auf „Diesen Kurs belegen“.</li><li>Füllen Sie alle erforderlichen Angaben aus (Geschlecht, Tage, Lehrer…).</li><li>Die Verwaltung kontaktiert Sie, um Ihre Anmeldung und die Zahlung zu bestätigen.</li><li>Sie müssen nur noch Ihr Buch entsprechend Ihrem Niveau bestellen; die Verwaltung berät Sie dabei.</li></ol>
-<p>Sobald die Anmeldung bestätigt ist, erhalten Sie eine E-Mail. In Ihrem persönlichen Bereich finden Sie Ihren Stundenplan, die abonnierten Programme (Sitzungen, Stunden, Noten, Hausaufgaben…), Ihre Bestell- und Zahlungshistorie, Ihr Profil, Ihre Erfahrungsberichte und die Neuigkeiten.</p>
-<p><b>Hinweis:</b> Bücher und Material werden bei der Anmeldung nicht mitgeliefert; Sie müssen sie bestellen.</p>"""),
- ("Welche Voraussetzungen gibt es?", "<p>Es ist kein bestimmtes Niveau erforderlich, um an der Schule aufgenommen zu werden: Alle Niveaus sind willkommen.</p>"),
- ("Wie ist Ihre Lernmethode?", "<p>Wir bieten eine Unterrichtsmethode im „Immersionsmodus“: Unser Unterricht findet ausschließlich auf Arabisch statt und ist auch für absolute Anfänger zugänglich (keine Voraussetzungen). Der Unterricht findet in einem virtuellen Klassenzimmer statt. Zur Unterrichtszeit melden sich Schüler und Lehrer an und kommunizieren mündlich, schriftlich und visuell per Bildschirmfreigabe.</p>"),
- ("Welches Buch wird verwendet?", """<p><b>Für Kinder</b> verwenden wir die neue Reihe „Arabisch in den Händen unserer Kinder (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا)“, speziell für Nicht-Arabischsprachige entwickelt und an Kinder von 5 bis 18 Jahren gerichtet. Dieses von einer Elite von Fachakademikern entwickelte Programm besteht aus 12 Lehrbüchern mit Audio.</p>
-<p><b>Für Erwachsene</b> verwenden wir die Reihe „Arabisch in deinen Händen (العَرَبِيَّةُ بَيْنَ يَدَيْكَ)“, ebenfalls für Nicht-Arabischsprachige und von denselben Autoren verfasst.</p>
-<p><b>Hinweis:</b> Diese Bücher werden bei der Anmeldung nicht mitgeliefert; Sie müssen sie auf <a href="https://livres.al-fissah.com">livres.al-fissah.com</a> bestellen.</p>"""),
- ("In welcher Sprache findet der Unterricht statt?", "<p>Der Unterricht findet auf Arabisch statt. Es ist eine 100 % arabische Immersionsmethode, die schnelle und wirksame Ergebnisse liefert, in shaa Allah. Unsere Lehrer sind Ägypter und wurden für den Unterricht von Nicht-Arabischsprachigen ausgebildet; zudem wurden die verwendeten Programme speziell für Nicht-Arabischsprachige entwickelt.</p>"),
- ("Wie lange dauert eine Sitzung?", "<p>Eine Sitzung dauert 4 Wochen und kann nach Wunsch verlängert werden. <b>Achtung</b>, nicht zu verwechseln: die Sitzung und das Niveau. Eine Sitzung dauert 4 Wochen; das Niveau (1, 2, 3, 4…) ist das gelernte Buch, das je nach Niveau des Schülers meist länger als 4 Wochen dauert.</p>"),
- ("Wie groß ist die Gruppe?", "<p>Eine Klasse besteht in der Regel aus höchstens 3 bis 10 Schülern.</p>"),
- ("Ich finde keine Gruppe auf meinem Niveau, was tun?", "<p>Kontaktieren Sie uns: Wir setzen Sie auf eine Warteliste und bilden eine Gruppe mit anderen Schülern Ihres Niveaus, falls vorhanden.</p>"),
- ("Kann man den Koran in der Gruppe lernen?", "<p>Nein, es ist nicht möglich, den Koran in der Gruppe zu lernen.</p>"),
- ("Kann man 30 Minuten lernen?", "<p>Ja, 30-minütige Stunden sind möglich, allerdings nur für den Koran.</p>"),
- ("Kann man zu zweit lernen?", "<p>Ja, das ist für die arabische Sprache möglich; wenden Sie sich dazu an die Verwaltung.</p>"),
- ("Was kostet eine Stunde zu zweit?", "<p>Der Preis beträgt 4,50 € pro Schüler. Beispiel: für 1 Stunde pro Woche über 4 Wochen: 4,50 € × 2 (zu zweit) = 9 € × 4 (Wochen) = <b>36 €</b>.</p>"),
- ("Gibt es eine Probestunde oder Probezeit?", "<p>Ja, eine 30-minütige Probestunde ist möglich; wenden Sie sich dazu an die Verwaltung (oder nutzen Sie das <a href=\"index.html#inscription\">Anfrageformular</a>). Beachten Sie jedoch: Sobald Sie für eine 4-Wochen-Sitzung angemeldet sind, haben Sie einen Platz reserviert und sind für die gesamte Sitzung verpflichtet.</p>"),
- ("Und wenn ich es mir anders überlege?", "<p>Jede Anmeldung ist endgültig; es wird keine Verschiebung und keine Rückerstattung gewährt. Melden Sie sich nur an, wenn Sie verfügbar und motiviert sind zu lernen.</p>"),
- ("Wie erfolgt die Zahlung?", "<p>Die Zahlung erfolgt per Bankkarte über Stripe oder per Überweisung. Die Zahlungen sind sicher (Sie sehen das Schloss-Symbol, wenn die Zahlungsseite erscheint).</p>"),
- ("Welche Ausrüstung brauche ich zum Lernen?", "<ul><li>Eine stabile Internetverbindung.</li><li>Einen Computer.</li><li>Ein Headset (optional).</li><li>Ein Mikrofon (optional).</li></ul><p><b>Unsere Klassenzimmer funktionieren auf allen Geräten</b>: Windows, Mac sowie Tablets und Smartphones. Für mehr Komfort empfehlen wir jedoch, an einem Computer zu lernen, vor allem für den Arabischunterricht.</p>"),
- ("Wo findet der Unterricht statt? Über Skype?", "<p>Der Unterricht findet in einem virtuellen Klassenzimmer statt, das in Ihren „Schülerbereich“ integriert ist; Sie gelangen darüber in Ihr Klassenzimmer.</p>"),
- ("Wann beginnt der Unterricht nach der Zahlung?", "<p><b>Gruppenunterricht:</b> Die Sitzungstermine werden in der Beschreibung des Gruppenunterrichts und bei der Bestellung angezeigt.</p><p><b>Einzelunterricht:</b> Der Unterricht beginnt direkt nach der Anmeldung an den von Ihnen gewählten Tagen. Beginn und Ende der Sitzung werden bei der Zahlung angezeigt.</p>"),
+ ('Wie melde ich mich an?', """<p>Die Anmeldung erfolgt vollständig online. Klicken Sie einfach auf « Jetzt anmelden » und folgen Sie den einzelnen Schritten.</p>
+<p>Sie können wählen zwischen:</p>
+<ul><li>Einzelunterricht;</li><li>Unterricht zu zweit;</li><li>Gruppenunterricht.</li></ul>
+<p>Für den Unterricht zu zweit und in der Gruppe müssen die Teilnehmer bereits bei der Anmeldung zusammengeführt werden. Für die Zahlungen ist zwingend eine verantwortliche Person für das Paar oder die Gruppe zu benennen.</p>"""),
+ ('Welche Voraussetzungen gibt es?', '<p>Für die Aufnahme in die Schule ist kein bestimmtes Niveau erforderlich. Alle Niveaus werden angenommen, vom Anfänger bis zum Fortgeschrittenen.</p>'),
+ ('Welche Lernmethode verwenden Sie?', '<p>Unser Unterricht folgt einer schrittweisen Methode, die auf das Niveau jedes Schülers abgestimmt ist. Programm und Materialien richten sich nach dem gewählten Fach und nach dem Niveau des Schülers.</p>'),
+ ('Welche Bücher werden verwendet?', """<p>Die verwendeten Bücher hängen vom Programm und vom Niveau des Schülers ab.</p>
+<p>Wenn die benötigten Bücher bei der Anmeldung nicht mitgeliefert werden, finden Sie unter « Anmerkungen » die nötigen Angaben, um sie auf der angegebenen Website zu bestellen.</p>"""),
+ ('In welcher Sprache findet der Unterricht statt?', '<p>Der Unterricht findet auf Arabisch statt. Es ist eine 100 % arabische Immersionsmethode, die schnelle und wirksame Ergebnisse liefert, in shaa Allah. Unsere Lehrer sind Ägypter und wurden für den Unterricht von Nicht-Arabischsprachigen ausgebildet; zudem wurden die verwendeten Programme speziell für Nicht-Arabischsprachige entwickelt.</p>'),
+ ('Wie lange dauert eine Sitzung?', '<p>Eine Sitzung dauert 4 Wochen und kann nach Wunsch verlängert werden. <b>Achtung</b>, nicht zu verwechseln: die Sitzung und das Niveau. Eine Sitzung dauert 4 Wochen; das Niveau (1, 2, 3, 4…) ist das gelernte Buch, das je nach Niveau des Schülers meist länger als 4 Wochen dauert.</p>'),
+ ('Wie groß ist eine Gruppe?', '<p>Eine Klasse besteht in der Regel aus höchstens 3 bis 10 Schülern.</p>'),
+ ('Kann man den Koran in der Gruppe lernen?', '<p>Nein, es ist nicht möglich, den Koran in der Gruppe zu lernen.</p>'),
+ ('Kann man 30 Minuten lang lernen?', '<p>Ja, 30-minütige Stunden sind möglich, allerdings nur für den Koran.</p>'),
+ ('Kann man zu zweit lernen?', """<p>Ja, für die arabische Sprache ist das möglich.</p>
+<p>Dazu müssen Sie sich bei der Anmeldung direkt zu zweit eintragen.</p>"""),
+ ('Was kostet der Unterricht zu zweit?', '<p>Der Preis beträgt 4,50 € pro Schüler. Beispiel: für 1 Stunde pro Woche über 4 Wochen: 4,50 € × 2 (zu zweit) = 9 € × 4 (Wochen) = <b>36 €</b>.</p>'),
+ ('Gibt es eine Probestunde oder Probezeit?', """<p>Ja. Sie können eine kostenlose Probestunde von 30 Minuten in Anspruch nehmen.</p>
+<p>Klicken Sie dazu auf « Kostenlose Probestunde anfragen » und folgen Sie den Schritten, um Ihre Anfrage zu senden.</p>
+<p>Die Probestunde ist völlig kostenlos und unverbindlich.</p>"""),
+ ('Kann ich meine Anmeldung stornieren, wenn ich es mir anders überlege?', '<p>Jede Anmeldung ist endgültig; es wird keine Verschiebung und keine Rückerstattung gewährt. Melden Sie sich nur an, wenn Sie verfügbar und motiviert sind zu lernen.</p>'),
+ ('Wie erfolgt die Zahlung?', '<p>Die Zahlung erfolgt per Bankkarte oder per Banküberweisung.</p>'),
+ ('Welche Ausrüstung wird für den Unterricht benötigt?', """<p>Damit der Unterricht gut verläuft, empfehlen wir:</p>
+<ul><li>eine stabile Internetverbindung;</li><li>einen Computer;</li><li>ein Headset;</li><li>ein Mikrofon.</li></ul>
+<p>Unsere virtuellen Klassenräume laufen auf Windows- und Mac-Computern sowie auf Tablets.</p>
+<p>Von der Nutzung eines Smartphones wird dringend abgeraten, damit der Unterricht bestmöglich verläuft.</p>"""),
+ ('Wo findet der Unterricht statt?', """<p>Der Unterricht findet online statt, in einem virtuellen Klassenraum, der direkt in den Schülerbereich eingebaut ist.</p>
+<p>Sobald Sie in Ihrem Konto angemeldet sind, gelangen Sie über Ihren persönlichen Bereich in Ihren Klassenraum.</p>"""),
+ ('Wann beginnt der Unterricht nach der Zahlung?', '<p>Der Unterricht beginnt nach der Anmeldung und nach der Bestätigung Ihrer Anfrage durch das Sekretariat.</p>'),
   ]),
 
 'temoignages': dict(title="Erfahrungsberichte — AL-FISSAH", desc="Das sagen unsere Schüler: Eltern und Schüler der Schule Al-Fissah, Arabisch- und Koranunterricht online.",

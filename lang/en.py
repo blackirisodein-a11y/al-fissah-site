@@ -65,11 +65,11 @@ L = {
     ("“Even though the lessons are entirely in Arabic, she makes everything very clear. I recommend the institute 100%, for beginners as well as for those who want to improve.”","Maeva Thezenas — Arabic language"),
     ("“I have been taking Quran lessons at Al-Fissah for several years and I am very satisfied, especially with the follow-up; the institute is always responsive and accommodating.”","Linda Bitam — Quran")],
   faq_h2="Frequently asked questions", faq_all="See all questions",
-  faq=[("What are the prerequisites?","No particular level is required to join the institute: all levels are accepted."),
+  faq=[("What are the prerequisites?","No particular level is required to join the institute: all levels are accepted, from complete beginner to advanced."),
     ("What language are lessons taught in?","Lessons are taught in Arabic. It is a 100% Arabic immersion method, which gives fast and effective results in shaa Allah. Our teachers are Egyptian and have been trained to teach non-Arabic speakers."),
-    ("Is there a trial lesson?","Yes, a 30-minute trial is possible: simply ask the administration. Once enrolled for a 4-week session, you have reserved a place and are committed for the whole session."),
+    ("Is there a trial lesson?","Yes, a free 30-minute trial lesson: click « Request a free trial » and follow the steps. The trial is completely free and with no commitment."),
     ("How long is a session?","A session lasts 4 weeks and can be renewed. Not to be confused with the level: the level is the book being studied, which usually takes more than 4 weeks depending on the student."),
-    ("What equipment do I need?","A stable internet connection and a computer; headset and microphone are optional. Our classrooms work on Windows, Mac, tablets and smartphones, but we recommend a computer, especially for Arabic lessons."),
+    ("What equipment do I need?","A stable internet connection, a computer, a headset and a microphone. Our virtual classrooms work on Windows, Mac and tablets; using a smartphone is strongly discouraged."),
     ("Where do lessons take place?","In a virtual classroom built into your student area: at lesson time, students and teacher log in and interact orally, in writing and through screen sharing.")],
 ),
 
@@ -145,31 +145,36 @@ L = {
 
 'faq': dict(title="FAQ — Frequently asked questions — AL-FISSAH", desc="Enrolment, immersion method, books used, sessions, trial lesson, payment, equipment: all the answers from the Al-Fissah institute.",
   h1="Frequently asked questions", lead="Everything you need to know before starting: enrolment, method, books, sessions, payment and equipment.",
-  note_b="Can't find the answer to your question?", note_a="Contact us", note_p=", our advisor will reply as soon as possible, in shaa Allah.",
+  note_b="Can't find the answer to your question?", note_a="Contact us", note_p=", our team will reply as soon as possible, in shaa Allah.",
   items=[
- ("How do I enrol?", """<p><b>Group lessons.</b> Times, days and the start and end of the session are to be confirmed with the administration. After confirmation, click “Take this course”, provide an e-mail to receive your login details, then complete the order by paying for your enrolment. Studying a level is generally divided into several sessions, shown when you order; you can pay for one session, two… or all of them.</p>
-<p><b>One-to-one lessons.</b></p><ol><li>Choose the programme you want (Quran adult, Quran child, Arabic child, Arabic adult…).</li><li>Click “Take this course”.</li><li>Fill in all the requested information (gender, days, teacher…).</li><li>The administration contacts you to confirm your enrolment and payment.</li><li>All that remains is to order your book according to your level; the administration will guide you.</li></ol>
-<p>Once enrolment is validated, you receive an e-mail. In your dedicated area you will find your timetable, the programmes you have subscribed to (sessions, lessons, grades, homework…), your order and payment history, your profile, your testimonials and the news.</p>
-<p><b>Note:</b> books and materials are not provided on enrolment; you must order them.</p>"""),
- ("What are the prerequisites?", "<p>No particular level is required to join the institute: all levels are accepted.</p>"),
- ("What is your teaching method?", "<p>We offer an “immersion” teaching method: our lessons are exclusively in Arabic, and they are accessible to complete beginners (no prerequisites required). Lessons take place in a virtual classroom. At lesson time, students and teacher log in and interact orally, in writing and visually through screen sharing.</p>"),
- ("Which book is used?", """<p><b>For children</b>, we use the new series “Arabic in our children's hands (العَرَبِيَّةُ بَيْنَ يَدَيْ أَوْلَادِنَا)”, specially designed for non-Arabic speakers and aimed at children aged 5 to 18. Developed by an elite of academics specialised in teaching, this programme consists of 12 textbooks with audio.</p>
-<p><b>For adults</b>, we use the series “Arabic in your hands (العَرَبِيَّةُ بَيْنَ يَدَيْكَ)”, for non-Arabic speakers and written by the same authors.</p>
-<p><b>Note:</b> these books are not provided on enrolment; you must order them at <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>"""),
- ("What language are lessons taught in?", "<p>Lessons are taught in Arabic. It is a 100% Arabic immersion method, which gives fast and effective results in shaa Allah. Our teachers are Egyptian and have been trained to teach non-Arabic speakers; moreover, the programmes used were specially designed for non-Arabic speakers.</p>"),
- ("How long is a session?", "<p>A session lasts 4 weeks, with the option to renew as you wish. <b>Please note</b>, do not confuse the session and the level. A session lasts 4 weeks; the level (1, 2, 3, 4…) is the book being studied, which generally takes more than 4 weeks depending on the student's level.</p>"),
- ("How big is the group?", "<p>A class generally consists of 3 to 10 students at most.</p>"),
- ("I can't see a group at my level, what should I do?", "<p>Contact us: we will put you on a waiting list and form a group with other students at your level if there are any.</p>"),
- ("Can the Quran be studied in a group?", "<p>No, it is not possible to study the Quran in a group.</p>"),
- ("Is it possible to study for 30 minutes?", "<p>Yes, it is possible to study for 30 minutes, for the Quran only.</p>"),
- ("Is it possible to study in pairs?", "<p>Yes, this is possible for the Arabic language; please contact the administration.</p>"),
- ("What is the price of one hour for a lesson in pairs?", "<p>The price is €4.50 per student. Example: for 1 hour per week for 4 weeks, €4.50 × 2 (pair) = €9 × 4 (weeks) = <b>€36</b>.</p>"),
- ("Is there a trial lesson or trial period?", "<p>Yes, a 30-minute trial is possible; please contact the administration (or use the <a href=\"index.html#inscription\">request form</a>). But be aware that once enrolled for a 4-week session, you have reserved a place: you are therefore committed to studying for the whole session.</p>"),
- ("What if I change my mind?", "<p>All enrolments are final; no postponement or refund will be granted. Enrol only if you are available and motivated to learn.</p>"),
- ("How is payment made?", "<p>Payment is made by bank card through Stripe, or by bank transfer. Payments are secure (you can see the padlock when the payment page appears).</p>"),
- ("What equipment do I need to study?", "<ul><li>A stable internet connection.</li><li>A computer.</li><li>A headset (optional).</li><li>A microphone (optional).</li></ul><p><b>Our classrooms work on all devices</b>: Windows, Mac, as well as tablets and smartphones. However, for more comfort, we advise studying on a computer, especially for Arabic lessons.</p>"),
- ("Where do lessons take place? On Skype?", "<p>Lessons take place in a virtual classroom built into your “Student area”; you access your classroom through it.</p>"),
- ("Once payment is made, when do lessons start?", "<p><b>Group lessons:</b> session dates are shown in the description of the group lessons and when you order.</p><p><b>One-to-one lessons:</b> lessons start right after enrolment, on the days you have chosen. The session start and end dates are shown at payment.</p>"),
+ ('How do I enrol?', """<p>Enrolment is done entirely online. Simply click « Get started now » and follow the steps.</p>
+<p>You can choose between:</p>
+<ul><li>a one-to-one lesson;</li><li>a lesson in pairs;</li><li>a group lesson.</li></ul>
+<p>For lessons in pairs and in a group, the students must be brought together at the time of enrolment. One person must be designated as responsible for the pair or the group, for the handling of payments.</p>"""),
+ ('What are the prerequisites?', '<p>No particular level is required to join the institute. All levels are accepted, from complete beginner to advanced.</p>'),
+ ('What teaching method do you use?', "<p>Our lessons follow a progressive method, adapted to each student's level. The programme and the materials are set according to the subject studied and to the student's level.</p>"),
+ ('Which books are used?', """<p>The books used depend on the programme and on the student's level.</p>
+<p>If the books required are not provided at enrolment, you will find in the « Remarks » section the information needed to order them from the website indicated.</p>"""),
+ ('What language are lessons taught in?', '<p>Lessons are taught in Arabic. It is a 100% Arabic immersion method, which gives fast and effective results in shaa Allah. Our teachers are Egyptian and have been trained to teach non-Arabic speakers; moreover, the programmes used were specially designed for non-Arabic speakers.</p>'),
+ ('How long is a session?', "<p>A session lasts 4 weeks, with the option to renew as you wish. <b>Please note</b>, do not confuse the session and the level. A session lasts 4 weeks; the level (1, 2, 3, 4…) is the book being studied, which generally takes more than 4 weeks depending on the student's level.</p>"),
+ ('How big is a group?', '<p>A class generally consists of 3 to 10 students at most.</p>'),
+ ('Can the Quran be studied in a group?', '<p>No, it is not possible to study the Quran in a group.</p>'),
+ ('Is it possible to study for 30 minutes?', '<p>Yes, it is possible to study for 30 minutes, for the Quran only.</p>'),
+ ('Is it possible to study in pairs?', """<p>Yes, this is possible for the Arabic language.</p>
+<p>To do so, you must enrol directly as a pair when you register.</p>"""),
+ ('What is the price for a pair?', '<p>The price is €4.50 per student. Example: for 1 hour per week for 4 weeks, €4.50 × 2 (pair) = €9 × 4 (weeks) = <b>€36</b>.</p>'),
+ ('Is there a trial lesson or trial period?', """<p>Yes. You can have a free 30-minute trial lesson.</p>
+<p>To do so, click « Request a free trial » and follow the steps to send your request.</p>
+<p>The trial is completely free and with no commitment.</p>"""),
+ ('If I change my mind, can I cancel my enrolment?', '<p>All enrolments are final; no postponement or refund will be granted. Enrol only if you are available and motivated to learn.</p>'),
+ ('How do I make the payment?', '<p>Payment is made by bank card or by bank transfer.</p>'),
+ ('What equipment is needed to follow the lessons?', """<p>To follow the lessons in good conditions, we recommend:</p>
+<ul><li>a stable internet connection;</li><li>a computer;</li><li>a headset;</li><li>a microphone.</li></ul>
+<p>Our virtual classrooms work on Windows and Mac computers, as well as on tablets.</p>
+<p>Using a smartphone is strongly discouraged, so that the lessons run as well as possible.</p>"""),
+ ('Where do lessons take place?', """<p>Lessons take place remotely, in a virtual classroom built directly into the student area.</p>
+<p>Once logged in to your account, you can enter your classroom from your personal area.</p>"""),
+ ('Once payment is made, when do lessons start?', '<p>Lessons start after enrolment and once your request has been approved by the office.</p>'),
   ]),
 
 'temoignages': dict(title="Testimonials — AL-FISSAH", desc="What our students say: parents and students of the Al-Fissah institute, online Arabic and Quran lessons.",
