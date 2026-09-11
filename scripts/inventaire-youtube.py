@@ -55,6 +55,41 @@ for r in list(walk(d, "playlistId")):
     seen.add(pid)
     out["playlists"].append({"id": pid, "title": title, "count": text(r.get("videoCountText")) or text(r.get("videoCountShortText")), "videos": []})
 
+for r in walk(d, "lockupViewModel"):
+    lv = r["lockupViewModel"]; pid = lv.get("contentId", "")
+    if not pid.startswith("PL") or pid in seen: continue
+    seen.add(pid)
+    title = lv.get("metadata", {}).get("lockupMetadataViewModel", {}).get("title", {}).get("content", "")
+    out["playlists"].append({"id": pid, "title": title, "count": "", "videos": []})
+out["debug_playlist_keys"] = sorted({k for k in ("gridPlaylistRenderer", "lockupViewModel", "playlistRenderer") if next(walk(d, k), None)})
+
+# Toutes les vidéos de la chaîne (page /videos + continuations)
+def innertube(token):
+    body = json.dumps({"context": {"client": {"clientName": "WEB", "clientVersion": "2.20240701.00.00", "hl": "fr"}}, "continuation": token}).encode()
+    req = urllib.request.Request("https://www.youtube.com/youtubei/v1/browse?prettyPrint=false", data=body, headers={**H, "Content-Type": "application/json"})
+    return json.loads(urllib.request.urlopen(req, timeout=40).read().decode("utf-8"))
+def collect(node, acc, seen_ids):
+    for r in walk(node, "videoRenderer"):
+        v = r["videoRenderer"]; vid = v.get("videoId")
+        if vid and vid not in seen_ids:
+            seen_ids.add(vid); acc.append({"id": vid, "title": text(v.get("title")), "len": text(v.get("lengthText")), "when": text(v.get("publishedTimeText"))})
+    for r in walk(node, "lockupViewModel"):
+        lv = r["lockupViewModel"]; vid = lv.get("contentId", "")
+        if lv.get("contentType") == "LOCKUP_CONTENT_TYPE_VIDEO" and vid and vid not in seen_ids:
+            seen_ids.add(vid); acc.append({"id": vid, "title": lv.get("metadata", {}).get("lockupMetadataViewModel", {}).get("title", {}).get("content", ""), "len": "", "when": ""})
+    toks = [r["continuationCommand"]["token"] for r in walk(node, "continuationCommand") if r["continuationCommand"].get("token")]
+    return toks[0] if toks else None
+try:
+    dv = initial_data(page(curl + "/videos")); allv = []; sid = set()
+    tok = collect(dv, allv, sid); n = 0
+    while tok and n < 40:
+        n += 1
+        try: tok = collect(innertube(tok), allv, sid)
+        except Exception as e: out["videos_error"] = str(e); break
+    out["videos"] = allv
+except Exception as e:
+    out["videos_error"] = str(e)
+
 # Vidéos de chaque playlist (jusqu'à 100 par page)
 for pl in out["playlists"]:
     try:
