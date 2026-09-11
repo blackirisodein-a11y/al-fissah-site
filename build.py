@@ -326,6 +326,73 @@ PARCOURS = {
 
 FORMULES = [(1, 28), (2, 48), (3, 72), (4, 96), (5, 120), (6, 144), (7, 168)]   # heures par semaine → prix de la session de 4 semaines
 PICS = json.load(open(os.path.join(ROOT, 'pics.json')))
+
+# --- Vidéothèque de l'accueil : youtube.json (produit par l'action « Inventaire YouTube ») classé par thème ---
+YT_CHANNEL = 'https://www.youtube.com/@ecole-al-fissah'
+YT_DEFAULT = 'MNiWkEPoGNw'   # vidéo affichée dans le lecteur à l'ouverture (livre 12, unité 11)
+def load_videos():
+    # Retourne [catégories] ; chaque catégorie : id, url YouTube, sous-groupes [(clé, libellé-clé)], vidéos [(id, sub, label)].
+    # Le libellé d'une vidéo est soit ('book', livre, unité), soit ('lesson', cours, lettres), soit ('raw', titre).
+    try:
+        d = json.load(open(os.path.join(ROOT, 'youtube.json'), encoding='utf-8'))
+    except FileNotFoundError:
+        return None
+    pl = {p['title']: p for p in d['playlists']}
+    def playlist(key):
+        for t, p in pl.items():
+            if key.lower() in t.lower(): return p
+        return None
+    seen = set()
+    def take(v):
+        if v['id'] in seen: return False
+        seen.add(v['id']); return True
+    cats = []
+    # 1. Dialogues « L'arabe entre les mains de nos enfants » : livre N, unité M (vidéos de la chaîne)
+    dia = []
+    for v in d['videos']:
+        m = re.search(r'Livre\s*(\d+)\s+Unité\s*(\d+)', v['title'])
+        if m and take(v): dia.append((int(m.group(1)), int(m.group(2)), v['id']))
+    dia.sort()
+    books = sorted({b for b, _, _ in dia})
+    cats.append(dict(id='dialogues', url=YT_CHANNEL + '/videos', subs=[(str(b), ('book', b)) for b in books],
+                     videos=[(vid, str(b), ('book', b, u)) for b, u, vid in dia], default=str(books[-1]) if books else ''))
+    # 2. Méthode de lecture : playlist « J'apprend a lire l'arabe facilement », 5 parties × cours (les parties portent le nom des playlists de l'alphabet)
+    lec = playlist("lire l'arabe facilement")
+    if lec:
+        names = {}
+        for t in pl:
+            m = re.search(r"alphabet arabe partie\s*(\d+)\s*(\S+)", t, re.I)
+            if m: names[m.group(1)] = m.group(2)
+        vids = []
+        for v in lec['videos']:
+            m = re.search(r'PARTIE\s*(\d+)\s+COURS\s*(\d+)\s*(.*)$', v['title'], re.I)
+            if m and take(v): vids.append((int(m.group(1)), int(m.group(2)), ' '.join(m.group(3).split()), v['id']))
+        vids.sort()
+        parts = sorted({pt for pt, _, _, _ in vids})
+        cats.append(dict(id='lecture', url=f"https://www.youtube.com/playlist?list={lec['id']}", subs=[(str(pt), ('part', pt, names.get(str(pt), ''))) for pt in parts],
+                         videos=[(vid, str(pt), ('lesson', c, letters)) for pt, c, letters, vid in vids], default=str(parts[0]) if parts else ''))
+    # 3. Invocations et bons comportements (playlist, dans l'ordre 1 → 16)
+    inv = playlist('Invocations')
+    if inv:
+        vids = []
+        for v in inv['videos']:
+            m = re.match(r'\s*(\d+)\s*-+\s*(.*)$', v['title'])
+            if take(v): vids.append((int(m.group(1)) if m else 999, (m.group(2) if m else v['title']).strip(), v['id']))
+        vids.sort()
+        cats.append(dict(id='invocations', url=f"https://www.youtube.com/playlist?list={inv['id']}", subs=[], videos=[(vid, '', ('raw', f'{n}. {t}' if n != 999 else t)) for n, t, vid in vids], default=''))
+    # 4. Témoignages : playlist + vidéos de la chaîne dont le titre le dit
+    tem = playlist('Témoignages')
+    vids = [v for v in (tem['videos'] if tem else [])]
+    kw = re.compile(r'témoignage|parcours|expérience|évolution|brillant|partage authentique|vérité et sagesse', re.I)
+    vids += [v for v in d['videos'] if kw.search(v['title'])]
+    tv = [(v['id'], '', ('raw', v['title'])) for v in vids if take(v)]
+    cats.append(dict(id='temoignages', url=f"https://www.youtube.com/playlist?list={tem['id']}" if tem else YT_CHANNEL + '/videos', subs=[], videos=tv, default=''))
+    # 5. L'école et l'application : tout le reste de la chaîne
+    rest = [(v['id'], '', ('raw', v['title'])) for v in d['videos'] if take(v)]
+    cats.append(dict(id='ecole', url=YT_CHANNEL + '/videos', subs=[], videos=rest, default=''))
+    return cats
+VIDEOS = load_videos()
+
 if INLINE:
     import base64, io
     from PIL import Image
@@ -614,8 +681,7 @@ class Builder:
             bt = 'btn-orange' if reco else 'btn-navy'
             plans += f'<div class="plan {x}"{attr}><h3>{t}</h3><div class="price">{price}<small>/{c["session"]}</small></div><div class="per">{per}</div><ul>{"".join(f"<li>{f}</li>" for f in feats)}</ul><a class="btn {bt}" href="tarifs.html">{c["details"]}</a></div>'
         posts = ''.join(f'<a class="post" href="{u}" target="_blank" rel="noopener"><span class="post-tag">{tag}</span><b>{t}</b><span class="post-meta">Blog Al-Fissah · {d}</span></a>' for u, tag, t, d in H['posts'])
-        vids = [('Nqwj4BfOaSg', 12, 12), ('_TVQsB01a5o', 12, 9), ('67vD_tLzQt4', 12, 8), ('q-NHRbJhJwU', 11, 7), ('pTpY0QsvLIw', 10, 4), ('7i9LYB64RZA', 9, 4)]
-        videos = ''.join(f'<a class="vid" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span>{H["book"]} {b} · {H["unit"]} {u}</span></a>' for v, b, u in vids)
+        videotheque = self.videotheque()
         quotes = ''.join(f'<blockquote class="quote io {x}"><span class="stars">★★★★★</span><p>{q}</p><footer>{w}</footer></blockquote>' for (q, w), x in zip(H['quotes'], ['io-l', 'io-z d1', 'io-r d2']))
         faq = ''.join(self.qa(q, a) for q, a in H['faq'])
         html = f'''<div class="hero">
@@ -647,11 +713,7 @@ class Builder:
 {cards}  </div>
 </div></section>
 
-<section id="video"><div class="wrap"><div class="videowrap io io-z">
-  <div class="head center"><span class="kick">{H['video_kick']}</span><h2>{H['video_h2']}</h2><p>{H['video_p']}</p></div>
-  <div class="video-frame"><button type="button" class="poster yt-poster" data-yt="MNiWkEPoGNw" aria-label="{H['video_h2']}"><img src="https://i.ytimg.com/vi/MNiWkEPoGNw/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span class="cap">{H['video_h2']}</span></button></div>
-  <p class="video-more"><a href="https://www.youtube.com/watch?v=MNiWkEPoGNw" target="_blank" rel="noopener">{H['video_more']} →</a></p>
-</div></div></section>
+{videotheque}
 
 <section id="adultes"><div class="wrap split">
   <div class="io io-l">
@@ -682,8 +744,7 @@ class Builder:
 <section id="blog"><div class="wrap">
   <div class="head center io"><span class="kick">{H['blog_kick']}</span><h2>{H['blog_h2']}</h2><p>{H['blog_p']}</p></div>
   <div class="posts io d1">{posts}</div>
-  <div class="videos io d2">{videos}</div>
-  <p class="tarif-note">{H['blog_note']} <a href="https://blog.al-fissah.com" target="_blank" rel="noopener">{H['blog_all']}</a> · <a href="https://www.youtube.com/watch?v=MNiWkEPoGNw" target="_blank" rel="noopener">{H['yt']}</a></p>
+  <p class="tarif-note"><a href="https://blog.al-fissah.com" target="_blank" rel="noopener">{H['blog_all']}</a> · <a href="{YT_CHANNEL}" target="_blank" rel="noopener">{H['yt']}</a></p>
 </div></section>
 
 <section id="avis"><div class="wrap">
@@ -730,6 +791,36 @@ class Builder:
 </div></div>
 '''
         self.write('programmes.html', self.head(P['title'], P['desc'], 'programmes') + self.chrome('programmes') + html + self.footer())
+
+    def videotheque(self):
+        # Section « Vidéos » de l'accueil : lecteur + onglets par thème + vignettes (youtube.json).
+        L = self.L; H = L['home']; V = H['vid']
+        def esc(t): return t.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
+        def label(lb):
+            if lb[0] == 'book': return f'{H["book"]} {lb[1]} · {H["unit"]} {lb[2]}'
+            if lb[0] == 'lesson': return f'{V["lesson"]} {lb[1]} · {lb[2]}' if lb[2] else f'{V["lesson"]} {lb[1]}'
+            return lb[1]
+        def sublabel(sb):
+            if sb[0] == 'book': return f'{H["book"]} {sb[1]}'
+            return f'{V["part"]} {sb[1]} · {sb[2]}' if sb[2] else f'{V["part"]} {sb[1]}'
+        player = f'<div class="video-frame"><button type="button" class="poster yt-poster" data-yt="{YT_DEFAULT}" aria-label="{esc(H["video_h2"])}"><img src="https://i.ytimg.com/vi/{YT_DEFAULT}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span class="cap">{H["video_h2"]}</span></button></div><p class="vcap"><span class="vnow">{V["now"]}</span> <b class="vtitle">{H["video_p"]}</b></p>'
+        if not VIDEOS:
+            return f'<section id="video"><div class="wrap"><div class="videowrap io io-z"><div class="head center"><span class="kick">{H["video_kick"]}</span><h2>{H["video_h2"]}</h2><p>{H["video_p"]}</p></div>{player}</div></div></section>'
+        tabs, panels = '', ''
+        for i, c in enumerate(VIDEOS):
+            on = ' is-on' if i == 0 else ''
+            tabs += f'<button type="button" class="vtab{on}" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-cat="{c["id"]}">{V["cats"][c["id"]]} <small>{len(c["videos"])}</small></button>'
+            chips = ''.join(f'<button type="button" class="vchip{" is-on" if k == c["default"] else ""}" data-sub="{k}">{sublabel(sb)}</button>' for k, sb in c['subs'])
+            cards = ''.join(f'<button type="button" class="vcard" data-yt="{vid}" data-sub="{sub}" data-title="{esc(label(lb))}"{"" if not c["subs"] or sub == c["default"] else " hidden"}><img src="https://i.ytimg.com/vi/{vid}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span>{esc(label(lb))}</span></button>' for vid, sub, lb in c['videos'])
+            more = V['playlist'] if 'playlist?list=' in c['url'] else V['channel']
+            sub_html = f'<div class="vsub">{chips}</div>' if chips else ''
+            panels += f'<div class="vpanel" role="tabpanel" data-cat="{c["id"]}"{"" if i == 0 else " hidden"}>{sub_html}<div class="vgrid">{cards}</div><p class="vmore"><a href="{c["url"]}" target="_blank" rel="noopener">{more} →</a></p></div>'
+        return (f'<section id="video"><div class="wrap"><div class="videowrap io io-z">\n'
+                f'  <div class="head center"><span class="kick">{V["kick"]}</span><h2>{V["h2"]}</h2><p>{V["p"]}</p></div>\n'
+                f'  {player}\n'
+                f'  <div class="vtabs" role="tablist">{tabs}</div>\n'
+                f'  {panels}\n'
+                f'</div></div></section>')
 
     def build_tarifs(self):
         L = self.L; T = L['tarifs']; c = L['common']

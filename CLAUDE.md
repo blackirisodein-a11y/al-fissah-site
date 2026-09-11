@@ -24,6 +24,8 @@ assets/logo*.png      logo officiel
 site.conf             adresse de publication + mode aperçu
 pics.json             illustrations SVG des 6 programmes (extraites du template d'origine)
 part_classroom.html   bloc "classe virtuelle" du hero
+youtube.json          inventaire de la chaîne YouTube (playlists + vidéos), produit par l'action « Inventaire YouTube »
+scripts/inventaire-youtube.py  le script de cette action (pages publiques YouTube, aucune clé)
 ```
 
 ### Construire
@@ -129,6 +131,19 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
     `steps`), avec une note (`steps_p`) précisant que l'administration réalise pour l'instant
     les étapes 3 à 5 à la main. Le parcours réel viendra d'une plateforme existante (voir
     « suite » plus bas).
+- **Tarifs sur l'accueil** (demande du client, 11/09/2026) : quatre formules — 1, 2 (étiquette discrète
+  « La plus choisie », `tarifs.badge`), **3 « Conseillée »** mise en avant en orange (`tarifs.badge_reco`,
+  3 h/semaine, 72 €), binôme. Même mise en avant de la formule 3 sur la page Tarifs. Les étiquettes viennent
+  des textes de chaque langue (`data-badge`), plus de texte fixe dans le CSS.
+- **Vidéothèque de l'accueil** (section `#video`, demande du client, 11/09/2026) : un lecteur + des onglets par
+  thème (dialogues pour enfants par livre, apprendre à lire par partie, invocations, témoignages, l'école) +
+  vignettes ; cliquer une vignette lance la vidéo dans le lecteur du haut. Les vidéos viennent de
+  `youtube.json`, classées par `load_videos()` dans `build.py` d'après les titres et les playlists de la
+  chaîne (`@ecole-al-fissah`). **Pour ajouter les nouvelles vidéos** : onglet *Actions* → « Inventaire
+  YouTube » → *Run workflow* sur `main` : l'action relit la chaîne, met `youtube.json` à jour dans le dépôt,
+  et la mise en ligne repart toute seule. Textes des onglets : `lang/*.py` → `home.vid`. Les titres des
+  vidéos hors dialogues/lecture restent ceux de YouTube (en français). Sans `youtube.json`, la section
+  revient au simple lecteur.
 - **Textes** : repris de al-fissah.com (FAQ 18 questions, règlement 9 articles, tarifs,
   programmes). Ne pas les réécrire sans raison, ce sont les textes officiels de l'école.
 - **Témoignages** : verbatim, en français dans les 6 langues. Une note l'explique sur les
@@ -174,8 +189,8 @@ les fichiers. Toujours contrôler ensuite qu'une ressource répond, p. ex. ouvri
 `al-fissah.blackirys.com/ru/` dans un navigateur. La formule LWS du client ne donne accès
 ni au gestionnaire de fichiers ni à PHP.
 
-Ne jamais téléverser : `build.py`, `lang/`, `site.conf`, `pics.json`, `part_classroom.html`,
-les `.md`, `netlify.toml`, `_redirects`.
+Ne jamais téléverser : `build.py`, `lang/`, `scripts/`, `site.conf`, `pics.json`, `youtube.json`,
+`part_classroom.html`, les `.md`, `netlify.toml`, `_redirects`.
 
 ---
 

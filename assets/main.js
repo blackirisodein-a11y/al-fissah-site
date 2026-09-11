@@ -152,6 +152,19 @@ $$('.yt-poster').forEach(p=>{p.addEventListener('click',()=>{if(p.classList.cont
   const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${p.dataset.yt}?autoplay=1&rel=0`;
   f.title=p.getAttribute('aria-label')||'';f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;
   f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';p.parentElement.appendChild(f);p.classList.add('hide')})});
+/* Vidéothèque de l'accueil : onglets par thème, puces (livre / partie), vignette → lecture dans le lecteur du haut. */
+const vt=$('#video');
+if(vt&&vt.querySelector('.vtab')){
+  const frame=vt.querySelector('.video-frame'),poster=frame.querySelector('.yt-poster'),title=vt.querySelector('.vtitle');
+  const play=(id,t)=>{let f=frame.querySelector('iframe');
+    if(!f){f=document.createElement('iframe');f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';frame.appendChild(f)}
+    f.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;f.title=t;poster.classList.add('hide');if(title)title.textContent=t;
+    vt.querySelectorAll('.vcard.is-on').forEach(c=>c.classList.remove('is-on'));vt.querySelectorAll('.vcard[data-yt="'+id+'"]').forEach(c=>c.classList.add('is-on'));
+    frame.scrollIntoView({behavior:'smooth',block:'nearest'})};
+  vt.querySelectorAll('.vcard').forEach(c=>c.addEventListener('click',()=>play(c.dataset.yt,c.dataset.title)));
+  vt.querySelectorAll('.vtab').forEach(t=>t.addEventListener('click',()=>{vt.querySelectorAll('.vtab').forEach(x=>{x.classList.toggle('is-on',x===t);x.setAttribute('aria-selected',x===t?'true':'false')});vt.querySelectorAll('.vpanel').forEach(p=>{p.hidden=p.dataset.cat!==t.dataset.cat})}));
+  vt.querySelectorAll('.vpanel').forEach(p=>p.querySelectorAll('.vchip').forEach(ch=>ch.addEventListener('click',()=>{p.querySelectorAll('.vchip').forEach(x=>x.classList.toggle('is-on',x===ch));p.querySelectorAll('.vcard').forEach(c=>{c.hidden=c.dataset.sub!==ch.dataset.sub})})));
+}
 const vid=$('#presvid'),poster=$('#poster');
 if(vid&&poster){
   const playVid=()=>{vid.style.display='block';poster.classList.add('hide');vid.play().catch(()=>{})};
