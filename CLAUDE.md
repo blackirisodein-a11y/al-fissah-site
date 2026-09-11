@@ -57,7 +57,10 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
 ### Performance (PageSpeed) — ce qui a été fait le 11/09/2026, à ne pas défaire
 
 - **Polices hébergées sur le site** : `assets/fonts/*.woff2` (fichiers Google Fonts, licence OFL,
-  sous-ensembles latin / arabe / cyrillique) + inventaire `assets/fonts/polices.json`. `build.py`
+  sous-ensembles latin / arabe / cyrillique) + inventaire `assets/fonts/polices.json`.
+  Space Grotesk, Karla et Manrope sont des polices **variables** (un seul fichier par famille et
+  sous-ensemble, `font-weight:200 800`) ; Tajawal reste en 4 graisses ; Amiri est réduite au
+  bloc arabe U+0600-06FF (lettres décoratives uniquement, `pyftsubset`). `build.py`
   écrit les `@font-face` dans la page (`fonts_css`) et précharge titre + texte courant
   (`fonts_preload`). Plus aucune requête vers fonts.googleapis.com (elle bloquait l'affichage
   0,5 à 0,8 s sur mobile). Poppins n'est plus chargée (texte de secours du logo seulement).

@@ -61,10 +61,13 @@ FONT_FAMILIES = {                      # familles chargées selon la langue de l
   'ar': ['Tajawal', 'Amiri'],
   'ru': ['Manrope', 'Amiri'],
 }
-FONT_PRELOAD = {                       # (famille, graisse, sous-ensemble) préchargés : titre + texte courant
-  'default': [('Space Grotesk', 700, 'latin'), ('Karla', 400, 'latin')],
-  'ar': [('Tajawal', 700, 'arabic'), ('Tajawal', 400, 'arabic')],
-  'ru': [('Manrope', 700, 'cyrillic'), ('Manrope', 400, 'cyrillic')],
+# Space Grotesk, Karla et Manrope sont des polices « variables » : un seul fichier couvre toutes les
+# graisses (font-weight:200 800), au lieu d'un fichier par graisse (4 à 5 fois moins d'octets).
+# Amiri (lettres décoratives) est réduite au bloc arabe U+0600-06FF.
+FONT_PRELOAD = {                       # (famille, sous-ensemble, graisse ou None = fichier variable) préchargés : titre + texte courant
+  'default': [('Space Grotesk', 'latin', None), ('Karla', 'latin', None)],
+  'ar': [('Tajawal', 'arabic', 700), ('Tajawal', 'arabic', 400)],
+  'ru': [('Manrope', 'cyrillic', None)],
 }
 FONT_FACES = json.load(open(os.path.join(ROOT, 'assets/fonts/polices.json'), encoding='utf-8'))
 
@@ -78,7 +81,8 @@ def fonts_css(lang, rel):
 def fonts_preload(lang, rel):
     """Préchargement des deux polices du premier écran (titre, texte courant)."""
     want = FONT_PRELOAD.get(lang, FONT_PRELOAD['default'])
-    files = [f['fichier'] for f in FONT_FACES if (f['famille'], f['graisse'], f['sous_ensemble']) in want]
+    files = [f['fichier'] for f in FONT_FACES
+             if any(f['famille'] == fam and f['sous_ensemble'] == sub and (w is None or f['graisse'] == w) for fam, sub, w in want)]
     return '\n'.join(f'<link rel="preload" href="{rel}assets/fonts/{n}" as="font" type="font/woff2" crossorigin>' for n in files)
 
 def min_css(s):
