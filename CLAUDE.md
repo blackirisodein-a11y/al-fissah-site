@@ -59,8 +59,9 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
 
 Mesuré sur le site en ligne (action GitHub « Mesure PageSpeed », Lighthouse 12, un passage) :
 accueil **89 mobile / 99 bureau**, accueil arabe 98 / 99, tarifs et programmes 100 / 100
-(avant : 75 / 77 d'après PageSpeed Insights). Le point restant sur l'accueil mobile est l'écran
-d'ouverture lui-même (index de vitesse ≈ 3 s, blocage ≈ 0,4 s) : rythme voulu par le client.
+(avant : 75 / 77 d'après PageSpeed Insights). **PageSpeed Insights, accueil, relevé par le client le
+11/09 au soir : 99 mobile / 100 bureau.** Ce qui pèse encore un peu sur l'accueil mobile est l'écran
+d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, à garder.
 
 - **Mesurer** : onglet *Actions* → « Mesure PageSpeed » → *Run workflow* (adresses modifiables). Le
   journal de l'étape « Mesurer » donne score, délais, décalages, réponse serveur et compression.
