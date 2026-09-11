@@ -53,6 +53,7 @@ L = {
   tarifs_h2="4-Wochen-Sitzungen in Ihrem Tempo", tarifs_p="Wählen Sie die Stundenzahl pro Woche, ab einer Stunde. Gleicher Preis für Arabisch und Koran.",
   plans=[("Formel 1","28 €","1 Std. pro Woche · 4 Wochen",["Live-Einzelunterricht","Arabisch oder Koran","Schülerbereich und Begleitung","Anmerkungen des Lehrers"]),
     ("Formel 2","48 €","2 Std. pro Woche · 4 Wochen",["Live-Einzelunterricht","Arabisch oder Koran","Schülerbereich und Begleitung","Anmerkungen des Lehrers"]),
+    ("Formel 3","72 €","3 Std. pro Woche · 4 Wochen",["Live-Einzelunterricht","Arabisch oder Koran","Schülerbereich und Begleitung","Anmerkungen des Lehrers"]),
     ("Zweier-Formel","36 €","1 Std. pro Woche · 4 Wochen · für 2 Personen",["Nur arabische Sprache","d. h. 4,50 € pro Schüler und Stunde","Schülerbereich und Begleitung","Auf Anfrage bei der Verwaltung"])],
   tarifs_note="Bis zu 7 Std. pro Woche (168 €). 10 % Rabatt ab der zweiten Anmeldung in derselben Familie.", tarifs_all="Alle Formeln",
   blog_kick="Blog &amp; Videos", blog_h2="Neuigkeiten der Schule", blog_p="Unsere Artikel zum Verständnis der Methode und Unterrichtsauszüge, um die Klasse zu hören.",
@@ -130,7 +131,7 @@ L = {
 
 'tarifs': dict(title="Preise — AL-FISSAH", desc="Preise für Arabisch- und Koran-Einzelunterricht: 4-Wochen-Sitzungen von 28 € (1 Std./Woche) bis 168 € (7 Std./Woche), Zweier-Formel 36 €.",
   h1="Preise für Einzelunterricht", lead="Der Unterricht läuft über 4 Wochen. Der Schüler wählt die Stundenzahl, mit mindestens einer Stunde pro Woche.",
-  badge="Am beliebtesten", formule="Formel", per="{h} Std. pro Woche<br>über 4 Wochen", choose="Wählen", duo="Zweier-Formel", duo_per="1 Std. pro Woche über 4 Wochen<br><b>für 2 Personen</b>", ask="Anfragen",
+  badge="Am beliebtesten", badge_reco="Empfohlen", formule="Formel", per="{h} Std. pro Woche<br>über 4 Wochen", choose="Wählen", duo="Zweier-Formel", duo_per="1 Std. pro Woche über 4 Wochen<br><b>für 2 Personen</b>", ask="Anfragen",
   arabe_kick="Arabische Sprache", arabe_h2="Arabischunterricht", arabe_p="Programme „Arabisch in den Händen unserer Kinder“ und „Arabisch in deinen Händen“, Lesemethode.",
   coran_kick="Koran", coran_h2="Koranunterricht", coran_p="Nur Einzelunterricht. Für den Koran sind 30-minütige Stunden möglich: Wenden Sie sich an die Verwaltung.",
   good_h2="Gut zu wissen",

@@ -53,6 +53,7 @@ L = {
   tarifs_h2="Des sessions de 4 semaines, à votre rythme", tarifs_p="Choisissez le nombre d'heures par semaine, à partir d'un cours d'une heure. Même tarif pour la langue arabe et le Coran.",
   plans=[("Formule 1","28&nbsp;€","1 h par semaine · 4 semaines",["Cours individuel en direct","Langue arabe ou Coran","Espace étudiant et suivi","Remarques du professeur"]),
     ("Formule 2","48&nbsp;€","2 h par semaine · 4 semaines",["Cours individuel en direct","Langue arabe ou Coran","Espace étudiant et suivi","Remarques du professeur"]),
+    ("Formule 3","72&nbsp;€","3 h par semaine · 4 semaines",["Cours individuel en direct","Langue arabe ou Coran","Espace étudiant et suivi","Remarques du professeur"]),
     ("Formule binôme","36&nbsp;€","1 h par semaine · 4 semaines · pour 2 personnes",["Langue arabe uniquement","Soit 4,50 € par élève et par heure","Espace étudiant et suivi","Sur demande à l'administration"])],
   tarifs_note="Jusqu'à 7 h par semaine (168 €). Réduction de 10 % à partir de deux inscriptions dans une même famille.", tarifs_all="Toutes les formules",
   blog_kick="Blogs &amp; vidéos", blog_h2="Actualités de l'école", blog_p="Nos articles pour comprendre la méthode, et des extraits de cours pour entendre la classe.",
@@ -130,7 +131,7 @@ L = {
 
 'tarifs': dict(title="Tarifs — AL-FISSAH", desc="Tarifs des cours individuels d'arabe et de Coran : sessions de 4 semaines, de 28 € (1 h/semaine) à 168 € (7 h/semaine), formule binôme 36 €.",
   h1="Tarifs des cours en individuel", lead="Les cours se déroulent sur 4 semaines. L'étudiant choisit le nombre d'heures à étudier, avec un minimum d'un cours d'une heure par semaine.",
-  badge="Le plus choisi", formule="Formule", per="{h} h par semaine<br>pendant 4 semaines", choose="Choisir", duo="Formule binôme", duo_per="1 h par semaine pendant 4 semaines<br><b>pour 2 personnes</b>", ask="Demander",
+  badge="La plus choisie", badge_reco="Conseillée", formule="Formule", per="{h} h par semaine<br>pendant 4 semaines", choose="Choisir", duo="Formule binôme", duo_per="1 h par semaine pendant 4 semaines<br><b>pour 2 personnes</b>", ask="Demander",
   arabe_kick="Langue arabe", arabe_h2="Cours de langue arabe", arabe_p="Programmes « L'arabe entre les mains de nos enfants » et « L'arabe entre tes mains », méthode de lecture.",
   coran_kick="Coran", coran_h2="Cours de Coran", coran_p="Cours individuels uniquement. Des séances de 30 minutes sont possibles pour le Coran : contactez l'administration.",
   good_h2="Bon à savoir",

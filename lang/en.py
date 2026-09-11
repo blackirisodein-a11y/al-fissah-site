@@ -53,6 +53,7 @@ L = {
   tarifs_h2="4-week sessions, at your own pace", tarifs_p="Choose the number of hours per week, starting from one one-hour lesson. Same price for Arabic and Quran.",
   plans=[("Plan 1","€28","1 h per week · 4 weeks",["Live one-to-one lesson","Arabic or Quran","Student area and follow-up","Teacher's remarks"]),
     ("Plan 2","€48","2 h per week · 4 weeks",["Live one-to-one lesson","Arabic or Quran","Student area and follow-up","Teacher's remarks"]),
+    ("Plan 3","€72","3 h per week · 4 weeks",["Live one-to-one lesson","Arabic or Quran","Student area and follow-up","Teacher's remarks"]),
     ("Pair plan","€36","1 h per week · 4 weeks · for 2 people",["Arabic language only","i.e. €4.50 per student per hour","Student area and follow-up","On request to the administration"])],
   tarifs_note="Up to 7 h per week (€168). 10% discount from the second enrolment in the same family.", tarifs_all="All plans",
   blog_kick="Blog &amp; videos", blog_h2="School news", blog_p="Our articles to understand the method, and lesson excerpts to hear the classroom.",
@@ -130,7 +131,7 @@ L = {
 
 'tarifs': dict(title="Prices — AL-FISSAH", desc="Prices for one-to-one Arabic and Quran lessons: 4-week sessions from €28 (1 h/week) to €168 (7 h/week), pair plan €36.",
   h1="Prices for one-to-one lessons", lead="Lessons run over 4 weeks. The student chooses the number of hours to study, with a minimum of one one-hour lesson per week.",
-  badge="Most popular", formule="Plan", per="{h} h per week<br>for 4 weeks", choose="Choose", duo="Pair plan", duo_per="1 h per week for 4 weeks<br><b>for 2 people</b>", ask="Ask",
+  badge="Most popular", badge_reco="Recommended", formule="Plan", per="{h} h per week<br>for 4 weeks", choose="Choose", duo="Pair plan", duo_per="1 h per week for 4 weeks<br><b>for 2 people</b>", ask="Ask",
   arabe_kick="Arabic language", arabe_h2="Arabic language lessons", arabe_p="Programmes “Arabic in our children's hands” and “Arabic in your hands”, reading method.",
   coran_kick="Quran", coran_h2="Quran lessons", coran_p="One-to-one lessons only. 30-minute sessions are possible for the Quran: contact the administration.",
   good_h2="Good to know",

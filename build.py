@@ -605,9 +605,14 @@ class Builder:
         checks_ad = ''.join(f'<li>{x}</li>' for x in H['adultes_checks'])
         checks_app = ''.join(f'<li>{x}</li>' for x in H['app_checks'])
         phone = ''.join(f'<div class="item"><b>{a}</b><span>{b}</span></div>' for a, b in H['phone'])
+        # Quatre formules : 1, 2 (« la plus choisie », étiquette discrète), 3 (« conseillée », mise en avant), binôme.
         plans = ''
-        for (t, price, per, feats), x, bt in zip(H['plans'], ['io io-l', 'featured io d1', 'io io-r d2'], ['btn-navy', 'btn-orange', 'btn-navy']):
-            plans += f'<div class="plan {x}"><h3>{t}</h3><div class="price">{price}<small>/{c["session"]}</small></div><div class="per">{per}</div><ul>{"".join(f"<li>{f}</li>" for f in feats)}</ul><a class="btn {bt}" href="tarifs.html">{c["details"]}</a></div>'
+        for i, (t, price, per, feats) in enumerate(H['plans']):
+            reco, top = (i == 2), (i == 1)
+            x = ['io io-l', 'io d1', 'featured io d2', 'io io-r d3'][i] + (' popular' if top else '')
+            attr = f' data-badge="{L["tarifs"]["badge_reco"]}"' if reco else (f' data-badge="{L["tarifs"]["badge"]}"' if top else '')
+            bt = 'btn-orange' if reco else 'btn-navy'
+            plans += f'<div class="plan {x}"{attr}><h3>{t}</h3><div class="price">{price}<small>/{c["session"]}</small></div><div class="per">{per}</div><ul>{"".join(f"<li>{f}</li>" for f in feats)}</ul><a class="btn {bt}" href="tarifs.html">{c["details"]}</a></div>'
         posts = ''.join(f'<a class="post" href="{u}" target="_blank" rel="noopener"><span class="post-tag">{tag}</span><b>{t}</b><span class="post-meta">Blog Al-Fissah · {d}</span></a>' for u, tag, t, d in H['posts'])
         vids = [('Nqwj4BfOaSg', 12, 12), ('_TVQsB01a5o', 12, 9), ('67vD_tLzQt4', 12, 8), ('q-NHRbJhJwU', 11, 7), ('pTpY0QsvLIw', 10, 4), ('7i9LYB64RZA', 9, 4)]
         videos = ''.join(f'<a class="vid" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span>{H["book"]} {b} · {H["unit"]} {u}</span></a>' for v, b, u in vids)
@@ -730,7 +735,13 @@ class Builder:
         L = self.L; T = L['tarifs']; c = L['common']
         def grid(duo):
             prog = 'arabe-adultes' if duo else 'coran'
-            s = ''.join(f'<div class="tcard{" featured" if h == 2 else ""}"{f' data-badge="{T.get("badge","")}"' if h == 2 else ""}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 2 else "btn-navy"}" href="{self.insc_url(f"formule={h}&amp;programme={prog}")}">{T["choose"]}</a></div>' for h, e in FORMULES)
+            # Formule 3 « conseillée » (mise en avant), formule 2 « la plus choisie » (étiquette discrète).
+            def card(h, e):
+                cls = ' featured' if h == 3 else (' popular' if h == 2 else '')
+                badge = T.get('badge_reco', '') if h == 3 else (T.get('badge', '') if h == 2 else '')
+                attr = f' data-badge="{badge}"' if badge else ''
+                return f'<div class="tcard{cls}"{attr}><span class="tf">{T["formule"]} {h}</span><div class="price">{e}&nbsp;€</div><div class="per">{T["per"].format(h=h)}</div><a class="btn {"btn-orange" if h == 3 else "btn-navy"}" href="{self.insc_url(f"formule={h}&amp;programme={prog}")}">{T["choose"]}</a></div>'
+            s = ''.join(card(h, e) for h, e in FORMULES)
             if duo: s += f'<div class="tcard duo"><span class="tf">{T["duo"]}</span><div class="price">36&nbsp;€</div><div class="per">{T["duo_per"]}</div><a class="btn btn-navy" href="contact.html">{T["ask"]}</a></div>'
             return s
         values = ''.join(f'<div class="value"><div class="ar">{a}</div><b>{b}</b><p>{p}</p></div>' for a, b, p in T['values'])

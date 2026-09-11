@@ -53,6 +53,7 @@ L = {
   tarifs_h2="Sesiones de 4 semanas, a tu ritmo", tarifs_p="Elige el número de horas por semana, a partir de una clase de una hora. Mismo precio para árabe y Corán.",
   plans=[("Fórmula 1","28&nbsp;€","1 h por semana · 4 semanas",["Clase individual en directo","Lengua árabe o Corán","Área del estudiante y seguimiento","Observaciones del profesor"]),
     ("Fórmula 2","48&nbsp;€","2 h por semana · 4 semanas",["Clase individual en directo","Lengua árabe o Corán","Área del estudiante y seguimiento","Observaciones del profesor"]),
+    ("Fórmula 3","72&nbsp;€","3 h por semana · 4 semanas",["Clase individual en directo","Lengua árabe o Corán","Área del estudiante y seguimiento","Observaciones del profesor"]),
     ("Fórmula en pareja","36&nbsp;€","1 h por semana · 4 semanas · para 2 personas",["Solo lengua árabe","Es decir, 4,50 € por alumno y hora","Área del estudiante y seguimiento","A petición a la administración"])],
   tarifs_note="Hasta 7 h por semana (168 €). Descuento del 10 % a partir de dos inscripciones en la misma familia.", tarifs_all="Todas las fórmulas",
   blog_kick="Blog y vídeos", blog_h2="Novedades de la escuela", blog_p="Nuestros artículos para entender el método, y extractos de clases para escuchar el aula.",
@@ -130,7 +131,7 @@ L = {
 
 'tarifs': dict(title="Precios — AL-FISSAH", desc="Precios de las clases individuales de árabe y Corán: sesiones de 4 semanas, de 28 € (1 h/semana) a 168 € (7 h/semana), fórmula en pareja 36 €.",
   h1="Precios de las clases individuales", lead="Las clases se desarrollan durante 4 semanas. El estudiante elige el número de horas a estudiar, con un mínimo de una clase de una hora por semana.",
-  badge="La más elegida", formule="Fórmula", per="{h} h por semana<br>durante 4 semanas", choose="Elegir", duo="Fórmula en pareja", duo_per="1 h por semana durante 4 semanas<br><b>para 2 personas</b>", ask="Solicitar",
+  badge="La más elegida", badge_reco="Recomendada", formule="Fórmula", per="{h} h por semana<br>durante 4 semanas", choose="Elegir", duo="Fórmula en pareja", duo_per="1 h por semana durante 4 semanas<br><b>para 2 personas</b>", ask="Solicitar",
   arabe_kick="Lengua árabe", arabe_h2="Clases de lengua árabe", arabe_p="Programas «El árabe en manos de nuestros hijos» y «El árabe en tus manos», método de lectura.",
   coran_kick="Corán", coran_h2="Clases de Corán", coran_p="Solo clases individuales. Es posible hacer sesiones de 30 minutos para el Corán: contacta con la administración.",
   good_h2="Conviene saber",
