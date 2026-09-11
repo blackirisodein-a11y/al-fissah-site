@@ -343,11 +343,22 @@ if INLINE:
         return f'data:image/{fmt.lower()};base64,' + base64.b64encode(buf.getvalue()).decode(), im.width, im.height
     CSS_INLINE = min_css(open(os.path.join(ROOT, 'assets/style.css'), encoding='utf-8').read())
     JS_INLINE = min_js(open(os.path.join(ROOT, 'assets/main.js'), encoding='utf-8').read())
-    MARK_B64, MARK_W, MARK_H = _b64('assets/logo-mark.png', 124)
-    FULL_B64, FULL_W, FULL_H = _b64('assets/logo.png', 420)
     FAVICON_B64, _, _ = _b64('assets/favicon.png', 48, 'PNG')   # PNG : format d'icône compris par tous les navigateurs
-else:
-    MARK_W, MARK_H, FULL_W, FULL_H = 124, 124, 313, 420
+# Logos : fichiers WebP sans perte dans assets/img (générés ici), partagés par toutes les pages et mis en cache un an.
+# Ils étaient incorporés en base64 dans chaque page : 76 Ko de HTML en plus sur l'accueil, 32 Ko sur chaque autre
+# page, retéléchargés à chaque page. Le workflow envoie assets/img avec les pages ; si l'image manque, l'en-tête
+# affiche le « A » de secours (onerror), l'écran d'ouverture se passe du logo.
+def _webp(path, height, name):
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, path))
+    r = height / im.height
+    im = im.resize((max(1, int(im.width * r)), height), Image.LANCZOS)
+    os.makedirs(os.path.join(ROOT, 'assets/img'), exist_ok=True)
+    im.save(os.path.join(ROOT, 'assets/img', name), 'WEBP', lossless=True, method=6)
+    return im.width, im.height
+MARK_IMG, FULL_IMG = 'assets/img/logo-mark.webp', 'assets/img/logo-intro.webp'
+MARK_W, MARK_H = _webp('assets/logo-mark.png', 124, 'logo-mark.webp')
+FULL_W, FULL_H = _webp('assets/logo.png', 420, 'logo-intro.webp')
 # Lettres arabes flottantes de l'écran d'ouverture : (lettre, position gauche %, délai s, durée s, orange ?)
 LD_SYMS = ''.join(f'<span class="ld-sym{" o" if o else ""}" style="left:{x}%;animation-delay:{d}s;animation-duration:{t}s" aria-hidden="true">{ch}</span>'
                   for ch, x, d, t, o in [('ا', 6, -1, 9, 0), ('ب', 16, -4.5, 10, 1), ('ت', 27, -7, 8.5, 0), ('ج', 38, -2.2, 11, 0), ('د', 50, -5.8, 9.5, 1), ('ر', 61, -8.2, 10, 0),
@@ -425,7 +436,7 @@ class Builder:
 <meta property="og:type" content="website">
 <meta property="og:url" content="{self.url(page)}">
 <meta property="og:locale" content="{m['og_locale']}">
-{fonts_preload(self.c, self.rel)}
+{fonts_preload(self.c, self.rel)}{'<link rel="preload" href="' + self.rel + FULL_IMG + '" as="image">' if page == 'index' else ''}
 <style>{fonts_css(self.c, self.rel, page)}</style>
 {("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
 <script type="application/ld+json">{org}</script>
@@ -449,7 +460,7 @@ class Builder:
   {LD_SYMS}
   <div class="ld-box">
     <span class="ld-ring" aria-hidden="true"></span>
-    <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" width="{FULL_W}" height="{FULL_H}" alt="" fetchpriority="high" onerror="this.style.display='none'">
+    <img class="ld-logo" src="{self.rel + FULL_IMG}" width="{FULL_W}" height="{FULL_H}" alt="" fetchpriority="high" onerror="this.style.display='none'">
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
     <div class="word-sub" id="typew-sub"></div>
     <div class="ld-line" aria-hidden="true"></div>
@@ -475,7 +486,7 @@ class Builder:
 
 <header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="index.html"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+    <a class="logo" href="index.html"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
     <ul class="menu">
       {menu}
     </ul>
@@ -508,7 +519,7 @@ class Builder:
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
           <a href="http://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>

@@ -67,7 +67,7 @@ html.intro-on body:not(.ready) *:not(#loader):not(#loader *){animation-play-stat
 @keyframes logofloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .ld-ring{position:absolute;top:0;left:50%;width:210px;height:210px;margin-left:-105px;border-radius:32px;border:2px solid rgba(245,135,31,.75);opacity:0;animation:ring 2.6s 1s ease-out infinite;pointer-events:none}
 @keyframes ring{0%{opacity:.7;transform:scale(.98)}70%{opacity:0;transform:scale(1.35)}100%{opacity:0;transform:scale(1.35)}}
-#loader .word{font-family:var(--display);font-weight:700;text-align:center;font-size:clamp(1.5rem,4.6vw,2.5rem);letter-spacing:-.01em;color:var(--navy);line-height:1.25;min-height:1.25em}
+#loader .word{font-family:var(--display);font-weight:700;text-align:center;font-size:clamp(1.5rem,4.6vw,2.5rem);letter-spacing:-.01em;color:var(--navy);line-height:1.25;min-height:1.25em;width:100%}
 .caret{display:inline-block;width:3px;height:1em;background:var(--orange);margin-left:6px;vertical-align:-.12em;animation:caret .8s steps(1) infinite}
 #loader .word-sub{font-family:var(--body);font-weight:600;font-size:clamp(.95rem,2.2vw,1.2rem);line-height:1.4;letter-spacing:.08em;color:var(--muted);text-align:center;opacity:0;transform:translateY(8px);transition:opacity .9s ease,transform .9s ease}
 #loader .ld-line{width:min(260px,70vw);height:3px;border-radius:3px;background:linear-gradient(90deg,var(--orange),#FFC37A);transform:scaleX(0);transition:transform 2.2s linear;box-shadow:0 0 14px rgba(245,135,31,.5)}
