@@ -86,7 +86,7 @@ L = {
   consent="I agree that my information is used to organise my trial lesson, in accordance with the", privacy="privacy policy",
   submit="Request my trial lesson", **{'or': "or"}, whatsapp="write to us on WhatsApp"),
 
-'progs': dict(title="Programmes — AL-FISSAH", desc="Arabic for children and adults, Quran, memorisation of the Mutūn, reading method and group lessons: all the programmes of the Al-Fissah institute.",
+'progs': dict(title="Programmes — AL-FISSAH", desc="Arabic for children and adults, Quran, memorisation of the Mutūn, reading method: all the programmes of the Al-Fissah institute.",
   h1="Our programmes", lead="One-to-one or group lessons, for non-Arabic-speaking children and adults. Every programme comes with materials and audio, and takes place live with a native Arabic teacher.",
   toc_note="Books and materials are not provided on enrolment: order them at <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. The administration guides you according to your level.",
   items=[
@@ -94,7 +94,7 @@ L = {
      court="The reference programme for non-Arabic-speaking children aged 5 to 18: 12 textbooks with pictures, colours, dialogues and audio.",
      long="""<p>“Arabic in our children's hands” is a programme designed for non-Arabic speakers, aimed at children aged 5 to 18. Developed by an elite of academics specialised in teaching, it consists of 12 textbooks with audio, pictures, colours, dialogues and exercises.</p>
 <p>Your child does not speak Arabic? Arabic is not their mother tongue? With Allah's help, the Al-Fissah institute assists you and offers to make your child an Arabic speaker. You and us, together, to give your child a second language.</p>
-<p>Lessons take place in immersion, exclusively in Arabic, one-to-one or in a group (see <a href="#collectifs">group lessons</a>). Parents follow progress, remarks and homework in the student area.</p>""", cta="Enrol my child"),
+<p>Lessons take place in immersion, exclusively in Arabic, one-to-one or in a group. Parents follow progress, remarks and homework in the student area.</p>""", cta="Enrol my child"),
    dict(id='arabe-adultes', tag='Arabic language', ar='العَرَبِيَّةُ بَيْنَ يَدَيْكَ', titre="Arabic in your hands", facts=['8 textbooks','10 levels','Adults'],
      court="The complete course for non-Arabic-speaking adults: 8 textbooks divided into 10 levels within the school, with pictures, dialogues, exercises and audio for every lesson.",
      long="""<p>“Arabic in your hands” is a series for non-Arabic speakers, aimed mainly at adults. Written by the same authors as “Arabic in our children's hands”, it consists of 8 textbooks divided into 10 levels within our school, with pictures, dialogues, a simple style and exercises that aid comprehension.</p>

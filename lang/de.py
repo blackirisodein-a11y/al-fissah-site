@@ -86,7 +86,7 @@ L = {
   consent="Ich bin damit einverstanden, dass meine Angaben zur Organisation meiner Probestunde verwendet werden, gemäß der", privacy="Datenschutzerklärung",
   submit="Meine Probestunde anfragen", **{'or': "oder"}, whatsapp="schreiben Sie uns auf WhatsApp"),
 
-'progs': dict(title="Programme — AL-FISSAH", desc="Arabisch für Kinder und Erwachsene, Koran, Auswendiglernen der Mutūn, Lesemethode und Gruppenunterricht: alle Programme der Schule Al-Fissah.",
+'progs': dict(title="Programme — AL-FISSAH", desc="Arabisch für Kinder und Erwachsene, Koran, Auswendiglernen der Mutūn, Lesemethode: alle Programme der Schule Al-Fissah.",
   h1="Unsere Programme", lead="Einzel- oder Gruppenunterricht für nicht arabischsprachige Kinder und Erwachsene. Jedes Programm enthält Material und Audio und findet live mit einem muttersprachlichen Lehrer statt.",
   toc_note="Bücher und Material werden bei der Anmeldung nicht mitgeliefert: Bestellen Sie sie auf <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. Die Verwaltung berät Sie entsprechend Ihrem Niveau.",
   items=[
@@ -94,7 +94,7 @@ L = {
      court="Das Referenzprogramm für nicht arabischsprachige Kinder von 5 bis 18 Jahren: 12 Lehrbücher mit Bildern, Farben, Dialogen und Audio.",
      long="""<p>„Arabisch in den Händen unserer Kinder“ ist ein Programm für Nicht-Arabischsprachige, gerichtet an Kinder von 5 bis 18 Jahren. Entwickelt von einer Elite von Akademikern mit Unterrichtsexpertise, besteht es aus 12 Lehrbüchern mit Audio, Bildern, Farben, Dialogen und Übungen.</p>
 <p>Ihr Kind spricht kein Arabisch? Arabisch ist nicht seine Muttersprache? Mit Allahs Hilfe unterstützt Sie die Schule Al-Fissah und bietet an, Ihr Kind arabischsprachig zu machen. Sie und wir, gemeinsam, um Ihrem Kind eine zweite Sprache zu schenken.</p>
-<p>Der Unterricht findet in Immersion statt, ausschließlich auf Arabisch, einzeln oder in der Gruppe (siehe <a href="#collectifs">Gruppenunterricht</a>). Eltern verfolgen Fortschritt, Anmerkungen und Hausaufgaben im Schülerbereich.</p>""", cta="Mein Kind anmelden"),
+<p>Der Unterricht findet in Immersion statt, ausschließlich auf Arabisch, einzeln oder in der Gruppe. Eltern verfolgen Fortschritt, Anmerkungen und Hausaufgaben im Schülerbereich.</p>""", cta="Mein Kind anmelden"),
    dict(id='arabe-adultes', tag='Arabische Sprache', ar='العَرَبِيَّةُ بَيْنَ يَدَيْكَ', titre="Arabisch in deinen Händen", facts=['8 Lehrbücher','10 Niveaus','Erwachsene'],
      court="Der komplette Kurs für nicht arabischsprachige Erwachsene: 8 Lehrbücher in 10 Niveaus innerhalb der Schule, mit Bildern, Dialogen, Übungen und Audio zu jeder Lektion.",
      long="""<p>„Arabisch in deinen Händen“ ist eine Reihe für Nicht-Arabischsprachige, hauptsächlich für Erwachsene. Von denselben Autoren wie „Arabisch in den Händen unserer Kinder“ verfasst, besteht sie aus 8 Lehrbüchern, die in unserer Schule in 10 Niveaus unterteilt sind, mit Bildern, Dialogen, einfachem Stil und verständnisfördernden Übungen.</p>

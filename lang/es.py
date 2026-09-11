@@ -86,7 +86,7 @@ L = {
   consent="Acepto que mis datos se utilicen para organizar mi clase de prueba, de acuerdo con la", privacy="política de privacidad",
   submit="Solicitar mi clase de prueba", **{'or': "o"}, whatsapp="escríbenos por WhatsApp"),
 
-'progs': dict(title="Programas — AL-FISSAH", desc="Lengua árabe para niños y adultos, Corán, memorización de los Mutún, método de lectura y clases en grupo: todos los programas del instituto Al-Fissah.",
+'progs': dict(title="Programas — AL-FISSAH", desc="Lengua árabe para niños y adultos, Corán, memorización de los Mutún, método de lectura: todos los programas del instituto Al-Fissah.",
   h1="Nuestros programas", lead="Clases individuales o en grupo, para niños y adultos no arabófonos. Cada programa incluye material y audios, y se imparte en directo con un profesor arabófono.",
   toc_note="Los libros y el material no se entregan con la inscripción: se piden en <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. La administración te orienta según tu nivel.",
   items=[
@@ -94,7 +94,7 @@ L = {
      court="El programa de referencia para niños no arabófonos de 5 a 18 años: 12 manuales con imágenes, colores, diálogos y audios.",
      long="""<p>«El árabe en manos de nuestros hijos» es un programa diseñado para no arabófonos, dirigido a niños de 5 a 18 años. Elaborado por una élite de académicos especialistas en enseñanza, se compone de 12 manuales con audio, imágenes, colores, diálogos y ejercicios.</p>
 <p>¿Tu hijo no es arabófono? ¿El árabe no es su lengua materna? Con la ayuda de Allah, el instituto Al-Fissah te acompaña y te propone hacer de tu hijo un arabófono. Tú y nosotros, juntos, para ofrecer una segunda lengua a tu hijo.</p>
-<p>Las clases se desarrollan en inmersión, exclusivamente en árabe, de forma individual o en grupo (ver <a href="#collectifs">clases en grupo</a>). Los padres siguen el avance, las observaciones y los deberes desde el área del estudiante.</p>""", cta="Inscribir a mi hijo"),
+<p>Las clases se desarrollan en inmersión, exclusivamente en árabe, de forma individual o en grupo. Los padres siguen el avance, las observaciones y los deberes desde el área del estudiante.</p>""", cta="Inscribir a mi hijo"),
    dict(id='arabe-adultes', tag='Lengua árabe', ar='العَرَبِيَّةُ بَيْنَ يَدَيْكَ', titre="El árabe en tus manos", facts=['8 manuales','10 niveles','Adultos'],
      court="El itinerario completo para adultos no arabófonos: 8 manuales divididos en 10 niveles dentro de la escuela, con imágenes, diálogos, ejercicios y audio para cada lección.",
      long="""<p>«El árabe en tus manos» es una serie destinada a no arabófonos, dirigida principalmente a adultos. Diseñada por los mismos autores que «El árabe en manos de nuestros hijos», se compone de 8 manuales divididos en 10 niveles dentro de nuestra escuela, con imágenes, diálogos, un estilo sencillo y ejercicios que ayudan a la comprensión.</p>

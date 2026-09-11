@@ -86,7 +86,7 @@ L = {
   consent="J'accepte que mes informations soient utilisées pour organiser mon cours d'essai, conformément à la", privacy="politique de confidentialité",
   submit="Demander mon cours d'essai", or_="ou", whatsapp="écrivez-nous sur WhatsApp"),
 
-'progs': dict(title="Programmes — AL-FISSAH", desc="Langue arabe pour enfants et adultes, Coran, mémorisation des Mutûn, méthode de lecture et cours collectifs : tous les programmes de l'école Al-Fissah.",
+'progs': dict(title="Programmes — AL-FISSAH", desc="Langue arabe pour enfants et adultes, Coran, mémorisation des Mutûn, méthode de lecture : tous les programmes de l'école Al-Fissah.",
   h1="Nos programmes", lead="Cours individuels ou collectifs, pour enfants et adultes non-arabophones. Chaque programme est accompagné de supports et d'audios, et se déroule en direct avec un professeur arabophone.",
   toc_note="Les livres et supports ne sont pas fournis lors de l'inscription : ils sont à commander sur <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. L'administration vous guide selon votre niveau.",
   items=[
@@ -94,7 +94,7 @@ L = {
      court="Le programme de référence pour les enfants non-arabophones de 5 à 18 ans : 12 manuels avec des images, des couleurs, des dialogues et des audios.",
      long="""<p>« L'arabe entre les mains de nos enfants » est un programme conçu pour les non-arabophones, visant les enfants de 5 à 18 ans. Élaboré par une élite d'académiciens spécialistes dans l'enseignement, il se compose de 12 manuels accompagnés d'audio, avec des images, des couleurs, des dialogues et des exercices.</p>
 <p>Votre enfant n'est pas arabophone ? La langue arabe n'est pas sa langue maternelle ? Avec l'aide d'Allah, l'institut Al-Fissah vous assiste et vous propose de faire de votre enfant un arabophone. Vous et nous, ensemble, pour offrir une deuxième langue à votre enfant.</p>
-<p>Les cours se déroulent en immersion, exclusivement en arabe, en individuel ou en groupe (voir <a href="#collectifs">cours collectifs</a>). Les parents suivent l'avancement, les remarques et les devoirs depuis l'espace étudiant.</p>""", cta="Inscrire mon enfant"),
+<p>Les cours se déroulent en immersion, exclusivement en arabe, en individuel ou en groupe. Les parents suivent l'avancement, les remarques et les devoirs depuis l'espace étudiant.</p>""", cta="Inscrire mon enfant"),
    dict(id='arabe-adultes', tag='Langue arabe', ar='العَرَبِيَّةُ بَيْنَ يَدَيْكَ', titre="L'arabe entre tes mains", facts=['8 manuels','10 niveaux','Adultes'],
      court="Le parcours complet pour adultes non-arabophones : 8 manuels divisés en 10 niveaux au sein de l'école, avec images, dialogues, exercices et audio pour chaque leçon.",
      long="""<p>« L'arabe entre tes mains » est une série destinée aux non-arabophones, visant principalement les adultes. Conçue par les mêmes auteurs que « L'arabe entre les mains de nos enfants », elle est composée de 8 manuels divisés en 10 niveaux au sein de notre école, avec des images, des dialogues, un style simple et des exercices aidant à la compréhension.</p>

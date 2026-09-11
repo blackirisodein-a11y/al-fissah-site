@@ -369,7 +369,11 @@ from testimonials import TESTI  # témoignages réels, en français
 
 def load_lang(code):
     spec = importlib.util.spec_from_file_location(code, os.path.join(ROOT, 'lang', code + '.py'))
-    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m.L
+    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    # « Cours d'arabe en groupe — niveaux 1 à 12 » retiré du site (demande du client, 11/09/2026) : le texte reste
+    # dans lang/*.py (id 'collectifs') mais n'est plus publié, ni sur l'accueil ni sur la page Programmes.
+    m.L['progs']['items'] = [p for p in m.L['progs']['items'] if p['id'] != 'collectifs']
+    return m.L
 
 def strip(s): return re.sub('<[^>]+>', ' ', s).strip()
 
@@ -534,7 +538,6 @@ class Builder:
         <ul>
           <li><a href="a-propos.html">{n['apropos']}</a></li>
           <li><a href="programmes.html">{f['prog_ind']}</a></li>
-          <li><a href="programmes.html#collectifs">{f['prog_col']}</a></li>
           <li><a href="tarifs.html">{n['tarifs']}</a></li>
           <li><a href="temoignages.html">{n['temoignages']}</a></li>
           <li><a href="{self.essai_url()}">{f['essai']}</a></li>
