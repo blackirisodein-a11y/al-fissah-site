@@ -71,10 +71,21 @@ FONT_PRELOAD = {                       # (famille, sous-ensemble, graisse ou Non
 }
 FONT_FACES = json.load(open(os.path.join(ROOT, 'assets/fonts/polices.json'), encoding='utf-8'))
 
+# Polices de secours « aux mêmes dimensions » : Arial (ou équivalent local) redimensionnée pour occuper la même largeur et la
+# même hauteur de ligne que la vraie police. Le texte est d'abord affiché avec elle, puis remplacé sans que rien ne bouge
+# (décalage de mise en page mesuré à 0,06-0,08 avant). Valeurs calculées avec fontTools (méthode de next/font).
+FONT_FALLBACKS = {
+  'Space Grotesk': "size-adjust:111.42%;ascent-override:88.31%;descent-override:26.21%;line-gap-override:0%",
+  'Karla': "size-adjust:103.99%;ascent-override:88.18%;descent-override:24.23%;line-gap-override:0%",
+  'Manrope': "size-adjust:100.71%;ascent-override:105.85%;descent-override:29.79%;line-gap-override:0%",
+}
+
 def fonts_css(lang, rel):
     """Règles @font-face de la page (font-display:swap : le texte s'affiche tout de suite en police de secours)."""
     fams = FONT_FAMILIES.get(lang, FONT_FAMILIES['default'])
-    return ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:swap;"
+    fallbacks = ''.join(f"@font-face{{font-family:'{f} Fallback';src:local('Arial'),local('Liberation Sans'),local('Helvetica Neue'),local('Roboto');{FONT_FALLBACKS[f]}}}"
+                        for f in fams if f in FONT_FALLBACKS)
+    return fallbacks + ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:swap;"
                    f"src:url({rel}assets/fonts/{f['fichier']}) format('woff2');unicode-range:{f['unicode_range']}}}"
                    for f in FONT_FACES if f['famille'] in fams)
 
