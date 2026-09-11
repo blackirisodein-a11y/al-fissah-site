@@ -80,8 +80,10 @@ FONT_FALLBACKS = {
   'Manrope': "size-adjust:100.71%;ascent-override:105.85%;descent-override:29.79%;line-gap-override:0%",
 }
 
-def fonts_css(lang, rel):
-    """Règles @font-face de la page (font-display:swap : le texte s'affiche tout de suite en police de secours)."""
+def fonts_css(lang, rel, page=''):
+    """Règles @font-face de la page (font-display:swap : le texte s'affiche tout de suite en police de secours).
+    Sur l'accueil, l'écran d'ouverture couvre la page ~5 s : les polices y sont attendues (block) plutôt que
+    remplacées après coup — aucun texte visible n'est retardé, et plus aucun décalage de mise en page."""
     fams = FONT_FAMILIES.get(lang, FONT_FAMILIES['default'])
     fallbacks = ''.join(f"@font-face{{font-family:'{f} Fallback';src:local('Arial'),local('Liberation Sans'),local('Helvetica Neue'),local('Roboto');{FONT_FALLBACKS[f]}}}"
                         for f in fams if f in FONT_FALLBACKS)
@@ -89,7 +91,7 @@ def fonts_css(lang, rel):
     # (préchargée, quelques dizaines de ms) au lieu d'être affiché en police de secours puis remplacé, ce qui déplaçait
     # tout le premier écran (décalage 0,23 mesuré sur l'accueil arabe). Les polices latines ont une police de secours
     # aux mêmes dimensions (ci-dessus) et gardent swap.
-    return fallbacks + ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:{'block' if f['famille'] in ('Tajawal', 'Amiri') else 'swap'};"
+    return fallbacks + ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:{'block' if page == 'index' or f['famille'] in ('Tajawal', 'Amiri') else 'swap'};"
                    f"src:url({rel}assets/fonts/{f['fichier']}) format('woff2');unicode-range:{f['unicode_range']}}}"
                    for f in FONT_FACES if f['famille'] in fams)
 
@@ -424,11 +426,11 @@ class Builder:
 <meta property="og:url" content="{self.url(page)}">
 <meta property="og:locale" content="{m['og_locale']}">
 {fonts_preload(self.c, self.rel)}
-<style>{fonts_css(self.c, self.rel)}</style>
+<style>{fonts_css(self.c, self.rel, page)}</style>
 {("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
 <script type="application/ld+json">{org}</script>
 <script>window.I18N={json.dumps(L['js'], ensure_ascii=False)};</script>
-{'<script>try{if(sessionStorage.getItem("af-intro"))document.documentElement.classList.add("intro-seen")}catch(e){}</script>' if page == 'index' else ''}
+{'<script>try{document.documentElement.classList.add(sessionStorage.getItem("af-intro")?"intro-seen":"intro-on")}catch(e){document.documentElement.classList.add("intro-on")}</script>' if page == 'index' else ''}
 {extra}
 </head>
 <body class="lang-{self.c}">

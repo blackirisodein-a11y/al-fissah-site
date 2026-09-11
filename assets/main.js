@@ -26,7 +26,7 @@ if(loader&&introSeen){
     // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
-    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready')},520)};
+    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready');document.documentElement.classList.remove('intro-on')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
   setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}
@@ -58,9 +58,9 @@ if(cv&&!mq.matches){
     for(let i=0;i<ns;i++){const ch=chars[Math.floor(Math.random()*chars.length)];
       syms.push({x:Math.random()*W,y:Math.random()*H,s:(22+Math.random()*26)*d,vx:(Math.random()-.5)*.18*d,vy:(-.08-Math.random()*.16)*d,
         o:.05+Math.random()*.07,or:Math.random()<.4,ph:Math.random()*Math.PI*2,rot:(Math.random()-.5)*.3,ch,ar:/[\u0600-\u06FF]/.test(ch)})}};
-  // 30 images/s et déplacement calculé sur le temps écoulé : même vitesse qu'avant sur tous les écrans (60 ou 120 Hz), moitié moins de travail.
+  // 24 images/s et déplacement calculé sur le temps écoulé : même vitesse qu'avant sur tous les écrans (60 ou 120 Hz), moitié moins de travail.
   let last=0;
-  const tick=t=>{if(t-last<32){requestAnimationFrame(tick);return}
+  const tick=t=>{if(t-last<40){requestAnimationFrame(tick);return}
     const k=Math.min(3,(t-(last||t-16))/16);last=t;ctx.clearRect(0,0,W,H);
     for(const p of syms){p.x+=p.vx*k;p.y+=p.vy*k;
       if(p.y<-60)p.y=H+60;if(p.x<-60)p.x=W+60;if(p.x>W+60)p.x=-60;

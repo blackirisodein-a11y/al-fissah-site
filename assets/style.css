@@ -55,7 +55,9 @@ html.intro-seen #loader{display:none;animation:none}
 /* Pendant l'écran d'ouverture, tout ce qui est derrière lui est invisible : ses 44 animations (taches, vagues, cartes
    des programmes, classe virtuelle…) attendent l'ouverture du site (body.ready) au lieu de consommer le processeur
    pour rien (≈ 0,4 s de blocage mesuré sur mobile). Sans effet sur les autres pages ni pour un navigateur ancien. */
-body:has(#loader:not(.done)):not(.ready) *:not(#loader):not(#loader *){animation-play-state:paused}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
+html.intro-on body:not(.ready) *:not(#loader):not(#loader *){animation-play-state:paused}
+/* Sections sous le hero : mise en page et peinture différées tant qu'elles sont hors écran (content-visibility). */
+.hero ~ .journey,.hero ~ section{content-visibility:auto;contain-intrinsic-size:auto 900px}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
 #loader.closing .ld-box{animation:boxout .6s ease forwards}
 @keyframes boxout{to{opacity:0;transform:translateY(-26px);filter:blur(4px)}}
 .ld-box{position:relative;display:grid;place-items:center;gap:1.3rem;padding:0 20px}
