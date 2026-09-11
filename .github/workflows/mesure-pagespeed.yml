@@ -54,6 +54,15 @@ jobs:
           for (const k of ['mainthread-work-breakdown','bootup-time','uses-long-cache-ttl','unused-css-rules','font-display','network-rtt','network-server-latency']) {
             const x = a[k]; if (x && x.score !== null && x.score < 0.9) console.log(`  a revoir : ${k} = ${x.displayValue || x.score}`);
           }
+          const mt = a['mainthread-work-breakdown'].details && a['mainthread-work-breakdown'].details.items || [];
+          if (mt.length) console.log('  travail principal : ' + mt.map(i => i.groupLabel + ' ' + Math.round(i.duration) + ' ms').join(', '));
+          const ls = a['layout-shifts'] && a['layout-shifts'].details && a['layout-shifts'].details.items || [];
+          for (const i of ls.slice(0, 4)) console.log('  decalage : ' + (i.score || 0).toFixed(3) + ' ' + (i.node ? i.node.selector : '') + ' ' + (i.subItems && i.subItems.items ? i.subItems.items.map(x => x.cause || x.extra && x.extra.value || '').join('; ') : ''));
+          const nr = a['network-requests'].details.items; const par = {};
+          for (const i of nr) { const t = i.resourceType || '?'; par[t] = (par[t] || 0) + (i.transferSize || 0); }
+          console.log('  octets par type : ' + Object.entries(par).map(([k, v]) => k + ' ' + Math.round(v / 1024) + ' Ko').join(', '));
+          const gros = nr.filter(i => i.transferSize > 30000).map(i => Math.round(i.transferSize / 1024) + ' Ko ' + i.url.replace(/^https?:\/\/[^/]+/, '').slice(0, 60));
+          if (gros.length) console.log('  fichiers > 30 Ko : ' + gros.join(' | '));
           JS
           for u in ${{ github.event.inputs.pages }}; do
             for f in mobile desktop; do
