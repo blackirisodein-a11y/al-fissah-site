@@ -1,7 +1,7 @@
 """Inventaire de la chaîne YouTube de l'école (exécuté par l'action GitHub « Inventaire YouTube »).
 Part d'une vidéo connue, retrouve la chaîne, ses playlists et les vidéos de chaque playlist,
 puis imprime un JSON. Aucune clé d'API : lecture des pages publiques."""
-import json, re, sys, urllib.request
+import json, pathlib, re, sys, urllib.request
 
 VIDEO = sys.argv[1] if len(sys.argv) > 1 else "MNiWkEPoGNw"
 H = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
@@ -96,10 +96,16 @@ for pl in out["playlists"]:
         dp = initial_data(page(f"https://www.youtube.com/playlist?list={pl['id']}"))
     except Exception as e:
         pl["error"] = str(e); continue
-    vs = []
+    vs = []; sid2 = set()
     for r in walk(dp, "playlistVideoRenderer"):
         v = r["playlistVideoRenderer"]
-        vs.append({"id": v.get("videoId"), "title": text(v.get("title")), "len": text(v.get("lengthText"))})
+        if v.get("videoId") and v["videoId"] not in sid2:
+            sid2.add(v["videoId"]); vs.append({"id": v.get("videoId"), "title": text(v.get("title")), "len": text(v.get("lengthText"))})
+    tok = collect(dp, vs, sid2); n = 0
+    while tok and n < 10:
+        n += 1
+        try: tok = collect(innertube(tok), vs, sid2)
+        except Exception as e: pl["error"] = str(e); break
     pl["videos"] = vs
     hdr = next(walk(dp, "playlistHeaderRenderer"), None)
     if hdr:
@@ -113,6 +119,7 @@ try:
 except Exception as e:
     out["latest_error"] = str(e)
 
+pathlib.Path("youtube.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 print("=====JSON=====")
 print(json.dumps(out, ensure_ascii=False))
 print("=====FIN=====")
