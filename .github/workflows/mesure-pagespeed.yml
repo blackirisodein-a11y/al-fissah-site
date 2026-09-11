@@ -43,6 +43,10 @@ jobs:
           cat > resume.js <<'JS'
           const r = require('./' + process.argv[2]); const a = r.audits; const m = a.metrics.details.items[0];
           const s = Math.round(r.categories.performance.score * 100);
+          const cat = k => r.categories[k] ? Math.round(r.categories[k].score * 100) : '-';
+          console.log(`  SEO ${cat('seo')} | accessibilite ${cat('accessibility')} | bonnes pratiques ${cat('best-practices')}`);
+          for (const [k, c] of Object.entries(r.categories)) { if (k === 'performance') continue;
+            for (const ref of c.auditRefs) { const x = a[ref.id]; if (x && x.score !== null && x.score < 1 && x.scoreDisplayMode !== 'informative' && x.scoreDisplayMode !== 'notApplicative' && x.scoreDisplayMode !== 'notApplicable') console.log(`  ${k} a corriger : ${ref.id} — ${x.title}${x.displayValue ? ' (' + x.displayValue + ')' : ''}`); } }
           const ms = v => (v / 1000).toFixed(1) + ' s';
           console.log(`  SCORE ${s}  | premier affichage ${ms(m.firstContentfulPaint)} | LCP ${ms(m.largestContentfulPaint)} | blocage ${Math.round(m.totalBlockingTime)} ms | index de vitesse ${ms(m.speedIndex)} | CLS ${m.cumulativeLayoutShift.toFixed(3)}`);
           console.log(`  temps de reponse serveur : ${a['server-response-time'].displayValue || ''} | compression : ${a['uses-text-compression'].score === 1 ? 'ok' : 'NON — ' + (a['uses-text-compression'].displayValue || '')} | poids total : ${a['total-byte-weight'].displayValue}`);
@@ -68,7 +72,7 @@ jobs:
             for f in mobile desktop; do
               extra=""; [ "$f" = "desktop" ] && extra="--preset=desktop"
               echo "=== $u — $f"
-              lighthouse "$u" $extra --only-categories=performance --quiet --output=json --output-path=./rapport.json \
+              lighthouse "$u" $extra --only-categories=performance,seo,accessibility,best-practices --quiet --output=json --output-path=./rapport.json \
                 --chrome-flags="--headless=new --no-sandbox" >/dev/null 2>&1 || echo "  échec de la mesure"
               node resume.js rapport.json
             done
