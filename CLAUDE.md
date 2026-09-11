@@ -35,10 +35,11 @@ python3 build.py fr en           # seulement certaines langues
 python3 build.py --site https://exemple.fr --preview
 ```
 
-**`--inline` est important.** Il intègre CSS, JS et logos (base64, WebP sans perte) dans chaque page.
+**`--inline` est important.** Il intègre CSS et JS dans chaque page (les logos et polices sont des fichiers
+sous `assets/img` et `assets/fonts`, envoyés par le workflow).
 Raison : les transferts FTP par FileZilla créaient le dossier `assets` sans y déposer les
 fichiers, ce qui cassait tout le site en silence. Avec `--inline`, chaque page est autonome ;
-si une page manque au transfert, elle seule est concernée. Pages ~300 Ko, ~11 Mo au total.
+si une page manque au transfert, elle seule est concernée. Pages ~130 Ko (≈ 35 Ko compressées).
 
 ### Vérifier
 
@@ -56,30 +57,40 @@ Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes
 
 ### Performance (PageSpeed) — ce qui a été fait le 11/09/2026, à ne pas défaire
 
-- **Polices hébergées sur le site** : `assets/fonts/*.woff2` (fichiers Google Fonts, licence OFL,
-  sous-ensembles latin / arabe / cyrillique) + inventaire `assets/fonts/polices.json`.
-  Space Grotesk, Karla et Manrope sont des polices **variables** (un seul fichier par famille et
-  sous-ensemble, `font-weight:200 800`) ; Tajawal reste en 4 graisses ; Amiri est réduite au
-  bloc arabe U+0600-06FF (lettres décoratives uniquement, `pyftsubset`). `build.py`
-  écrit les `@font-face` dans la page (`fonts_css`) et précharge titre + texte courant
-  (`fonts_preload`). Plus aucune requête vers fonts.googleapis.com (elle bloquait l'affichage
-  0,5 à 0,8 s sur mobile). Poppins n'est plus chargée (texte de secours du logo seulement).
-  Le workflow copie `assets/fonts` sur le serveur ; en dépôt manuel FileZilla, **ne pas oublier
-  ce dossier** (sinon le site s'affiche en police système, sans casser).
-- **Logos en WebP sans perte** (`_b64`) : page d'accueil 319 Ko → 219 Ko, autres pages ~180 → ~135 Ko.
-  Favicon : PNG 48 px à part. CSS et JS intégrés sont allégés (`min_css`, `min_js` : commentaires
-  et indentation retirés, rien d'autre).
-- **Hero visible dès le premier rendu** (`.reveal-seq>*{opacity:1}`) : l'apparition en cascade
-  ne se joue qu'à `body.ready`, l'écran d'ouverture couvre le hero pendant ce temps. Avant, le
-  plus grand texte n'était peint qu'après l'intro (LCP 2,9 s). Effet secondaire utile : sans JS,
-  le hero s'affiche.
-- **Symboles flottants** (`#floatsyms`) : 30 images/s, résolution plafonnée à 1,5×, déplacement
-  fonction du temps écoulé (même vitesse partout).
-- `.htaccess` : types MIME woff2/webp, cache 1 an immutable pour polices et images, Brotli si dispo.
-- Mesure locale : Lighthouse 12 en ligne de commande sur un petit serveur gzip (les fichiers
-  vivent dans le scratchpad de la session, méthode dans le rapport du 11/09). Les chiffres
-  PageSpeed réels dépendent du serveur LWS (TTFB, compression) : vérifier sur
-  pagespeed.web.dev après mise en ligne.
+Mesuré sur le site en ligne (action GitHub « Mesure PageSpeed », Lighthouse 12, un passage) :
+accueil **89 mobile / 99 bureau**, accueil arabe 98 / 99, tarifs et programmes 100 / 100
+(avant : 75 / 77 d'après PageSpeed Insights). Le point restant sur l'accueil mobile est l'écran
+d'ouverture lui-même (index de vitesse ≈ 3 s, blocage ≈ 0,4 s) : rythme voulu par le client.
+
+- **Mesurer** : onglet *Actions* → « Mesure PageSpeed » → *Run workflow* (adresses modifiables). Le
+  journal de l'étape « Mesurer » donne score, délais, décalages, réponse serveur et compression.
+  Le site n'est pas joignable depuis l'environnement de Claude Code : c'est la seule mesure fiable.
+- **Polices hébergées sur le site** : `assets/fonts/*.woff2` (fichiers Google Fonts, licence OFL) +
+  inventaire `assets/fonts/polices.json`. Space Grotesk, Karla, Manrope en version **variable** (un
+  fichier par famille et sous-ensemble) ; Tajawal en 4 graisses ; Amiri réduite au bloc arabe
+  U+0600-06FF (`pyftsubset`). `build.py` écrit les `@font-face` (`fonts_css`) et précharge titre + texte
+  courant (`fonts_preload`). Polices de secours « … Fallback » (Arial ajustée : `FONT_FALLBACKS`,
+  calculées avec fontTools) pour que l'arrivée de la vraie police ne déplace rien. `font-display` :
+  `swap` partout, sauf **accueil** (toutes) et Tajawal/Amiri (partout) en `block`, car l'intro couvre
+  l'accueil et le remplacement de police déplaçait le premier écran.
+- **Logos** : fichiers WebP sans perte générés par `build.py` dans `assets/img/` (`logo-intro.webp`
+  420 px pour l'écran d'ouverture, préchargé ; `logo-mark.webp` 124 px en-tête / pied de page), cache
+  1 an. Plus de base64 dans les pages (accueil 113 → 37 Ko compressés). Favicon : PNG 48 px en data URI.
+  Le workflow envoie `assets/fonts` et `assets/img` ; en dépôt manuel FileZilla, **ne pas oublier ces
+  deux dossiers** (sinon : police système et « A » de secours, sans casser).
+- **Écran d'ouverture** : fond et trame déplacés par `transform` (couches `.ld-bg`, `.ld-dots`) et non
+  par `background-position` ; halos, taches `.blob` et bandes `.aur` sans `filter:blur` (dégradés fondus,
+  masque pour les bandes) ; trait orange en `scaleX` ; titre en pleine largeur et hauteurs de ligne
+  fixes. Le script d'en-tête pose `html.intro-on` (ou `intro-seen`) ; tant que `body.ready` n'est pas
+  là, **toutes les animations hors intro sont en pause** (règle `html.intro-on body:not(.ready) …`) et le
+  décor `#floatsyms` ne démarre qu'à l'ouverture. Ne pas revenir à `:has()` pour cette règle : elle
+  faisait recalculer toute la page à chaque lettre tapée.
+- **Hero visible dès le premier rendu** (`.reveal-seq>*{opacity:1}`) ; l'apparition en cascade se joue
+  à `body.ready`. Sections sous le hero en `content-visibility:auto` (rendu quand elles approchent).
+- **Vidéo YouTube** : image + bouton (`.yt-poster`), lecteur inséré au clic (≈ 1 Mo de script évité).
+- **Symboles flottants** : 24 images/s, résolution ≤ 1,5×, déplacement lié au temps écoulé.
+- CSS/JS intégrés allégés (`min_css`, `min_js`) ; `.htaccess` : types MIME woff2/webp, cache long,
+  Brotli si dispo. Rapport détaillé : `docs/RAPPORT-PAGESPEED-2026-09-11.md` du dépôt de la plateforme.
 
 ---
 
