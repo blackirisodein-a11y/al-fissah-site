@@ -1,0 +1,66 @@
+# Mesure de performance du site EN LIGNE, depuis GitHub (Lighthouse 12, le moteur de PageSpeed Insights).
+# Lancement à la main : onglet Actions → « Mesure PageSpeed » → Run workflow.
+# Le journal de l'étape « Mesurer » donne, pour chaque page, le score mobile et bureau, les délais
+# (premier affichage, LCP, blocage), le temps de réponse du serveur et la compression constatée.
+name: Mesure PageSpeed
+
+on:
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: "Adresses à mesurer, séparées par des espaces"
+        default: "https://al-fissah.blackirys.com/ https://al-fissah.blackirys.com/tarifs.html https://al-fissah.blackirys.com/ar/"
+        required: true
+
+jobs:
+  mesurer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Réponse du serveur (en-têtes, compression, temps de réponse)
+        run: |
+          for u in ${{ github.event.inputs.pages }}; do
+            echo "=== $u"
+            curl -sS -o /dev/null -D - -H 'Accept-Encoding: gzip, br' \
+              -w 'TTFB %{time_starttransfer}s  total %{time_total}s  octets recus %{size_download}  http %{http_version}\n' "$u" \
+              | grep -iE '^HTTP/|content-encoding|content-length|cache-control|^server|vary|TTFB' || true
+            echo "--- sans compression :"
+            curl -sS -o /dev/null -w 'octets recus %{size_download}\n' "$u"
+            echo "--- police :"
+            curl -sS -o /dev/null -D - "https://al-fissah.blackirys.com/assets/fonts/karla-variable-latin.woff2" \
+              | grep -iE '^HTTP/|content-type|cache-control|content-length' || true
+          done
+
+      - name: Installer Lighthouse
+        run: npm install -g lighthouse@12
+
+      - name: Mesurer
+        run: |
+          cat > resume.js <<'JS'
+          const r = require('./' + process.argv[2]); const a = r.audits; const m = a.metrics.details.items[0];
+          const s = Math.round(r.categories.performance.score * 100);
+          const ms = v => (v / 1000).toFixed(1) + ' s';
+          console.log(`  SCORE ${s}  | premier affichage ${ms(m.firstContentfulPaint)} | LCP ${ms(m.largestContentfulPaint)} | blocage ${Math.round(m.totalBlockingTime)} ms | index de vitesse ${ms(m.speedIndex)} | CLS ${m.cumulativeLayoutShift.toFixed(3)}`);
+          console.log(`  temps de reponse serveur : ${a['server-response-time'].displayValue || ''} | compression : ${a['uses-text-compression'].score === 1 ? 'ok' : 'NON — ' + (a['uses-text-compression'].displayValue || '')} | poids total : ${a['total-byte-weight'].displayValue}`);
+          const lcp = a['largest-contentful-paint-element'].details && a['largest-contentful-paint-element'].details.items;
+          if (lcp && lcp[0] && lcp[0].items[0]) console.log('  element LCP : ' + lcp[0].items[0].node.selector);
+          if (lcp && lcp[1]) console.log('  phases LCP : ' + lcp[1].items.map(i => i.phase + ' ' + Math.round(i.timing) + ' ms').join(', '));
+          const rb = a['render-blocking-resources'].details && a['render-blocking-resources'].details.items || [];
+          if (rb.length) console.log('  bloquant : ' + rb.map(i => i.url.slice(-50) + ' (' + i.wastedMs + ' ms)').join(', '));
+          for (const k of ['mainthread-work-breakdown','bootup-time','uses-long-cache-ttl','unused-css-rules','font-display','network-rtt','network-server-latency']) {
+            const x = a[k]; if (x && x.score !== null && x.score < 0.9) console.log(`  a revoir : ${k} = ${x.displayValue || x.score}`);
+          }
+          JS
+          for u in ${{ github.event.inputs.pages }}; do
+            for f in mobile desktop; do
+              extra=""; [ "$f" = "desktop" ] && extra="--preset=desktop"
+              echo "=== $u — $f"
+              lighthouse "$u" $extra --only-categories=performance --quiet --output=json --output-path=./rapport.json \
+                --chrome-flags="--headless=new --no-sandbox" >/dev/null 2>&1 || echo "  échec de la mesure"
+              node resume.js rapport.json
+            done
+          done
