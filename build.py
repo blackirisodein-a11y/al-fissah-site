@@ -48,11 +48,61 @@ if '--public' in sys.argv:
     PREVIEW = False
 LANGS = [c for c in ['fr', 'en', 'ar', 'ru', 'es', 'de'] if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lang', c + '.py'))]
 LANG_NAMES = {'fr': 'Français', 'en': 'English', 'ar': 'العربية', 'ru': 'Русский', 'es': 'Español', 'de': 'Deutsch'}
-FONTS = {
-  'default': "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Karla:wght@400;500;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
-  'ar': "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
-  'ru': "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@500;600&family=Amiri:wght@400;700&display=swap",
+# --- Polices : hébergées sur le site (assets/fonts/*.woff2, licence OFL, fichiers Google Fonts) ---
+# Avant : une feuille de style chargée depuis fonts.googleapis.com bloquait l'affichage de chaque
+# page (~0,5 à 0,8 s sur mobile). Désormais les règles @font-face sont dans la page et les fichiers
+# sont servis depuis le même domaine ; seuls les sous-ensembles utiles sont fournis (latin pour
+# fr/en/es/de, arabe pour ar, cyrillique + latin pour ru) et le navigateur ne télécharge que les
+# graisses réellement affichées (unicode-range). Poppins n'est plus chargée : elle ne servait
+# qu'au texte de secours affiché si l'image du logo manque.
+# Inventaire : assets/fonts/polices.json (famille, graisse, sous-ensemble, fichier, unicode-range).
+FONT_FAMILIES = {                      # familles chargées selon la langue de la page
+  'default': ['Space Grotesk', 'Karla', 'Amiri'],
+  'ar': ['Tajawal', 'Amiri'],
+  'ru': ['Manrope', 'Amiri'],
 }
+FONT_PRELOAD = {                       # (famille, graisse, sous-ensemble) préchargés : titre + texte courant
+  'default': [('Space Grotesk', 700, 'latin'), ('Karla', 400, 'latin')],
+  'ar': [('Tajawal', 700, 'arabic'), ('Tajawal', 400, 'arabic')],
+  'ru': [('Manrope', 700, 'cyrillic'), ('Manrope', 400, 'cyrillic')],
+}
+FONT_FACES = json.load(open(os.path.join(ROOT, 'assets/fonts/polices.json'), encoding='utf-8'))
+
+def fonts_css(lang, rel):
+    """Règles @font-face de la page (font-display:swap : le texte s'affiche tout de suite en police de secours)."""
+    fams = FONT_FAMILIES.get(lang, FONT_FAMILIES['default'])
+    return ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:swap;"
+                   f"src:url({rel}assets/fonts/{f['fichier']}) format('woff2');unicode-range:{f['unicode_range']}}}"
+                   for f in FONT_FACES if f['famille'] in fams)
+
+def fonts_preload(lang, rel):
+    """Préchargement des deux polices du premier écran (titre, texte courant)."""
+    want = FONT_PRELOAD.get(lang, FONT_PRELOAD['default'])
+    files = [f['fichier'] for f in FONT_FACES if (f['famille'], f['graisse'], f['sous_ensemble']) in want]
+    return '\n'.join(f'<link rel="preload" href="{rel}assets/fonts/{n}" as="font" type="font/woff2" crossorigin>' for n in files)
+
+def min_css(s):
+    """Allège le CSS intégré : commentaires et retours à la ligne superflus (aucune règle modifiée)."""
+    s = re.sub(r'/\*.*?\*/', '', s, flags=re.S)
+    out = []
+    for line in s.split('\n'):
+        line = line.strip()
+        if not line: continue
+        if out and out[-1][-1] not in '{;},':
+            out.append(' ' + line)
+        else:
+            out.append(line)
+    return ''.join(out)
+
+def min_js(s):
+    """Allège le script intégré : commentaires de bloc et lignes de commentaire, indentation. Les lignes sont conservées."""
+    s = re.sub(r'^[ \t]*/\*.*?\*/[ \t]*\n?', '', s, flags=re.S | re.M)
+    out = []
+    for line in s.split('\n'):
+        t = line.strip()
+        if not t or t.startswith('//'): continue
+        out.append(t)
+    return '\n'.join(out)
 PAGES = ['index', 'programmes', 'tarifs', 'faq', 'temoignages', 'reglement', 'a-propos', 'contact', 'essai', 'inscription', 'mentions-legales', '404']
 
 
@@ -258,16 +308,25 @@ PICS = json.load(open(os.path.join(ROOT, 'pics.json')))
 if INLINE:
     import base64, io
     from PIL import Image
-    def _b64(path, height):
+    def _b64(path, height, fmt='WEBP'):
+        """Image redimensionnée (hauteur en px, taille d'affichage ×2 pour les écrans Retina) en data URI.
+        WebP sans perte : moitié moins lourd que le PNG pour une image identique — les logos faisaient 60 % du poids des pages."""
         im = Image.open(os.path.join(ROOT, path))
         r = height / im.height
         im = im.resize((max(1, int(im.width * r)), height), Image.LANCZOS)
-        buf = io.BytesIO(); im.save(buf, 'PNG', optimize=True)
-        return 'data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode()
-    CSS_INLINE = open(os.path.join(ROOT, 'assets/style.css'), encoding='utf-8').read()
-    JS_INLINE = open(os.path.join(ROOT, 'assets/main.js'), encoding='utf-8').read()
-    MARK_B64 = _b64('assets/logo-mark.png', 124)
-    FULL_B64 = _b64('assets/logo.png', 420)
+        buf = io.BytesIO()
+        if fmt == 'WEBP':
+            im.save(buf, 'WEBP', lossless=True, method=6)   # sans perte : identique au PNG, deux fois plus léger
+        else:
+            im.save(buf, 'PNG', optimize=True)
+        return f'data:image/{fmt.lower()};base64,' + base64.b64encode(buf.getvalue()).decode(), im.width, im.height
+    CSS_INLINE = min_css(open(os.path.join(ROOT, 'assets/style.css'), encoding='utf-8').read())
+    JS_INLINE = min_js(open(os.path.join(ROOT, 'assets/main.js'), encoding='utf-8').read())
+    MARK_B64, MARK_W, MARK_H = _b64('assets/logo-mark.png', 124)
+    FULL_B64, FULL_W, FULL_H = _b64('assets/logo.png', 420)
+    FAVICON_B64, _, _ = _b64('assets/favicon.png', 48, 'PNG')   # PNG : format d'icône compris par tous les navigateurs
+else:
+    MARK_W, MARK_H, FULL_W, FULL_H = 124, 124, 313, 420
 # Lettres arabes flottantes de l'écran d'ouverture : (lettre, position gauche %, délai s, durée s, orange ?)
 LD_SYMS = ''.join(f'<span class="ld-sym{" o" if o else ""}" style="left:{x}%;animation-delay:{d}s;animation-duration:{t}s" aria-hidden="true">{ch}</span>'
                   for ch, x, d, t, o in [('ا', 6, -1, 9, 0), ('ب', 16, -4.5, 10, 1), ('ت', 27, -7, 8.5, 0), ('ج', 38, -2.2, 11, 0), ('د', 50, -5.8, 9.5, 1), ('ر', 61, -8.2, 10, 0),
@@ -321,7 +380,6 @@ class Builder:
 
     def head(self, title, desc, page, extra=''):
         L = self.L; m = L['meta']
-        fonts = FONTS.get(self.c, FONTS['default'])
         noindex = '\n<meta name="robots" content="noindex, nofollow">' if PREVIEW else ''
         pp = '' if page == 'index' else page + '.html'
         hreflang = '\n'.join(f'<link rel="alternate" hreflang="{c}" href="{SITE}/{"" if c=="fr" else c+"/"}{pp}">' for c in LANGS)
@@ -336,7 +394,7 @@ class Builder:
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#0D204E">{noindex}
-<link rel="icon" type="image/png" href="{MARK_B64 if INLINE else self.rel + 'assets/favicon.png'}">
+<link rel="icon" type="image/png" href="{FAVICON_B64 if INLINE else self.rel + 'assets/favicon.png'}">
 <link rel="canonical" href="{self.url(page)}">
 {hreflang}
 <link rel="alternate" hreflang="x-default" href="{SITE}/{pp}">
@@ -346,9 +404,8 @@ class Builder:
 <meta property="og:type" content="website">
 <meta property="og:url" content="{self.url(page)}">
 <meta property="og:locale" content="{m['og_locale']}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="{fonts}" rel="stylesheet">
+{fonts_preload(self.c, self.rel)}
+<style>{fonts_css(self.c, self.rel)}</style>
 {("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
 <script type="application/ld+json">{org}</script>
 <script>window.I18N={json.dumps(L['js'], ensure_ascii=False)};</script>
@@ -370,7 +427,7 @@ class Builder:
   {LD_SYMS}
   <div class="ld-box">
     <span class="ld-ring" aria-hidden="true"></span>
-    <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" alt="" onerror="this.style.display='none'">
+    <img class="ld-logo" src="{FULL_B64 if INLINE else self.rel + LOGO_FULL}" width="{FULL_W}" height="{FULL_H}" alt="" fetchpriority="high" onerror="this.style.display='none'">
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
     <div class="word-sub" id="typew-sub"></div>
     <div class="ld-line" aria-hidden="true"></div>
@@ -396,7 +453,7 @@ class Builder:
 
 <header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="index.html"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+    <a class="logo" href="index.html"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
     <ul class="menu">
       {menu}
     </ul>
@@ -429,7 +486,7 @@ class Builder:
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{MARK_B64 if INLINE else self.rel + LOGO_FILE}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
           <a href="http://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>

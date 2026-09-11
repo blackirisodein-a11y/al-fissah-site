@@ -35,7 +35,7 @@ python3 build.py fr en           # seulement certaines langues
 python3 build.py --site https://exemple.fr --preview
 ```
 
-**`--inline` est important.** Il intègre CSS, JS et logos (base64) dans chaque page.
+**`--inline` est important.** Il intègre CSS, JS et logos (base64, WebP sans perte) dans chaque page.
 Raison : les transferts FTP par FileZilla créaient le dossier `assets` sans y déposer les
 fichiers, ce qui cassait tout le site en silence. Avec `--inline`, chaque page est autonome ;
 si une page manque au transfert, elle seule est concernée. Pages ~300 Ko, ~11 Mo au total.
@@ -53,6 +53,30 @@ for (const l of ['','ar/','en/','es/','de/','ru/'])
 ```
 
 Le débordement horizontal est le défaut qui revient le plus (arabe RTL, textes allemands longs).
+
+### Performance (PageSpeed) — ce qui a été fait le 11/09/2026, à ne pas défaire
+
+- **Polices hébergées sur le site** : `assets/fonts/*.woff2` (fichiers Google Fonts, licence OFL,
+  sous-ensembles latin / arabe / cyrillique) + inventaire `assets/fonts/polices.json`. `build.py`
+  écrit les `@font-face` dans la page (`fonts_css`) et précharge titre + texte courant
+  (`fonts_preload`). Plus aucune requête vers fonts.googleapis.com (elle bloquait l'affichage
+  0,5 à 0,8 s sur mobile). Poppins n'est plus chargée (texte de secours du logo seulement).
+  Le workflow copie `assets/fonts` sur le serveur ; en dépôt manuel FileZilla, **ne pas oublier
+  ce dossier** (sinon le site s'affiche en police système, sans casser).
+- **Logos en WebP sans perte** (`_b64`) : page d'accueil 319 Ko → 219 Ko, autres pages ~180 → ~135 Ko.
+  Favicon : PNG 48 px à part. CSS et JS intégrés sont allégés (`min_css`, `min_js` : commentaires
+  et indentation retirés, rien d'autre).
+- **Hero visible dès le premier rendu** (`.reveal-seq>*{opacity:1}`) : l'apparition en cascade
+  ne se joue qu'à `body.ready`, l'écran d'ouverture couvre le hero pendant ce temps. Avant, le
+  plus grand texte n'était peint qu'après l'intro (LCP 2,9 s). Effet secondaire utile : sans JS,
+  le hero s'affiche.
+- **Symboles flottants** (`#floatsyms`) : 30 images/s, résolution plafonnée à 1,5×, déplacement
+  fonction du temps écoulé (même vitesse partout).
+- `.htaccess` : types MIME woff2/webp, cache 1 an immutable pour polices et images, Brotli si dispo.
+- Mesure locale : Lighthouse 12 en ligne de commande sur un petit serveur gzip (les fichiers
+  vivent dans le scratchpad de la session, méthode dans le rapport du 11/09). Les chiffres
+  PageSpeed réels dépendent du serveur LWS (TTFB, compression) : vérifier sur
+  pagespeed.web.dev après mise en ligne.
 
 ---
 

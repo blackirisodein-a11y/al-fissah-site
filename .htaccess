@@ -13,10 +13,16 @@ ErrorDocument 404 /404.html
 
 # Encodage
 AddDefaultCharset UTF-8
+AddType font/woff2 .woff2
+AddType image/webp .webp
 
 # Compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml application/javascript image/svg+xml
 </IfModule>
 
 # Mise en cache des fichiers statiques
@@ -25,7 +31,20 @@ AddDefaultCharset UTF-8
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+<IfModule mod_headers.c>
+  # Polices et images : leur nom ne change pas quand elles changent → cache long, sans revalidation
+  <FilesMatch "\.(woff2|webp|png|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Pages : une version compressée et une non compressée peuvent coexister dans les caches intermédiaires
+  <FilesMatch "\.html$">
+    Header append Vary Accept-Encoding
+  </FilesMatch>
 </IfModule>
 
 # Sécurité : ne pas servir les fichiers de travail

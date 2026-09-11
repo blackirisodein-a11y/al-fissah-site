@@ -49,15 +49,20 @@ if(burger&&mob){
 const cv=$('#floatsyms');
 if(cv&&!mq.matches){
   const ctx=cv.getContext('2d');let syms=[],W,H;
-  const size=()=>{W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio};
-  const make=()=>{const d=devicePixelRatio;syms=[];
+  // Décor à 5-12 % d'opacité : une résolution plafonnée à 1,5× suffit (moitié moins de pixels à redessiner sur mobile).
+  const dpr=()=>Math.min(devicePixelRatio||1,1.5);
+  const size=()=>{W=cv.width=innerWidth*dpr();H=cv.height=innerHeight*dpr()};
+  const make=()=>{const d=dpr();syms=[];
     const chars=['A','a','1','2','\u03c0','\u2211','\u221a','=','+','x\u00b2','\u0627','\u0628','\u062a','\u0641','\u0645','\u0646','\u064a','\u0661','\u0662','\u0663'];
     const ns=Math.min(20,Math.floor(innerWidth/68));
     for(let i=0;i<ns;i++){const ch=chars[Math.floor(Math.random()*chars.length)];
       syms.push({x:Math.random()*W,y:Math.random()*H,s:(22+Math.random()*26)*d,vx:(Math.random()-.5)*.18*d,vy:(-.08-Math.random()*.16)*d,
         o:.05+Math.random()*.07,or:Math.random()<.4,ph:Math.random()*Math.PI*2,rot:(Math.random()-.5)*.3,ch,ar:/[\u0600-\u06FF]/.test(ch)})}};
-  const tick=t=>{ctx.clearRect(0,0,W,H);
-    for(const p of syms){p.x+=p.vx;p.y+=p.vy;
+  // 30 images/s et déplacement calculé sur le temps écoulé : même vitesse qu'avant sur tous les écrans (60 ou 120 Hz), moitié moins de travail.
+  let last=0;
+  const tick=t=>{if(t-last<32){requestAnimationFrame(tick);return}
+    const k=Math.min(3,(t-(last||t-16))/16);last=t;ctx.clearRect(0,0,W,H);
+    for(const p of syms){p.x+=p.vx*k;p.y+=p.vy*k;
       if(p.y<-60)p.y=H+60;if(p.x<-60)p.x=W+60;if(p.x>W+60)p.x=-60;
       const b=.7+.3*Math.sin(t/1100+p.ph);
       ctx.save();ctx.translate(p.x,p.y);ctx.rotate(Math.sin(t/2800+p.ph)*p.rot);
