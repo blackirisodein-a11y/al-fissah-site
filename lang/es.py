@@ -140,7 +140,7 @@ L = {
   pay_h2="Pago y renovación",
   pay_body="""<p>El pago se realiza con tarjeta bancaria mediante un enlace seguro (Stripe) o por transferencia bancaria. Las sesiones se renuevan automáticamente cada 4 semanas con un cobro programado. Para cancelar la suscripción, informa a la administración al menos 7 días antes del final de la sesión en curso.</p>
 <p>Toda inscripción es definitiva: no se concede ningún aplazamiento ni reembolso tras el pago de la sesión. Inscríbete solo si estás disponible y motivado para aprender. Los libros y el material no se entregan con la inscripción y deben pedirse en <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
-<p>Las clases en grupo tienen sus propios precios y fechas de sesión, indicados al hacer el pedido. <a href="contact.html">Contáctanos</a> para conocer los grupos abiertos.</p>""",
+<p>Clases en pareja o en grupo: te inscribes con tu propia pareja o tu propio grupo (de 3 a 10 alumnos). La escuela no forma los grupos. El precio del grupo lo comunica la administración en el momento de la inscripción.</p>""",
   note_b="¿Aún no te has decidido?", note_p="Empieza con una clase de prueba de 30 minutos."),
 
 'faq': dict(title="FAQ — Preguntas frecuentes — AL-FISSAH", desc="Inscripción, método de inmersión, libros utilizados, sesiones, clase de prueba, pago, material: todas las respuestas del instituto Al-Fissah.",
@@ -150,7 +150,7 @@ L = {
  ('¿Cómo inscribirse?', """<p>La inscripción se realiza directamente en línea. Basta con hacer clic en « Empezar ahora » y seguir los distintos pasos.</p>
 <p>Puedes elegir entre:</p>
 <ul><li>una clase individual;</li><li>una clase en pareja;</li><li>una clase colectiva.</li></ul>
-<p>Para las clases en pareja y en grupo, los estudiantes deben agruparse en el momento de la inscripción. Es obligatorio designar a un responsable de la pareja o del grupo para la gestión de los pagos.</p>"""),
+<p>Para las clases en pareja y en grupo, los estudiantes deben agruparse en el momento de la inscripción. Es obligatorio designar a un responsable de la pareja o del grupo para la gestión de los pagos. Eres tú quien viene con tu pareja o tu grupo: la escuela no forma los grupos.</p>"""),
  ('¿Cuáles son los requisitos previos?', '<p>No se exige ningún nivel concreto para entrar en el instituto. Se aceptan todos los niveles, desde principiante hasta avanzado.</p>'),
  ('¿Qué método de aprendizaje utilizáis?', '<p>Nuestras clases siguen un método de aprendizaje progresivo y adaptado al nivel de cada estudiante. El programa y los materiales se definen según la materia estudiada y el nivel del alumno.</p>'),
  ('¿Qué libros se utilizan?', """<p>Los libros utilizados dependen del programa y del nivel del estudiante.</p>
@@ -242,7 +242,7 @@ L = {
   hours_t="Horario de oficina", hours_p="De lunes a viernes, de 9 a 18 h (hora de París). Las ausencias deben comunicarse en horario de oficina (8 – 18 h), al menos 24 h antes.",
   new_t="¿Nuevo por aquí?", new_p="Solicita una clase de prueba de 30 minutos en lugar de un simple mensaje: conocerás directamente a un profesor.",
   form_t="Contáctanos", nom="Apellidos", prenom="Nombre", sujet="Asunto", message="Mensaje", send="Enviar",
-  subjects=["Inscripción / clase de prueba","Clases en grupo — grupos disponibles","Clases en pareja","Cambio de horario o de profesor","Área del estudiante / acceso","Pago / factura","Libros y material","Otro"]),
+  subjects=["Inscripción / clase de prueba","Clases en grupo (con mi propio grupo)","Clases en pareja","Cambio de horario o de profesor","Área del estudiante / acceso","Pago / factura","Libros y material","Otro"]),
 
 'mentions': dict(title="Aviso legal y privacidad — AL-FISSAH", desc="Aviso legal, condiciones de venta y política de privacidad del sitio al-fissah.com.",
   h1="Aviso legal y privacidad", lead="Información sobre el editor del sitio, el alojamiento, la propiedad intelectual y la protección de tus datos.", updated="septiembre de 2026",

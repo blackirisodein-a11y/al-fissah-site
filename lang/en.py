@@ -140,7 +140,7 @@ L = {
   pay_h2="Payment and renewal",
   pay_body="""<p>Payment is made by bank card through a secure link (Stripe) or by bank transfer. Sessions are renewed automatically every 4 weeks with a scheduled payment. To cancel the subscription, inform the administration at least 7 days before the end of the current session.</p>
 <p>All enrolments are final: no postponement or refund is granted after payment of the session. Enrol only if you are available and motivated to learn. Books and materials are not provided on enrolment and must be ordered at <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
-<p>Group lessons have their own prices and session dates, shown when ordering. <a href="contact.html">Contact us</a> to find out which groups are open.</p>""",
+<p>Lessons in pairs or in a group: you enrol with your own partner or your own group (3 to 10 students). The school does not form groups. The group price is given by the administration at enrolment.</p>""",
   note_b="Not decided yet?", note_p="Start with a 30-minute trial lesson."),
 
 'faq': dict(title="FAQ — Frequently asked questions — AL-FISSAH", desc="Enrolment, immersion method, books used, sessions, trial lesson, payment, equipment: all the answers from the Al-Fissah institute.",
@@ -150,7 +150,7 @@ L = {
  ('How do I enrol?', """<p>Enrolment is done entirely online. Simply click « Get started now » and follow the steps.</p>
 <p>You can choose between:</p>
 <ul><li>a one-to-one lesson;</li><li>a lesson in pairs;</li><li>a group lesson.</li></ul>
-<p>For lessons in pairs and in a group, the students must be brought together at the time of enrolment. One person must be designated as responsible for the pair or the group, for the handling of payments.</p>"""),
+<p>For lessons in pairs and in a group, the students must be brought together at the time of enrolment. One person must be designated as responsible for the pair or the group, for the handling of payments. You come with your own partner or group: the school does not form groups.</p>"""),
  ('What are the prerequisites?', '<p>No particular level is required to join the institute. All levels are accepted, from complete beginner to advanced.</p>'),
  ('What teaching method do you use?', "<p>Our lessons follow a progressive method, adapted to each student's level. The programme and the materials are set according to the subject studied and to the student's level.</p>"),
  ('Which books are used?', """<p>The books used depend on the programme and on the student's level.</p>
@@ -242,7 +242,7 @@ L = {
   hours_t="Office hours", hours_p="Monday to Friday, 9 am to 6 pm (Paris time). Absences must be reported during office hours (8 am – 6 pm), at least 24 h in advance.",
   new_t="New here?", new_p="Request a 30-minute trial lesson rather than a simple message: you will meet a teacher directly.",
   form_t="Contact us", nom="Last name", prenom="First name", sujet="Subject", message="Message", send="Send",
-  subjects=["Enrolment / trial lesson","Group lessons — available groups","Lessons in pairs","Change of slot or teacher","Student area / login","Payment / invoice","Books and materials","Other"]),
+  subjects=["Enrolment / trial lesson","Group lessons (with my own group)","Lessons in pairs","Change of slot or teacher","Student area / login","Payment / invoice","Books and materials","Other"]),
 
 'mentions': dict(title="Legal notice &amp; privacy — AL-FISSAH", desc="Legal notice, terms of sale and privacy policy of the al-fissah.com website.",
   h1="Legal notice and privacy", lead="Information about the site publisher, hosting, intellectual property and the protection of your data.", updated="September 2026",

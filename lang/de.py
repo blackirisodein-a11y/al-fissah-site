@@ -140,7 +140,7 @@ L = {
   pay_h2="Zahlung und Verlängerung",
   pay_body="""<p>Die Zahlung erfolgt per Bankkarte über einen sicheren Link (Stripe) oder per Überweisung. Die Sitzungen werden alle 4 Wochen automatisch mit einer geplanten Abbuchung verlängert. Um das Abonnement zu kündigen, informieren Sie die Verwaltung mindestens 7 Tage vor Ende der laufenden Sitzung.</p>
 <p>Jede Anmeldung ist endgültig: Nach Zahlung der Sitzung wird keine Verschiebung und keine Rückerstattung gewährt. Melden Sie sich nur an, wenn Sie verfügbar und motiviert sind. Bücher und Material werden bei der Anmeldung nicht mitgeliefert und müssen auf <a href="https://livres.al-fissah.com">livres.al-fissah.com</a> bestellt werden.</p>
-<p>Der Gruppenunterricht hat eigene Preise und Sitzungstermine, die bei der Bestellung angezeigt werden. <a href="contact.html">Kontaktieren Sie uns</a>, um zu erfahren, welche Gruppen geöffnet sind.</p>""",
+<p>Unterricht zu zweit oder in der Gruppe: Sie melden sich mit Ihrem eigenen Partner oder Ihrer eigenen Gruppe an (3 bis 10 Schüler). Die Schule stellt keine Gruppen zusammen. Den Gruppenpreis teilt Ihnen die Verwaltung bei der Anmeldung mit.</p>""",
   note_b="Noch unentschlossen?", note_p="Beginnen Sie mit einer 30-minütigen Probestunde."),
 
 'faq': dict(title="FAQ — Häufige Fragen — AL-FISSAH", desc="Anmeldung, Immersionsmethode, verwendete Bücher, Sitzungen, Probestunde, Zahlung, Ausrüstung: alle Antworten der Schule Al-Fissah.",
@@ -150,7 +150,7 @@ L = {
  ('Wie melde ich mich an?', """<p>Die Anmeldung erfolgt vollständig online. Klicken Sie einfach auf « Jetzt anmelden » und folgen Sie den einzelnen Schritten.</p>
 <p>Sie können wählen zwischen:</p>
 <ul><li>Einzelunterricht;</li><li>Unterricht zu zweit;</li><li>Gruppenunterricht.</li></ul>
-<p>Für den Unterricht zu zweit und in der Gruppe müssen die Teilnehmer bereits bei der Anmeldung zusammengeführt werden. Für die Zahlungen ist zwingend eine verantwortliche Person für das Paar oder die Gruppe zu benennen.</p>"""),
+<p>Für den Unterricht zu zweit und in der Gruppe müssen die Teilnehmer bereits bei der Anmeldung zusammengeführt werden. Für die Zahlungen ist zwingend eine verantwortliche Person für das Paar oder die Gruppe zu benennen. Sie kommen mit Ihrem eigenen Partner oder Ihrer eigenen Gruppe: Die Schule stellt keine Gruppen zusammen.</p>"""),
  ('Welche Voraussetzungen gibt es?', '<p>Für die Aufnahme in die Schule ist kein bestimmtes Niveau erforderlich. Alle Niveaus werden angenommen, vom Anfänger bis zum Fortgeschrittenen.</p>'),
  ('Welche Lernmethode verwenden Sie?', '<p>Unser Unterricht folgt einer schrittweisen Methode, die auf das Niveau jedes Schülers abgestimmt ist. Programm und Materialien richten sich nach dem gewählten Fach und nach dem Niveau des Schülers.</p>'),
  ('Welche Bücher werden verwendet?', """<p>Die verwendeten Bücher hängen vom Programm und vom Niveau des Schülers ab.</p>
@@ -242,7 +242,7 @@ L = {
   hours_t="Bürozeiten", hours_p="Montag bis Freitag, 9 bis 18 Uhr (Pariser Zeit). Abwesenheiten müssen während der Bürozeiten (8–18 Uhr) mindestens 24 Std. im Voraus gemeldet werden.",
   new_t="Neu hier?", new_p="Fragen Sie lieber eine 30-minütige Probestunde an als nur eine Nachricht zu schreiben: Sie lernen direkt einen Lehrer kennen.",
   form_t="Kontakt", nom="Nachname", prenom="Vorname", sujet="Betreff", message="Nachricht", send="Senden",
-  subjects=["Anmeldung / Probestunde","Gruppenunterricht — verfügbare Gruppen","Unterricht zu zweit","Wechsel von Zeitfenster oder Lehrer","Schülerbereich / Anmeldung","Zahlung / Rechnung","Bücher und Material","Sonstiges"]),
+  subjects=["Anmeldung / Probestunde","Gruppenunterricht (mit meiner eigenen Gruppe)","Unterricht zu zweit","Wechsel von Zeitfenster oder Lehrer","Schülerbereich / Anmeldung","Zahlung / Rechnung","Bücher und Material","Sonstiges"]),
 
 'mentions': dict(title="Impressum &amp; Datenschutz — AL-FISSAH", desc="Impressum, Verkaufsbedingungen und Datenschutzerklärung der Website al-fissah.com.",
   h1="Impressum und Datenschutz", lead="Informationen zum Herausgeber der Website, zum Hosting, zum geistigen Eigentum und zum Schutz Ihrer Daten.", updated="September 2026",

@@ -140,7 +140,7 @@ L = {
   pay_h2="Paiement et renouvellement",
   pay_body="""<p>Le paiement s'effectue par carte bancaire via un lien sécurisé (Stripe) ou par virement bancaire. Les sessions sont renouvelées automatiquement toutes les 4 semaines avec un prélèvement programmé. Pour annuler l'abonnement, informez l'administration au moins 7 jours avant la fin de la session en cours.</p>
 <p>Toute inscription est définitive : aucun report ni remboursement n'est accordé après le paiement de la session. Inscrivez-vous uniquement si vous êtes disponible et motivé à apprendre. Les livres et supports ne sont pas fournis lors de l'inscription et sont à commander sur <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
-<p>Les cours collectifs ont leurs propres tarifs et dates de session : ils sont indiqués lors de la commande. <a href="contact.html">Contactez-nous</a> pour connaître les groupes ouverts.</p>""",
+<p>Cours en binôme ou en groupe : vous vous inscrivez avec votre propre binôme ou votre propre groupe (3 à 10 élèves). L'école ne constitue pas les groupes. Le tarif du groupe est communiqué par l'administration lors de l'inscription.</p>""",
   note_b="Pas encore décidé ?", note_p="Commencez par un cours d'essai de 30 minutes."),
 
 'faq': dict(title="FAQ — Foire aux questions — AL-FISSAH", desc="Inscription, méthode d'immersion, livres utilisés, sessions, cours d'essai, paiement, matériel : toutes les réponses de l'école Al-Fissah.",
@@ -150,7 +150,7 @@ L = {
  ("Comment s'inscrire ?", """<p>L'inscription se fait directement en ligne. Il vous suffit de cliquer sur « Commencer maintenant » et de suivre les différentes étapes.</p>
 <p>Vous pouvez choisir entre :</p>
 <ul><li>un cours individuel ;</li><li>un cours en binôme ;</li><li>un cours collectif.</li></ul>
-<p>Pour les cours en binôme et en groupe, les étudiants doivent être regroupés au moment de l'inscription. Un responsable du binôme ou du groupe doit obligatoirement être désigné pour la gestion des paiements.</p>"""),
+<p>Pour les cours en binôme et en groupe, les étudiants doivent être regroupés au moment de l'inscription. Un responsable du binôme ou du groupe doit obligatoirement être désigné pour la gestion des paiements. C'est vous qui venez avec votre binôme ou votre groupe : l'école ne constitue pas les groupes.</p>"""),
  ('Quels sont les prérequis ?', "<p>Aucun niveau particulier n'est requis pour intégrer l'institut. Tous les niveaux sont acceptés, du débutant au niveau avancé.</p>"),
  ("Quelle méthode d'apprentissage utilisez-vous ?", "<p>Nos cours suivent une méthode d'apprentissage progressive et adaptée au niveau de chaque étudiant. Le programme et les supports sont définis en fonction de la matière étudiée et du niveau de l'élève.</p>"),
  ('Quels livres sont utilisés ?', """<p>Les livres utilisés dépendent du programme et du niveau de l'étudiant.</p>
@@ -241,7 +241,7 @@ L = {
   hours_t="Heures de bureau", hours_p="Du lundi au vendredi, de 9 h à 18 h. Les absences doivent être signalées pendant les heures de bureau (8 h – 18 h), au moins 24 h à l'avance.",
   new_t="Nouveau chez nous ?", new_p="Demandez un cours d'essai de 30 minutes plutôt qu'un simple message : vous rencontrerez directement un professeur.",
   form_t="Nous contacter", nom="Nom", prenom="Prénom", sujet="Sujet", message="Message", send="Envoyer",
-  subjects=["Inscription / cours d'essai","Cours collectifs — groupes disponibles","Cours en duo","Changement de créneau ou de professeur","Espace étudiant / connexion","Paiement / facture","Livres et supports","Autre"]),
+  subjects=["Inscription / cours d'essai","Cours en groupe (avec mon propre groupe)","Cours en duo","Changement de créneau ou de professeur","Espace étudiant / connexion","Paiement / facture","Livres et supports","Autre"]),
 
 'mentions': dict(title="Mentions légales &amp; confidentialité — AL-FISSAH", desc="Mentions légales, conditions de vente et politique de confidentialité du site al-fissah.com.",
   h1="Mentions légales et confidentialité", lead="Informations sur l'éditeur du site, l'hébergement, la propriété intellectuelle et la protection de vos données.", updated="septembre 2026",
