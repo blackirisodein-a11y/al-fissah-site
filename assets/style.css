@@ -152,7 +152,7 @@ header ul.menu a:hover{color:var(--orange-deep)}
 .hero .wrap{position:relative;z-index:2}
 
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--orange-soft);color:var(--orange-deep);font-weight:800;font-size:.82rem;padding:.45rem 1rem;border-radius:999px;margin-bottom:1.3rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--orange-soft);color:#A85208;font-weight:800;font-size:.82rem;padding:.45rem 1rem;border-radius:999px;margin-bottom:1.3rem}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,4.8vw,3.8rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:1.2rem}
@@ -417,7 +417,7 @@ header ul.menu a.active{color:var(--orange-deep)}
 /* Footer */
 footer.site{background:var(--navy-deep);color:var(--blue-soft);padding:calc(3.5rem + 28px) 0 2.5rem;font-size:.93rem;clip-path:polygon(0 28px,100% 0,100% 100%,0 100%)}
 footer.site .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}
-footer.site h4{font-family:var(--display);font-weight:600;color:#fff;margin-bottom:.9rem;font-size:1rem}
+footer.site .fh{font-family:var(--display);font-weight:600;color:#fff;margin-bottom:.9rem;font-size:1rem}
 footer.site ul{list-style:none;display:grid;gap:.5rem}
 footer.site a{color:var(--blue-soft);text-decoration:none;transition:color .2s}
 footer.site a:hover{color:var(--orange)}
@@ -461,14 +461,14 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 .prose{max-width:70ch}
 .prose h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;margin:2.6rem 0 .9rem;padding-top:.5rem;scroll-margin-top:112px}
 .prose h2:first-child{margin-top:0}
-.prose h2 .art{color:var(--orange-deep);font-size:.85rem;font-weight:800;letter-spacing:.06em;display:block;margin-bottom:.3rem}
+.prose h2 .art{color:#A85208;font-size:.85rem;font-weight:800;letter-spacing:.06em;display:block;margin-bottom:.3rem}
 .prose h3{font-family:var(--display);font-size:1.12rem;margin:1.6rem 0 .5rem}
 .prose p,.prose li{color:#3B4870}
 .prose p{margin-bottom:.9rem}
 .prose ul,.prose ol{padding-left:1.3rem;margin-bottom:1rem;display:grid;gap:.4rem}
-.prose a{color:var(--orange-deep);font-weight:700}
+.prose a{color:#A85208;font-weight:700}
 .prose .note{background:var(--orange-soft);border-left:4px solid var(--orange);border-radius:0 14px 14px 0;padding:1rem 1.2rem;margin:1.3rem 0;color:var(--navy)}
-.prose .note b{color:var(--orange-deep)}
+.prose .note b{color:#A85208}
 .prose table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.93rem;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .prose th,.prose td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--line)}
 .prose th{background:#EFF3FC;color:var(--navy-mid);font-weight:800}
@@ -479,7 +479,7 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 /* Équipe / valeurs (À propos) */
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin:2rem 0}
 .value{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;box-shadow:var(--shadow)}
-.value .ar{font-family:var(--ar);font-size:2.2rem;line-height:1;color:var(--orange);margin-bottom:.6rem}
+.value .ar{font-family:var(--ar);font-size:2.2rem;line-height:1;color:#C4620C;margin-bottom:.6rem}
 .value b{display:block;font-family:var(--display);font-size:1.05rem;margin-bottom:.35rem}
 .value p{font-size:.92rem;margin:0}
 @media(max-width:780px){.values{grid-template-columns:1fr}}
@@ -590,7 +590,7 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 .levels b{display:block;font-family:var(--display);color:var(--orange-deep);margin-bottom:.4rem}
 .levels ul{margin:0;padding-left:1.1rem;font-size:.9rem;gap:.25rem}
 .toc-note{font-size:.82rem;color:var(--muted);margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--line)}
-.toc-note a{color:var(--orange-deep);font-weight:700}
+.toc-note a{color:#B85A0A;font-weight:700}
 @media(max-width:560px){.pd-head{flex-direction:column}.pdetail{padding:1.6rem}}
 
 /* ========== GRILLE TARIFS ========== */
@@ -622,7 +622,7 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 /* ========== CONTACT ========== */
 .contact-grid{align-items:stretch}
 .support-grid.one{grid-template-columns:1fr;margin-bottom:0}
-.timeline li a{display:inline-block;margin-top:.25rem;color:var(--orange-deep);font-weight:700;text-decoration:none}
+.timeline li a{display:inline-block;margin-top:.25rem;color:#A85208;font-weight:700;text-decoration:none}
 
 /* ========== RÉSEAUX ========== */
 .socials{display:flex;gap:.6rem;margin-top:1.2rem}

@@ -489,6 +489,15 @@ class Builder:
         org = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","url":SITE,"logo":LOGO_ABS,
                           "description":m['org_desc'],"email":"c.alfissah@gmail.com",
                           "sameAs":["http://www.facebook.com/Ecole.al.fissah1","https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
+        # Données structurées : l'école partout ; le site (accueil) ; le fil d'Ariane (pages internes indexables).
+        ld = [org]
+        if page == 'index':
+            ld.append(json.dumps({"@context": "https://schema.org", "@type": "WebSite", "name": "Al-Fissah", "url": SITE + '/', "inLanguage": m['html_lang']}, ensure_ascii=False))
+        elif page not in ('404', 'essai', 'inscription'):
+            ld.append(json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": L['nav']['accueil'], "item": self.url('index')},
+                {"@type": "ListItem", "position": 2, "name": title.split(' — ')[0].replace('&amp;', '&'), "item": self.url(page)}]}, ensure_ascii=False))
+        ld_html = '\n'.join(f'<script type="application/ld+json">{x}</script>' for x in ld)
         return f'''<!DOCTYPE html>
 <html lang="{m['html_lang']}" dir="{m.get('dir','ltr')}">
 <head>
@@ -505,12 +514,17 @@ class Builder:
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{LOGO_ABS}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Al-Fissah">
 <meta property="og:url" content="{self.url(page)}">
 <meta property="og:locale" content="{m['og_locale']}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{LOGO_ABS}">
 {fonts_preload(self.c, self.rel)}{'<link rel="preload" href="' + self.rel + FULL_IMG + '" as="image">' if page == 'index' else ''}
 <style>{fonts_css(self.c, self.rel, page)}</style>
 {("<style>" + CSS_INLINE + "</style>") if INLINE else f'<link rel="stylesheet" href="{self.rel}assets/style.css?v={ASSET_VER}">'}
-<script type="application/ld+json">{org}</script>
+{ld_html}
 <script>window.I18N={json.dumps(L['js'], ensure_ascii=False)};</script>
 {'<script>try{document.documentElement.classList.add(sessionStorage.getItem("af-intro")?"intro-seen":"intro-on")}catch(e){document.documentElement.classList.add("intro-on")}</script>' if page == 'index' else ''}
 {extra}
@@ -521,7 +535,7 @@ class Builder:
     def langswitch(self, page):
         p = 'index.html' if page == 'index' else page + '.html'
         items = ''.join(f'<a href="{self.rel}{"" if c=="fr" else c+"/"}{p}" hreflang="{c}" lang="{c}"{" class=\"on\"" if c==self.c else ""}>{LANG_NAMES[c]}</a>' for c in LANGS)
-        return f'<div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="{self.L["nav"]["language"]}">{self.c.upper()} ▾</button><div class="langmenu">{items}</div></div>'
+        return f'<div class="langsw"><button type="button" class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="{self.c.upper()} — {self.L["nav"]["language"]}">{self.c.upper()}<span aria-hidden="true"> ▾</span></button><div class="langmenu">{items}</div></div>'
 
     def chrome(self, page, home=False):
         L = self.L; n = L['nav']
@@ -601,7 +615,7 @@ class Builder:
         </div>
       </div>
       <div>
-        <h4>{f['col1']}</h4>
+        <p class="fh">{f['col1']}</p>
         <ul>
           <li><a href="a-propos.html">{n['apropos']}</a></li>
           <li><a href="programmes.html">{f['prog_ind']}</a></li>
@@ -611,7 +625,7 @@ class Builder:
         </ul>
       </div>
       <div>
-        <h4>{f['col2']}</h4>
+        <p class="fh">{f['col2']}</p>
         <ul>
           <li><a href="faq.html">{f['faq']}</a></li>
           <li><a href="reglement.html">{n['reglement']}</a></li>
@@ -790,7 +804,12 @@ class Builder:
   <div class="pd-list">{secs}</div>
 </div></div>
 '''
-        self.write('programmes.html', self.head(P['title'], P['desc'], 'programmes') + self.chrome('programmes') + html + self.footer())
+        def strip_tags(t): return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', t)).replace('&nbsp;', ' ').strip()
+        courses = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "item": {"@type": "Course", "name": strip_tags(p['titre']), "description": strip_tags(p['court']),
+             "url": self.url('programmes') + '#' + p['id'], "inLanguage": "ar",
+             "provider": {"@type": "EducationalOrganization", "name": "Al-Fissah", "url": SITE}}} for i, p in enumerate(P['items'])]}, ensure_ascii=False)
+        self.write('programmes.html', self.head(P['title'], P['desc'], 'programmes', f'<script type="application/ld+json">{courses}</script>') + self.chrome('programmes') + html + self.footer())
 
     def videotheque(self):
         # Section « Vidéos » de l'accueil : lecteur + onglets par thème + vignettes (youtube.json).

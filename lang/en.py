@@ -3,7 +3,7 @@
 L = {
 'meta': dict(tagline="International School of Arabic Language and Quran", html_lang='en', og_locale='en_GB', dir='ltr',
   title_home="AL-FISSAH — International School of Arabic Language and Quran",
-  desc_home="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults. Trained native Arabic teachers, 100% Arabic immersion, 30-minute trial lesson.",
+  desc_home="Online Arabic and Quran lessons for non-Arabic-speaking children and adults: trained native Arabic teachers, 100% Arabic immersion, free 30-minute trial lesson.",
   org_desc="International School of Arabic Language and Quran, online, for non-Arabic-speaking children and adults."),
 'js': dict(typew="Welcome to Al-Fissah", typew_sub="International School of Arabic Language and Quran", sending="Sending…",
   trial_ok="Request sent. The administration will contact you to schedule your trial lesson, in shaa Allah.",
@@ -90,7 +90,7 @@ L = {
   consent="I agree that my information is used to organise my trial lesson, in accordance with the", privacy="privacy policy",
   submit="Request my trial lesson", **{'or': "or"}, whatsapp="write to us on WhatsApp"),
 
-'progs': dict(title="Programmes — AL-FISSAH", desc="Arabic for children and adults, Quran, memorisation of the Mutūn, reading method: all the programmes of the Al-Fissah institute.",
+'progs': dict(title="Online Arabic and Quran course programmes — AL-FISSAH", desc="Arabic for children and adults, Quran, memorisation of the Mutūn, reading method: all the programmes of the Al-Fissah institute.",
   h1="Our programmes", lead="One-to-one or group lessons, for non-Arabic-speaking children and adults. Every programme comes with materials and audio, and takes place live with a native Arabic teacher.",
   toc_note="Books and materials are not provided on enrolment: order them at <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. The administration guides you according to your level.",
   items=[
@@ -132,7 +132,7 @@ L = {
 <p>The Quran is not studied in groups; it is taught one-to-one only.</p>""", cta="Join a group"),
   ]),
 
-'tarifs': dict(title="Prices — AL-FISSAH", desc="Prices for one-to-one Arabic and Quran lessons: 4-week sessions from €28 (1 h/week) to €168 (7 h/week), pair plan €36.",
+'tarifs': dict(title="Prices of online Arabic and Quran lessons — AL-FISSAH", desc="Prices for one-to-one Arabic and Quran lessons: 4-week sessions from €28 (1 h/week) to €168 (7 h/week), pair plan €36.",
   h1="Prices for one-to-one lessons", lead="Lessons run over 4 weeks. The student chooses the number of hours to study, with a minimum of one one-hour lesson per week.",
   badge="Most popular", badge_reco="Recommended", formule="Plan", per="{h} h per week<br>for 4 weeks", choose="Choose", duo="Pair plan", duo_per="1 h per week for 4 weeks<br><b>for 2 people</b>", ask="Ask",
   arabe_kick="Arabic language", arabe_h2="Arabic language lessons", arabe_p="Programmes “Arabic in our children's hands” and “Arabic in your hands”, reading method.",
@@ -147,7 +147,7 @@ L = {
 <p>Lessons in pairs or in a group: you enrol with your own partner or your own group (3 to 10 students). The school does not form groups. The group price is given by the administration at enrolment.</p>""",
   note_b="Not decided yet?", note_p="Start with a 30-minute trial lesson."),
 
-'faq': dict(title="FAQ — Frequently asked questions — AL-FISSAH", desc="Enrolment, immersion method, books used, sessions, trial lesson, payment, equipment: all the answers from the Al-Fissah institute.",
+'faq': dict(title="FAQ — Online Arabic and Quran lessons — AL-FISSAH", desc="Enrolment, immersion method, books used, sessions, trial lesson, payment, equipment: all the answers from the Al-Fissah institute.",
   h1="Frequently asked questions", lead="Everything you need to know before starting: enrolment, method, books, sessions, payment and equipment.",
   note_b="Can't find the answer to your question?", note_a="Contact us", note_p=", our team will reply as soon as possible, in shaa Allah.",
   items=[
@@ -181,7 +181,7 @@ L = {
  ('Once payment is made, when do lessons start?', '<p>Lessons start after enrolment and once your request has been approved by the office.</p>'),
   ]),
 
-'temoignages': dict(title="Testimonials — AL-FISSAH", desc="What our students say: parents and students of the Al-Fissah institute, online Arabic and Quran lessons.",
+'temoignages': dict(title="Student and parent testimonials — AL-FISSAH", desc="What our students say: parents and students of the Al-Fissah institute, online Arabic and Quran lessons.",
   h1="What our students say", lead="{n} testimonials from parents and students, published between 2021 and 2025 in the student area.",
   s1="testimonials", s2="average rating", s3="families of child students", s4="first reviews", date_fmt="{d} {m} {y}",
   tags={'Enfants':'Children','Langue arabe':'Arabic language','Coran':'Quran','Lecture &amp; Coran':'Reading &amp; Quran'},
@@ -220,7 +220,7 @@ L = {
  ("Disputes", """<ul><li>Any complaint must be detailed (circumstances, date, time, nature of the problem).</li><li>In case of dispute, the student must provide audio evidence.</li><li>Recording lessons is allowed for evidence purposes in case of dispute.</li><li>Without evidence, the complaint will not be accepted.</li><li>The Management will handle the complaint within 7 days.</li></ul>"""),
   ]),
 
-'apropos': dict(title="About us — AL-FISSAH", desc="Al-Fissah is an international school of arabic language and quran specialised in teaching non-Arabic-speaking children and adults, with trained native Arabic teachers.",
+'apropos': dict(title="About the Al-Fissah institute — Arabic and Quran online", desc="International school of Arabic language and Quran: online lessons for non-Arabic-speaking children and adults, with trained native Arabic teachers.",
   h1="Online Arabic and Quran lessons", lead="Al-Fissah is an international school of arabic language and quran specialised in teaching non-Arabic-speaking children and adults, with native Arabic-speaking teachers trained in teaching.",
   stats=[("12","children's textbooks"),("10","adult levels"),("100%","in Arabic"),("2020","online lessons since")],
   prog_h2="Our programme",
@@ -240,7 +240,7 @@ L = {
   links=[("http://blog.al-fissah.com/?p=2654","Immersion teaching (100% Arabic): what is it? Why?"),("http://blog.al-fissah.com/?p=2609","Who are we?"),("http://blog.al-fissah.com/?p=2533","Rigorous follow-up at Al-Fissah: what, why, how?")],
   note_b="Would you like to meet us?", note_p="The best way to discover the school is a 30-minute trial lesson."),
 
-'contact': dict(title="Contact — AL-FISSAH", desc="Contact the Al-Fissah institute: our advisor replies as soon as possible, in shaa Allah.",
+'contact': dict(title="Contact — Al-Fissah institute, online Arabic and Quran lessons", desc="Contact the Al-Fissah institute: our advisor replies as soon as possible, in shaa Allah.",
   h1="We are here to help", lead="Fill in this form and our advisor will reply as soon as possible, in shaa Allah.",
   mail_t="By e-mail", mail_p="For any administrative or teaching question.",
   hours_t="Office hours", hours_p="Monday to Friday, 9 am to 6 pm (Paris time). Absences must be reported during office hours (8 am – 6 pm), at least 24 h in advance.",

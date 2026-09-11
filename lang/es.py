@@ -90,7 +90,7 @@ L = {
   consent="Acepto que mis datos se utilicen para organizar mi clase de prueba, de acuerdo con la", privacy="política de privacidad",
   submit="Solicitar mi clase de prueba", **{'or': "o"}, whatsapp="escríbenos por WhatsApp"),
 
-'progs': dict(title="Programas — AL-FISSAH", desc="Lengua árabe para niños y adultos, Corán, memorización de los Mutún, método de lectura: todos los programas del instituto Al-Fissah.",
+'progs': dict(title="Programas de clases de árabe y Corán en línea — AL-FISSAH", desc="Lengua árabe para niños y adultos, Corán, memorización de los Mutún, método de lectura: todos los programas del instituto Al-Fissah.",
   h1="Nuestros programas", lead="Clases individuales o en grupo, para niños y adultos no arabófonos. Cada programa incluye material y audios, y se imparte en directo con un profesor arabófono.",
   toc_note="Los libros y el material no se entregan con la inscripción: se piden en <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. La administración te orienta según tu nivel.",
   items=[
@@ -132,7 +132,7 @@ L = {
 <p>El Corán no se estudia en grupo; se enseña únicamente en clase individual.</p>""", cta="Unirme a un grupo"),
   ]),
 
-'tarifs': dict(title="Precios — AL-FISSAH", desc="Precios de las clases individuales de árabe y Corán: sesiones de 4 semanas, de 28 € (1 h/semana) a 168 € (7 h/semana), fórmula en pareja 36 €.",
+'tarifs': dict(title="Precios de las clases de árabe y Corán en línea — AL-FISSAH", desc="Precios de las clases individuales de árabe y Corán: sesiones de 4 semanas, de 28 € (1 h/semana) a 168 € (7 h/semana), fórmula en pareja 36 €.",
   h1="Precios de las clases individuales", lead="Las clases se desarrollan durante 4 semanas. El estudiante elige el número de horas a estudiar, con un mínimo de una clase de una hora por semana.",
   badge="La más elegida", badge_reco="Recomendada", formule="Fórmula", per="{h} h por semana<br>durante 4 semanas", choose="Elegir", duo="Fórmula en pareja", duo_per="1 h por semana durante 4 semanas<br><b>para 2 personas</b>", ask="Solicitar",
   arabe_kick="Lengua árabe", arabe_h2="Clases de lengua árabe", arabe_p="Programas «El árabe en manos de nuestros hijos» y «El árabe en tus manos», método de lectura.",
@@ -147,7 +147,7 @@ L = {
 <p>Clases en pareja o en grupo: te inscribes con tu propia pareja o tu propio grupo (de 3 a 10 alumnos). La escuela no forma los grupos. El precio del grupo lo comunica la administración en el momento de la inscripción.</p>""",
   note_b="¿Aún no te has decidido?", note_p="Empieza con una clase de prueba de 30 minutos."),
 
-'faq': dict(title="FAQ — Preguntas frecuentes — AL-FISSAH", desc="Inscripción, método de inmersión, libros utilizados, sesiones, clase de prueba, pago, material: todas las respuestas del instituto Al-Fissah.",
+'faq': dict(title="FAQ — Clases de árabe y Corán en línea — AL-FISSAH", desc="Inscripción, método de inmersión, libros utilizados, sesiones, clase de prueba, pago, material: todas las respuestas del instituto Al-Fissah.",
   h1="Preguntas frecuentes", lead="Todo lo que hay que saber antes de empezar: inscripción, método, libros, sesiones, pago y material.",
   note_b="¿No encuentras la respuesta a tu pregunta?", note_a="Contáctanos", note_p=", nuestro equipo te responderá lo antes posible, in sha Allah.",
   items=[
@@ -181,7 +181,7 @@ L = {
  ('Una vez realizado el pago, ¿cuándo empiezan las clases?', '<p>Las clases empiezan tras la inscripción y la validación de tu solicitud por parte de la administración.</p>'),
   ]),
 
-'temoignages': dict(title="Testimonios — AL-FISSAH", desc="Cuentan su experiencia: padres y estudiantes del instituto Al-Fissah, clases de árabe y Corán en línea.",
+'temoignages': dict(title="Testimonios de alumnos y padres — AL-FISSAH", desc="Cuentan su experiencia: padres y estudiantes del instituto Al-Fissah, clases de árabe y Corán en línea.",
   h1="Cuentan su experiencia", lead="{n} testimonios de padres y estudiantes, publicados entre 2021 y 2025 en el área del estudiante.",
   s1="testimonios", s2="nota media", s3="familias de alumnos niños", s4="primeras opiniones", date_fmt="{d} de {m} de {y}",
   tags={'Enfants':'Niños','Langue arabe':'Lengua árabe','Coran':'Corán','Lecture &amp; Coran':'Lectura y Corán'},
@@ -220,7 +220,7 @@ L = {
  ("Situaciones litigiosas", """<ul><li>Toda reclamación debe ser detallada (circunstancias, fecha, hora, naturaleza del problema).</li><li>En caso de disputa, el alumno debe aportar una prueba de audio.</li><li>Se autoriza la grabación de las clases con fines probatorios en caso de litigio.</li><li>Sin prueba, la reclamación no será aceptada.</li><li>La Dirección tratará la reclamación en un plazo de 7 días.</li></ul>"""),
   ]),
 
-'apropos': dict(title="Quiénes somos — AL-FISSAH", desc="Al-Fissah es una escuela internacional de lengua árabe y Corán especializada en la enseñanza a niños y adultos no arabófonos, con profesores arabófonos formados.",
+'apropos': dict(title="Sobre el instituto Al-Fissah — árabe y Corán en línea", desc="Escuela internacional de lengua árabe y Corán: clases en línea para niños y adultos no arabófonos, con profesores arabófonos formados.",
   h1="Clases de árabe y Corán en línea", lead="Al-Fissah es una escuela internacional de lengua árabe y Corán especializada en la enseñanza a niños y adultos no arabófonos, que cuenta con profesores arabófonos formados en la enseñanza.",
   stats=[("12","manuales para niños"),("10","niveles para adultos"),("100 %","en árabe"),("2020","clases en línea desde")],
   prog_h2="Nuestro programa",
@@ -240,7 +240,7 @@ L = {
   links=[("http://blog.al-fissah.com/?p=2654","La enseñanza por inmersión (100 % árabe): ¿qué es? ¿por qué?"),("http://blog.al-fissah.com/?p=2609","¿Quiénes somos?"),("http://blog.al-fissah.com/?p=2533","Un seguimiento riguroso en Al-Fissah: ¿qué, por qué, cómo?")],
   note_b="¿Quieres conocernos?", note_p="La mejor manera de descubrir la escuela es una clase de prueba de 30 minutos."),
 
-'contact': dict(title="Contacto — AL-FISSAH", desc="Contacta con el instituto Al-Fissah: nuestro asesor te responde lo antes posible, in sha Allah.",
+'contact': dict(title="Contacto — Instituto Al-Fissah, clases de árabe y Corán en línea", desc="Contacta con el instituto Al-Fissah: nuestro asesor te responde lo antes posible, in sha Allah.",
   h1="Estamos aquí para ayudarte", lead="Rellena este formulario y nuestro asesor te responderá lo antes posible, in sha Allah.",
   mail_t="Por correo", mail_p="Para cualquier cuestión administrativa o pedagógica.",
   hours_t="Horario de oficina", hours_p="De lunes a viernes, de 9 a 18 h (hora de París). Las ausencias deben comunicarse en horario de oficina (8 – 18 h), al menos 24 h antes.",

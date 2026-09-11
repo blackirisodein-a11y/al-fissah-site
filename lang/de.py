@@ -3,7 +3,7 @@
 L = {
 'meta': dict(tagline="Internationale Schule für arabische Sprache und Koran", html_lang='de', og_locale='de_DE', dir='ltr',
   title_home="AL-FISSAH — Internationale Schule für arabische Sprache und Koran",
-  desc_home="Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene. Ausgebildete muttersprachliche Lehrer, 100 % arabische Immersion, 30-minütige Probestunde.",
+  desc_home="Arabisch- und Koranunterricht online für nicht arabischsprachige Kinder und Erwachsene: muttersprachliche Lehrer, 100 % Immersion, kostenlose Probestunde.",
   org_desc="Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene."),
 'js': dict(typew="Willkommen bei Al-Fissah", typew_sub="Internationale Schule für arabische Sprache und Koran", sending="Wird gesendet…",
   trial_ok="Anfrage gesendet. Die Verwaltung meldet sich bei Ihnen, um Ihre Probestunde zu vereinbaren, in shaa Allah.",
@@ -90,7 +90,7 @@ L = {
   consent="Ich bin damit einverstanden, dass meine Angaben zur Organisation meiner Probestunde verwendet werden, gemäß der", privacy="Datenschutzerklärung",
   submit="Meine Probestunde anfragen", **{'or': "oder"}, whatsapp="schreiben Sie uns auf WhatsApp"),
 
-'progs': dict(title="Programme — AL-FISSAH", desc="Arabisch für Kinder und Erwachsene, Koran, Auswendiglernen der Mutūn, Lesemethode: alle Programme der Schule Al-Fissah.",
+'progs': dict(title="Programme für Arabisch- und Koranunterricht online — AL-FISSAH", desc="Arabisch für Kinder und Erwachsene, Koran, Auswendiglernen der Mutūn, Lesemethode: alle Programme der Schule Al-Fissah.",
   h1="Unsere Programme", lead="Einzel- oder Gruppenunterricht für nicht arabischsprachige Kinder und Erwachsene. Jedes Programm enthält Material und Audio und findet live mit einem muttersprachlichen Lehrer statt.",
   toc_note="Bücher und Material werden bei der Anmeldung nicht mitgeliefert: Bestellen Sie sie auf <a href=\"https://livres.al-fissah.com\">livres.al-fissah.com</a>. Die Verwaltung berät Sie entsprechend Ihrem Niveau.",
   items=[
@@ -132,7 +132,7 @@ L = {
 <p>Der Koran wird nicht in Gruppen gelernt; er wird ausschließlich im Einzelunterricht unterrichtet.</p>""", cta="Einer Gruppe beitreten"),
   ]),
 
-'tarifs': dict(title="Preise — AL-FISSAH", desc="Preise für Arabisch- und Koran-Einzelunterricht: 4-Wochen-Sitzungen von 28 € (1 Std./Woche) bis 168 € (7 Std./Woche), Zweier-Formel 36 €.",
+'tarifs': dict(title="Preise für Arabisch- und Koranunterricht online — AL-FISSAH", desc="Preise für Arabisch- und Koran-Einzelunterricht: 4-Wochen-Sitzungen von 28 € (1 Std./Woche) bis 168 € (7 Std./Woche), Zweier-Formel 36 €.",
   h1="Preise für Einzelunterricht", lead="Der Unterricht läuft über 4 Wochen. Der Schüler wählt die Stundenzahl, mit mindestens einer Stunde pro Woche.",
   badge="Am beliebtesten", badge_reco="Empfohlen", formule="Formel", per="{h} Std. pro Woche<br>über 4 Wochen", choose="Wählen", duo="Zweier-Formel", duo_per="1 Std. pro Woche über 4 Wochen<br><b>für 2 Personen</b>", ask="Anfragen",
   arabe_kick="Arabische Sprache", arabe_h2="Arabischunterricht", arabe_p="Programme „Arabisch in den Händen unserer Kinder“ und „Arabisch in deinen Händen“, Lesemethode.",
@@ -147,7 +147,7 @@ L = {
 <p>Unterricht zu zweit oder in der Gruppe: Sie melden sich mit Ihrem eigenen Partner oder Ihrer eigenen Gruppe an (3 bis 10 Schüler). Die Schule stellt keine Gruppen zusammen. Den Gruppenpreis teilt Ihnen die Verwaltung bei der Anmeldung mit.</p>""",
   note_b="Noch unentschlossen?", note_p="Beginnen Sie mit einer 30-minütigen Probestunde."),
 
-'faq': dict(title="FAQ — Häufige Fragen — AL-FISSAH", desc="Anmeldung, Immersionsmethode, verwendete Bücher, Sitzungen, Probestunde, Zahlung, Ausrüstung: alle Antworten der Schule Al-Fissah.",
+'faq': dict(title="FAQ — Arabisch- und Koranunterricht online — AL-FISSAH", desc="Anmeldung, Immersionsmethode, verwendete Bücher, Sitzungen, Probestunde, Zahlung, Ausrüstung: alle Antworten der Schule Al-Fissah.",
   h1="Häufige Fragen", lead="Alles, was Sie vor dem Start wissen müssen: Anmeldung, Methode, Bücher, Sitzungen, Zahlung und Ausrüstung.",
   note_b="Sie finden keine Antwort auf Ihre Frage?", note_a="Kontaktieren Sie uns", note_p=", unser Team antwortet Ihnen so schnell wie möglich, in shaa Allah.",
   items=[
@@ -181,7 +181,7 @@ L = {
  ('Wann beginnt der Unterricht nach der Zahlung?', '<p>Der Unterricht beginnt nach der Anmeldung und nach der Bestätigung Ihrer Anfrage durch das Sekretariat.</p>'),
   ]),
 
-'temoignages': dict(title="Erfahrungsberichte — AL-FISSAH", desc="Das sagen unsere Schüler: Eltern und Schüler der Schule Al-Fissah, Arabisch- und Koranunterricht online.",
+'temoignages': dict(title="Erfahrungsberichte von Schülern und Eltern — AL-FISSAH", desc="Das sagen unsere Schüler: Eltern und Schüler der Schule Al-Fissah, Arabisch- und Koranunterricht online.",
   h1="Das sagen unsere Schüler", lead="{n} Erfahrungsberichte von Eltern und Schülern, veröffentlicht zwischen 2021 und 2025 im Schülerbereich.",
   s1="Erfahrungsberichte", s2="Durchschnittsbewertung", s3="Familien mit Kindern", s4="erste Bewertungen", date_fmt="{d}. {m} {y}",
   tags={'Enfants':'Kinder','Langue arabe':'Arabische Sprache','Coran':'Koran','Lecture &amp; Coran':'Lesen &amp; Koran'},
@@ -220,7 +220,7 @@ L = {
  ("Streitfälle", """<ul><li>Jede Beschwerde muss detailliert sein (Umstände, Datum, Uhrzeit, Art des Problems).</li><li>Im Streitfall muss der Schüler einen Audionachweis vorlegen.</li><li>Das Aufzeichnen des Unterrichts ist zu Beweiszwecken im Streitfall erlaubt.</li><li>Ohne Nachweis wird die Beschwerde nicht angenommen.</li><li>Die Leitung bearbeitet die Beschwerde innerhalb von 7 Tagen.</li></ul>"""),
   ]),
 
-'apropos': dict(title="Über uns — AL-FISSAH", desc="Al-Fissah ist eine internationale Schule für arabische Sprache und Koran, spezialisiert auf den Unterricht nicht arabischsprachiger Kinder und Erwachsener, mit ausgebildeten muttersprachlichen Lehrern.",
+'apropos': dict(title="Über die Schule Al-Fissah — Arabisch und Koran online", desc="Internationale Schule für arabische Sprache und Koran: Online-Unterricht für nicht arabischsprachige Kinder und Erwachsene, mit muttersprachlichen Lehrern.",
   h1="Arabisch- und Koranunterricht online", lead="Al-Fissah ist eine internationale Schule für arabische Sprache und Koran, spezialisiert auf den Unterricht nicht arabischsprachiger Kinder und Erwachsener, mit muttersprachlichen, pädagogisch ausgebildeten Lehrern.",
   stats=[("12","Lehrbücher für Kinder"),("10","Niveaus für Erwachsene"),("100 %","auf Arabisch"),("2020","Online-Unterricht seit")],
   prog_h2="Unser Programm",
@@ -240,7 +240,7 @@ L = {
   links=[("http://blog.al-fissah.com/?p=2654","Immersionsunterricht (100 % Arabisch): Was ist das? Warum?"),("http://blog.al-fissah.com/?p=2609","Wer sind wir?"),("http://blog.al-fissah.com/?p=2533","Strenge Begleitung bei Al-Fissah: Was, warum, wie?")],
   note_b="Möchten Sie uns kennenlernen?", note_p="Der beste Weg, die Schule zu entdecken, ist eine 30-minütige Probestunde."),
 
-'contact': dict(title="Kontakt — AL-FISSAH", desc="Kontaktieren Sie die Schule Al-Fissah: Unser Berater antwortet so schnell wie möglich, in shaa Allah.",
+'contact': dict(title="Kontakt — Schule Al-Fissah, Arabisch- und Koranunterricht online", desc="Kontaktieren Sie die Schule Al-Fissah: Unser Berater antwortet so schnell wie möglich, in shaa Allah.",
   h1="Wir sind für Sie da", lead="Füllen Sie dieses Formular aus, und unser Berater antwortet Ihnen so schnell wie möglich, in shaa Allah.",
   mail_t="Per E-Mail", mail_p="Für alle administrativen oder pädagogischen Fragen.",
   hours_t="Bürozeiten", hours_p="Montag bis Freitag, 9 bis 18 Uhr (Pariser Zeit). Abwesenheiten müssen während der Bürozeiten (8–18 Uhr) mindestens 24 Std. im Voraus gemeldet werden.",

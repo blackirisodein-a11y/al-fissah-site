@@ -144,6 +144,19 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   et la mise en ligne repart toute seule. Textes des onglets : `lang/*.py` → `home.vid`. Les titres des
   vidéos hors dialogues/lecture restent ceux de YouTube (en français). Sans `youtube.json`, la section
   revient au simple lecteur.
+- **SEO (audit du 11/09/2026)** : Lighthouse SEO = **100** sur toutes les pages dès que `preview=non`
+  (mesuré en local sur une construction sans `noindex`). Sur l'adresse de test, le score reste à 69 : le seul
+  point signalé est « page bloquée pour l'indexation », c'est le `noindex` + `robots.txt` voulus par
+  `preview=oui` — ne pas le retirer avant la bascule vers al-fissah.com. En place : titre et description
+  propres à chaque page et chaque langue (`lang/*.py`), un seul `h1`, `canonical`, `hreflang` ×6 + `x-default`,
+  Open Graph + Twitter Card, `lang`/`dir`, sitemap avec alternates, données structurées valides
+  (EducationalOrganization partout, WebSite sur l'accueil, BreadcrumbList sur les pages internes, FAQPage sur
+  la FAQ, Review sur les témoignages, Course ×5 sur Programmes), `alt` et dimensions sur les images, aucun
+  lien interne cassé. Pages `essai`/`inscription` (renvois) et `404` : `noindex`, hors sitemap, c'est voulu.
+  Accessibilité : titres de colonnes du pied de page en `p.fh` (plus de `h4` après `h2`), bouton de langue
+  dont le nom accessible contient « FR », badge du hero et lien de la note des programmes en orange plus
+  foncé (contraste ≥ 4,5). Contrôle : `scratchpad/audit-seo.py` de la session (72 pages) ou l'action
+  « Mesure PageSpeed » (qui affiche aussi SEO / accessibilité / bonnes pratiques).
 - **Textes** : repris de al-fissah.com (FAQ 18 questions, règlement 9 articles, tarifs,
   programmes). Ne pas les réécrire sans raison, ce sont les textes officiels de l'école.
 - **Témoignages** : verbatim, en français dans les 6 langues. Une note l'explique sur les
