@@ -85,7 +85,11 @@ def fonts_css(lang, rel):
     fams = FONT_FAMILIES.get(lang, FONT_FAMILIES['default'])
     fallbacks = ''.join(f"@font-face{{font-family:'{f} Fallback';src:local('Arial'),local('Liberation Sans'),local('Helvetica Neue'),local('Roboto');{FONT_FALLBACKS[f]}}}"
                         for f in fams if f in FONT_FALLBACKS)
-    return fallbacks + ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:swap;"
+    # Tajawal (texte des pages arabes) et Amiri (lettres décoratives) : font-display:block — le texte attend la police
+    # (préchargée, quelques dizaines de ms) au lieu d'être affiché en police de secours puis remplacé, ce qui déplaçait
+    # tout le premier écran (décalage 0,23 mesuré sur l'accueil arabe). Les polices latines ont une police de secours
+    # aux mêmes dimensions (ci-dessus) et gardent swap.
+    return fallbacks + ''.join(f"@font-face{{font-family:'{f['famille']}';font-style:normal;font-weight:{f['graisse']};font-display:{'block' if f['famille'] in ('Tajawal', 'Amiri') else 'swap'};"
                    f"src:url({rel}assets/fonts/{f['fichier']}) format('woff2');unicode-range:{f['unicode_range']}}}"
                    for f in FONT_FACES if f['famille'] in fams)
 

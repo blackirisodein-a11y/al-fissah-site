@@ -51,7 +51,11 @@ a{color:inherit}
 #loader.done{transform:translateY(-102%);visibility:hidden}
 /* Sécurité : si le script ne se charge pas (fichier absent, réseau coupé…), l'écran d'ouverture s'efface quand même au bout de 7 s et le site reste utilisable. */
 @keyframes ldfailsafe{from{transform:translateY(0)}to{transform:translateY(-102%);visibility:hidden}}
-html.intro-seen #loader{display:none;animation:none}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
+html.intro-seen #loader{display:none;animation:none}
+/* Pendant l'écran d'ouverture, tout ce qui est derrière lui est invisible : ses 44 animations (taches, vagues, cartes
+   des programmes, classe virtuelle…) attendent l'ouverture du site (body.ready) au lieu de consommer le processeur
+   pour rien (≈ 0,4 s de blocage mesuré sur mobile). Sans effet sur les autres pages ni pour un navigateur ancien. */
+body:has(#loader:not(.done)):not(.ready) *:not(#loader):not(#loader *){animation-play-state:paused}   /* écran d'ouverture déjà vu dans cette session (clic sur le logo, retour à l'accueil) */
 #loader.closing .ld-box{animation:boxout .6s ease forwards}
 @keyframes boxout{to{opacity:0;transform:translateY(-26px);filter:blur(4px)}}
 .ld-box{position:relative;display:grid;place-items:center;gap:1.3rem;padding:0 20px}
