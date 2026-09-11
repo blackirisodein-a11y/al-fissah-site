@@ -70,7 +70,11 @@ if(cv&&!mq.matches){
       ctx.fillStyle=p.or?`rgba(217,111,15,${(p.o*b).toFixed(2)})`:`rgba(36,65,140,${(p.o*b).toFixed(2)})`;
       ctx.fillText(p.ch,0,0);ctx.restore()}
     requestAnimationFrame(tick)};
-  size();make();requestAnimationFrame(tick);addEventListener('resize',()=>{size();make()});
+  // Sur l'accueil, le décor est caché derrière l'écran d'ouverture : on ne le dessine qu'à l'ouverture du site
+  // (body.ready), ce qui libère le processeur pendant l'intro (mesuré : ≈ 1,6 s de script sur mobile).
+  const demarrer=()=>{size();make();requestAnimationFrame(tick);addEventListener('resize',()=>{size();make()})};
+  if(document.body.classList.contains('ready')||!loader)demarrer();
+  else new MutationObserver((_,o)=>{if(document.body.classList.contains('ready')){o.disconnect();demarrer()}}).observe(document.body,{attributes:true,attributeFilter:['class']});
 }
 
 /* ---------- Révélation au scroll ---------- */
