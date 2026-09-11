@@ -1,0 +1,17 @@
+# Inventaire de la chaîne YouTube de l'école : playlists et vidéos, imprimés dans le journal.
+# Onglet Actions → « Inventaire YouTube » → Run workflow. Aucune clé, aucun secret.
+name: Inventaire YouTube
+on:
+  workflow_dispatch:
+    inputs:
+      video:
+        description: "Identifiant d'une vidéo de la chaîne (sert à retrouver la chaîne)"
+        default: "MNiWkEPoGNw"
+        required: true
+jobs:
+  inventaire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire la chaîne
+        run: python3 scripts/inventaire-youtube.py "${{ github.event.inputs.video }}"
