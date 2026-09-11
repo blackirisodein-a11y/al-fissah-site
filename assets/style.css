@@ -604,7 +604,7 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 .tcard.duo{background:linear-gradient(150deg,var(--navy),var(--navy-deep));color:#fff;border-color:transparent}
 .tcard.duo .per{color:var(--blue-soft)}
 .tcard.duo .tf{color:var(--orange)}
-.tcard .tf{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-deep)}
+.tcard .tf{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#A85208}
 .tcard .price{font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1.1}
 .tcard .per{font-size:.85rem;color:var(--muted);flex-grow:1;line-height:1.45}
 .tcard .btn{justify-content:center;margin-top:.8rem;padding:.7rem 1rem;font-size:.88rem}
