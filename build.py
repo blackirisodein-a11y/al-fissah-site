@@ -468,10 +468,11 @@ class Builder:
 </div>
 ''' if home else ''
         nav = [('index.html', n['accueil'], 'index'), ('programmes.html', n['programmes'], 'programmes'), ('tarifs.html', n['tarifs'], 'tarifs'),
-               ('faq.html', n['faq'], 'faq'), ('temoignages.html', n['temoignages'], 'temoignages'), ('a-propos.html', n['apropos'], 'a-propos'), ('contact.html', n['contact'], 'contact')]
+               ('faq.html', n['faq'], 'faq'), ('temoignages.html', n['temoignages'], 'temoignages'), ('reglement.html', n['reglement'], 'reglement'),
+               ('a-propos.html', n['apropos'], 'a-propos'), ('contact.html', n['contact'], 'contact')]   # « Règlement intérieur » dans le menu : demande du client (11/09)
         # menu de bureau sans « Accueil » (le logo y mène) pour laisser la place au bouton « Demander un essai gratuit » ; le menu mobile le garde
         menu = '\n      '.join(f'<li><a href="{h}"{" class=\"active\"" if k == page else ""}>{l}</a></li>' for h, l, k in nav if k != 'index')
-        mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav) + f'\n    <a href="reglement.html">{n["reglement"]}</a>'
+        mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav)
         return loader + f'''<div id="progress" aria-hidden="true"></div>
 <button class="totop" id="totop" aria-label="{n['totop']}">↑</button>
 <a class="btn btn-orange cta-float" id="ctafloat" href="{self.insc_url()}">{self.I['btn_insc']}</a>
