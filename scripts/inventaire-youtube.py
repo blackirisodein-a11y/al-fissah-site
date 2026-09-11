@@ -30,13 +30,21 @@ def text(t):
     if "simpleText" in t: return t["simpleText"]
     return "".join(r.get("text", "") for r in t.get("runs", []))
 
-html = page(f"https://www.youtube.com/watch?v={VIDEO}")
-cid = re.search(r'"channelId":"(UC[\w-]+)"', html).group(1)
-cname = (re.search(r'"ownerChannelName":"([^"]+)"', html) or re.search(r'"author":"([^"]+)"', html)).group(1)
-out = {"channel": {"id": cid, "name": cname}, "playlists": [], "latest": []}
+# Chaîne : par oEmbed (author_url), puis identifiant UC… lu sur la page de la chaîne
+oe = json.loads(page(f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={VIDEO}&format=json"))
+cname, curl = oe.get("author_name", ""), oe.get("author_url", "")
+chtml = page(curl + "/playlists")
+m = re.search(r'"(?:externalId|channelId)":"(UC[\w-]+)"', chtml)
+if not m:
+    print("=====DEBUG=====", curl, len(chtml), re.sub(r"\s+", " ", chtml[:1500]))
+    sys.exit(1)
+cid = m.group(1)
+out = {"channel": {"id": cid, "name": cname, "url": curl}, "playlists": [], "latest": []}
 
 # Playlists de la chaîne
-d = initial_data(page(f"https://www.youtube.com/channel/{cid}/playlists"))
+d = initial_data(chtml)
+if not d:
+    print("=====DEBUG===== pas de ytInitialData", re.sub(r"\s+", " ", chtml[:1500]))
 seen = set()
 for r in list(walk(d, "playlistId")):
     pid = r.get("playlistId")
