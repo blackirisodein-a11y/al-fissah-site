@@ -427,6 +427,7 @@ class Builder:
     def chrome(self, page, home=False):
         L = self.L; n = L['nav']
         loader = f'''<div id="loader">
+  <div class="ld-bg" aria-hidden="true"></div>
   <div class="ld-dots" aria-hidden="true"></div>
   {LD_SYMS}
   <div class="ld-box">
@@ -611,7 +612,7 @@ class Builder:
 
 <section id="video"><div class="wrap"><div class="videowrap io io-z">
   <div class="head center"><span class="kick">{H['video_kick']}</span><h2>{H['video_h2']}</h2><p>{H['video_p']}</p></div>
-  <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/MNiWkEPoGNw" title="{H['video_h2']}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+  <div class="video-frame"><button type="button" class="poster yt-poster" data-yt="MNiWkEPoGNw" aria-label="{H['video_h2']}"><img src="https://i.ytimg.com/vi/MNiWkEPoGNw/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span class="cap">{H['video_h2']}</span></button></div>
   <p class="video-more"><a href="https://www.youtube.com/watch?v=MNiWkEPoGNw" target="_blank" rel="noopener">{H['video_more']} →</a></p>
 </div></div></section>
 

@@ -143,6 +143,11 @@ if(spyLinks.length){
 }
 
 /* ---------- Vidéo de présentation ---------- */
+/* Vidéo YouTube : le lecteur n'est chargé qu'au clic sur l'image (il pesait ≈ 1 Mo dès l'ouverture de la page sur bureau). */
+$$('.yt-poster').forEach(p=>{p.addEventListener('click',()=>{if(p.classList.contains('hide'))return;
+  const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${p.dataset.yt}?autoplay=1&rel=0`;
+  f.title=p.getAttribute('aria-label')||'';f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;
+  f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';p.parentElement.appendChild(f);p.classList.add('hide')})});
 const vid=$('#presvid'),poster=$('#poster');
 if(vid&&poster){
   const playVid=()=>{vid.style.display='block';poster.classList.add('hide');vid.play().catch(()=>{})};
