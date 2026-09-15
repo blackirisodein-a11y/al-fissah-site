@@ -10,11 +10,22 @@ name: Mise en ligne (FTP LWS)
 on:
   push:
     branches: [main]
+    # ⚠ 15/09/2026 — économie de minutes. Le compte a épuisé ses 2 000
+    # minutes mensuelles, ce qui a mis toutes les actions à l'arrêt. Une
+    # note ou un document corrigé ne change RIEN aux 72 pages du site :
+    # inutile de reconstruire et de tout renvoyer par FTP.
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - "scratchpad/**"
   workflow_dispatch:
 
 concurrency:
   group: mise-en-ligne
-  cancel-in-progress: false
+  # Deux poussées coup sur coup : seule la dernière part. L'envoi FTP
+  # complet dure plusieurs minutes, et c'est toujours le dernier état du
+  # site qui doit être en ligne.
+  cancel-in-progress: true
 
 jobs:
   deployer:
