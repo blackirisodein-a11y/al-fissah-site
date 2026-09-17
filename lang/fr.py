@@ -125,6 +125,10 @@ L = {
 <p>Le programme permet notamment de :</p>
 <ul><li>améliorer la fluidité de la lecture ;</li><li>augmenter progressivement la vitesse de lecture ;</li><li>corriger les erreurs fréquentes ;</li><li>développer une lecture plus précise et naturelle ;</li><li>renforcer la confiance de l'étudiant ;</li><li>lire les textes arabes avec davantage d'aisance.</li></ul>
 <p>Ce programme est particulièrement adapté à ceux qui souhaitent perfectionner leur lecture de l'arabe et se préparer à aborder avec plus d'aisance la lecture du Coran, des livres et des différents textes en arabe.</p>""", cta="Évaluer ma lecture"),
+   dict(id='aide-scolaire', tag="Aide scolaire", ar='الدَّعْمُ المَدْرَسِيّ', titre="Aide scolaire pour les élèves du primaire", facts=['Primaire','Pays arabes','Cours individuels'],
+     court="Accompagnement scolaire des élèves du primaire scolarisés dans les pays arabes, en cours individuels.",
+     long="""<p>L'aide scolaire s'adresse aux élèves du primaire scolarisés dans les pays arabes. Le professeur reprend avec l'élève le programme de son école : lecture, écriture, compréhension et devoirs.</p>
+<p>Les cours se déroulent uniquement en individuel, afin que le rythme et le contenu suivent exactement ceux de la classe de l'élève. À l'inscription, vous indiquez le pays de scolarisation et le niveau du primaire.</p>""", cta="Demander un accompagnement"),
    dict(id='collectifs', tag='Cours collectifs', ar='الدُّرُوسُ الجَمَاعِيَّة', titre="Cours d'arabe en groupe — niveaux 1 à 12", facts=['3 h / semaine','3 à 10 élèves','Enfants'],
      court="Votre enfant avance avec d'autres enfants : plus stimulant, avec l'envie de s'investir davantage. Groupes de 3 à 10 élèves, 3 heures par semaine.",
      long="""<p>Venez découvrir nos cours d'arabe en groupe. Votre enfant avance avec d'autres enfants : c'est plus stimulant, avec l'envie de s'investir davantage. Les classes sont composées en général de 3 à 10 élèves maximum et suivent le programme « L'arabe entre les mains de nos enfants », du niveau 1 au niveau 12, à raison de 3 heures par semaine.</p>
