@@ -125,6 +125,10 @@ L = {
 <p>The programme notably helps to:</p>
 <ul><li>improve reading fluency;</li><li>gradually increase reading speed;</li><li>correct frequent errors;</li><li>develop more accurate and natural reading;</li><li>strengthen the student's confidence;</li><li>read Arabic texts with greater ease.</li></ul>
 <p>This programme is particularly suited to those who wish to perfect their Arabic reading and prepare to approach reading the Quran, books and various Arabic texts with more ease.</p>""", cta="Assess my reading"),
+   dict(id='aide-scolaire', tag="School support", ar='الدَّعْمُ المَدْرَسِيّ', titre="School support for primary-school pupils", facts=['Primary school','Arab countries','One-to-one'],
+     court="School support for primary-school pupils enrolled in Arab countries, in one-to-one lessons.",
+     long="""<p>School support is for primary-school pupils enrolled in Arab countries. The teacher goes over the pupil's own school syllabus with them: reading, writing, comprehension and homework.</p>
+<p>Lessons are one-to-one only, so that the pace and the content follow the pupil's class exactly. When registering, you give the country of schooling and the primary-school year.</p>""", cta="Request support"),
    dict(id='collectifs', tag='Group lessons', ar='الدُّرُوسُ الجَمَاعِيَّة', titre="Group Arabic lessons — levels 1 to 12", facts=['3 h / week','3 to 10 students','Children'],
      court="Your child progresses alongside other children: more stimulating, with the desire to get more involved. Groups of 3 to 10 students, 3 hours per week.",
      long="""<p>Discover our group Arabic lessons. Your child progresses alongside other children: it is more stimulating, with the desire to get more involved. Classes generally consist of 3 to 10 students at most and follow the programme “Arabic in our children's hands”, from level 1 to level 12, at 3 hours per week.</p>

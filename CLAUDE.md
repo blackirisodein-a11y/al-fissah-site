@@ -185,6 +185,34 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 
 ---
 
+## ⚠ Actions GitHub à l'arrêt jusqu'au 1er octobre 2026
+
+Le compte `blackirisodein-a11y` a **épuisé ses 2 000 minutes d'Actions** le
+15/09/2026. Tout ce qui passe par l'onglet *Actions* échoue en cinq secondes,
+sans journal — ce n'est ni le code ni les fichiers. Remise à zéro le **1er
+octobre**. Décision du client : **attendre**, ne pas payer de dépassement.
+
+**Ce qui continue de fonctionner** : Vercel (il déploie la plateforme sur ses
+propres serveurs), Supabase, et le site GitHub lui-même (lecture et copie des
+fichiers).
+
+**Ce qui est bloqué** : la mise en ligne du site vitrine par FTP, l'installation
+de la base (`installer-base.yml`), et tous les diagnostics.
+
+**Comment installer du SQL en attendant** : `supabase/a-installer-a-la-main.sql`
+du dépôt de la plateforme réunit les migrations à poser, avec son mode d'emploi.
+Bouton *Copy raw file* sur GitHub → Supabase → *SQL Editor* → *New query* →
+coller → *Run*. Le fichier est **fabriqué** par
+`scripts/construire-fichier-a-coller.sh` : ne jamais le recopier à la main.
+
+**Pour publier le site vitrine en attendant** : méthode FileZilla ci-dessous.
+
+**Consommation réduite le 15/09** pour que 2 000 minutes suffisent ensuite : un
+seul travail de contrôle au lieu de deux, la poussée suivante annule la
+précédente, et les `.md` / `docs/` ne déclenchent plus rien.
+
+---
+
 ## Déploiement
 
 **Automatique depuis GitHub** (`.github/workflows/mise-en-ligne.yml`) : chaque push sur `main`

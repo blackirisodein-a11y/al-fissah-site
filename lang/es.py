@@ -125,6 +125,10 @@ L = {
 <p>El programa permite, en particular:</p>
 <ul><li>mejorar la fluidez de la lectura;</li><li>aumentar progresivamente la velocidad de lectura;</li><li>corregir los errores frecuentes;</li><li>desarrollar una lectura más precisa y natural;</li><li>reforzar la confianza del estudiante;</li><li>leer textos árabes con mayor soltura.</li></ul>
 <p>Este programa es especialmente adecuado para quienes desean perfeccionar su lectura del árabe y prepararse para abordar con más soltura la lectura del Corán, de libros y de distintos textos en árabe.</p>""", cta="Evaluar mi lectura"),
+   dict(id='aide-scolaire', tag="Apoyo escolar", ar='الدَّعْمُ المَدْرَسِيّ', titre="Apoyo escolar para alumnos de primaria", facts=['Primaria','Países árabes','Clases individuales'],
+     court="Apoyo escolar para alumnos de primaria escolarizados en países árabes, en clases individuales.",
+     long="""<p>El apoyo escolar está dirigido a los alumnos de primaria escolarizados en países árabes. El profesor repasa con el alumno el programa de su propia escuela: lectura, escritura, comprensión y deberes.</p>
+<p>Las clases son únicamente individuales, para que el ritmo y el contenido sigan exactamente los de la clase del alumno. Al inscribirse, se indica el país de escolarización y el curso de primaria.</p>""", cta="Solicitar apoyo"),
    dict(id='collectifs', tag='Clases en grupo', ar='الدُّرُوسُ الجَمَاعِيَّة', titre="Clases de árabe en grupo — niveles 1 a 12", facts=['3 h / semana','3 a 10 alumnos','Niños'],
      court="Tu hijo avanza con otros niños: más estimulante, con ganas de implicarse más. Grupos de 3 a 10 alumnos, 3 horas por semana.",
      long="""<p>Descubre nuestras clases de árabe en grupo. Tu hijo avanza con otros niños: es más estimulante, con ganas de implicarse más. Las clases se componen en general de 3 a 10 alumnos como máximo y siguen el programa «El árabe en manos de nuestros hijos», del nivel 1 al nivel 12, a razón de 3 horas por semana.</p>

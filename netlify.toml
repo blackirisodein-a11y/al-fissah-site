@@ -7,7 +7,9 @@
   publish = "."
 
 [build.environment]
-  PYTHON_VERSION = "3.11"
+  # ⚠ 3.12 minimum : build.py utilise des f-strings que 3.11 refuse.
+  #   Avec 3.11, la publication Netlify échouait avec une SyntaxError.
+  PYTHON_VERSION = "3.12"
 
 [[headers]]
   for = "/*"

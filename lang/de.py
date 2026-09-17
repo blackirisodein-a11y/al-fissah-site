@@ -125,6 +125,10 @@ L = {
 <p>Das Programm hilft insbesondere dabei:</p>
 <ul><li>die Leseflüssigkeit zu verbessern;</li><li>die Lesegeschwindigkeit schrittweise zu erhöhen;</li><li>häufige Fehler zu korrigieren;</li><li>genauer und natürlicher zu lesen;</li><li>das Selbstvertrauen des Schülers zu stärken;</li><li>arabische Texte leichter zu lesen.</li></ul>
 <p>Dieses Programm eignet sich besonders für alle, die ihr arabisches Lesen perfektionieren und sich darauf vorbereiten möchten, den Koran, Bücher und verschiedene arabische Texte leichter zu lesen.</p>""", cta="Mein Lesen einschätzen lassen"),
+   dict(id='aide-scolaire', tag="Schulische Unterstützung", ar='الدَّعْمُ المَدْرَسِيّ', titre="Schulische Unterstützung für Grundschüler", facts=['Grundschule','Arabische Länder','Einzelunterricht'],
+     court="Schulische Unterstützung für Grundschüler, die in arabischen Ländern zur Schule gehen, im Einzelunterricht.",
+     long="""<p>Die schulische Unterstützung richtet sich an Grundschüler, die in arabischen Ländern zur Schule gehen. Die Lehrkraft geht mit dem Kind den Lehrplan seiner eigenen Schule durch: Lesen, Schreiben, Verstehen und Hausaufgaben.</p>
+<p>Der Unterricht findet ausschließlich einzeln statt, damit Tempo und Inhalt genau dem Unterricht der Klasse folgen. Bei der Anmeldung geben Sie das Land der Beschulung und die Klassenstufe an.</p>""", cta="Unterstützung anfragen"),
    dict(id='collectifs', tag='Gruppenunterricht', ar='الدُّرُوسُ الجَمَاعِيَّة', titre="Arabisch-Gruppenunterricht — Niveaus 1 bis 12", facts=['3 Std. / Woche','3 bis 10 Schüler','Kinder'],
      court="Ihr Kind lernt gemeinsam mit anderen Kindern: motivierender, mit dem Wunsch, sich mehr einzubringen. Gruppen von 3 bis 10 Schülern, 3 Stunden pro Woche.",
      long="""<p>Entdecken Sie unseren Arabisch-Gruppenunterricht. Ihr Kind lernt gemeinsam mit anderen Kindern: Das ist motivierender und weckt den Wunsch, sich mehr einzubringen. Die Klassen bestehen in der Regel aus höchstens 3 bis 10 Schülern und folgen dem Programm „Arabisch in den Händen unserer Kinder“, von Niveau 1 bis 12, mit 3 Stunden pro Woche.</p>

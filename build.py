@@ -671,9 +671,11 @@ class Builder:
         L = self.L; H = L['home']; F = L['form']; P = L['progs']; c = L['common']
         cr = CLASSROOM_RAW
         for a, b in H['classroom'].items(): cr = cr.replace(a, b)
+        # ⚠ Un programme de plus que d'illustrations ne doit pas casser la
+        #   page : on tourne sur les listes au lieu d'indexer à l'aveugle.
         ios = ['io io-l', 'io d1', 'io io-r d2', 'io io-l d1', 'io d2', 'io io-r d3']
-        cards = ''.join(f'''      <article class="prog tilt io {ios[i]}">
-        {PICS[i]}
+        cards = ''.join(f'''      <article class="prog tilt io {ios[i % len(ios)]}">
+        {PICS[i % len(PICS)]}
         <div class="num">{i+1:02d}</div>
         <h3>{p['titre']}</h3>
         <div class="facts">{''.join(f'<span>{x}</span>' for x in p['facts'])}</div>
