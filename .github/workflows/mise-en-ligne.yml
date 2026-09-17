@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le dépôt
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
@@ -45,7 +45,7 @@ jobs:
           echo "Fichiers à envoyer : $(find _site -type f | wc -l)"
 
       - name: Envoyer par FTP vers LWS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
