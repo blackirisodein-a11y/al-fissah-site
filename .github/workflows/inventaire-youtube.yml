@@ -14,7 +14,7 @@ jobs:
   inventaire:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Lire la chaîne
         run: python3 scripts/inventaire-youtube.py "${{ github.event.inputs.video }}"
       - name: Enregistrer youtube.json dans le dépôt (branche courante)
