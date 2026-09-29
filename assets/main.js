@@ -181,8 +181,8 @@ if(vid&&poster){
    2) FORM_ENDPOINT vide → ouverture d'un e-mail pré-rempli vers
       CONTACT_EMAIL (fonctionne partout, sans configuration).
    ============================================================ */
-const FORM_ENDPOINT="";                       // ex. "https://api.web3forms.com/submit" ou "https://formspree.io/f/xxxxxxxx"
-const FORM_KEY="";                            // clé Web3Forms (laisser vide pour Formspree/Getform)
+const FORM_ENDPOINT="https://api.web3forms.com/submit"; // Web3Forms (compte de l'école, 29/09/2026)
+const FORM_KEY="4e94cab7-80b5-436c-8a4f-9f02357ff67a"; // clé publique Web3Forms : faite pour être dans la page, elle ne permet que d'envoyer vers l'adresse de l'école
 const CONTACT_EMAIL="c.alfissah@gmail.com";  // adresse qui reçoit les demandes
 const WHATSAPP_NUMBER="";                     // ex. "33612345678" (sans + ni espaces) — optionnel
 
@@ -210,7 +210,7 @@ if(form){
     if(FORM_ENDPOINT){
       submitBtn.disabled=true;say(I.sending||'Envoi en cours…','pending');
       try{
-        const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:"Demande de cours d'essai — Al-Fissah",...d}:d)});
+        const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:"Demande de cours d'essai — Al-Fissah",from_name:"Site Al-Fissah",replyto:d.email,...d}:d)});
         if(!r.ok)throw new Error(r.status);
         form.reset();syncProfil();
         say(I.trial_ok||'Demande envoyée.','ok');
@@ -241,7 +241,7 @@ if(cform){
     const body=`Nom : ${d.nom}\nPrénom : ${d.prenom}\nE-mail : ${d.email}\nSujet : ${d.sujet}\n\n${d.message}`;
     if(FORM_ENDPOINT){
       const I=window.I18N||{};btn.disabled=true;say(I.sending||'Envoi en cours…','pending');
-      try{const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:'Contact — Al-Fissah',...d,_type:'contact'}:{...d,_type:'contact'})});
+      try{const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:'Contact — Al-Fissah',from_name:'Site Al-Fissah',replyto:d.email,...d,_type:'contact'}:{...d,_type:'contact'})});
         if(!r.ok)throw new Error(r.status);cform.reset();
         say(I.contact_ok||'Message envoyé.','ok');
       }catch(err){say((I.err||'Erreur. Écrivez à {email}.').replace('{email}',CONTACT_EMAIL),'err')}
@@ -294,7 +294,7 @@ if(sform){
     if(FORM_ENDPOINT){
       btn.disabled=true;say(I.sending||'Envoi en cours…','pending');
       try{
-        const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:"Inscription aux études — Al-Fissah",...d,_type:'inscription'}:{...d,_type:'inscription'})});
+        const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(FORM_KEY?{access_key:FORM_KEY,subject:"Inscription aux études — Al-Fissah",from_name:"Site Al-Fissah",replyto:d.email,...d,_type:'inscription'}:{...d,_type:'inscription'})});
         if(!r.ok)throw new Error(r.status);
         sform.reset();syncProfil();
         say(I.signup_ok||'Demande envoyée.','ok');
