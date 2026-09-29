@@ -159,8 +159,13 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   « Mesure PageSpeed » (qui affiche aussi SEO / accessibilité / bonnes pratiques).
 - **Textes** : repris de al-fissah.com (FAQ 18 questions, règlement 9 articles, tarifs,
   programmes). Ne pas les réécrire sans raison, ce sont les textes officiels de l'école.
-- **Témoignages** : verbatim, en français dans les 6 langues. Une note l'explique sur les
-  versions traduites. Ne pas traduire sans accord du client.
+- **Témoignages** : originaux verbatim en français (`lang/testimonials.py`). Traduits avec
+  l'accord du client (29/09/2026) dans `lang/testimonials_{en,es,de,ru,ar}.py` (`TESTI_TR`, même
+  ordre, 24 entrées) ; sur ces pages, le texte original reste lisible sous chaque témoignage
+  (« Texte original », repliable). Un nouveau témoignage s'ajoute dans les six fichiers ; s'il
+  manque dans une langue, cette langue revient aux originaux français.
+- **Construire** demande Python 3.12 (`python3.12 build.py --inline`) : avec 3.11, erreur de
+  syntaxe dans une f-string.
 - **Mentions légales** : rédigées pour une LLC américaine servant des élèves européens
   (droit du Nouveau-Mexique + RGPD + transferts hors UE). Cinq champs restent entre
   crochets : adresse du siège, NM Business ID, agent enregistré, gérant, hébergeur.
