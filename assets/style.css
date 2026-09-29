@@ -691,6 +691,7 @@ footer.site .base a{color:var(--blue-soft)}
 .tcard-t footer{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:.9rem;padding-top:.8rem;border-top:1px dashed var(--line);font-size:.85rem}
 .tcard-t footer b{color:var(--navy-mid)}
 .tcard-t footer time{color:var(--muted)}
+.tt-orig{margin:.2rem 0 .4rem;font-size:.85rem}.tt-orig summary{cursor:pointer;color:var(--navy-mid);font-weight:700;list-style-position:inside}.tt-orig>div{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--line);text-align:left}.tt-orig>div p{font-size:.88rem;color:var(--muted)}
 .logo{white-space:nowrap}
 .login{white-space:nowrap}
 
@@ -734,7 +735,7 @@ footer.site .base a{color:var(--blue-soft)}
 [dir=rtl] .mobmenu.open{clip-path:circle(150% at 46px 38px)}
 [dir=rtl] .cr-ar{clip-path:inset(0 100% 0 0);animation-name:writein-rtl}
 @keyframes writein-rtl{0%{clip-path:inset(0 100% 0 0)}28%,78%{clip-path:inset(0 0 0 0)}92%,100%{opacity:0}}
-[dir=rtl] .tcard-t{text-align:left}
+[dir=rtl] .tcard-t[dir=ltr]{text-align:left}
 @media(max-width:640px){[dir=rtl] .cta-float{right:0;left:0}}
 .logo-txt{display:flex;flex-direction:column;line-height:1.05}
 .logo-txt small{font-family:var(--body);font-weight:700;font-size:.58rem;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;white-space:nowrap}

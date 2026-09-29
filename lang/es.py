@@ -189,6 +189,7 @@ L = {
   h1="Cuentan su experiencia", lead="{n} testimonios de padres y estudiantes, publicados entre 2021 y 2025 en el área del estudiante.",
   s1="testimonios", s2="nota media", s3="familias de alumnos niños", s4="primeras opiniones", date_fmt="{d} de {m} de {y}",
   tags={'Enfants':'Niños','Langue arabe':'Lengua árabe','Coran':'Corán','Lecture &amp; Coran':'Lectura y Corán'},
+  lang_note_tr='Testimonios traducidos del francés, el idioma en que los escribieron alumnos y padres. El texto original está disponible debajo de cada testimonio.', orig='Texto original (francés)',
   lang_note="Los testimonios se muestran en su idioma original (francés), tal como los escribieron los alumnos y padres.",
   note_b="¿Eres alumno o padre de un alumno?", note_p="Puedes dejar tu testimonio desde tu", note_a="área del estudiante"),
 

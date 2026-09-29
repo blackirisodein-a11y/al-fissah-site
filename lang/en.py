@@ -189,6 +189,7 @@ L = {
   h1="What our students say", lead="{n} testimonials from parents and students, published between 2021 and 2025 in the student area.",
   s1="testimonials", s2="average rating", s3="families of child students", s4="first reviews", date_fmt="{d} {m} {y}",
   tags={'Enfants':'Children','Langue arabe':'Arabic language','Coran':'Quran','Lecture &amp; Coran':'Reading &amp; Quran'},
+  lang_note_tr='Testimonials translated from French, the language in which students and parents wrote them. The original text is available under each testimonial.', orig='Original text (French)',
   lang_note="Testimonials are shown in their original language (French), as written by the students and parents.",
   note_b="Are you a student or a student's parent?", note_p="You can leave your testimonial from your", note_a="student area"),
 

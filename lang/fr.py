@@ -189,6 +189,7 @@ L = {
   h1="Ils témoignent de leur expérience", lead="{n} témoignages de parents et d'étudiants, publiés entre 2021 et 2025 sur l'espace étudiant.",
   s1="témoignages", s2="note moyenne", s3="familles d'élèves enfants", s4="premiers avis", date_fmt="{d} {m} {y}",
   tags={'Enfants':'Enfants','Langue arabe':'Langue arabe','Coran':'Coran','Lecture &amp; Coran':'Lecture &amp; Coran'},
+  lang_note_tr='', orig='Texte original (français)',
   lang_note="", note_b="Vous êtes élève ou parent d'élève ?", note_p="Vous pouvez laisser votre témoignage depuis votre", note_a="espace étudiant"),
 
 'reglement': dict(title="Règlement intérieur — AL-FISSAH", desc="Le règlement intérieur de l'école Al-Fissah : comportement, matériel, créneaux, présence et absences, paiement, examens, litiges.",

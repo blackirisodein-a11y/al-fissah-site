@@ -434,6 +434,18 @@ CLASSROOM_RAW = open(os.path.join(ROOT, 'part_classroom.html'), encoding='utf-8'
 sys.path.insert(0, os.path.join(ROOT, 'lang'))
 from testimonials import TESTI  # témoignages réels, en français
 
+def testi_traduits(code):
+    """Témoignages traduits (accord du client, 29/09/2026) : lang/testimonials_{code}.py,
+    même ordre que TESTI. Absent ou incomplet → les originaux français."""
+    if code == 'fr':
+        return None
+    try:
+        m = importlib.import_module('testimonials_' + code)
+    except ImportError:
+        return None
+    tr = getattr(m, 'TESTI_TR', None)
+    return tr if tr and len(tr) == len(TESTI) else None
+
 def load_lang(code):
     spec = importlib.util.spec_from_file_location(code, os.path.join(ROOT, 'lang', code + '.py'))
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
@@ -886,15 +898,26 @@ class Builder:
         def fdate(d):
             y, m, dd = d.split('-'); return T['date_fmt'].format(d=int(dd), m=M[int(m) - 1], y=y)
         tags = T['tags']
-        cards = ''.join(f'''<blockquote class="tcard-t io {'io-l' if i % 2 == 0 else 'io-r'}" lang="fr" dir="ltr">
-  <div class="tt-top"><span class="stars">★★★★★</span><span class="tt-tag">{tags.get(tag, tag)}</span></div>{body}
+        # Traduits dans la langue de la page quand la traduction existe ; le texte
+        # original (français) reste lisible sous chaque témoignage.
+        tr = testi_traduits(self.c)
+        dir_ = 'rtl' if self.c == 'ar' else 'ltr'
+        def carte(i, n, d, tag, body):
+            if tr:
+                corps = f'''{tr[i]}<details class="tt-orig"><summary>{T['orig']}</summary><div lang="fr" dir="ltr">{body}</div></details>'''
+                attrs = f'lang="{self.c}" dir="{dir_}"'
+            else:
+                corps, attrs = body, 'lang="fr" dir="ltr"'
+            return f'''<blockquote class="tcard-t io {'io-l' if i % 2 == 0 else 'io-r'}" {attrs}>
+  <div class="tt-top"><span class="stars">★★★★★</span><span class="tt-tag">{tags.get(tag, tag)}</span></div>{corps}
   <footer><b>{n}</b><time datetime="{d}">{fdate(d)}</time></footer>
-</blockquote>''' for i, (n, d, tag, body) in enumerate(TESTI))
+</blockquote>'''
+        cards = ''.join(carte(i, *t) for i, t in enumerate(TESTI))
         ld = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","url":SITE,
               "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","bestRating":"5","reviewCount":str(len(TESTI))},
-              "review":[{"@type":"Review","author":{"@type":"Person","name":n},"datePublished":d,"inLanguage":"fr","reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":strip(b)[:500]} for n, d, _, b in TESTI]}, ensure_ascii=False)
+              "review":[{"@type":"Review","author":{"@type":"Person","name":n},"datePublished":d,"inLanguage":self.c if tr else "fr","reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":strip(tr[i] if tr else b)[:500]} for i, (n, d, _, b) in enumerate(TESTI)]}, ensure_ascii=False)
         kids = sum(1 for x in TESTI if x[2] == 'Enfants')
-        note_lang = f'<p class="lang-note">{T["lang_note"]}</p>' if self.c != 'fr' else ''
+        note_lang = f'<p class="lang-note">{T["lang_note_tr"] if tr else T["lang_note"]}</p>' if self.c != 'fr' else ''
         html = self.page_hero(L['nav']['temoignages'], T['h1'], T['lead'].format(n=len(TESTI))) + f'''<div class="page"><div class="wrap single tpage">
   <div class="stats io">
     <div class="stat"><div class="n">{len(TESTI)}</div><span>{T['s1']}</span></div>

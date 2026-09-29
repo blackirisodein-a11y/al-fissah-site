@@ -189,6 +189,7 @@ L = {
   h1="Das sagen unsere Schüler", lead="{n} Erfahrungsberichte von Eltern und Schülern, veröffentlicht zwischen 2021 und 2025 im Schülerbereich.",
   s1="Erfahrungsberichte", s2="Durchschnittsbewertung", s3="Familien mit Kindern", s4="erste Bewertungen", date_fmt="{d}. {m} {y}",
   tags={'Enfants':'Kinder','Langue arabe':'Arabische Sprache','Coran':'Koran','Lecture &amp; Coran':'Lesen &amp; Koran'},
+  lang_note_tr='Aus dem Französischen übersetzte Erfahrungsberichte – in dieser Sprache haben Schüler und Eltern sie geschrieben. Der Originaltext steht unter jedem Bericht.', orig='Originaltext (Französisch)',
   lang_note="Die Erfahrungsberichte werden in ihrer Originalsprache (Französisch) angezeigt, so wie Schüler und Eltern sie geschrieben haben.",
   note_b="Sind Sie Schüler oder Elternteil?", note_p="Sie können Ihren Erfahrungsbericht in Ihrem", note_a="Schülerbereich hinterlassen"),
 
