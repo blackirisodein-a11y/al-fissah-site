@@ -256,17 +256,17 @@ L = {
 'mentions': dict(title="Impressum &amp; Datenschutz — AL-FISSAH", desc="Impressum, Verkaufsbedingungen und Datenschutzerklärung der Website al-fissah.com.",
   h1="Impressum und Datenschutz", lead="Informationen zum Herausgeber der Website, zum Hosting, zum geistigen Eigentum und zum Schutz Ihrer Daten.", updated="September 2026",
   toc=[("editeur","Anbieter"),("hebergement","Hosting"),("propriete","Urheberrecht"),("cgv","Verkaufsbedingungen"),("droit","Anwendbares Recht"),("confidentialite","Datenschutz"),("transferts","Datenübermittlung"),("cookies","Cookies"),("contact","Kontakt")],
-  body="""<div class="note"><b>Vor der Veröffentlichung zu ergänzen.</b> Die Angaben in eckigen Klammern müssen eingetragen werden: Anschrift, Registernummer in New Mexico, Registered Agent, Verantwortlicher für den Inhalt und Hosting-Anbieter.</div>
+  body="""<div class="note"><b>Vor der Veröffentlichung zu ergänzen.</b> Die Angaben in eckigen Klammern müssen eingetragen werden: Registernummer in New Mexico, Registered Agent und Verantwortlicher für den Inhalt.</div>
 <h2 id="editeur">Anbieter</h2>
 <dl><dt>Name</dt><dd>Al-Fissah LLC — Betreiberin der Internationalen Schule für arabische Sprache und Koran Al-Fissah</dd>
 <dt>Rechtsform</dt><dd>Limited Liability Company (LLC) nach US-amerikanischem Recht</dd>
 <dt>Registerstaat</dt><dd>New Mexico, Vereinigte Staaten von Amerika</dd>
-<dt>Sitz</dt><dd>[Vollständige Anschrift, New Mexico, USA]</dd>
+<dt>Sitz</dt><dd>530-B Harkle Road, Suite 100, Santa Fe, NM 87505, USA</dd>
 <dt>Registernummer</dt><dd>[NM Business ID, ausgestellt vom New Mexico Secretary of State]</dd>
 <dt>Registered Agent</dt><dd>[Name und Anschrift des Registered Agent]</dd>
 <dt>Verantwortlich für den Inhalt</dt><dd>[Vor- und Nachname der Geschäftsführung]</dd>
 <dt>E-Mail</dt><dd><a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a></dd></dl>
-<h2 id="hebergement">Hosting</h2><p>Die Website al-fissah.com wird gehostet von [Name des Anbieters], [Anschrift], [Telefon oder Website].</p>
+<h2 id="hebergement">Hosting</h2><p>Die Website al-fissah.com wird gehostet von LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Urheberrecht</h2><p>Die gesamte Website — Texte, Lehrbücher, Audiodateien, Illustrationen, Logo und die Bezeichnung „Al-Fissah“ — ist urheberrechtlich geschützt und bleibt ausschließliches Eigentum von Al-Fissah LLC oder ihrer Partner. Jede Vervielfältigung, Wiedergabe, Bearbeitung oder Verbreitung, ganz oder teilweise, ohne vorherige schriftliche Genehmigung ist untersagt. Die den Schülern übergebenen Lehrmaterialien sind ausschließlich für den persönlichen Gebrauch im Rahmen des Unterrichts bestimmt.</p>
 <h2 id="cgv">Verkaufsbedingungen</h2><p>Der Unterricht wird in Blöcken von 4 Wochen verkauft, im Voraus zahlbar per Karte (Stripe) oder Überweisung. Die Blöcke verlängern sich automatisch alle 4 Wochen; eine Kündigung ist der Verwaltung mindestens 7 Tage vor Ende des laufenden Blocks mitzuteilen. Die Preise sind in Euro auf der Seite <a href="tarifs.html">Preise</a> angegeben. Die 30-minütige Probestunde ist kostenlos und unverbindlich.</p>
 <p>Jede Anmeldung ist verbindlich: Nach Bezahlung eines Blocks werden weder Verschiebung noch Erstattung gewährt, gemäß der <a href="reglement.html">Schulordnung</a>, die Bestandteil dieser Bedingungen ist.</p>
