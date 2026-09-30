@@ -167,8 +167,9 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 - **Construire** demande Python 3.12 (`python3.12 build.py --inline`) : avec 3.11, erreur de
   syntaxe dans une f-string.
 - **Mentions légales** : rédigées pour une LLC américaine servant des élèves européens
-  (droit du Nouveau-Mexique + RGPD + transferts hors UE). Cinq champs restent entre
-  crochets : adresse du siège, NM Business ID, agent enregistré, gérant, hébergeur.
+  (droit du Nouveau-Mexique + RGPD + transferts hors UE). Hébergeur : LWS. La rubrique
+  « Éditeur du site » (dénomination, siège, immatriculation, agent enregistré, directeur de
+  publication) a été **retirée à la demande du client** (30/09/2026), dans les six langues.
 - **Formulaires (contact, essai, inscription)** : `assets/main.js`, en haut. Branchés sur **Web3Forms**
   depuis le 29/09/2026 (`FORM_ENDPOINT` + `FORM_KEY`, compte de l'école, formulaire « Site Al-Fissah —
   Contact ») : les messages arrivent directement dans la boîte de l'école, « Répondre » répond au
@@ -285,7 +286,7 @@ la plateforme.
    dépôt de la plateforme, contrôle par le workflow « Capturer les pages » (branche
    `captures`). Restent : e-mails (Resend, en place, à tester), paiements (Stripe), puis
    domaine définitif (app.al-fissah.com) → mettre à jour `app=`.
-2. Compléter les mentions légales.
+2. ~~Compléter les mentions légales~~ (rubrique « Éditeur du site » retirée à la demande du client, 30/09/2026).
 3. ~~Brancher le formulaire de contact sur Web3Forms~~ (fait le 29/09/2026 ; essai réel à faire une fois en ligne).
 4. Basculer vers al-fissah.com en préservant les URL de l'application élève.
 

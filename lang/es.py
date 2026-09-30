@@ -254,19 +254,9 @@ L = {
   subjects=["Inscripción / clase de prueba","Clases en grupo (con mi propio grupo)","Clases en pareja","Cambio de horario o de profesor","Área del estudiante / acceso","Pago / factura","Libros y material","Otro"]),
 
 'mentions': dict(title="Aviso legal y privacidad — AL-FISSAH", desc="Aviso legal, condiciones de venta y política de privacidad del sitio al-fissah.com.",
-  h1="Aviso legal y privacidad", lead="Información sobre el editor del sitio, el alojamiento, la propiedad intelectual y la protección de tus datos.", updated="septiembre de 2026",
-  toc=[("editeur","Editor del sitio"),("hebergement","Alojamiento"),("propriete","Propiedad intelectual"),("cgv","Condiciones de venta"),("droit","Ley aplicable"),("confidentialite","Privacidad"),("transferts","Transferencias de datos"),("cookies","Cookies"),("contact","Contacto")],
-  body="""<div class="note"><b>Pendiente de completar antes de la publicación.</b> Los elementos entre corchetes deben rellenarse: número de registro en Nuevo México, agente registrado y director de publicación.</div>
-<h2 id="editeur">Editor del sitio</h2>
-<dl><dt>Denominación</dt><dd>Al-Fissah LLC — operador de la Escuela Internacional de Lengua Árabe y Corán Al-Fissah</dd>
-<dt>Forma jurídica</dt><dd>Limited Liability Company (LLC) de derecho estadounidense</dd>
-<dt>Estado de registro</dt><dd>Nuevo México, Estados Unidos de América</dd>
-<dt>Domicilio social</dt><dd>530-B Harkle Road, Suite 100, Santa Fe, NM 87505, USA</dd>
-<dt>Número de registro</dt><dd>[NM Business ID emitido por el New Mexico Secretary of State]</dd>
-<dt>Agente registrado</dt><dd>[Nombre y dirección del registered agent]</dd>
-<dt>Director de publicación</dt><dd>[Nombre y apellidos del gerente]</dd>
-<dt>Correo electrónico</dt><dd><a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a></dd></dl>
-<h2 id="hebergement">Alojamiento</h2><p>El sitio al-fissah.com está alojado por LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
+  h1="Aviso legal y privacidad", lead="Información sobre el alojamiento, la propiedad intelectual y la protección de tus datos.", updated="septiembre de 2026",
+  toc=[("hebergement","Alojamiento"),("propriete","Propiedad intelectual"),("cgv","Condiciones de venta"),("droit","Ley aplicable"),("confidentialite","Privacidad"),("transferts","Transferencias de datos"),("cookies","Cookies"),("contact","Contacto")],
+  body="""<h2 id="hebergement">Alojamiento</h2><p>El sitio al-fissah.com está alojado por LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Propiedad intelectual</h2><p>Todo el sitio — textos, manuales, audios, ilustraciones, logotipo y la denominación «Al-Fissah» — está protegido por el derecho de propiedad intelectual y sigue siendo propiedad exclusiva de Al-Fissah LLC o de sus socios. Queda prohibida toda reproducción, representación, adaptación o difusión, total o parcial, sin autorización escrita previa. Los materiales pedagógicos entregados a los alumnos son de uso estrictamente personal, en el marco de las clases.</p>
 <h2 id="cgv">Condiciones de venta</h2><p>Las clases se venden por sesiones de 4 semanas, pagaderas por adelantado con tarjeta (Stripe) o transferencia. Las sesiones se renuevan automáticamente cada 4 semanas; la cancelación debe comunicarse a la administración al menos 7 días antes del fin de la sesión en curso. Los precios se indican en euros en la página <a href="tarifs.html">Precios</a>. La clase de prueba de 30 minutos es gratuita y sin obligación de compra.</p>
 <p>Toda inscripción es definitiva: no se concede aplazamiento ni reembolso tras el pago de la sesión, conforme al <a href="reglement.html">reglamento interno</a>, que forma parte integrante de estas condiciones.</p>
