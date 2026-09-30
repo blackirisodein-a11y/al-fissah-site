@@ -17,7 +17,7 @@ Les fichiers `.html` sont **générés**, jamais édités à la main. Tout part 
 build.py              assemble les pages ; contient la structure HTML et le dict PARCOURS
 lang/fr.py            tous les textes français (dict L)
 lang/{en,es,de,ru,ar}.py   mêmes clés, autres langues
-lang/testimonials.py  les 24 témoignages réels (restent en français partout)
+lang/testimonials.py  les 24 témoignages réels, en français (traductions : lang/testimonials_{en,es,de,ru,ar}.py)
 assets/style.css      styles
 assets/main.js        scripts (loader, menu, formulaires, sélecteur de langue)
 assets/logo*.png      logo officiel
@@ -194,31 +194,18 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 
 ---
 
-## ⚠ Actions GitHub à l'arrêt jusqu'au 1er octobre 2026
+## Actions GitHub : dépôt public depuis le 30/09/2026
 
-Le compte `blackirisodein-a11y` a **épuisé ses 2 000 minutes d'Actions** le
-15/09/2026. Tout ce qui passe par l'onglet *Actions* échoue en cinq secondes,
-sans journal — ce n'est ni le code ni les fichiers. Remise à zéro le **1er
-octobre**. Décision du client : **attendre**, ne pas payer de dépassement.
-
-**Ce qui continue de fonctionner** : Vercel (il déploie la plateforme sur ses
-propres serveurs), Supabase, et le site GitHub lui-même (lecture et copie des
-fichiers).
-
-**Ce qui est bloqué** : la mise en ligne du site vitrine par FTP, l'installation
-de la base (`installer-base.yml`), et tous les diagnostics.
-
-**Comment installer du SQL en attendant** : `supabase/a-installer-a-la-main.sql`
-du dépôt de la plateforme réunit les migrations à poser, avec son mode d'emploi.
-Bouton *Copy raw file* sur GitHub → Supabase → *SQL Editor* → *New query* →
-coller → *Run*. Le fichier est **fabriqué** par
-`scripts/construire-fichier-a-coller.sh` : ne jamais le recopier à la main.
-
-**Pour publier le site vitrine en attendant** : méthode FileZilla ci-dessous.
-
-**Consommation réduite le 15/09** pour que 2 000 minutes suffisent ensuite : un
-seul travail de contrôle au lieu de deux, la poussée suivante annule la
-précédente, et les `.md` / `docs/` ne déclenchent plus rien.
+Le compte `blackirisodein-a11y` avait épuisé ses 2 000 minutes d'Actions le 15/09/2026
+(tout échouait en cinq secondes, sans journal). Le client a rendu **ce dépôt public** le
+30/09/2026 : GitHub ne décompte pas les minutes des dépôts publics, la mise en ligne
+automatique refonctionne sans limite (vérifié : mise en ligne n° 37, réussie en ~1 min).
+Aucun secret n'est dans l'historique ; les identifiants FTP restent des secrets du dépôt,
+invisibles même en public. **Ne jamais y écrire de mot de passe ni de clé privée.**
+La plateforme (`al-fissah-app`) reste privée : ses actions (`installer-base.yml`) dépendent
+toujours du quota mensuel ; pour installer du SQL, le fichier à coller
+(`supabase/a-installer-a-la-main.sql`, fabriqué par `scripts/construire-fichier-a-coller.sh`)
+reste la voie sûre.
 
 ---
 
