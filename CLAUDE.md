@@ -271,7 +271,13 @@ la plateforme.
    (09/2026) sur l'identité de ce site : palette marine / orange, Space Grotesk + Karla,
    cartes 20 px, en-têtes à kicker orange ; règles dans `docs/SYSTEME-GRAPHIQUE.md` du
    dépôt de la plateforme, contrôle par le workflow « Capturer les pages » (branche
-   `captures`). Restent : e-mails (Resend, en place, à tester), paiements (Stripe), puis
+   `captures`). **E-mails : Amazon SES en service depuis le 07/10/2026** (compte AWS de l'école, région
+   eu-north-1, domaine al-fissah.com vérifié DKIM, accès production accordé : 50 000/jour).
+   La plateforme envoie par SMTP (`SES_SMTP_USER` / `SES_SMTP_PASSWORD` / `EMAIL_FROM` dans
+   Vercel, module `src/lib/transport-courriel.ts`) ; Resend reste en secours. Contrôle :
+   Paramètres → Système → « Envoyer un e-mail de test » (affiche le refus d'Amazon en clair).
+   Piège rencontré : l'utilisateur IAM créé par la console SES n'avait aucun droit → attacher
+   `AmazonSESFullAccess` (IAM → Utilisateurs). Restent : paiements (Stripe), puis
    domaine définitif (app.al-fissah.com) → mettre à jour `app=`.
 2. ~~Compléter les mentions légales~~ (rubrique « Éditeur du site » retirée à la demande du client, 30/09/2026).
 3. ~~Brancher le formulaire de contact sur Web3Forms~~ (fait le 29/09/2026 ; essai réel à faire une fois en ligne).
