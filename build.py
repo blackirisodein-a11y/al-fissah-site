@@ -557,10 +557,13 @@ class Builder:
   {LD_SYMS}
   <div class="ld-box">
     <span class="ld-ring" aria-hidden="true"></span>
-    <img class="ld-logo" src="{self.rel + FULL_IMG}" width="{FULL_W}" height="{FULL_H}" alt="" fetchpriority="high" onerror="this.style.display='none'">
+    <span class="ld-stage">
+      <span class="ld-halo" aria-hidden="true"></span>
+      <span class="ld-logo-wrap"><img class="ld-logo" src="{self.rel + FULL_IMG}" width="{FULL_W}" height="{FULL_H}" alt="" fetchpriority="high" onerror="this.style.display='none'"></span>
+    </span>
     <div class="word"><span id="typew"></span><span class="caret"></span></div>
     <div class="word-sub" id="typew-sub"></div>
-    <div class="ld-line" aria-hidden="true"></div>
+    <div class="ld-line-wrap" aria-hidden="true"><div class="ld-line"></div><span class="ld-spark"></span></div>
   </div>
 </div>
 ''' if home else ''

@@ -184,8 +184,13 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 - **Écran d'ouverture** (accueil seulement) : fond **clair** et vivant (dégradé blanc → bleu pâle
   → pêche qui glisse, halos orange et bleu qui dérivent, trame de points, lettres arabes
   `LD_SYMS` qui montent lentement — demande du client : « fond plus clair avec des animations »),
-  logo qui arrive en douceur avec une onde lumineuse, titre tapé (`js.typew`, ≈ 85 ms/lettre) puis sous-titre en fondu
-  (`js.typew_sub`) et trait orange qui se remplit ; sortie en rideau vers le haut. ≈ 5 s au
+  version du 03/11/2026 (client : « plus spectaculaire, technologie plus récente », puis « trop, plus discret mais
+  meilleur ») : carte du logo (ombre bleu marine douce, liseré, coins 28 px) qui entre en 3D douce puis traversée
+  d'un reflet, halo `conic-gradient` réduit à un fil (masque), titre tapé (`js.typew`, ≈ 85 ms/lettre) lettre par
+  lettre en boîtes `.ld-ch` qui se posent (sauf écritures liées — arabe : texte d'un seul tenant), lueur orange qui
+  balaie le titre, sous-titre en fondu (`js.typew_sub`), trait orange avec étincelle `.ld-spark` ; sortie en **iris**
+  (`clip-path: circle`) dès `closing`, premier écran qui s'avance à peine (`body.intro-fin .hero`). Rayons,
+  étincelles et orbites essayés puis retirés à la demande du client : ne pas les remettre. ≈ 5,5 s au
   total — rythme voulu par le client, ne pas accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
   `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout
   flash au clic sur le logo). Filet de sécurité CSS (`@keyframes ldfailsafe`) : il s'efface au

@@ -837,3 +837,86 @@ footer.site .logo-txt b{color:#fff}
 .app-card h3{font-family:var(--display);font-size:1.35rem;margin:0}
 .app-card p{margin:0;color:var(--muted)}
 .app-card .btn.big{margin-top:.4rem}
+
+/* ========== ÉCRAN D'OUVERTURE — VERSION « SPECTACLE » (03/11/2026) ==========
+   Demande du client : « plus spectaculaire, avec une technologie plus récente ». Même rythme (≈ 5 s, ne pas
+   accélérer), même fond clair, même filet de sécurité à 7 s. Tout ce qui bouge passe par transform / opacity
+   (composé par la carte graphique) ; aucun filter:blur plein écran.
+   · logo qui pivote en 3D jusqu'à sa place, puis un reflet de lumière le traverse ;
+   · halo en dégradé conique (conic-gradient) découpé en anneau par un masque, qui tourne autour du logo ;
+   · lettres du titre qui se posent une à une, puis une lueur orange balaie le titre ;
+   Retouche du même jour (« trop, plus discret mais meilleur ») : plus d'étincelles, de rayons ni d'orbites ;
+   arrivée du logo plus douce, halo réduit à un fil, lettres sans rebond ;
+   · sortie en iris : l'écran se referme en cercle sur le logo (clip-path) et découvre le site.
+   Navigateur trop ancien pour l'une de ces règles : elle est ignorée, l'écran reste celui d'avant. */
+.ld-stage{position:relative;display:grid;place-items:center}
+#loader .ld-ring{display:none}   /* l'ancien anneau carré : remplacé par le halo conique */
+.ld-stage>*{grid-area:1/1}
+.ld-logo-wrap{position:relative;display:block;perspective:900px;border-radius:20px;overflow:hidden}
+#loader .ld-logo{display:block;transform-origin:50% 60%;animation:ldlogo3d 1.4s cubic-bezier(.16,1,.3,1) both,logofloat 3.2s 1.3s ease-in-out infinite}
+@keyframes ldlogo3d{0%{opacity:0;transform:rotateY(-28deg) rotateX(10deg) scale(.82) translateY(26px)}60%{opacity:1}100%{opacity:1;transform:none}}
+/* Reflet : une bande de lumière qui traverse le logo une fois arrivé. */
+.ld-logo-wrap::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.6) 50%,transparent 62%);
+  transform:translateX(-120%);animation:ldshine 1.1s 1.25s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes ldshine{to{transform:translateX(120%)}}
+/* Halo conique : anneau bicolore (orange, bleu) qui tourne lentement derrière le logo. */
+.ld-halo{width:calc(100% + 70px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;
+  background:conic-gradient(from 0deg,rgba(245,135,31,0),rgba(245,135,31,.55) 18%,rgba(255,195,122,0) 34%,rgba(62,99,196,0) 50%,rgba(62,99,196,.4) 70%,rgba(62,99,196,0) 86%);
+  -webkit-mask:radial-gradient(closest-side,transparent 90%,#000 92%,#000 95%,transparent 97%);
+  mask:radial-gradient(closest-side,transparent 90%,#000 92%,#000 95%,transparent 97%);
+  animation:ldhaloin 1.2s 1s ease-out forwards,ldspin 9s linear infinite}
+@keyframes ldhaloin{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+@keyframes ldspin{to{rotate:360deg}}
+/* Titre : chaque lettre tombe en place. */
+#loader .ld-ch{display:inline-block;white-space:pre;animation:ldch .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes ldch{from{opacity:0;transform:translateY(.35em)}}
+/* Une fois écrit : lueur orange qui balaie le titre (texte découpé dans un dégradé). */
+#loader.typed #typew{background:linear-gradient(100deg,var(--navy) 0 38%,var(--orange) 50%,var(--navy) 62% 100%) 100% 0/260% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:ldwordshine 1.6s .1s ease-in-out both}
+@keyframes ldwordshine{from{background-position:100% 0}to{background-position:0 0}}
+/* Sortie en iris : le cercle se referme sur le logo, le site apparaît autour. Remplace le rideau. */
+#loader{clip-path:circle(150vmax at 50% 42%);transition:clip-path 1.1s cubic-bezier(.65,0,.35,1),visibility 1.1s}
+/* L'iris part avec la sortie du logo (closing), pour ne laisser aucun écran vide entre les deux. */
+#loader.closing,#loader.done{transform:none;clip-path:circle(0 at 50% 42%)}
+#loader.closing .ld-box{animation:ldboxout .6s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes ldboxout{to{opacity:0;transform:scale(.82)}}
+#loader.closing .ld-halo{animation:ldhaloflash .6s ease-out forwards}
+@keyframes ldhaloflash{to{opacity:0;scale:1.9}}
+@media(prefers-reduced-motion:reduce){
+  #loader .ld-logo,.ld-logo-wrap::after,.ld-halo,#loader .ld-ch,#loader.typed #typew{animation:none}
+  .ld-halo,.ld-logo-wrap::after{display:none}
+  #loader{transition:opacity .4s,visibility .4s}
+  #loader.done{clip-path:none;opacity:0}
+}
+
+/* ========== ÉCRAN D'OUVERTURE — FINITIONS (03/11/2026) ========== */
+/* Étincelle sur le trait orange : elle glisse au bout du trait pendant qu'il se remplit (2,2 s, même courbe).
+   Elle est à côté du trait et non dedans : à l'intérieur, l'étirement du trait l'aplatirait. */
+.ld-line-wrap{position:relative;display:block}
+[dir="rtl"] #loader .ld-line{transform-origin:100% 50%}
+#loader .ld-line{transform-origin:0 50%}
+.ld-spark{position:absolute;top:50%;left:-7px;width:10px;height:10px;margin-top:-5px;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fff 0 25%,#FFC37A 45%,rgba(245,135,31,0) 70%);transition:transform 2.2s linear,opacity .3s}
+[dir="rtl"] .ld-spark{left:auto;right:-7px}
+#loader.typed .ld-spark{opacity:1;transform:translateX(min(260px,70vw));animation:ldsparkoff .4s 2.2s forwards}
+[dir="rtl"] #loader.typed .ld-spark{transform:translateX(calc(-1 * min(260px,70vw)))}
+@keyframes ldsparkoff{to{opacity:0;scale:2.4}}
+/* Le site s'avance à l'ouverture (fill backwards : aucun transform ne reste une fois fini). */
+body.intro-fin .hero{animation:ldsitein 1.1s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes ldsitein{from{opacity:.6;scale:.98}}
+@media(prefers-reduced-motion:reduce){
+  .ld-spark{display:none}
+  body.intro-fin .hero{animation:none}
+}
+/* Carte du logo (retouche du 03/11/2026, « arrange le logo s'il faut ») : l'ombre noire était coupée par le cadre
+   du reflet (overflow:hidden). L'ombre et l'arrondi passent sur le cadre : ombre douce teintée bleu marine,
+   liseré d'un pixel, coins plus ronds, fond blanc légèrement nacré. */
+#loader .ld-logo-wrap{border-radius:28px;background:linear-gradient(160deg,#fff 0%,#fff 55%,#FFF6EC 100%);
+  box-shadow:0 28px 60px -22px rgba(13,32,78,.38),0 10px 24px -12px rgba(13,32,78,.18),0 0 0 1px rgba(13,32,78,.07),inset 0 1px 0 #fff}
+#loader .ld-logo{background:transparent;box-shadow:none;border-radius:0;padding:18px 22px}
+/* La carte entière (ombre comprise) fait l'entrée en 3D et flotte ; le logo, lui, ne bouge plus dans sa carte. */
+.ld-stage{perspective:900px}
+#loader .ld-logo-wrap{transform-origin:50% 60%;animation:ldlogo3d 1.4s cubic-bezier(.16,1,.3,1) both,logofloat 3.2s 1.4s ease-in-out infinite}
+#loader .ld-logo{animation:none}
+@media(prefers-reduced-motion:reduce){#loader .ld-logo-wrap{animation:none}}

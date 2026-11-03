@@ -14,19 +14,26 @@ if(loader&&introSeen){
   try{sessionStorage.setItem('af-intro','1')}catch(e){}
   const T=window.I18N||{};const twMsg=T.typew||"Bienvenue à Al-Fissah",twEl=$('#typew'),subEl=$('#typew-sub');
   if(subEl)subEl.textContent=T.typew_sub||"École internationale de langue arabe et du Coran";
-  let twI=0,twDone=false;
+  let twI=0,twDone=false;const twLie=/[֐-ࣿ]/.test(twMsg);
   // Rythme volontairement posé : le titre s'écrit en ~1,8 s (≈ 85 ms par lettre), puis le sous-titre
   // apparaît en fondu et l'ensemble reste affiché ~2 s avant l'ouverture du site (≈ 4,6 s au total).
   const twSpeed=Math.min(110,Math.max(60,Math.round(1800/Math.max(twMsg.length,1))));
   (function type(){
-    if(twI<twMsg.length){twEl.textContent+=twMsg[twI++];setTimeout(type,twSpeed)}
-    else{loader.classList.add('typed');setTimeout(()=>{twDone=true},2200)}
+    // Lettres latines : chacune tombe en place dans sa propre boîte (.ld-ch). Écritures liées (arabe…) :
+    // le texte reste d'un seul tenant, sinon les lettres perdraient leurs liaisons.
+    if(twI<twMsg.length){const ch=twMsg[twI++];
+      if(twLie)twEl.textContent+=ch;
+      else{const sp=document.createElement('span');sp.className='ld-ch';sp.textContent=ch;twEl.appendChild(sp)}
+      setTimeout(type,twSpeed)}
+    // Fin : la dernière lettre achève sa chute, puis le titre redevient un seul texte — la lueur
+    // (texte découpé dans un dégradé) ne traverse pas des boîtes séparées.
+    else setTimeout(()=>{if(!twLie)twEl.textContent=twMsg;loader.classList.add('typed');setTimeout(()=>{twDone=true},2200)},twLie?0:450)
   })();
   const closeLoader=()=>{if(loader.classList.contains('done')||loader.classList.contains('closing'))return;
     // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
-    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready');document.documentElement.classList.remove('intro-on')},520)};
+    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready','intro-fin');document.documentElement.classList.remove('intro-on')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
   setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}
