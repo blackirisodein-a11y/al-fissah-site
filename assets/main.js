@@ -33,7 +33,7 @@ if(loader&&introSeen){
     // ne jamais fermer avant la fin du message et du temps de lecture : on repousse
     if(!twDone){setTimeout(closeLoader,120);return}
     loader.classList.add('closing');
-    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready');document.documentElement.classList.remove('intro-on')},520)};
+    setTimeout(()=>{loader.classList.add('done');document.body.classList.add('ready','intro-fin');document.documentElement.classList.remove('intro-on')},520)};
   addEventListener('load',()=>setTimeout(closeLoader,900));
   setTimeout(closeLoader,4600);
 }else{document.body.classList.add('ready')}

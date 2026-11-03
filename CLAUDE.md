@@ -189,7 +189,9 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   tourne, 14 étincelles `LD_BURST` placées par `cos()`/`sin()` du CSS, titre tapé (`js.typew`, ≈ 85 ms/lettre)
   lettre par lettre en boîtes `.ld-ch` qui tombent en place (sauf écritures liées — arabe : texte d'un seul tenant),
   puis lueur orange qui balaie le titre, sous-titre en fondu (`js.typew_sub`) et trait orange qui se remplit ;
-  sortie en **iris** (`clip-path: circle`) qui se referme sur le logo dès `closing`. ≈ 5,5 s au
+  sortie en **iris** (`clip-path: circle`) qui se referme sur le logo dès `closing`. Deuxième passe : rayons
+  `repeating-conic-gradient` qui tournent, onde de choc à l'arrivée du logo, 3 points en orbite (`offset-path`),
+  étincelle `.ld-spark` au bout du trait, premier écran qui s'avance à l'ouverture (`body.intro-fin .hero`). ≈ 5,5 s au
   total — rythme voulu par le client, ne pas accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
   `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout
   flash au clic sur le logo). Filet de sécurité CSS (`@keyframes ldfailsafe`) : il s'efface au

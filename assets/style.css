@@ -896,3 +896,46 @@ footer.site .logo-txt b{color:#fff}
   #loader{transition:opacity .4s,visibility .4s}
   #loader.done{clip-path:none;opacity:0}
 }
+
+/* ========== ÉCRAN D'OUVERTURE — DEUXIÈME PASSE (03/11/2026) ==========
+   « Améliore encore l'animation d'ouverture. » Même rythme, mêmes règles (transform / opacity seulement).
+   · rayons de lumière (repeating-conic-gradient) qui tournent lentement derrière le logo, fondus par un masque ;
+   · onde de choc : un cercle lumineux s'élargit une fois, quand le logo se pose ;
+   · trois points en orbite autour du logo, sur un vrai trajet circulaire (CSS Motion Path : offset-path) ;
+   · une étincelle court sur le trait orange pendant qu'il se remplit ;
+   · à l'ouverture, le premier écran du site s'avance vers le visiteur. */
+.ld-rays{width:calc(100% + 340px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;
+  background:repeating-conic-gradient(from 0deg,rgba(245,135,31,.16) 0deg 5deg,rgba(245,135,31,0) 5deg 15deg,rgba(62,99,196,.12) 15deg 19deg,rgba(62,99,196,0) 19deg 30deg);
+  -webkit-mask:radial-gradient(closest-side,transparent 22%,#000 40%,transparent 100%);
+  mask:radial-gradient(closest-side,transparent 22%,#000 40%,transparent 100%);
+  animation:ldraysin 1.4s 1s ease-out forwards,ldspin 28s linear infinite}
+@keyframes ldraysin{from{opacity:0;scale:.5}to{opacity:1;scale:1}}
+.ld-wave{width:calc(100% + 20px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;
+  border:3px solid rgba(245,135,31,.8);box-shadow:0 0 24px rgba(245,135,31,.5),inset 0 0 18px rgba(245,135,31,.35);
+  animation:ldwave 1.1s 1.05s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes ldwave{0%{opacity:.95;scale:.7}100%{opacity:0;scale:2.6}}
+/* Orbites : chaque point suit un cercle autour du logo, à sa propre vitesse et avec son propre départ. */
+.ld-orbit{width:calc(100% + 110px);aspect-ratio:1;pointer-events:none;opacity:0;animation:ldhaloin .8s 1.4s ease-out forwards}
+.ld-orbit i{position:absolute;left:0;top:0;width:10px;height:10px;border-radius:50%;background:#3E63C4;box-shadow:0 0 12px 3px rgba(62,99,196,.55);
+  offset-path:circle(50% at 50% 50%);offset-rotate:0deg;animation:ldorbit 3.6s linear infinite}
+.ld-orbit i.o{background:#F5871F;box-shadow:0 0 12px 3px rgba(245,135,31,.6);width:8px;height:8px;animation-duration:2.7s;animation-direction:reverse}
+.ld-orbit i:nth-child(3){width:6px;height:6px;animation-duration:4.8s;animation-delay:-2.1s}
+@keyframes ldorbit{from{offset-distance:0%}to{offset-distance:100%}}
+/* Étincelle sur le trait orange : elle glisse au bout du trait pendant qu'il se remplit (2,2 s, même courbe).
+   Elle est à côté du trait et non dedans : à l'intérieur, l'étirement du trait l'aplatirait. */
+.ld-line-wrap{position:relative;display:block}
+[dir="rtl"] #loader .ld-line{transform-origin:100% 50%}
+#loader .ld-line{transform-origin:0 50%}
+.ld-spark{position:absolute;top:50%;left:-7px;width:14px;height:14px;margin-top:-7px;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fff 0 25%,#FFC37A 45%,rgba(245,135,31,0) 70%);transition:transform 2.2s linear,opacity .3s}
+[dir="rtl"] .ld-spark{left:auto;right:-7px}
+#loader.typed .ld-spark{opacity:1;transform:translateX(min(260px,70vw));animation:ldsparkoff .4s 2.2s forwards}
+[dir="rtl"] #loader.typed .ld-spark{transform:translateX(calc(-1 * min(260px,70vw)))}
+@keyframes ldsparkoff{to{opacity:0;scale:2.4}}
+/* Le site s'avance à l'ouverture (fill backwards : aucun transform ne reste une fois fini). */
+body.intro-fin .hero{animation:ldsitein 1.1s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes ldsitein{from{opacity:.4;scale:.94}}
+@media(prefers-reduced-motion:reduce){
+  .ld-rays,.ld-wave,.ld-orbit,.ld-spark{display:none}
+  body.intro-fin .hero{animation:none}
+}
