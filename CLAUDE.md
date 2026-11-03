@@ -184,14 +184,13 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 - **Écran d'ouverture** (accueil seulement) : fond **clair** et vivant (dégradé blanc → bleu pâle
   → pêche qui glisse, halos orange et bleu qui dérivent, trame de points, lettres arabes
   `LD_SYMS` qui montent lentement — demande du client : « fond plus clair avec des animations »),
-  version « spectacle » du 03/11/2026 (demande du client : « plus spectaculaire, technologie plus récente ») :
-  logo qui pivote en 3D jusqu'à sa place puis traversé d'un reflet, halo `conic-gradient` en anneau (masque) qui
-  tourne, 14 étincelles `LD_BURST` placées par `cos()`/`sin()` du CSS, titre tapé (`js.typew`, ≈ 85 ms/lettre)
-  lettre par lettre en boîtes `.ld-ch` qui tombent en place (sauf écritures liées — arabe : texte d'un seul tenant),
-  puis lueur orange qui balaie le titre, sous-titre en fondu (`js.typew_sub`) et trait orange qui se remplit ;
-  sortie en **iris** (`clip-path: circle`) qui se referme sur le logo dès `closing`. Deuxième passe : rayons
-  `repeating-conic-gradient` qui tournent, onde de choc à l'arrivée du logo, 3 points en orbite (`offset-path`),
-  étincelle `.ld-spark` au bout du trait, premier écran qui s'avance à l'ouverture (`body.intro-fin .hero`). ≈ 5,5 s au
+  version du 03/11/2026 (client : « plus spectaculaire, technologie plus récente », puis « trop, plus discret mais
+  meilleur ») : carte du logo (ombre bleu marine douce, liseré, coins 28 px) qui entre en 3D douce puis traversée
+  d'un reflet, halo `conic-gradient` réduit à un fil (masque), titre tapé (`js.typew`, ≈ 85 ms/lettre) lettre par
+  lettre en boîtes `.ld-ch` qui se posent (sauf écritures liées — arabe : texte d'un seul tenant), lueur orange qui
+  balaie le titre, sous-titre en fondu (`js.typew_sub`), trait orange avec étincelle `.ld-spark` ; sortie en **iris**
+  (`clip-path: circle`) dès `closing`, premier écran qui s'avance à peine (`body.intro-fin .hero`). Rayons,
+  étincelles et orbites essayés puis retirés à la demande du client : ne pas les remettre. ≈ 5,5 s au
   total — rythme voulu par le client, ne pas accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
   `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout
   flash au clic sur le logo). Filet de sécurité CSS (`@keyframes ldfailsafe`) : il s'efface au
