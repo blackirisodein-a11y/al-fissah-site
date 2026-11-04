@@ -41,7 +41,7 @@ L = {
     ("مُتَابَعَة","Seguimiento riguroso","<p>Seas padre de un alumno o estudiante, puedes seguir el avance, las necesidades, las dificultades y las observaciones desde el área del estudiante, consultar el horario en directo, contactarnos por una dirección dedicada y acceder a las clases a través de una plataforma integrada.</p>")],
   prog_kick="Nuestros programas", prog_h2="Programas diseñados por académicos especialistas",
   prog_p="Nuestros programas «El árabe en manos de nuestros hijos» y «El árabe en tus manos» fueron diseñados por académicos especialistas en la enseñanza a no arabófonos; ambos incluyen audio para cada lección.",
-  video_kick="Descubrir", video_h2="Un diálogo en clase, en 90 segundos", video_p="Extracto de una clase del programa «El árabe en manos de nuestros hijos» — libro 12, unidad 11.", video_more="Ver todos los vídeos en YouTube",
+  video_kick="Descubrir", video_h2="Aprenda árabe fácilmente, de forma interactiva", video_p="Extracto de la serie «Aprendo árabe fácilmente» de la escuela Al-Fissah — vídeo 2.", video_more="Ver todos los vídeos en YouTube",
   vid=dict(kick="Vídeos", h2="Nuestros vídeos, por temas", p="Extractos de clases, método de lectura, invocaciones y testimonios: elige un tema y luego un vídeo. Se reproduce aquí mismo.",
     cats=dict(dialogues="Diálogos para niños", lecture="Aprender a leer", invocations="Invocaciones y buenos modales", temoignages="Testimonios", ecole="La escuela y la aplicación"),
     part="Parte", lesson="Clase", playlist="Ver esta lista en YouTube", channel="Todos los vídeos del canal", count="{n} vídeos", now="Reproduciendo"),

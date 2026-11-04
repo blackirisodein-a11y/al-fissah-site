@@ -41,7 +41,7 @@ L = {
     ("مُتَابَعَة","Rigorous follow-up","<p>Whether you are a student or a student's parent, you can follow progress, needs, difficulties and remarks in the student area, check the live timetable, contact us through a dedicated address and join lessons via an integrated platform.</p>")],
   prog_kick="Our programmes", prog_h2="Programmes designed by specialist academics",
   prog_p="Our programmes “Arabic in our children's hands” and “Arabic in your hands” were designed by academics specialised in teaching non-Arabic speakers; both come with audio for every lesson.",
-  video_kick="Discover", video_h2="A classroom dialogue, in 90 seconds", video_p="Excerpt from a lesson of the programme “Arabic in our children's hands” — book 12, unit 11.", video_more="See all videos on YouTube",
+  video_kick="Discover", video_h2="Learn Arabic easily, interactively", video_p="Excerpt from the Al-Fissah school series “I learn Arabic easily” — video 2.", video_more="See all videos on YouTube",
   vid=dict(kick="Videos", h2="Our videos, sorted by theme", p="Lesson excerpts, reading method, invocations and testimonials: pick a theme, then a video. It plays right here.",
     cats=dict(dialogues="Dialogues for children", lecture="Learning to read", invocations="Invocations and good manners", temoignages="Testimonials", ecole="The school and the app"),
     part="Part", lesson="Lesson", playlist="See this playlist on YouTube", channel="All the channel's videos", count="{n} videos", now="Now playing"),
