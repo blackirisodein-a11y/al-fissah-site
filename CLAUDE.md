@@ -190,7 +190,11 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   lettre en boîtes `.ld-ch` qui se posent (sauf écritures liées — arabe : texte d'un seul tenant), lueur orange qui
   balaie le titre, sous-titre en fondu (`js.typew_sub`), trait orange avec étincelle `.ld-spark` ; sortie en **iris**
   (`clip-path: circle`) dès `closing`, premier écran qui s'avance à peine (`body.intro-fin .hero`). Rayons,
-  étincelles et orbites essayés puis retirés à la demande du client : ne pas les remettre. ≈ 5,5 s au
+  étincelles et orbites essayés puis retirés à la demande du client : ne pas les remettre. 
+  **Pages intérieures** (04/11/2026, même esprit sobre) : View Transitions entre documents (`@view-transition`,
+  en-tête `#hd` immobile), entrée du fil d'Ariane / titre / chapeau de `.page-hero` (le chapeau, souvent l'élément
+  LCP, ne fait que monter : jamais invisible), apparition au défilement en CSS (`animation-timeline: view()`) pour
+  `.qa`, `.art`, `.values .value`, `.stat`, cascade des `.tcard` dans `.tgrid.io`. ≈ 5,5 s au
   total — rythme voulu par le client, ne pas accélérer. Il ne s'affiche qu'à la **première entrée de la session** : `sessionStorage`
   `af-intro` + classe `html.intro-seen` posée par un script inline dans le `<head>` (évite tout
   flash au clic sur le logo). Filet de sécurité CSS (`@keyframes ldfailsafe`) : il s'efface au
