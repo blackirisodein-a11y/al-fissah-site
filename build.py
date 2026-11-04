@@ -329,7 +329,7 @@ PICS = json.load(open(os.path.join(ROOT, 'pics.json')))
 
 # --- Vidéothèque de l'accueil : youtube.json (produit par l'action « Inventaire YouTube ») classé par thème ---
 YT_CHANNEL = 'https://www.youtube.com/@ecole-al-fissah'
-YT_DEFAULT = 'MNiWkEPoGNw'   # vidéo affichée dans le lecteur à l'ouverture (livre 12, unité 11)
+YT_DEFAULT = 'SWFcZszDJIQ'   # vidéo affichée dans le lecteur à l'ouverture (« J'apprends l'arabe facilement », vidéo 2 — choix de l'école, 04/11/2026)
 def load_videos():
     # Retourne [catégories] ; chaque catégorie : id, url YouTube, sous-groupes [(clé, libellé-clé)], vidéos [(id, sub, label)].
     # Le libellé d'une vidéo est soit ('book', livre, unité), soit ('lesson', cours, lettres), soit ('raw', titre).
