@@ -1061,3 +1061,6 @@ body.intro-fin .hero{animation:ldsitein 1.1s cubic-bezier(.2,.8,.2,1) backwards}
   .ad-pc{width:70%}
 }
 @media(prefers-reduced-motion:reduce){.ad-ev{transform:none!important}}
+/* Écrans des téléphones : vraies captures de l'espace élève (06/11/2026) */
+.ad-shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.ad-ph .ad-notch{top:7px;width:62px;height:18px;margin-left:-31px}

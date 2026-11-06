@@ -441,6 +441,17 @@ def _capture_pc(code):
     im.save(os.path.join(ROOT, 'assets/img', name), 'WEBP', quality=80, method=6)
     return 'assets/img/' + name
 APP_PC = {c: _capture_pc(c) for c in ('fr', 'en', 'ar')}
+# Écrans des téléphones (06/11/2026) : vraies captures de l'espace élève au format téléphone (390 × 844),
+# tableau de bord et planning, compte ELEVE TEST. Source : assets/appli/tel-<écran>-<langue>.jpg.
+def _capture_tel(ecran, code):
+    from PIL import Image
+    src = os.path.join(ROOT, 'assets/appli', f'tel-{ecran}-{code}.jpg')
+    if not os.path.exists(src):
+        return None
+    name = f'appli-tel-{ecran}-{code}.webp'
+    Image.open(src).convert('RGB').save(os.path.join(ROOT, 'assets/img', name), 'WEBP', quality=82, method=6)
+    return 'assets/img/' + name
+APP_TEL = {(e, c): _capture_tel(e, c) for e in ('accueil', 'planning') for c in ('fr', 'en', 'ar')}
 # Liens des boutiques. Google Play / App Store : liens de l'ancienne section, inchangés.
 STORES = dict(
     ios='https://apps.apple.com/fr/app/al-fissah/id6476883231',
@@ -844,9 +855,8 @@ class Builder:
         """Section « Téléchargez notre application » (06/11/2026) : téléphones et PC animés + Google Play, App Store, Microsoft Store."""
         H = self.L['home']; r = self.rel
         pc = APP_PC.get(self.c) or APP_PC.get('en')
+        def tel(ecran): return APP_TEL.get((ecran, self.c)) or APP_TEL[(ecran, 'en')]
         pc_html = (f'<div class="ad-pc"><div class="ad-pc-scr"><img src="{r + pc}" width="720" height="405" alt=""></div><div class="ad-pc-foot"></div></div>' if pc else '')
-        days = ''.join(f'<span{" class=on" if i in (1, 5) else ""}><i>{d}</i><b>{13 + i}</b></span>' for i, d in enumerate(H['mock_days']))
-        hours = ''.join(f'<i>{h:02d}:00</i>' for h in range(8, 20, 2))
         checks = ''.join(f'<li>{x}</li>' for x in H['app_checks'])
         waves = ''.join(f'<use href="#adw" y="{y}"/>' for y in range(4, 180, 14))
         ico_apple = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.2zM13.9 5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>'
@@ -863,8 +873,8 @@ class Builder:
   <div class="ad-grid">
     <div class="ad-viz io io-l" aria-hidden="true">
       {pc_html}
-      <div class="ad-ph ad-ph1"><div class="ad-ph-in"><span class="ad-notch"></span><div class="ad-splash"><img src="{r + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="" loading="lazy"><b>al fissah</b><span class="ad-btn">{H['mock_start']}</span></div></div></div>
-      <div class="ad-ph ad-ph2"><div class="ad-ph-in"><span class="ad-notch"></span><div class="ad-plan"><b class="ad-pt">{H['mock_plan']}</b><div class="ad-wk"><i>‹</i>{H['mock_week']}<i>›</i></div><div class="ad-days">{days}</div><div class="ad-cal"><div class="ad-hrs">{hours}</div><span class="ad-ev e1"></span><span class="ad-ev e2"></span><span class="ad-ev e3"></span></div><div class="ad-tab"><i></i><i class="on"></i><i></i><i></i></div></div></div></div>
+      <div class="ad-ph ad-ph1"><div class="ad-ph-in"><span class="ad-notch"></span><img class="ad-shot" src="{r + tel('accueil')}" width="390" height="844" alt=""></div></div>
+      <div class="ad-ph ad-ph2"><div class="ad-ph-in"><span class="ad-notch"></span><img class="ad-shot" src="{r + tel('planning')}" width="390" height="844" alt=""></div></div>
     </div>
     <div class="ad-txt io io-r d1">
       <span class="kick">{H['app_kick']}</span>
