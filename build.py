@@ -426,6 +426,27 @@ def _webp(path, height, name):
 MARK_IMG, FULL_IMG = 'assets/img/logo-mark.webp', 'assets/img/logo-intro.webp'
 MARK_W, MARK_H = _webp('assets/logo-mark.png', 124, 'logo-mark.webp')
 FULL_W, FULL_H = _webp('assets/logo.png', 420, 'logo-intro.webp')
+# Section « Téléchargez notre application » (06/11/2026) : capture réelle de l'application PC, une par langue
+# (fr, en, ar ; les autres langues prennent l'anglaise). Source : assets/appli/pc-<langue>.png (captures du
+# Microsoft Store). WebP avec perte (photo d'écran) pour 720 px de large.
+def _capture_pc(code):
+    from PIL import Image
+    src = os.path.join(ROOT, 'assets/appli', f'pc-{code}.png')
+    if not os.path.exists(src):
+        return None
+    name = f'appli-pc-{code}.webp'
+    im = Image.open(src).convert('RGB')
+    im = im.resize((720, round(im.height * 720 / im.width)), Image.LANCZOS)
+    os.makedirs(os.path.join(ROOT, 'assets/img'), exist_ok=True)
+    im.save(os.path.join(ROOT, 'assets/img', name), 'WEBP', quality=80, method=6)
+    return 'assets/img/' + name
+APP_PC = {c: _capture_pc(c) for c in ('fr', 'en', 'ar')}
+# Liens des boutiques. Google Play / App Store : liens de l'ancienne section, inchangés.
+STORES = dict(
+    ios='https://apps.apple.com/fr/app/al-fissah/id6476883231',
+    android='https://play.google.com/store/apps/details?id=com.alfissah.dev',
+    windows='https://apps.microsoft.com/detail/9PFQBGR8JN7R',
+)
 # Lettres arabes flottantes de l'écran d'ouverture : (lettre, position gauche %, délai s, durée s, orange ?)
 LD_SYMS = ''.join(f'<span class="ld-sym{" o" if o else ""}" style="left:{x}%;animation-delay:{d}s;animation-duration:{t}s" aria-hidden="true">{ch}</span>'
                   for ch, x, d, t, o in [('ا', 6, -1, 9, 0), ('ب', 16, -4.5, 10, 1), ('ت', 27, -7, 8.5, 0), ('ج', 38, -2.2, 11, 0), ('د', 50, -5.8, 9.5, 1), ('ر', 61, -8.2, 10, 0),
@@ -715,6 +736,7 @@ class Builder:
         videotheque = self.videotheque()
         quotes = ''.join(f'<blockquote class="quote io {x}"><span class="stars">★★★★★</span><p>{q}</p><footer>{w}</footer></blockquote>' for (q, w), x in zip(H['quotes'], ['io-l', 'io-z d1', 'io-r d2']))
         faq = ''.join(self.qa(q, a) for q, a in H['faq'])
+        appdl = self.appdl()
         html = f'''<div class="hero">
   <div class="wrap hero-grid">
     <div class="reveal-seq">
@@ -754,17 +776,7 @@ class Builder:
   <div class="panel io io-r d1"><p class="big">{' · '.join(f'<span>{w}</span>' for w in H['big'])}</p><p class="trad">{H['big_sub']}</p></div>
 </div></section>
 
-<section id="app"><div class="wrap split">
-  <div class="io io-l"><div class="phone" aria-label="App"><div class="screen"><div class="bar">AL-FISSAH</div>{phone}</div></div></div>
-  <div class="io io-r d1">
-    <div class="head" style="margin-bottom:0"><span class="kick">{H['app_kick']}</span><h2>{H['app_h2']}</h2><p>{H['app_p']}</p></div>
-    <ul class="checks">{checks_app}</ul>
-    <div class="store-btns">
-      <a class="store" href="https://apps.apple.com/fr/app/al-fissah/id6476883231"><small>{H['store_ios']}</small><b>App Store</b></a>
-      <a class="store" href="https://play.google.com/store/apps/details?id=com.alfissah.dev"><small>{H['store_android']}</small><b>Google Play</b></a>
-    </div>
-  </div>
-</div></section>
+{appdl}
 
 <section id="tarifs"><div class="wrap">
   <div class="head center io"><span class="kick">{L['nav']['tarifs']}</span><h2>{H['tarifs_h2']}</h2><p>{H['tarifs_p']}</p></div>
@@ -827,6 +839,43 @@ class Builder:
              "url": self.url('programmes') + '#' + p['id'], "inLanguage": "ar",
              "provider": {"@type": "EducationalOrganization", "name": "Al-Fissah", "url": SITE}}} for i, p in enumerate(P['items'])]}, ensure_ascii=False)
         self.write('programmes.html', self.head(P['title'], P['desc'], 'programmes', f'<script type="application/ld+json">{courses}</script>') + self.chrome('programmes') + html + self.footer())
+
+    def appdl(self):
+        """Section « Téléchargez notre application » (06/11/2026) : téléphones et PC animés + Google Play, App Store, Microsoft Store."""
+        H = self.L['home']; r = self.rel
+        pc = APP_PC.get(self.c) or APP_PC.get('en')
+        pc_html = (f'<div class="ad-pc"><div class="ad-pc-scr"><img src="{r + pc}" width="720" height="405" alt=""></div><div class="ad-pc-foot"></div></div>' if pc else '')
+        days = ''.join(f'<span{" class=on" if i in (1, 5) else ""}><i>{d}</i><b>{13 + i}</b></span>' for i, d in enumerate(H['mock_days']))
+        hours = ''.join(f'<i>{h:02d}:00</i>' for h in range(8, 20, 2))
+        checks = ''.join(f'<li>{x}</li>' for x in H['app_checks'])
+        waves = ''.join(f'<use href="#adw" y="{y}"/>' for y in range(4, 180, 14))
+        ico_apple = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.2zM13.9 5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>'
+        ico_play = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d7fe" d="M3.6 1.8 13.5 12l-9.9 10.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1z"/><path fill="#ffce00" d="m16.9 8.6-3.4 3.4 3.4 3.4 3.8-2.2c1.1-.6 1.1-1.7 0-2.3z"/><path fill="#ff3a44" d="M13.5 12 3.6 22.2c.4.2.9.2 1.4-.1l11.9-6.7z"/><path fill="#00f076" d="M16.9 8.6 5 1.9c-.5-.3-1-.3-1.4-.1L13.5 12z"/></svg>'
+        ico_ms = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f25022" d="M2 2h9.5v9.5H2z"/><path fill="#7fba00" d="M12.5 2H22v9.5h-9.5z"/><path fill="#00a4ef" d="M2 12.5h9.5V22H2z"/><path fill="#ffb900" d="M12.5 12.5H22V22h-9.5z"/></svg>'
+        def badge(k, ico, small, big):
+            return f'<a class="ad-store" href="{STORES[k]}" target="_blank" rel="noopener">{ico}<span><small>{small}</small><b>{big}</b></span></a>'
+        stores = (badge('android', ico_play, H['store_android'], 'Google Play')
+                  + badge('ios', ico_apple, H['store_ios'], 'App Store')
+                  + badge('windows', ico_ms, H['store_ms'], 'Microsoft Store'))
+        return f'''<section id="app"><div class="wrap"><div class="appdl">
+  <div class="ad-waves" aria-hidden="true"><svg viewBox="0 0 1200 180" preserveAspectRatio="none"><defs><path id="adw" d="M-200 10 Q -150 0 -100 10 T 0 10 T 100 10 T 200 10 T 300 10 T 400 10 T 500 10 T 600 10 T 700 10 T 800 10 T 900 10 T 1000 10 T 1100 10 T 1200 10 T 1300 10 T 1400 10"/></defs><g class="ad-wg">{waves}</g></svg></div>
+  <div class="ad-mark" aria-hidden="true">AL-FISSAH</div>
+  <div class="ad-grid">
+    <div class="ad-viz io io-l" aria-hidden="true">
+      {pc_html}
+      <div class="ad-ph ad-ph1"><div class="ad-ph-in"><span class="ad-notch"></span><div class="ad-splash"><img src="{r + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="" loading="lazy"><b>al fissah</b><span class="ad-btn">{H['mock_start']}</span></div></div></div>
+      <div class="ad-ph ad-ph2"><div class="ad-ph-in"><span class="ad-notch"></span><div class="ad-plan"><b class="ad-pt">{H['mock_plan']}</b><div class="ad-wk"><i>‹</i>{H['mock_week']}<i>›</i></div><div class="ad-days">{days}</div><div class="ad-cal"><div class="ad-hrs">{hours}</div><span class="ad-ev e1"></span><span class="ad-ev e2"></span><span class="ad-ev e3"></span></div><div class="ad-tab"><i></i><i class="on"></i><i></i><i></i></div></div></div></div>
+    </div>
+    <div class="ad-txt io io-r d1">
+      <span class="kick">{H['app_kick']}</span>
+      <h2>{H['app_h2']}</h2>
+      <p>{H['app_p']}</p>
+      <ul class="checks">{checks}</ul>
+      <p class="ad-from">{H['dl_from']}</p>
+      <div class="ad-stores">{stores}</div>
+    </div>
+  </div>
+</div></div></section>'''
 
     def videotheque(self):
         # Section « Vidéos » de l'accueil : lecteur + onglets par thème + vignettes (youtube.json).
