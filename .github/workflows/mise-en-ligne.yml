@@ -1,9 +1,20 @@
 # Mise en ligne automatique sur LWS (FTP).
 # À chaque modification poussée sur la branche main, GitHub :
-#   1. reconstruit les 72 pages (python3 build.py --inline),
-#   2. envoie le résultat par FTP dans /al-fissah.blackirys.com.
+#   1. reconstruit les 72 pages (python3 build.py --inline) DEUX fois :
+#        - version al-fissah.fr : réglages de site.conf (preview=oui → fermée à Google,
+#          preview=non → ouverte à Google à partir de la bascule) ;
+#        - version de test al-fissah.blackirys.com : toujours avec --preview (noindex,
+#          robots.txt bloquant), quel que soit site.conf. Balises canoniques vers al-fissah.fr.
+#   2. envoie la version de test par FTP dans /al-fissah.blackirys.com ;
+#   3. envoie la version al-fissah.fr dans le dossier indiqué par la VARIABLE du dépôt
+#      FTP_DOSSIER_FR (Settings → Secrets and variables → Actions → onglet « Variables »).
+#      Tant que cette variable est vide ou absente, l'étape 3 est sautée (rien n'est envoyé).
+#      Exemple de valeur : /al-fissah.fr/   (le dossier d'al-fissah.fr vu depuis le compte FTP,
+#      à relever dans FileZilla ou le panel LWS — il n'est écrit dans aucune note du dépôt).
 # Les identifiants FTP sont dans les « secrets » du dépôt (Settings → Secrets and variables → Actions) :
 #   FTP_HOST = 193.37.145.67    FTP_USERNAME = …    FTP_PASSWORD = …
+#   Si al-fissah.fr est sur un AUTRE compte FTP : FTP_HOST_FR, FTP_USERNAME_FR, FTP_PASSWORD_FR
+#   (facultatifs ; absents = mêmes identifiants que ci-dessus).
 # On peut aussi lancer l'envoi à la main : onglet Actions → « Mise en ligne (FTP LWS) » → Run workflow.
 name: Mise en ligne (FTP LWS)
 
@@ -39,23 +50,30 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Construire les pages (mode --inline)
+      - name: Construire les pages (mode --inline) et préparer les deux envois
         run: |
           pip install --quiet pillow
+          # Ce qu'on envoie : pages générées uniquement (sans build.py ni lang/)
+          preparer () {
+            rm -rf "$1" && mkdir "$1"
+            cp -r .htaccess robots.txt sitemap.xml *.html ar de en es ru "$1"/
+            rm -f "$1"/part_classroom.html   # fichier de travail (bloc du hero), pas une page
+            # Polices hébergées sur le site (les pages y font référence : assets/fonts/*.woff2)
+            mkdir -p "$1"/assets/fonts && cp assets/fonts/*.woff2 "$1"/assets/fonts/
+            # Logos WebP (générés par build.py) + image de partage PNG (og:image)
+            mkdir -p "$1"/assets/img && cp assets/img/*.webp assets/img/*.png "$1"/assets/img/
+            echo "Fichiers à envoyer dans $1 : $(find "$1" -type f | wc -l)"
+          }
+          # 1. al-fissah.fr : réglages de site.conf (preview=oui/non)
           python3 build.py --inline
+          preparer _site_fr
+          # 2. al-fissah.blackirys.com : toujours fermé à Google
+          python3 build.py --inline --preview
+          preparer _site
+          grep -q 'noindex' _site/index.html || { echo "ERREUR : la version de test n'est pas en noindex"; exit 1; }
+          grep -q 'Disallow: /' _site/robots.txt || { echo "ERREUR : robots.txt de test non bloquant"; exit 1; }
 
-      - name: Préparer le dossier à envoyer (pages générées uniquement, sans build.py ni lang/)
-        run: |
-          rm -rf _site && mkdir _site
-          cp -r .htaccess robots.txt sitemap.xml *.html ar de en es ru _site/
-          rm -f _site/part_classroom.html   # fichier de travail (bloc du hero), pas une page
-          # Polices hébergées sur le site (les pages y font référence : assets/fonts/*.woff2)
-          mkdir -p _site/assets/fonts && cp assets/fonts/*.woff2 _site/assets/fonts/
-          # Logos WebP (générés par build.py)
-          mkdir -p _site/assets/img && cp assets/img/*.webp _site/assets/img/
-          echo "Fichiers à envoyer : $(find _site -type f | wc -l)"
-
-      - name: Envoyer par FTP vers LWS
+      - name: Envoyer par FTP vers LWS (al-fissah.blackirys.com)
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -65,6 +83,22 @@ jobs:
           port: 21
           local-dir: _site/
           server-dir: /al-fissah.blackirys.com/
+          state-name: .ftp-deploy-sync-state.json
+          timeout: 120000
+          log-level: standard
+
+      - name: Envoyer par FTP vers LWS (al-fissah.fr)
+        # Désactivée tant que la variable FTP_DOSSIER_FR n'est pas renseignée.
+        if: ${{ vars.FTP_DOSSIER_FR != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST_FR || secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME_FR || secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD_FR || secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: _site_fr/
+          server-dir: ${{ vars.FTP_DOSSIER_FR }}
           state-name: .ftp-deploy-sync-state.json
           timeout: 120000
           log-level: standard

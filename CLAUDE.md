@@ -100,8 +100,21 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 ## Décisions à connaître
 
 - **`site.conf`** : `site=` alimente les balises canoniques et le sitemap ; `preview=oui`
-  ajoute `noindex` + `robots.txt` bloquant. À passer sur `non` uniquement le jour de la
-  bascule vers al-fissah.com, sinon le domaine de test concurrence le vrai site.
+  ajoute `noindex` + `robots.txt` bloquant. À passer sur `non` le **samedi 21/11/2026** (bascule
+  al-fissah.fr) — marche à suivre : `MISE-EN-LIGNE.md`, « Samedi 21/11 — ouvrir à Google ».
+  Le workflow construit deux fois : al-fissah.fr selon `site.conf`, al-fissah.blackirys.com
+  toujours avec `--preview` (jamais indexé, canonical vers al-fissah.fr). Sitemap avec `lastmod`
+  (date du dernier commit), `Sitemap:` dans robots.txt dès que `preview=non`.
+- **`appli_publiee=`** (`site.conf`, 16/11/2026) : boutons Google Play / App Store de l'accueil
+  masqués tant que `non` (fiches pas encore publiques ; identifiant Play `com.alfissah.app`).
+  Microsoft Store toujours affiché.
+- **Lot 5 de l'audit (16/11/2026)** : image de partage et logo JSON-LD servis par le site
+  (`assets/img/logo-partage.png`, adresse absolue `{site}/…`) ; page 404 en chemins absolus
+  (`absolutiser`, elle s'affiche à toute profondeur) ; boutons orange à texte blanc sur
+  `--orange-btn` #B85A00 / `--orange-btn-deep` #9C4A00 (contraste ≥ 4,5:1), `--orange` inchangé
+  ailleurs ; `.htaccess` : en-têtes de sécurité, www → al-fissah.fr, `/en` → `/en/` en https,
+  anciennes adresses `/fr/login`, `/fr/register`, `/fr/commander/…` → etudiant.al-fissah.com ;
+  mention RGPD sous « Envoyer » (`contact.rgpd`).
 - **Deux parcours distincts, à ne pas confondre** :
   - « Commencer maintenant » → `inscription.html` = **inscription aux études** (programme,
     formule, professeur, créneaux, paiement)
@@ -169,7 +182,9 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 - **Mentions légales** : rédigées pour une LLC américaine servant des élèves européens
   (droit du Nouveau-Mexique + RGPD + transferts hors UE). Hébergeur : LWS. La rubrique
   « Éditeur du site » (dénomination, siège, immatriculation, agent enregistré, directeur de
-  publication) a été **retirée à la demande du client** (30/09/2026), dans les six langues.
+  publication) a été **retirée à la demande du client** (30/09/2026), puis **remise** par le client
+  (AL-FISSAH LLC, 530B Harkle Rd Ste 100, Santa Fe — reprise le 16/11/2026, lot 5). Domaine
+  cité : al-fissah.fr.
 - **Formulaires (contact, essai, inscription)** : `assets/main.js`, en haut. Branchés sur **Web3Forms**
   depuis le 29/09/2026 (`FORM_ENDPOINT` + `FORM_KEY`, compte de l'école, formulaire « Site Al-Fissah —
   Contact ») : les messages arrivent directement dans la boîte de l'école, « Répondre » répond au
@@ -221,7 +236,9 @@ reste la voie sûre.
 ## Déploiement
 
 **Automatique depuis GitHub** (`.github/workflows/mise-en-ligne.yml`) : chaque push sur `main`
-reconstruit les pages (`--inline`) et les envoie par FTP dans `/al-fissah.blackirys.com`.
+reconstruit les pages (`--inline`) et les envoie par FTP dans `/al-fissah.blackirys.com`, puis
+dans le dossier d'al-fissah.fr donné par la variable du dépôt `FTP_DOSSIER_FR` (étape sautée
+tant qu'elle est vide).
 Les identifiants sont des secrets du dépôt (`FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`),
 jamais dans le code ni dans la conversation. Suivi : onglet *Actions* du dépôt ; on peut y
 relancer l'envoi à la main (*Run workflow*). Le poste du client n'a plus besoin de FileZilla.
