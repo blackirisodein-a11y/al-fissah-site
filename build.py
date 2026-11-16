@@ -24,6 +24,18 @@ REGISTER = 'https://al-fissah.com/fr/register'
 SITE = 'https://al-fissah.com'
 PREVIEW = False
 APP = ''        # adresse de la plateforme des comptes (site.conf, clé app=) ; vide = pas encore reliée
+# 16/11/2026 (école) : trois accès — étudiants (app=), enseignants (app_enseignant=), gestion (app_gestion=).
+# Vides = l'accès n'est pas affiché (seul « Se connecter » des étudiants reste).
+APP_ENSEIGNANT = ''
+APP_GESTION = ''
+ACCES = {  # libellés des trois accès, par langue
+  'fr': ('Espace étudiant', 'Espace enseignant', 'Gestion'),
+  'en': ('Student area', 'Teacher area', 'Administration'),
+  'ar': ('فضاء الطالب', 'فضاء الأستاذ', 'الإدارة'),
+  'ru': ('Кабинет ученика', 'Кабинет преподавателя', 'Администрация'),
+  'es': ('Espacio del alumno', 'Espacio del profesor', 'Administración'),
+  'de': ('Schülerbereich', 'Lehrerbereich', 'Verwaltung'),
+}
 YEAR = '2026'
 MAIL = 'c.alfissah@gmail.com'
 ASSET_VER = '14'
@@ -40,6 +52,10 @@ if os.path.exists(_conf):
             PREVIEW = _l[8:].strip().lower() in ('1', 'true', 'oui', 'yes')
         elif _l.startswith('app='):
             APP = _l[4:].strip().rstrip('/')
+        elif _l.startswith('app_enseignant='):
+            APP_ENSEIGNANT = _l[15:].strip().rstrip('/')
+        elif _l.startswith('app_gestion='):
+            APP_GESTION = _l[12:].strip().rstrip('/')
 if '--site' in sys.argv:
     SITE = sys.argv[sys.argv.index('--site') + 1].rstrip('/')
 if '--preview' in sys.argv:
@@ -514,6 +530,21 @@ class Builder:
     def login_url(self):
         return self.app_url('login') if APP else LOGIN
 
+    def acces_url(self, base):
+        """Page de connexion d'un des accès de l'équipe, dans la langue de la page."""
+        return f"{base}/{self.c if self.c in ('fr', 'en', 'ar', 'ru') else 'en'}/login"
+
+    def acces_liens(self, sep=' · ', cls='', equipe_seulement=False):
+        """Les trois accès (étudiant, enseignant, gestion) ; un accès sans adresse n'est pas affiché."""
+        e, p, g = ACCES.get(self.c, ACCES['fr'])
+        c = f' class="{cls}"' if cls else ''
+        liens = [] if equipe_seulement else [f'<a{c} href="{self.login_url()}">{e}</a>']
+        if APP_ENSEIGNANT:
+            liens.append(f'<a{c} href="{self.acces_url(APP_ENSEIGNANT)}">{p}</a>')
+        if APP_GESTION:
+            liens.append(f'<a{c} href="{self.acces_url(APP_GESTION)}">{g}</a>')
+        return sep.join(liens)
+
     def register_url(self):
         return self.app_url('register') if APP else REGISTER
 
@@ -640,6 +671,7 @@ class Builder:
     <a class="btn btn-orange" href="{self.insc_url()}">{self.I['btn_insc']}</a>
     <a class="btn btn-navy" href="{self.essai_url()}">{self.I['btn_essai']}</a>
     <a class="btn btn-navy" href="{self.login_url()}">{n['login_full']}</a>
+    {self.acces_liens(sep='', cls='mob-acces', equipe_seulement=True)}
   </nav>
 </div>
 
@@ -685,7 +717,7 @@ class Builder:
     </div>
     <div class="base">
       <span>© 2020–{YEAR} Al-Fissah — {f['copy']}</span>
-      <span><a href="{self.login_url()}">{n['login']}</a> · <a href="{self.register_url()}">{f['register']}</a></span>
+      <span>{self.acces_liens()} · <a href="{self.register_url()}">{f['register']}</a></span>
     </div>
   </div>
 </footer>
