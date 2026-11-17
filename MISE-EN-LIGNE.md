@@ -1,5 +1,46 @@
 # Mettre le site en ligne
 
+## Samedi 21/11 — ouvrir à Google
+
+Jusqu'au samedi 21/11/2026, `preview=oui` dans `site.conf` : **les deux adresses**
+(al-fissah.fr et al-fissah.blackirys.com) demandent à Google de ne pas les indexer
+(`noindex` dans chaque page + `robots.txt` = `Disallow: /`). C'est voulu.
+
+Le jour J, dans cet ordre :
+
+1. **Une seule fois, avant tout** (si ce n'est pas déjà fait) : sur GitHub, dépôt
+   `al-fissah-site` → *Settings* → *Secrets and variables* → *Actions* → onglet
+   **Variables** → *New repository variable* : nom `FTP_DOSSIER_FR`, valeur = le dossier
+   d'al-fissah.fr vu depuis le compte FTP (celui où se trouve aujourd'hui son `index.html`,
+   à relever dans FileZilla — par exemple `/al-fissah.fr/`, **avec** les barres `/` au début
+   et à la fin). Si al-fissah.fr est sur un autre compte FTP que blackirys, ajouter aussi les
+   secrets `FTP_HOST_FR`, `FTP_USERNAME_FR`, `FTP_PASSWORD_FR`.
+   Tant que cette variable est vide, la mise en ligne n'envoie **rien** vers al-fissah.fr.
+2. Dans `site.conf` : remplacer `preview=oui` par **`preview=non`** (ne rien toucher d'autre :
+   `site=https://al-fissah.fr` reste tel quel).
+3. Enregistrer sur `main` (modification directe sur GitHub ou fusion d'une demande de
+   fusion). La mise en ligne automatique repart seule et :
+   - construit **al-fissah.fr** avec `preview=non` → pages indexables, `robots.txt` =
+     `Allow: /` + `Sitemap: https://al-fissah.fr/sitemap.xml` ;
+   - construit **al-fissah.blackirys.com** avec `--preview` → **toujours** `noindex` et
+     `robots.txt` bloquant (le workflow refuse d'envoyer s'il ne l'est pas) ; ses balises
+     canoniques désignent al-fissah.fr.
+4. Contrôler une fois l'action terminée (onglet *Actions*, coche verte) :
+   - `https://al-fissah.fr/robots.txt` → `Allow: /` et la ligne `Sitemap:` ;
+   - `https://al-fissah.blackirys.com/robots.txt` → `Disallow: /` ;
+   - code source de `https://al-fissah.fr/` (Ctrl+U) : **pas** de `noindex` ;
+   - `https://www.al-fissah.fr/` → redirige vers `https://al-fissah.fr/` ;
+   - `https://al-fissah.fr/fr/login` → redirige vers l'espace étudiant.
+5. **Google Search Console** : ajouter la propriété `al-fissah.fr`, soumettre
+   `https://al-fissah.fr/sitemap.xml`, puis « Inspection de l'URL » → « Demander une
+   indexation » pour l'accueil.
+
+Revenir en arrière : remettre `preview=oui` et enregistrer sur `main`.
+
+Les boutons Google Play / App Store de l'accueil restent masqués tant que
+`appli_publiee=non` (même fichier) : passer à `oui` le jour où les deux fiches des
+boutiques sont publiques.
+
 ## ⚠️ À lire avant tout : ne pas écraser le site actuel
 
 `al-fissah.com` héberge aujourd'hui une application complète : espace étudiant,

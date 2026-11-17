@@ -10,6 +10,10 @@
   --line:#E4EAF6;
   --orange:#F5871F;
   --orange-deep:#D96F0F;
+  /* Boutons à texte blanc (16/11/2026, contraste WCAG ≥ 4,5:1) : #B85A00 = 4,7:1, #9C4A00 = 6,1:1.
+     --orange / --orange-deep restent pour les usages décoratifs (traits, puces, chiffres). */
+  --orange-btn:#B85A00;
+  --orange-btn-deep:#9C4A00;
   --orange-soft:#FDEBD7;
   --r:20px;
   --display:'Space Grotesk','Space Grotesk Fallback','Segoe UI',Roboto,system-ui,sans-serif;
@@ -84,7 +88,7 @@ html.intro-on body:not(.ready) *:not(#loader):not(#loader *){animation-play-stat
 .btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .btn .arr{display:inline-block;transition:transform .25s}
 .btn:hover .arr{transform:translateX(5px)}
-.btn-orange{background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;box-shadow:0 10px 26px rgba(245,135,31,.35)}
+.btn-orange{background:linear-gradient(135deg,var(--orange-btn),var(--orange-btn-deep));color:#fff;box-shadow:0 10px 26px rgba(245,135,31,.35)}
 .btn-orange:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(245,135,31,.45)}
 .btn-navy{background:var(--navy);color:#fff}
 .btn-navy:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(13,32,78,.3)}
@@ -164,7 +168,7 @@ header ul.menu a:hover{color:var(--orange-deep)}
 .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
 /* boutons du bandeau d'accueil : « Commencer maintenant » mis en avant, « Voir le programme » en second */
 .btn-hero{font-size:1.02rem;padding:1.05rem 2rem;border-radius:16px}
-.btn-orange.btn-hero{background:linear-gradient(135deg,#FFA94D 0%,var(--orange) 45%,var(--orange-deep) 100%);box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35);animation:heroglow 3s ease-in-out infinite}
+.btn-orange.btn-hero{background:linear-gradient(135deg,var(--orange-btn) 0%,#A85200 45%,var(--orange-btn-deep) 100%);box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35);animation:heroglow 3s ease-in-out infinite}
 .btn-orange.btn-hero:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 44px rgba(245,135,31,.5),inset 0 1px 0 rgba(255,255,255,.35)}
 @keyframes heroglow{0%,100%{box-shadow:0 14px 34px rgba(245,135,31,.4),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 14px 40px rgba(245,135,31,.58),inset 0 1px 0 rgba(255,255,255,.35)}}
 .btn-ghost.btn-hero{border:1.5px solid var(--navy);color:var(--navy);background:rgba(255,255,255,.9)}
@@ -377,7 +381,7 @@ section{padding:96px 0;position:relative}
 .plan.featured{border:2px solid var(--orange);position:relative;transform:scale(1.03)}
 .plan.featured::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:var(--r) var(--r) 0 0;background:linear-gradient(90deg,var(--orange),var(--orange-deep))}
 .plan.featured:hover{transform:scale(1.03) translateY(-8px)}
-.plan.featured::after{content:attr(data-badge);white-space:nowrap;position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;font-size:.76rem;font-weight:800;padding:.22rem .9rem;border-radius:999px}
+.plan.featured::after{content:attr(data-badge);white-space:nowrap;position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--orange-btn),var(--orange-btn-deep));color:#fff;font-size:.76rem;font-weight:800;padding:.22rem .9rem;border-radius:999px}
 .plan.popular::after{content:attr(data-badge);white-space:nowrap;position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:.72rem;font-weight:800;padding:.22rem .8rem;border-radius:999px}
 .plan h3{font-family:var(--display);font-weight:700;font-size:1.15rem}
 .plan .price{font-family:var(--display);font-weight:700;font-size:2.3rem;margin:.5rem 0 .1rem;font-variant-numeric:tabular-nums}
@@ -546,6 +550,8 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 .form-actions .btn:disabled{opacity:.6;cursor:wait;transform:none}
 .form-actions .alt{font-size:.88rem;color:var(--muted)}
 .form-actions .alt a{color:var(--navy);font-weight:800}
+.form-rgpd{font-size:.82rem;line-height:1.5;color:var(--muted);margin:.9rem 0 0}
+.form-rgpd a{color:#A85208;font-weight:700}
 .form-status{margin-top:1.1rem;padding:.9rem 1.1rem;border-radius:12px;font-weight:700;font-size:.92rem}
 .form-status.ok{background:#E6F6EC;color:#1B6B3A}
 .form-status.err{background:#FDE8E7;color:#A93226}

@@ -16,13 +16,19 @@ Contenu : lang/fr.py, lang/en.py, lang/ar.py, lang/es.py, lang/de.py
 import os, sys, json, re, importlib.util
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-LOGO_ABS = 'https://al-fissah.com/assets/images/Logo.png'   # utilisé pour le partage social et Schema.org
+# Image de partage (og:image, twitter:image) et logo des données structurées : servis par le site lui-même
+# (assets/img/logo-partage.png, copie de assets/logo.png), adresse absolue sur le domaine canonique (site=).
+# Avant le 16/11/2026 : https://al-fissah.com/assets/images/Logo.png (ancien site, appelé à disparaître).
+LOGO_PARTAGE = 'assets/img/logo-partage.png'
 LOGO_FILE = 'assets/logo-mark.png'                          # calligraphie seule, dans l'en-tête et le pied de page
 LOGO_FULL = 'assets/logo.png'                               # logo complet, sur l'écran de chargement
 LOGIN = 'https://al-fissah.com/fr/login'
 REGISTER = 'https://al-fissah.com/fr/register'
 SITE = 'https://al-fissah.com'
 PREVIEW = False
+# appli_publiee= (site.conf) : boutons Google Play / App Store de l'accueil affichés seulement quand « oui ».
+# Tant que les fiches des boutiques ne sont pas publiques, ces liens mènent à une page 404.
+APPLI_PUBLIEE = False
 APP = ''        # adresse de la plateforme des comptes (site.conf, clé app=) ; vide = pas encore reliée
 # 16/11/2026 (école) : trois accès — étudiants (app=), enseignants (app_enseignant=), gestion (app_gestion=).
 # Vides = l'accès n'est pas affiché (seul « Se connecter » des étudiants reste).
@@ -50,6 +56,8 @@ if os.path.exists(_conf):
             SITE = _l[5:].strip().rstrip('/')
         elif _l.startswith('preview='):
             PREVIEW = _l[8:].strip().lower() in ('1', 'true', 'oui', 'yes')
+        elif _l.startswith('appli_publiee='):
+            APPLI_PUBLIEE = _l[14:].strip().lower() in ('1', 'true', 'oui', 'yes')
         elif _l.startswith('app='):
             APP = _l[4:].strip().rstrip('/')
         elif _l.startswith('app_enseignant='):
@@ -62,6 +70,7 @@ if '--preview' in sys.argv:
     PREVIEW = True
 if '--public' in sys.argv:
     PREVIEW = False
+LOGO_ABS = f'{SITE}/{LOGO_PARTAGE}'
 LANGS = [c for c in ['fr', 'en', 'ar', 'ru', 'es', 'de'] if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lang', c + '.py'))]
 LANG_NAMES = {'fr': 'Français', 'en': 'English', 'ar': 'العربية', 'ru': 'Русский', 'es': 'Español', 'de': 'Deutsch'}
 # --- Polices : hébergées sur le site (assets/fonts/*.woff2, licence OFL, fichiers Google Fonts) ---
@@ -471,7 +480,7 @@ APP_TEL = {(e, c): _capture_tel(e, c) for e in ('accueil', 'planning') for c in 
 # Liens des boutiques. Google Play / App Store : liens de l'ancienne section, inchangés.
 STORES = dict(
     ios='https://apps.apple.com/fr/app/al-fissah/id6476883231',
-    android='https://play.google.com/store/apps/details?id=com.alfissah.dev',
+    android='https://play.google.com/store/apps/details?id=com.alfissah.app',   # identifiant de l'appli (capacitor.config.json)
     windows='https://apps.microsoft.com/detail/9PFQBGR8JN7R',
 )
 # Lettres arabes flottantes de l'écran d'ouverture : (lettre, position gauche %, délai s, durée s, orange ?)
@@ -563,7 +572,7 @@ class Builder:
         hreflang = '\n'.join(f'<link rel="alternate" hreflang="{c}" href="{SITE}/{"" if c=="fr" else c+"/"}{pp}">' for c in LANGS)
         org = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","url":SITE,"logo":LOGO_ABS,
                           "description":m['org_desc'],"email":"c.alfissah@gmail.com",
-                          "sameAs":["http://www.facebook.com/Ecole.al.fissah1","https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
+                          "sameAs":["https://www.facebook.com/Ecole.al.fissah1","https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
         # Données structurées : l'école partout ; le site (accueil) ; le fil d'Ariane (pages internes indexables).
         ld = [org]
         if page == 'index':
@@ -687,7 +696,7 @@ class Builder:
         <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
-          <a href="http://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
           <a href="https://www.instagram.com/ecolealfissah/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
           <a href="https://twitter.com/AlFissah" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l6.5 8.5L4 20h2.2l5.3-6.1L16 20h4l-6.8-9L19.5 4h-2.2l-4.9 5.6L8 4z"/></svg></a>
           <a href="https://www.youtube.com/watch?v=MNiWkEPoGNw" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8zM10 15V9l5.2 3z"/></svg></a>
@@ -896,9 +905,9 @@ class Builder:
         ico_ms = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f25022" d="M2 2h9.5v9.5H2z"/><path fill="#7fba00" d="M12.5 2H22v9.5h-9.5z"/><path fill="#00a4ef" d="M2 12.5h9.5V22H2z"/><path fill="#ffb900" d="M12.5 12.5H22V22h-9.5z"/></svg>'
         def badge(k, ico, small, big):
             return f'<a class="ad-store" href="{STORES[k]}" target="_blank" rel="noopener">{ico}<span><small>{small}</small><b>{big}</b></span></a>'
-        stores = (badge('android', ico_play, H['store_android'], 'Google Play')
-                  + badge('ios', ico_apple, H['store_ios'], 'App Store')
-                  + badge('windows', ico_ms, H['store_ms'], 'Microsoft Store'))
+        # Google Play / App Store : masqués tant que appli_publiee=non (site.conf) — fiches pas encore publiques.
+        stores = ((badge('android', ico_play, H['store_android'], 'Google Play')
+                   + badge('ios', ico_apple, H['store_ios'], 'App Store')) if APPLI_PUBLIEE else '')                  + badge('windows', ico_ms, H['store_ms'], 'Microsoft Store')
         return f'''<section id="app"><div class="wrap"><div class="appdl">
   <div class="ad-waves" aria-hidden="true"><svg viewBox="0 0 1200 180" preserveAspectRatio="none"><defs><path id="adw" d="M-200 10 Q -150 0 -100 10 T 0 10 T 100 10 T 200 10 T 300 10 T 400 10 T 500 10 T 600 10 T 700 10 T 800 10 T 900 10 T 1000 10 T 1100 10 T 1200 10 T 1300 10 T 1400 10"/></defs><g class="ad-wg">{waves}</g></svg></div>
   <div class="ad-mark" aria-hidden="true">AL-FISSAH</div>
@@ -1075,6 +1084,7 @@ class Builder:
       <div class="hp" aria-hidden="true"><label>Website <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
     </fieldset>
     <div class="form-actions"><button type="submit" class="btn btn-orange">{C['send']} <span class="arr">→</span></button></div>
+    {f'<p class="form-rgpd">{C["rgpd"]}</p>' if C.get('rgpd') else ''}
     <p id="contact-status" class="form-status" hidden role="status" aria-live="polite"></p>
   </form>
 </div></div>
@@ -1098,7 +1108,8 @@ class Builder:
   <div class="hero-cta" style="margin-top:1.6rem"><a class="btn btn-orange" href="index.html">{N['home']} <span class="arr">→</span></a><a class="btn btn-ghost" href="programmes.html">{L['nav']['programmes']}</a><a class="btn btn-ghost" href="contact.html">{L['nav']['contact']}</a></div>
 </div></div><div style="height:4rem"></div>
 '''
-        self.write('404.html', self.head(N['title'], N['p'], '404', '<meta name="robots" content="noindex">') + self.chrome('404') + html + self.footer())
+        page = self.head(N['title'], N['p'], '404', '' if PREVIEW else '<meta name="robots" content="noindex">') + self.chrome('404') + html + self.footer()
+        self.write('404.html', absolutiser(page, '/' if self.c == 'fr' else f'/{self.c}/'))
 
 
     # Formulaire de demande de cours d'essai (essai.html). Ids et noms de champs attendus par assets/main.js
@@ -1269,16 +1280,46 @@ class Builder:
             f()
         print('✓', self.c, '→', os.path.relpath(self.out, ROOT) or '.')
 
+def absolutiser(html, base):
+    """Page 404 : Apache la sert à l'adresse demandée (/fr/login, /ar/x/y…), à n'importe quelle profondeur.
+    Les chemins relatifs (liens, images, polices, préchargements) y deviennent donc absolus (/…),
+    résolus depuis le dossier de la langue (base = '/' ou '/ar/')."""
+    import posixpath
+    def absolu(u):
+        if not u or u.startswith(('/', '#', 'http:', 'https:', 'data:', 'mailto:', 'tel:', 'javascript:', '{')):
+            return u
+        m = re.match(r'([^?#]*)(.*)', u, flags=re.S)
+        chemin, reste = m.group(1), m.group(2)
+        if not chemin:
+            return u
+        a = posixpath.normpath(posixpath.join(base, chemin))
+        if chemin.endswith('/') and not a.endswith('/'): a += '/'
+        return a + reste
+    html = re.sub(r'(\s(?:href|src)=")([^"]*)(")', lambda m: m.group(1) + absolu(m.group(2)) + m.group(3), html)
+    html = re.sub(r'''(url\()([^)'"]+)(\))''', lambda m: m.group(1) + absolu(m.group(2)) + m.group(3), html)
+    return html
+
+def date_du_site():
+    """Date de la dernière modification enregistrée (dernier commit) pour <lastmod> ; à défaut, aujourd'hui."""
+    import subprocess, datetime
+    try:
+        d = subprocess.run(['git', 'log', '-1', '--format=%cs'], cwd=ROOT, capture_output=True, text=True, timeout=10).stdout.strip()
+        if re.fullmatch(r'\d{4}-\d{2}-\d{2}', d): return d
+    except Exception:
+        pass
+    return datetime.date.today().isoformat()
+
 def sitemap(codes):
     with open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n')
+        lastmod = date_du_site()
         for p in PAGES:
             if p == '404' or (APP and p in ('essai', 'inscription')): continue
             for c in codes:
                 loc = f"{SITE}/{'' if c == 'fr' else c + '/'}{'' if p == 'index' else p + '.html'}"
                 alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{a}" href="{SITE}/{"" if a == "fr" else a + "/"}{"" if p == "index" else p + ".html"}"/>' for a in codes)
                 pr = '1.0' if p == 'index' else ('0.8' if p in ('programmes', 'tarifs') else '0.6')
-                f.write(f'  <url><loc>{loc}</loc>{alts}<changefreq>monthly</changefreq><priority>{pr}</priority></url>\n')
+                f.write(f'  <url><loc>{loc}</loc>{alts}<lastmod>{lastmod}</lastmod><changefreq>monthly</changefreq><priority>{pr}</priority></url>\n')
         f.write('</urlset>\n')
     with open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf-8') as f:
         if PREVIEW:
