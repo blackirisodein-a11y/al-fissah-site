@@ -7,9 +7,12 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1. www.al-fissah.fr → https://al-fissah.fr (un seul saut, en https)
-  RewriteCond %{HTTP_HOST} ^www\.al-fissah\.fr$ [NC]
-  RewriteRule ^ https://al-fissah.fr%{REQUEST_URI} [L,R=301]
+  # 1. Adresse unique : https://al-fissah.com (21/11/2026 — la vitrine quitte al-fissah.fr,
+  #    l'ancien site disparaît). www.al-fissah.com, al-fissah.fr et www.al-fissah.fr →
+  #    https://al-fissah.com en un seul saut, chemin conservé (les règles de l'étape 4
+  #    s'appliquent ensuite). L'adresse de test al-fissah.blackirys.com n'est pas concernée.
+  RewriteCond %{HTTP_HOST} ^(www\.al-fissah\.com|(www\.)?al-fissah\.fr)$ [NC]
+  RewriteRule ^ https://al-fissah.com%{REQUEST_URI} [L,R=301]
 
   # 2. Forcer HTTPS — si vous voyez une erreur de boucle de redirection,
   #    mettez un # devant les deux lignes ci-dessous jusqu'à l'activation du certificat SSL.
@@ -28,7 +31,22 @@ ErrorDocument 404 /404.html
   RewriteRule ^(es|de)/(register|signup|commander)(/.*)?$ https://etudiant.al-fissah.com/en/inscription [L,R=301]
   RewriteRule ^login/?$ https://etudiant.al-fissah.com/fr/login [L,R=301]
   RewriteRule ^register/?$ https://etudiant.al-fissah.com/fr/inscription [L,R=301]
-  #    Anciennes pages de présentation en français (/fr/…) : le français est à la racine.
+  #    Mot de passe oublié de l'ancien site (/fr/password/reset…) → page de connexion
+  #    (le lien « Mot de passe oublié ? » s'y trouve).
+  RewriteRule ^(fr|en|ar|ru)/password(/.*)?$ https://etudiant.al-fissah.com/$1/login [L,R=301]
+  RewriteRule ^(es|de)/password(/.*)?$ https://etudiant.al-fissah.com/en/login [L,R=301]
+  RewriteRule ^password(/.*)?$ https://etudiant.al-fissah.com/fr/login [L,R=301]
+  #    Anciennes pages de présentation (relevées sur l'ancien site le 20/11/2026, fr / en / ar) :
+  #    le français est à la racine, les autres langues dans leur dossier.
+  RewriteRule ^fr/(a-propos|contact|tarifs)/?$ https://%{HTTP_HOST}/$1.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/(a-propos|contact|tarifs)/?$ https://%{HTTP_HOST}/$1/$2.html [L,R=301]
+  RewriteRule ^fr/pages/faq/?$ https://%{HTTP_HOST}/faq.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/pages/faq/?$ https://%{HTTP_HOST}/$1/faq.html [L,R=301]
+  RewriteRule ^fr/pages/le-reglement-interieur/?$ https://%{HTTP_HOST}/reglement.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/pages/le-reglement-interieur/?$ https://%{HTTP_HOST}/$1/reglement.html [L,R=301]
+  RewriteRule ^fr/programmes(/.*)?$ https://%{HTTP_HOST}/programmes.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/programmes(/.*)?$ https://%{HTTP_HOST}/$1/programmes.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/testimonials/?$ https://%{HTTP_HOST}/$1/temoignages.html [L,R=301]
   RewriteRule ^fr/?$ https://%{HTTP_HOST}/ [L,R=301]
   RewriteRule ^fr/testimonials/?$ https://%{HTTP_HOST}/temoignages.html [L,R=301]
 </IfModule>
