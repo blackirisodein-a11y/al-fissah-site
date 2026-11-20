@@ -47,7 +47,7 @@ L = {
     part="Part", lesson="Lesson", playlist="See this playlist on YouTube", channel="All the channel's videos", count="{n} videos", now="Now playing"),
   adultes_kick="Adults", adultes_h2="Been learning for a while but still not speaking Arabic?",
   adultes_p="The Al-Fissah institute also teaches adults, focusing first on your speaking and comprehension so that you are able to hold a conversation. You speak and you understand.",
-  adultes_checks=["Lessons exclusively in Arabic, from the very first level","Complete beginners welcome: no prerequisites","One-to-one, or in pairs for the Arabic language","Exam at the end of each book, diploma from 80%"],
+  adultes_checks=["Lessons exclusively in Arabic, from the very first level","Complete beginners welcome: no prerequisites","One-to-one, or in pairs for the Arabic language","Exam at the end of each book: 70% to move up a level"],
   big=["Listen","Speak","Understand"], big_sub="The skills practised in immersion, with no French or English.",
   app_kick='Al-Fissah app', app_h2='Download our app', app_p='Learn anywhere, any time: on your phone and on your computer, with the same account.',
   app_checks=["Easy access to your lessons and follow-up","Teachers' remarks, homework and grades","Live timetable and lesson reminders"],
@@ -148,7 +148,7 @@ L = {
     ("٢","Lessons in pairs","Possible for the Arabic language: €4.50 per student per hour, i.e. €36 for a 4-week session of 1 h per week for two people."),
     ("٤","Session ≠ level","A session lasts 4 weeks and can be renewed. The level is the book being studied: it usually takes more than 4 weeks.")],
   pay_h2="Payment and renewal",
-  pay_body="""<p>Payment is made by bank card through a secure link (Stripe) or by bank transfer. Sessions are renewed automatically every 4 weeks with a scheduled payment. To cancel the subscription, inform the administration at least 7 days before the end of the current session.</p>
+  pay_body="""<p>Payment is made by bank card through a secure link (Stripe) or by bank transfer. By card, sessions renew automatically every 4 weeks, with no minimum term; to stop, make a request from your account at least 7 days before the end of the current session. By bank transfer, there is no subscription: renewal is requested from your account before the end of each session.</p>
 <p>All enrolments are final: no postponement or refund is granted after payment of the session. Enrol only if you are available and motivated to learn. Books and materials are not provided on enrolment and must be ordered at <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
 <p>Lessons in pairs or in a group: you enrol with your own partner or your own group (3 to 10 students). The school does not form groups. The group price is given by the administration at enrolment.</p>""",
   note_b="Not decided yet?", note_p="Start with a 30-minute trial lesson."),
@@ -195,38 +195,172 @@ L = {
   lang_note="Testimonials are shown in their original language (French), as written by the students and parents.",
   note_b="Are you a student or a student's parent?", note_p="You can leave your testimonial from your", note_a="student area"),
 
-'reglement': dict(title="School rules — AL-FISSAH", desc="The Al-Fissah school rules: behaviour, equipment, time slots, attendance and absences, payment, exams, disputes.",
-  h1="School rules", lead="The Al-Fissah school specialises in teaching the Arabic language, the Quran and its various subjects. It has no political affiliation and supports no activity contrary to the teachings of the Quran and the Sunnah.",
-  updated="February 2025", article="Article",
-  articles=[
- ("Student behaviour", """<p>Every student must behave in accordance with Islamic values and the principles of the student of knowledge. They must respect their teachers as well as members of the administration. In case of a problem, the student must inform the administration so that a solution can be found as soon as possible.</p>
-<p>The administration reserves the right, after observing inappropriate behaviour by a student towards a teacher or a member of the administration, to exclude that student without notice.</p>
-<p>Exchanging personal contact details between students and salaried teachers is forbidden.</p>"""),
- ("Equipment", """<p>Using smartphones for studying is not recommended. A tablet at minimum is recommended, and a PC is preferable. We do not guarantee that all tools will work correctly for smartphone users.</p>
-<p>Before each lesson, every student must make sure their equipment works properly by checking:</p>
-<ul><li>the connection of the microphone and headset;</li><li>that programmes unrelated to the lesson are closed (in particular apps using audio or video such as Messenger).</li></ul>"""),
- ("Time slots", """<p>Students may ask to change their time slot by contacting the administration. We will do our utmost to satisfy this request. However, the school cannot be held responsible for lost days if teachers are not available in the slot the student wants.</p>
-<p>If necessary, the school may ask the student to change slot if a teacher has to stop or if one of the prayers coincides with the chosen slot.</p>"""),
- ("General organisation of studies", """<p>Students must complete all homework given by teachers. Behaviour respectful of Islam towards teachers and the administration is required.</p>
-<p>It is also compulsory for students or their parents to regularly consult the teachers' remarks. These comments are essential to know the homework, the revisions, and whether the session is over. Active cooperation is expected from everyone to ensure careful follow-up and the smooth running of lessons.</p>"""),
- ("Attendance and absences", """<h3>Lateness</h3>
-<p>The student must be punctual. If more than 30 minutes late for a one-hour lesson or 15 minutes for a 30-minute lesson, the lesson will be cancelled and counted as completed.</p>
-<p>If the teacher is more than 10 minutes late, the student must promptly inform the administration. The student must wait 15 minutes before logging out if the teacher is late; beyond that, the lesson will be considered an absence by the student.</p>
-<h3>Absences</h3>
-<p>Any absence, justified or not, without at least 24 hours' notice given during office hours (8:00 am to 6:00 pm), will be deducted from the student's study days. A student may be absent with justification for a number of days equal to their weekly lesson days. Beyond that number, any absence will be counted as unjustified, <b>and this also includes slot changes in case of absence, even if it is a different time on the same day or in the same week.</b></p>
-<div class="note"><b>Example:</b> a student with two lesson days per week may be absent up to two days per month with justification. Any additional absence will be deducted.</div>
-<h3>Temporary break</h3>
-<p>For an extended break of three days or more, the student must inform the administration at least one week in advance. The student will lose priority on their slot and teacher when resuming. The count of remaining days will be valid for three months, after which missed lessons can no longer be recovered. If the student does not give one week's notice, they will lose the remaining study days.</p>"""),
- ("Payment terms", """<p>Payment is made by bank card through a secure link. Sessions are renewed automatically every 4 weeks with a scheduled payment. To cancel the subscription, please inform the administration at least 7 days before the end of the current session. If you do not, the automatic payment will be maintained.</p>
-<p><b>Discount:</b> from the second enrolment in the same family, a 10% discount on sessions is granted.</p>"""),
- ("Organisation of exams", """<p>An exam is compulsory at the end of each session or book. The student will not be counted among those who have completed the level without having taken this exam.</p>
-<p>The student may not be absent on exam day except with notice to the administration and a valid justification, assessed by the administration. If the student does not attend without justification, they will not be able to obtain official documents (diploma, certificates…).</p>
-<table><tr><th>Result</th><th>Consequence</th></tr><tr><td>Over 60%</td><td>Moves up to the next level</td></tr><tr><td>Over 80% and the teacher's permission</td><td>Diploma awarded</td></tr></table>
-<p>The exam must be printed before the lesson starts. Without prior printing, the lesson will be cancelled and counted as completed.</p>"""),
- ("Payment rules", """<p>No refund will be made after payment of the session.</p><p>If a student is expelled from the school, no refund will be made.</p>"""),
- ("Disputes", """<ul><li>Any complaint must be detailed (circumstances, date, time, nature of the problem).</li><li>In case of dispute, the student must provide audio evidence.</li><li>Recording lessons is allowed for evidence purposes in case of dispute.</li><li>Without evidence, the complaint will not be accepted.</li><li>The Management will handle the complaint within 7 days.</li></ul>"""),
-  ]),
-
+'reglement': {'title': 'School rules — AL-FISSAH',
+ 'desc': 'The Al-Fissah school rules: requests from your account, postponements, breaks, stopping, payment, exams, technical problems and complaints.',
+ 'h1': 'School rules',
+ 'lead': 'Al-Fissah specialises in teaching the Arabic language, the Quran and its various subjects. It has no political affiliation and supports no activity contrary to the teachings of the Quran '
+         'and the Sunnah.',
+ 'updated': 'November 2026',
+ 'article': 'Article',
+ 'intro_title': 'General principles',
+ 'intro': "<p>All requests are made <b>exclusively from the student's account</b>, by clicking “Make a request”. No request is accepted by WhatsApp, by email or by any other means.</p>\n"
+          '<ul>\n'
+          '<li><b>Requests covered:</b> postponing a lesson, reporting an absence, changing a time slot, requesting a break and requesting to stop.</li>\n'
+          "<li><b>Messages to the administration:</b> every message is sent through the account's support section. No message is accepted by email.</li>\n"
+          '<li><b>Time stamp:</b> the date and time of a request are those recorded by the platform. All deadlines in these rules are counted from this time stamp.</li>\n'
+          '<li><b>Stopping without a request:</b> a student who stops attending without making a break or stop request from their account will see their sessions renew. These sessions remain '
+          'payable, and the student is recorded as owing money to the institute.</li>\n'
+          '<li><b>Platform diagnostic:</b> in the event of a technical problem, the institute relies on the platform\'s diagnostic to determine its cause (<a href="#art-13">article 13</a>).</li>\n'
+          '<li>By enrolling, the student (or their parent, for a minor) accepts these rules.</li>\n'
+          '</ul>',
+ 'articles': [('Behaviour and messaging',
+               '<p>Every student behaves in accordance with Islamic values and the principles of a student of knowledge, and respects their teachers as well as the members of the '
+               'administration.</p>\n'
+               '<ul>\n'
+               "<li>Any problem is reported to the administration through the account's support section, so that a solution can be found quickly.</li>\n"
+               '<li>If inappropriate behaviour towards a teacher or a member of the administration is observed, the administration may exclude the student without notice.</li>\n'
+               '<li>Exchanging personal contact details between students and teachers is forbidden.</li>\n'
+               '</ul>\n'
+               '<h3>Messages to the teacher</h3>\n'
+               '<p>Messaging with the teacher, from the account, is reserved for questions related to the lesson.</p>\n'
+               '<ul>\n'
+               '<li>It is forbidden to write to the teacher about time slots, a postponement, stopping, sending a book, a legal opinion (fatwa) or any other subject unrelated to the lesson. These '
+               "requests go through “Make a request” or the account's support section.</li>\n"
+               '<li>In case of a breach, the student receives a first and then a second warning. At the next breach, their access to messaging is withdrawn.</li>\n'
+               '</ul>'),
+              ('Requests from the account',
+               "<p>Each request has a minimum deadline, based on the platform's time stamp. A request made late, or outside the account, is treated as not made.</p>\n"
+               '<table><tr><th>Request</th><th>Minimum deadline</th><th>Article</th></tr>\n'
+               '<tr><td>Postponing a lesson</td><td>24 h before the lesson</td><td><a href="#art-7">7</a></td></tr>\n'
+               '<tr><td>Reporting an absence</td><td>24 h before the lesson</td><td><a href="#art-6">6</a></td></tr>\n'
+               '<tr><td>Changing time slot</td><td>24 h before the lesson</td><td><a href="#art-4">4</a></td></tr>\n'
+               '<tr><td>Break (3 lessons or more)</td><td>7 days before the break starts</td><td><a href="#art-8">8</a></td></tr>\n'
+               '<tr><td>Stopping the subscription</td><td>7 days before the end of the session</td><td><a href="#art-9">9</a></td></tr>\n'
+               '<tr><td>Renewal (payment by bank transfer)</td><td>Before the end of each session</td><td><a href="#art-10">10</a></td></tr>\n'
+               '<tr><td>Absence on an exam day</td><td>Before the exam, with proof</td><td><a href="#art-11">11</a></td></tr>\n'
+               '<tr><td>Technical problem</td><td>Before the lesson starts</td><td><a href="#art-13">13</a></td></tr>\n'
+               '<tr><td>Complaint</td><td>No later than 24 h after the events</td><td><a href="#art-14">14</a></td></tr></table>\n'
+               '<ul>\n'
+               "<li>The student or their parent checks the account regularly: replies from the administration, teachers' remarks, homework and notifications.</li>\n"
+               "<li>The administration's replies are sent to the account.</li>\n"
+               '</ul>'),
+              ('Equipment',
+               '<p>A computer is recommended and a tablet is the minimum; smartphones are not recommended, and the institute does not guarantee that the tools work properly on them.</p>\n'
+               '<p>The student prepares their equipment and logs in early. <b>The lesson opens 15 minutes before its start time</b> so that equipment can be tested. The student checks:</p>\n'
+               '<ul>\n'
+               '<li>their internet connection;</li>\n'
+               '<li>that the microphone, headset and sound are plugged in and working;</li>\n'
+               '<li>that programs unrelated to the lesson are closed, especially those using audio or video (Messenger, WhatsApp, etc.).</li>\n'
+               '</ul>\n'
+               '<p>Any problem found during this test is reported before the lesson starts (<a href="#art-13">article 13</a>).</p>'),
+              ('Time slots',
+               '<p>Students change their time slot themselves from their account, at least 24 h before the lesson. The change is accepted automatically.</p>\n'
+               '<ul>\n'
+               '<li>The institute may ask a student to change time slot if a teacher stops teaching or if a prayer time falls during the lesson. The student is informed in their account.</li>\n'
+               '<li>Only subscribed students (paying by bank card) keep priority on their time slot. A non-subscribed student\'s time slot is not guaranteed (<a href="#art-10">article 10</a>).</li>\n'
+               '</ul>'),
+              ('General organisation of studies',
+               '<p>Students must complete all the homework set by their teachers.</p>\n'
+               '<ul>\n'
+               "<li>Teachers' remarks (homework, revision, end of session) are posted in the account after each lesson. The student or their parents read them regularly.</li>\n"
+               '<li>Active cooperation from everyone is expected to ensure close follow-up and smooth lessons.</li>\n'
+               '</ul>'),
+              ('Attendance, lateness and absences',
+               '<p>The arrival times of the student and the teacher are those recorded by the platform.</p>\n'
+               '<h3>Student lateness</h3>\n'
+               '<table><tr><th>Lesson length</th><th>Lateness after which the lesson is cancelled</th><th>Consequence</th></tr>\n'
+               '<tr><td>1 hour</td><td>30 minutes</td><td>Lesson counted as taken</td></tr>\n'
+               '<tr><td>30 minutes</td><td>15 minutes</td><td>Lesson counted as taken</td></tr></table>\n'
+               '<h3>Teacher lateness</h3>\n'
+               '<ul>\n'
+               "<li>If the teacher is more than 10 minutes late, the student reports it through the account's support section.</li>\n"
+               '<li>The student waits 15 minutes while logged in. If they log out before then, the lesson is counted as a student absence.</li>\n'
+               '<li>If the platform shows that the teacher did not log in within these 15 minutes, the lesson is postponed and not counted.</li>\n'
+               '</ul>\n'
+               '<h3>Absences</h3>\n'
+               '<ul>\n'
+               '<li>Every absence is reported from the account (“Make a request” → report an absence), at least 24 h before the lesson.</li>\n'
+               '<li>An absence reported late, or outside the account, is deducted from the study days, whether justified or not.</li>\n'
+               '<li>An absence reported in time gives the right to a postponement, within the quota set in <a href="#art-7">article 7</a>.</li>\n'
+               '</ul>'),
+              ('Postponing lessons',
+               '<p>In each 4-week session, a student may postpone as many lessons as they have lessons per week. The request is made from the account (“Make a request” → postponement), at least 24 h '
+               'before the lesson.</p>\n'
+               '<div class="note"><b>Example:</b> with 2 lessons a week, the student has 2 postponements per 4-week session.</div>\n'
+               '<ul>\n'
+               '<li>When making the request, the student chooses between two options: moving the lesson to another day of the same week, or to the end of the session.</li>\n'
+               '<li>Beyond the quota, every missed lesson is deducted.</li>\n'
+               '<li>Unused postponements are not carried over to the next session.</li>\n'
+               "<li>A postponement decided by the institute (teacher absent, platform failure) does not count towards the student's quota.</li>\n"
+               '</ul>'),
+              ('Break',
+               '<p>An absence of 3 lessons or more is a break: it is requested from the account (“Make a request” → break) at least 7 days before it starts, giving the planned return date.</p>\n'
+               '<ul>\n'
+               '<li>During the break, the subscription and payments are suspended. The remaining lessons of the session are kept.</li>\n'
+               '<li>The lessons kept remain valid for 3 months from the start of the break. After that, they are lost.</li>\n'
+               '<li>On returning, the student loses priority on their former time slot and teacher.</li>\n'
+               '<li>Without a break request in the account, or with a request made less than 7 days before, the remaining lessons are lost. Sessions keep renewing and remain payable.</li>\n'
+               '</ul>'),
+              ('Stopping the subscription',
+               '<p>The subscription has <b>no minimum term</b>: the student may stop it at any time from their account (“Make a request” → stop), at least 7 days before the end of the current '
+               'session.</p>\n'
+               '<ul>\n'
+               '<li>The current session continues until it ends; no further payment is taken after that.</li>\n'
+               '<li>Without a stop request within this deadline, the new session renews and is payable.</li>\n'
+               '<li>A student who stops without making a stop request in their account will see their sessions renew. These sessions remain payable, and the student is recorded as owing money to the '
+               'institute.</li>\n'
+               '<li>A student who comes back after stopping re-enrols without priority on their former time slot or teacher.</li>\n'
+               '</ul>'),
+              ('Payment terms',
+               '<p>Two payment methods are offered: bank card with an automatic subscription, or bank transfer without a subscription.</p>\n'
+               '<table><tr><th></th><th>Bank card</th><th>Bank transfer</th></tr>\n'
+               '<tr><td>Subscription</td><td>Yes, renewed automatically every 4 weeks</td><td>No</td></tr>\n'
+               '<tr><td>Minimum term</td><td>None: stop at any time, 7 days before the end of the session</td><td>None</td></tr>\n'
+               '<tr><td>Renewal</td><td>Automatic, by card payment</td><td>Requested from the account before the end of each session</td></tr>\n'
+               '<tr><td>Priority on the time slot</td><td>Yes</td><td>No, time slot not guaranteed</td></tr></table>\n'
+               '<ul>\n'
+               '<li><b>Bank card:</b> payment is made through a secure link. Without a stop request at least 7 days before the end of the session, the new session renews and is payable.</li>\n'
+               '<li><b>Bank transfer:</b> before the end of each session, the student requests renewal from their account and pays for the next session, choosing the same time slot if it is free, or '
+               'another one. The institute does not guarantee a time slot to a non-subscribed student.</li>\n'
+               '<li><b>Family discount:</b> 10% off sessions from two enrolments in the same family.</li>\n'
+               '</ul>'),
+              ('Exams',
+               '<p>An exam is compulsory at the end of each session or book; a score of <b>at least 70%</b> is required to move up to the next level.</p>\n'
+               '<ul>\n'
+               '<li>Without this exam, the level is not validated.</li>\n'
+               '<li>The diploma is awarded at the end of the level, on request, with no minimum score required.</li>\n'
+               '<li>The exam date is given in the account.</li>\n'
+               '<li>An absence on the exam day is only accepted if it is requested in advance from the account, with proof judged valid by the administration. Otherwise, the student cannot obtain '
+               'any official document (diploma, certificate…).</li>\n'
+               '<li>The exam is printed before the lesson starts. If it is not printed, the lesson is cancelled and counted as taken.</li>\n'
+               '</ul>'),
+              ('Refunds',
+               '<p>No refund is made after payment.</p>\n'
+               '<ul>\n'
+               '<li>As soon as a session renews, it is payable, even if the student has not started studying it.</li>\n'
+               '<li>A student excluded from the institute is not refunded.</li>\n'
+               '<li>Lessons postponed by the institute (teacher absent, platform failure) are made up, not refunded.</li>\n'
+               '</ul>'),
+              ('Technical problems and diagnostic',
+               '<p>For any problem on the teaching platform (microphone, headset, sound, connection, access), the institute runs a diagnostic on the platform to determine where the problem comes '
+               'from.</p>\n'
+               '<table><tr><th>Source of the problem according to the diagnostic</th><th>What happens to the lesson</th></tr>\n'
+               '<tr><td>Platform or teacher</td><td>Lesson made up, not counted</td></tr>\n'
+               '<tr><td>Student (equipment, connection, settings)</td><td>Lesson not postponed, counted as taken</td></tr></table>\n'
+               '<ul>\n'
+               "<li>The student tests their equipment during the 15 minutes before the lesson, and reports any problem through the account's support section before the lesson starts.</li>\n"
+               '<li>The institute is not responsible for time lost if the student logs in exactly on time and then runs into a technical problem.</li>\n'
+               '</ul>'),
+              ('Complaints and disputes',
+               "<p>Every complaint is submitted through the account's support section <b>no later than 24 h after the events</b>; after that, it is no longer accepted.</p>\n"
+               '<ul>\n'
+               '<li>The complaint is detailed: lesson concerned, date, time, circumstances and nature of the problem.</li>\n'
+               "<li>In case of disagreement, the platform's diagnostic and, where applicable, the student's own recording of the lesson serve as evidence. Lessons are not recorded automatically by "
+               'the platform.</li>\n'
+               '<li>Recording lessons is allowed only as evidence in case of a dispute.</li>\n'
+               '<li>A complaint made outside the account, late or without evidence is not accepted.</li>\n'
+               '<li>The management handles the complaint within 7 days.</li>\n'
+               '</ul>')]},
 'apropos': dict(title="About the Al-Fissah institute — Arabic and Quran online", desc="International school of Arabic language and Quran: online lessons for non-Arabic-speaking children and adults, with trained native Arabic teachers.",
   h1="Online Arabic and Quran lessons", lead="Al-Fissah is an international school of arabic language and quran specialised in teaching non-Arabic-speaking children and adults, with native Arabic-speaking teachers trained in teaching.",
   stats=[("12","children's textbooks"),("10","adult levels"),("100%","in Arabic"),("2020","online lessons since")],
@@ -261,7 +395,7 @@ L = {
   body="""<h2 id="editeur">Publisher</h2><p>This site is published by <strong>AL-FISSAH LLC</strong>, a limited liability company organized under the laws of the State of New Mexico (USA), with its registered office at 530B Harkle Rd Ste 100, Santa Fe, NM 87505-4739, United States. Contact: <a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a>.</p>
 <h2 id="hebergement">Hosting</h2><p>The al-fissah.fr website is hosted by LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Intellectual property</h2><p>The entire site — texts, textbooks, audio files, illustrations, logo and the name “Al-Fissah” — is protected by intellectual property law and remains the exclusive property of Al-Fissah LLC or its partners. Any reproduction, display, adaptation or distribution, in whole or in part, without prior written permission is prohibited. Teaching materials provided to students are for strictly personal use within the lessons.</p>
-<h2 id="cgv">Terms of sale</h2><p>Lessons are sold in 4-week sessions, payable in advance by card (Stripe) or bank transfer. Sessions renew automatically every 4 weeks; cancellation must be notified to the administration at least 7 days before the end of the current session. Prices are shown in euros on the <a href="tarifs.html">Prices</a> page. The 30-minute trial lesson is free with no obligation to buy.</p>
+<h2 id="cgv">Terms of sale</h2><p>Lessons are sold in 4-week sessions, payable in advance by card (Stripe) or bank transfer. Card payment works as a subscription, renewed automatically every 4 weeks with no minimum term; stopping is requested from the student's account at least 7 days before the end of the current session. Bank transfer involves no subscription: each session is renewed on request from the account, before the end of the previous one. Prices are shown in euros on the <a href="tarifs.html">Prices</a> page. The 30-minute trial lesson is free with no obligation to buy.</p>
 <p>Every enrolment is final: no postponement or refund is granted once a session has been paid for, in accordance with the <a href="reglement.html">school rules</a>, which form an integral part of these terms.</p>
 <p>Students residing in the European Union benefit from the 14-day right of withdrawal provided by the consumer law of their country of residence. As lessons are a service starting on an agreed date, a student who asks for lessons to begin before that period ends acknowledges that the right of withdrawal lapses for services already delivered.</p>
 <h2 id="droit">Governing law</h2><p>These notices and the contractual relationship with Al-Fissah LLC are governed by the law of the State of New Mexico (USA), without prejudice to the mandatory consumer-protection provisions applicable in the student's country of habitual residence. Any dispute will first be handled amicably with the administration; failing agreement, it falls to the competent courts of New Mexico, except where the consumer's national law reserves jurisdiction to its own courts.</p>

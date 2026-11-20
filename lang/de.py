@@ -47,7 +47,7 @@ L = {
     part="Teil", lesson="Lektion", playlist="Diese Playlist auf YouTube ansehen", channel="Alle Videos des Kanals", count="{n} Videos", now="Läuft gerade"),
   adultes_kick="Erwachsene", adultes_h2="Sie lernen schon länger, sprechen aber immer noch kein Arabisch?",
   adultes_p="Die Schule Al-Fissah unterrichtet auch Erwachsene und legt den Schwerpunkt zuerst auf Ihr Sprechen und Ihr Verstehen, damit Sie ein Gespräch führen können. Sie sprechen und verstehen.",
-  adultes_checks=["Unterricht ausschließlich auf Arabisch, ab dem ersten Niveau","Absolute Anfänger willkommen: keine Voraussetzungen","Einzeln oder zu zweit für die arabische Sprache","Prüfung am Ende jedes Buches, Diplom ab 80 %"],
+  adultes_checks=["Unterricht ausschließlich auf Arabisch, ab dem ersten Niveau","Absolute Anfänger willkommen: keine Voraussetzungen","Einzeln oder zu zweit für die arabische Sprache","Prüfung am Ende jedes Buches: 70 % für das nächste Niveau"],
   big=["Hören","Sprechen","Verstehen"], big_sub="Die in der Immersion trainierten Fähigkeiten, ohne Französisch oder Englisch.",
   app_kick='Al-Fissah-App', app_h2='Laden Sie unsere App herunter', app_p='Lernen Sie überall und jederzeit: auf dem Smartphone und am Computer, mit demselben Konto.',
   app_checks=["Einfacher Zugang zu Ihrem Unterricht und Ihrer Begleitung","Anmerkungen der Lehrer, Hausaufgaben und Noten","Live-Stundenplan und Erinnerungen"],
@@ -148,7 +148,7 @@ L = {
     ("٢","Unterricht zu zweit","Möglich für die arabische Sprache: 4,50 € pro Schüler und Stunde, d. h. 36 € für eine 4-Wochen-Sitzung mit 1 Std. pro Woche für zwei Personen."),
     ("٤","Sitzung ≠ Niveau","Eine Sitzung dauert 4 Wochen und kann verlängert werden. Das Niveau ist das gelernte Buch: Es dauert in der Regel länger als 4 Wochen.")],
   pay_h2="Zahlung und Verlängerung",
-  pay_body="""<p>Die Zahlung erfolgt per Bankkarte über einen sicheren Link (Stripe) oder per Überweisung. Die Sitzungen werden alle 4 Wochen automatisch mit einer geplanten Abbuchung verlängert. Um das Abonnement zu kündigen, informieren Sie die Verwaltung mindestens 7 Tage vor Ende der laufenden Sitzung.</p>
+  pay_body="""<p>Die Zahlung erfolgt per Bankkarte über einen sicheren Link (Stripe) oder per Überweisung. Bei Kartenzahlung verlängern sich die Sitzungen automatisch alle 4 Wochen, ohne Mindestlaufzeit; zum Kündigen stellen Sie mindestens 7 Tage vor Ende der laufenden Sitzung eine Anfrage über Ihr Konto. Bei Überweisung gibt es kein Abonnement: Die Verlängerung wird vor Ende jeder Sitzung über Ihr Konto beantragt.</p>
 <p>Jede Anmeldung ist endgültig: Nach Zahlung der Sitzung wird keine Verschiebung und keine Rückerstattung gewährt. Melden Sie sich nur an, wenn Sie verfügbar und motiviert sind. Bücher und Material werden bei der Anmeldung nicht mitgeliefert und müssen auf <a href="https://livres.al-fissah.com">livres.al-fissah.com</a> bestellt werden.</p>
 <p>Unterricht zu zweit oder in der Gruppe: Sie melden sich mit Ihrem eigenen Partner oder Ihrer eigenen Gruppe an (3 bis 10 Schüler). Die Schule stellt keine Gruppen zusammen. Den Gruppenpreis teilt Ihnen die Verwaltung bei der Anmeldung mit.</p>""",
   note_b="Noch unentschlossen?", note_p="Beginnen Sie mit einer 30-minütigen Probestunde."),
@@ -195,38 +195,177 @@ L = {
   lang_note="Die Erfahrungsberichte werden in ihrer Originalsprache (Französisch) angezeigt, so wie Schüler und Eltern sie geschrieben haben.",
   note_b="Sind Sie Schüler oder Elternteil?", note_p="Sie können Ihren Erfahrungsbericht in Ihrem", note_a="Schülerbereich hinterlassen"),
 
-'reglement': dict(title="Schulordnung — AL-FISSAH", desc="Die Schulordnung von Al-Fissah: Verhalten, Ausrüstung, Zeitfenster, Anwesenheit und Abwesenheiten, Zahlung, Prüfungen, Streitfälle.",
-  h1="Die Schulordnung", lead="Die Schule Al-Fissah ist auf den Unterricht der arabischen Sprache, des Korans und seiner verschiedenen Fächer spezialisiert. Sie hat keine politische Zugehörigkeit und unterstützt keine Aktivität, die den Lehren des Korans und der Sunna widerspricht.",
-  updated="Februar 2025", article="Artikel",
-  articles=[
- ("Verhalten der Schüler", """<p>Jeder Schüler muss sich im Einklang mit den islamischen Werten und den Grundsätzen des Wissenssuchenden verhalten. Er muss seine Lehrer sowie die Mitglieder der Verwaltung respektieren. Bei Problemen muss der Schüler die Verwaltung informieren, damit so schnell wie möglich eine Lösung gefunden wird.</p>
-<p>Die Verwaltung behält sich das Recht vor, einen Schüler nach Feststellung unangemessenen Verhaltens gegenüber einem Lehrer oder einem Verwaltungsmitglied fristlos auszuschließen.</p>
-<p>Der Austausch persönlicher Kontaktdaten zwischen Schülern und angestellten Lehrern ist untersagt.</p>"""),
- ("Ausrüstung", """<p>Die Nutzung von Smartphones zum Lernen wird nicht empfohlen. Empfohlen wird mindestens ein Tablet, ein PC ist vorzuziehen. Wir garantieren nicht, dass alle Werkzeuge für Smartphone-Nutzer korrekt funktionieren.</p>
-<p>Vor jeder Stunde muss sich jeder Schüler vergewissern, dass seine Ausrüstung funktioniert, indem er Folgendes prüft:</p>
-<ul><li>den Anschluss von Mikrofon und Headset;</li><li>das Schließen aller nicht unterrichtsbezogenen Programme (insbesondere Anwendungen mit Audio oder Video wie Messenger).</li></ul>"""),
- ("Zeitfenster", """<p>Schüler können bei der Verwaltung einen Wechsel des Zeitfensters beantragen. Wir werden alles tun, um diesem Wunsch nachzukommen. Die Schule kann jedoch nicht für verlorene Tage haftbar gemacht werden, wenn die Lehrer im gewünschten Zeitfenster nicht verfügbar sind.</p>
-<p>Bei Bedarf kann die Schule den Schüler bitten, das Zeitfenster zu wechseln, wenn ein Lehrer aufhören muss oder eines der Gebete mit dem gewählten Zeitfenster zusammenfällt.</p>"""),
- ("Allgemeine Organisation des Unterrichts", """<p>Die Schüler müssen alle von den Lehrern gestellten Hausaufgaben erledigen. Ein dem Islam entsprechendes respektvolles Verhalten gegenüber Lehrern und Verwaltung wird verlangt.</p>
-<p>Schüler oder ihre Eltern sind außerdem verpflichtet, die Anmerkungen der Lehrer regelmäßig zu lesen. Diese Kommentare sind unerlässlich, um Hausaufgaben und Wiederholungen zu kennen und zu erfahren, ob die Sitzung beendet ist. Von allen wird aktive Mitarbeit erwartet, um eine aufmerksame Begleitung und den reibungslosen Ablauf des Unterrichts zu gewährleisten.</p>"""),
- ("Anwesenheit und Abwesenheiten", """<h3>Verspätungen</h3>
-<p>Der Schüler muss pünktlich sein. Bei einer Verspätung von mehr als 30 Minuten bei einer einstündigen Stunde oder 15 Minuten bei einer 30-minütigen Stunde wird die Stunde abgesagt und als abgehalten gezählt.</p>
-<p>Kommt der Lehrer mehr als 10 Minuten zu spät, muss der Schüler die Verwaltung umgehend informieren. Der Schüler muss 15 Minuten warten, bevor er sich abmeldet, wenn der Lehrer sich verspätet; danach gilt die Stunde als Abwesenheit des Schülers.</p>
-<h3>Abwesenheiten</h3>
-<p>Jede Abwesenheit, entschuldigt oder nicht, ohne Ankündigung von mindestens 24 Stunden während der Bürozeiten (8:00 bis 18:00 Uhr) wird von den Unterrichtstagen des Schülers abgezogen. Ein Schüler darf mit Entschuldigung an so vielen Tagen fehlen, wie er wöchentliche Unterrichtstage hat. Darüber hinaus gilt jede Abwesenheit als unentschuldigt, <b>und das gilt auch für Zeitfensterwechsel bei Abwesenheit, selbst wenn es sich um eine andere Uhrzeit am selben Tag oder in derselben Woche handelt.</b></p>
-<div class="note"><b>Beispiel:</b> Ein Schüler mit zwei Unterrichtstagen pro Woche darf mit Entschuldigung bis zu zwei Tage pro Monat fehlen. Jede weitere Abwesenheit wird abgezogen.</div>
-<h3>Vorübergehende Unterbrechung</h3>
-<p>Bei einer längeren Unterbrechung von drei Tagen oder mehr muss der Schüler die Verwaltung mindestens eine Woche im Voraus informieren. Der Schüler verliert bei der Wiederaufnahme den Vorrang auf sein Zeitfenster und seinen Lehrer. Das Guthaben der verbleibenden Tage bleibt drei Monate gültig; danach können versäumte Stunden nicht mehr nachgeholt werden. Informiert der Schüler nicht eine Woche im Voraus, verliert er die verbleibenden Unterrichtstage.</p>"""),
- ("Zahlungsbedingungen", """<p>Die Zahlung erfolgt per Bankkarte über einen sicheren Link. Die Sitzungen werden alle 4 Wochen automatisch mit einer geplanten Abbuchung verlängert. Um das Abonnement zu kündigen, informieren Sie bitte die Verwaltung mindestens 7 Tage vor Ende der laufenden Sitzung. Andernfalls wird die automatische Abbuchung fortgesetzt.</p>
-<p><b>Rabatt:</b> Ab der zweiten Anmeldung in derselben Familie wird ein Rabatt von 10 % auf die Sitzungen gewährt.</p>"""),
- ("Organisation der Prüfungen", """<p>Am Ende jeder Sitzung oder jedes Buches ist eine Prüfung obligatorisch. Ohne diese Prüfung wird der Schüler nicht zu denen gezählt, die das Niveau abgeschlossen haben.</p>
-<p>Der Schüler darf am Prüfungstag nicht fehlen, außer mit Vorankündigung an die Verwaltung und einer von ihr als gültig beurteilten Begründung. Erscheint der Schüler unentschuldigt nicht, kann er keine offiziellen Dokumente (Diplom, Bescheinigungen…) erhalten.</p>
-<table><tr><th>Ergebnis</th><th>Folge</th></tr><tr><td>Über 60 %</td><td>Aufstieg in das nächste Niveau</td></tr><tr><td>Über 80 % und Erlaubnis des Lehrers</td><td>Diplom</td></tr></table>
-<p>Die Prüfung muss vor Beginn der Stunde ausgedruckt werden. Ohne vorherigen Ausdruck wird die Stunde abgesagt und als abgehalten gezählt.</p>"""),
- ("Zahlungsregelung", """<p>Nach Zahlung der Sitzung erfolgt keine Rückerstattung.</p><p>Wird ein Schüler von der Schule ausgeschlossen, erfolgt keine Rückerstattung.</p>"""),
- ("Streitfälle", """<ul><li>Jede Beschwerde muss detailliert sein (Umstände, Datum, Uhrzeit, Art des Problems).</li><li>Im Streitfall muss der Schüler einen Audionachweis vorlegen.</li><li>Das Aufzeichnen des Unterrichts ist zu Beweiszwecken im Streitfall erlaubt.</li><li>Ohne Nachweis wird die Beschwerde nicht angenommen.</li><li>Die Leitung bearbeitet die Beschwerde innerhalb von 7 Tagen.</li></ul>"""),
-  ]),
-
+'reglement': {'title': 'Schulordnung — AL-FISSAH',
+ 'desc': 'Die Schulordnung von Al-Fissah: Anfragen über das Konto, Verschiebungen, Pause, Kündigung, Zahlung, Prüfungen, technische Probleme und Beschwerden.',
+ 'h1': 'Die Schulordnung',
+ 'lead': 'Die Schule Al-Fissah ist auf den Unterricht der arabischen Sprache, des Korans und seiner verschiedenen Fächer spezialisiert. Sie hat keinerlei politische Zugehörigkeit und unterstützt '
+         'keine Tätigkeit, die den Lehren des Korans und der Sunna widerspricht.',
+ 'updated': 'November 2026',
+ 'article': 'Artikel',
+ 'intro_title': 'Allgemeine Grundsätze',
+ 'intro': '<p>Alle Anfragen erfolgen <b>ausschließlich über das Konto des Schülers</b>, mit einem Klick auf „Anfrage stellen“. Anfragen per WhatsApp, E-Mail oder auf anderem Weg werden nicht '
+          'angenommen.</p>\n'
+          '<ul>\n'
+          '<li><b>Betroffene Anfragen:</b> Verschiebung einer Stunde, Abwesenheitsmeldung, Wechsel des Zeitfensters, Antrag auf Pause und Antrag auf Kündigung.</li>\n'
+          '<li><b>Nachrichten an die Verwaltung:</b> Jede Nachricht wird über den Support des Kontos gesendet. Nachrichten per E-Mail werden nicht angenommen.</li>\n'
+          '<li><b>Zeitstempel:</b> Datum und Uhrzeit einer Anfrage sind die von der Plattform erfassten. Alle Fristen dieser Ordnung werden ab diesem Zeitstempel berechnet.</li>\n'
+          '<li><b>Aufhören ohne Antrag:</b> Wer nicht mehr teilnimmt, ohne über sein Konto eine Pause oder Kündigung beantragt zu haben, dessen Sitzungen verlängern sich. Sie bleiben zu zahlen, und '
+          'der Schüler wird beim Institut als Schuldner geführt.</li>\n'
+          '<li><b>Diagnose der Plattform:</b> Bei einem technischen Problem stützt sich das Institut auf die Diagnose der Plattform, um die Ursache festzustellen (<a href="#art-13">Artikel '
+          '13</a>).</li>\n'
+          '<li>Mit der Anmeldung akzeptiert der Schüler (bzw. bei Minderjährigen ein Elternteil) diese Schulordnung.</li>\n'
+          '</ul>',
+ 'articles': [('Verhalten und Nachrichten',
+               '<p>Jeder Schüler verhält sich gemäß den islamischen Werten und den Grundsätzen eines Wissenssuchenden und respektiert seine Lehrkräfte sowie die Mitglieder der Verwaltung.</p>\n'
+               '<ul>\n'
+               '<li>Jedes Problem wird der Verwaltung über den Support des Kontos gemeldet, damit schnell eine Lösung gefunden wird.</li>\n'
+               '<li>Bei unangemessenem Verhalten gegenüber einer Lehrkraft oder einem Mitglied der Verwaltung kann die Verwaltung den Schüler ohne Vorankündigung ausschließen.</li>\n'
+               '<li>Der Austausch persönlicher Kontaktdaten zwischen Schülern und Lehrkräften ist verboten.</li>\n'
+               '</ul>\n'
+               '<h3>Nachrichten an die Lehrkraft</h3>\n'
+               '<p>Die Nachrichtenfunktion mit der Lehrkraft im Konto ist Fragen zum Unterricht vorbehalten.</p>\n'
+               '<ul>\n'
+               '<li>Es ist verboten, der Lehrkraft wegen Zeitfenstern, einer Verschiebung, einer Kündigung, des Versands eines Buches, eines Rechtsgutachtens (Fatwa) oder eines anderen Themas ohne '
+               'Bezug zum Unterricht zu schreiben. Diese Anfragen laufen über „Anfrage stellen“ oder den Support des Kontos.</li>\n'
+               '<li>Bei einem Verstoß erhält der Schüler eine erste und dann eine zweite Verwarnung. Beim nächsten Verstoß wird ihm der Zugang zur Nachrichtenfunktion entzogen.</li>\n'
+               '</ul>'),
+              ('Anfragen über das Konto',
+               '<p>Jede Anfrage hat eine Mindestfrist, berechnet nach dem Zeitstempel der Plattform. Eine verspätete oder außerhalb des Kontos gestellte Anfrage gilt als nicht gestellt.</p>\n'
+               '<table><tr><th>Anfrage</th><th>Mindestfrist</th><th>Artikel</th></tr>\n'
+               '<tr><td>Verschiebung einer Stunde</td><td>24 Std. vor der Stunde</td><td><a href="#art-7">7</a></td></tr>\n'
+               '<tr><td>Abwesenheitsmeldung</td><td>24 Std. vor der Stunde</td><td><a href="#art-6">6</a></td></tr>\n'
+               '<tr><td>Wechsel des Zeitfensters</td><td>24 Std. vor der Stunde</td><td><a href="#art-4">4</a></td></tr>\n'
+               '<tr><td>Pause (3 Stunden oder mehr)</td><td>7 Tage vor Beginn der Pause</td><td><a href="#art-8">8</a></td></tr>\n'
+               '<tr><td>Kündigung des Abonnements</td><td>7 Tage vor Ende der Sitzung</td><td><a href="#art-9">9</a></td></tr>\n'
+               '<tr><td>Verlängerung (Zahlung per Überweisung)</td><td>Vor Ende jeder Sitzung</td><td><a href="#art-10">10</a></td></tr>\n'
+               '<tr><td>Abwesenheit am Prüfungstag</td><td>Vor der Prüfung, mit Nachweis</td><td><a href="#art-11">11</a></td></tr>\n'
+               '<tr><td>Technisches Problem</td><td>Vor Beginn der Stunde</td><td><a href="#art-13">13</a></td></tr>\n'
+               '<tr><td>Beschwerde</td><td>Spätestens 24 Std. nach dem Vorfall</td><td><a href="#art-14">14</a></td></tr></table>\n'
+               '<ul>\n'
+               '<li>Der Schüler oder ein Elternteil sieht regelmäßig im Konto nach: Antworten der Verwaltung, Bemerkungen der Lehrkräfte, Hausaufgaben und Benachrichtigungen.</li>\n'
+               '<li>Die Antworten der Verwaltung werden in das Konto gesendet.</li>\n'
+               '</ul>'),
+              ('Ausrüstung',
+               '<p>Ein Computer wird empfohlen, ein Tablet ist das Minimum; vom Smartphone wird abgeraten, und das Institut garantiert nicht, dass die Werkzeuge darauf richtig funktionieren.</p>\n'
+               '<p>Der Schüler bereitet seine Ausrüstung vor und meldet sich früh an. <b>Die Stunde wird 15 Minuten vor Beginn geöffnet</b>, um die Ausrüstung zu testen. Der Schüler prüft:</p>\n'
+               '<ul>\n'
+               '<li>seine Internetverbindung;</li>\n'
+               '<li>Anschluss und Funktion von Mikrofon, Headset und Ton;</li>\n'
+               '<li>dass Programme ohne Bezug zum Unterricht geschlossen sind, besonders solche mit Audio oder Video (Messenger, WhatsApp usw.).</li>\n'
+               '</ul>\n'
+               '<p>Ein bei diesem Test festgestelltes Problem wird vor Beginn der Stunde gemeldet (<a href="#art-13">Artikel 13</a>).</p>'),
+              ('Zeitfenster',
+               '<p>Der Schüler wechselt sein Zeitfenster selbst über sein Konto, mindestens 24 Std. vor der Stunde. Der Wechsel wird automatisch angenommen.</p>\n'
+               '<ul>\n'
+               '<li>Das Institut kann den Schüler bitten, das Zeitfenster zu wechseln, wenn eine Lehrkraft ihre Tätigkeit beendet oder ein Gebet in die Unterrichtszeit fällt. Der Schüler wird in '
+               'seinem Konto informiert.</li>\n'
+               '<li>Nur Schüler mit Abonnement (Zahlung per Bankkarte) behalten den Vorrang auf ihr Zeitfenster. Das Zeitfenster eines Schülers ohne Abonnement ist nicht garantiert (<a '
+               'href="#art-10">Artikel 10</a>).</li>\n'
+               '</ul>'),
+              ('Allgemeine Organisation des Studiums',
+               '<p>Der Schüler muss alle Hausaufgaben seiner Lehrkräfte erledigen.</p>\n'
+               '<ul>\n'
+               '<li>Die Bemerkungen der Lehrkräfte (Hausaufgaben, Wiederholungen, Ende der Sitzung) werden nach jeder Stunde im Konto veröffentlicht. Der Schüler oder seine Eltern lesen sie '
+               'regelmäßig.</li>\n'
+               '<li>Von allen wird aktive Mitarbeit erwartet, um eine aufmerksame Begleitung und einen reibungslosen Unterricht zu sichern.</li>\n'
+               '</ul>'),
+              ('Anwesenheit, Verspätungen und Abwesenheiten',
+               '<p>Die Ankunftszeiten von Schüler und Lehrkraft sind die von der Plattform erfassten.</p>\n'
+               '<h3>Verspätung des Schülers</h3>\n'
+               '<table><tr><th>Dauer der Stunde</th><th>Verspätung, ab der die Stunde entfällt</th><th>Folge</th></tr>\n'
+               '<tr><td>1 Stunde</td><td>30 Minuten</td><td>Stunde gilt als gehalten</td></tr>\n'
+               '<tr><td>30 Minuten</td><td>15 Minuten</td><td>Stunde gilt als gehalten</td></tr></table>\n'
+               '<h3>Verspätung der Lehrkraft</h3>\n'
+               '<ul>\n'
+               '<li>Ist die Lehrkraft mehr als 10 Minuten zu spät, meldet der Schüler dies über den Support des Kontos.</li>\n'
+               '<li>Der Schüler wartet 15 Minuten angemeldet. Meldet er sich vorher ab, gilt die Stunde als Abwesenheit des Schülers.</li>\n'
+               '<li>Zeigt die Plattform, dass sich die Lehrkraft in diesen 15 Minuten nicht angemeldet hat, wird die Stunde verschoben und nicht angerechnet.</li>\n'
+               '</ul>\n'
+               '<h3>Abwesenheiten</h3>\n'
+               '<ul>\n'
+               '<li>Jede Abwesenheit wird über das Konto gemeldet („Anfrage stellen“ → Abwesenheitsmeldung), mindestens 24 Std. vor der Stunde.</li>\n'
+               '<li>Eine verspätet oder außerhalb des Kontos gemeldete Abwesenheit wird von den Unterrichtstagen abgezogen, ob entschuldigt oder nicht.</li>\n'
+               '<li>Eine rechtzeitig gemeldete Abwesenheit berechtigt zu einer Verschiebung, im Rahmen des Kontingents nach <a href="#art-7">Artikel 7</a>.</li>\n'
+               '</ul>'),
+              ('Verschiebung von Stunden',
+               '<p>Pro Sitzung von 4 Wochen kann der Schüler so viele Stunden verschieben, wie er pro Woche hat. Die Anfrage erfolgt über das Konto („Anfrage stellen“ → Verschiebung), mindestens 24 '
+               'Std. vor der Stunde.</p>\n'
+               '<div class="note"><b>Beispiel:</b> Bei 2 Stunden pro Woche hat der Schüler 2 Verschiebungen pro Sitzung von 4 Wochen.</div>\n'
+               '<ul>\n'
+               '<li>Bei der Anfrage wählt der Schüler zwischen zwei Möglichkeiten: Verschiebung auf einen anderen Tag derselben Woche oder an das Ende der Sitzung.</li>\n'
+               '<li>Über das Kontingent hinaus wird jede versäumte Stunde abgezogen.</li>\n'
+               '<li>Nicht genutzte Verschiebungen werden nicht auf die nächste Sitzung übertragen.</li>\n'
+               '<li>Eine vom Institut veranlasste Verschiebung (Abwesenheit der Lehrkraft, Ausfall der Plattform) zählt nicht zum Kontingent des Schülers.</li>\n'
+               '</ul>'),
+              ('Pause',
+               '<p>Eine Abwesenheit von 3 Stunden oder mehr ist eine Pause: Sie wird über das Konto beantragt („Anfrage stellen“ → Pause), mindestens 7 Tage vor Beginn, mit Angabe des geplanten '
+               'Wiederbeginns.</p>\n'
+               '<ul>\n'
+               '<li>Während der Pause sind Abonnement und Abbuchungen ausgesetzt. Die verbleibenden Stunden der Sitzung bleiben erhalten.</li>\n'
+               '<li>Die erhaltenen Stunden gelten 3 Monate ab Beginn der Pause. Danach verfallen sie.</li>\n'
+               '<li>Beim Wiederbeginn verliert der Schüler den Vorrang auf sein bisheriges Zeitfenster und seine bisherige Lehrkraft.</li>\n'
+               '<li>Ohne Pausenantrag im Konto, oder bei einem Antrag weniger als 7 Tage vorher, verfallen die verbleibenden Stunden. Die Sitzungen verlängern sich weiter und bleiben zu '
+               'zahlen.</li>\n'
+               '</ul>'),
+              ('Kündigung des Abonnements',
+               '<p>Das Abonnement hat <b>keine Mindestlaufzeit</b>: Der Schüler kann es jederzeit über sein Konto kündigen („Anfrage stellen“ → Kündigung), mindestens 7 Tage vor Ende der laufenden '
+               'Sitzung.</p>\n'
+               '<ul>\n'
+               '<li>Die laufende Sitzung geht bis zu ihrem Ende weiter; danach erfolgt keine weitere Abbuchung.</li>\n'
+               '<li>Ohne Kündigung innerhalb dieser Frist verlängert sich die neue Sitzung und ist zu zahlen.</li>\n'
+               '<li>Wer aufhört, ohne über sein Konto zu kündigen, dessen Sitzungen verlängern sich. Sie bleiben zu zahlen, und der Schüler wird beim Institut als Schuldner geführt.</li>\n'
+               '<li>Wer nach einer Kündigung zurückkommt, meldet sich ohne Vorrang auf sein bisheriges Zeitfenster und seine bisherige Lehrkraft neu an.</li>\n'
+               '</ul>'),
+              ('Zahlungsbedingungen',
+               '<p>Es gibt zwei Zahlungsarten: Bankkarte mit automatischem Abonnement oder Banküberweisung ohne Abonnement.</p>\n'
+               '<table><tr><th></th><th>Bankkarte</th><th>Banküberweisung</th></tr>\n'
+               '<tr><td>Abonnement</td><td>Ja, automatisch alle 4 Wochen verlängert</td><td>Nein</td></tr>\n'
+               '<tr><td>Mindestlaufzeit</td><td>Keine: Kündigung jederzeit, 7 Tage vor Ende der Sitzung</td><td>Keine</td></tr>\n'
+               '<tr><td>Verlängerung</td><td>Automatisch, per Abbuchung</td><td>Über das Konto vor Ende jeder Sitzung zu beantragen</td></tr>\n'
+               '<tr><td>Vorrang auf das Zeitfenster</td><td>Ja</td><td>Nein, Zeitfenster nicht garantiert</td></tr></table>\n'
+               '<ul>\n'
+               '<li><b>Bankkarte:</b> Die Zahlung erfolgt über einen sicheren Link. Ohne Kündigung mindestens 7 Tage vor Ende der Sitzung verlängert sich die neue Sitzung und ist zu zahlen.</li>\n'
+               '<li><b>Banküberweisung:</b> Vor Ende jeder Sitzung beantragt der Schüler die Verlängerung über sein Konto und bezahlt die nächste Sitzung; er wählt dasselbe Zeitfenster, falls frei, '
+               'oder ein anderes. Das Institut garantiert einem Schüler ohne Abonnement sein Zeitfenster nicht.</li>\n'
+               '<li><b>Familienrabatt:</b> 10 % auf die Sitzungen ab zwei Anmeldungen in derselben Familie.</li>\n'
+               '</ul>'),
+              ('Prüfungen',
+               '<p>Am Ende jeder Sitzung oder jedes Buches ist eine Prüfung Pflicht; für den Aufstieg in das nächste Niveau sind <b>mindestens 70 %</b> nötig.</p>\n'
+               '<ul>\n'
+               '<li>Ohne diese Prüfung wird das Niveau nicht anerkannt.</li>\n'
+               '<li>Das Diplom wird am Ende des Niveaus auf Antrag ausgestellt, ohne Mindestprozentsatz.</li>\n'
+               '<li>Der Prüfungstermin wird im Konto mitgeteilt.</li>\n'
+               '<li>Eine Abwesenheit am Prüfungstag wird nur angenommen, wenn sie vorab über das Konto beantragt wird, mit einem von der Verwaltung als gültig anerkannten Nachweis. Andernfalls '
+               'erhält der Schüler kein offizielles Dokument (Diplom, Bescheinigung…).</li>\n'
+               '<li>Die Prüfung wird vor Beginn der Stunde ausgedruckt. Ohne Ausdruck entfällt die Stunde und gilt als gehalten.</li>\n'
+               '</ul>'),
+              ('Erstattungen',
+               '<p>Nach der Zahlung erfolgt keine Erstattung.</p>\n'
+               '<ul>\n'
+               '<li>Sobald sich eine Sitzung verlängert hat, ist sie zu zahlen, auch wenn der Schüler noch nicht damit begonnen hat.</li>\n'
+               '<li>Ein vom Institut ausgeschlossener Schüler erhält keine Erstattung.</li>\n'
+               '<li>Vom Institut verschobene Stunden (Abwesenheit der Lehrkraft, Ausfall der Plattform) werden nachgeholt, nicht erstattet.</li>\n'
+               '</ul>'),
+              ('Technische Probleme und Diagnose',
+               '<p>Bei jedem Problem auf der Unterrichtsplattform (Mikrofon, Headset, Ton, Verbindung, Zugang) führt das Institut eine Diagnose auf der Plattform durch, um die Ursache '
+               'festzustellen.</p>\n'
+               '<table><tr><th>Ursache laut Diagnose</th><th>Folge für die Stunde</th></tr>\n'
+               '<tr><td>Plattform oder Lehrkraft</td><td>Stunde wird nachgeholt, nicht angerechnet</td></tr>\n'
+               '<tr><td>Schüler (Ausrüstung, Verbindung, Einstellungen)</td><td>Stunde wird nicht verschoben, gilt als gehalten</td></tr></table>\n'
+               '<ul>\n'
+               '<li>Der Schüler testet seine Ausrüstung in den 15 Minuten vor der Stunde und meldet jedes Problem vor Beginn der Stunde über den Support des Kontos.</li>\n'
+               '<li>Das Institut haftet nicht für verlorene Zeit, wenn sich der Schüler genau zur Uhrzeit anmeldet und dann ein technisches Problem hat.</li>\n'
+               '</ul>'),
+              ('Beschwerden und Streitfälle',
+               '<p>Jede Beschwerde wird über den Support des Kontos eingereicht, <b>spätestens 24 Std. nach dem Vorfall</b>; danach wird sie nicht mehr angenommen.</p>\n'
+               '<ul>\n'
+               '<li>Die Beschwerde ist ausführlich: betroffene Stunde, Datum, Uhrzeit, Umstände und Art des Problems.</li>\n'
+               '<li>Bei Uneinigkeit dienen die Diagnose der Plattform und gegebenenfalls die vom Schüler angefertigte Aufnahme der Stunde als Beweis. Die Plattform zeichnet die Stunden nicht '
+               'automatisch auf.</li>\n'
+               '<li>Die Aufnahme von Stunden ist nur als Beweis im Streitfall erlaubt.</li>\n'
+               '<li>Eine Beschwerde außerhalb des Kontos, verspätet oder ohne Beweis wird nicht berücksichtigt.</li>\n'
+               '<li>Die Direktion bearbeitet die Beschwerde innerhalb von 7 Tagen.</li>\n'
+               '</ul>')]},
 'apropos': dict(title="Über die Schule Al-Fissah — Arabisch und Koran online", desc="Internationale Schule für arabische Sprache und Koran: Online-Unterricht für nicht arabischsprachige Kinder und Erwachsene, mit muttersprachlichen Lehrern.",
   h1="Arabisch- und Koranunterricht online", lead="Al-Fissah ist eine internationale Schule für arabische Sprache und Koran, spezialisiert auf den Unterricht nicht arabischsprachiger Kinder und Erwachsener, mit muttersprachlichen, pädagogisch ausgebildeten Lehrern.",
   stats=[("12","Lehrbücher für Kinder"),("10","Niveaus für Erwachsene"),("100 %","auf Arabisch"),("2020","Online-Unterricht seit")],
@@ -261,7 +400,7 @@ L = {
   body="""<h2 id="editeur">Herausgeber</h2><p>Diese Website wird herausgegeben von <strong>AL-FISSAH LLC</strong>, einer Gesellschaft mit beschränkter Haftung nach dem Recht des Staates New Mexico (USA), mit Sitz in 530B Harkle Rd Ste 100, Santa Fe, NM 87505-4739, Vereinigte Staaten. Kontakt: <a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a>.</p>
 <h2 id="hebergement">Hosting</h2><p>Die Website al-fissah.fr wird gehostet von LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Urheberrecht</h2><p>Die gesamte Website — Texte, Lehrbücher, Audiodateien, Illustrationen, Logo und die Bezeichnung „Al-Fissah“ — ist urheberrechtlich geschützt und bleibt ausschließliches Eigentum von Al-Fissah LLC oder ihrer Partner. Jede Vervielfältigung, Wiedergabe, Bearbeitung oder Verbreitung, ganz oder teilweise, ohne vorherige schriftliche Genehmigung ist untersagt. Die den Schülern übergebenen Lehrmaterialien sind ausschließlich für den persönlichen Gebrauch im Rahmen des Unterrichts bestimmt.</p>
-<h2 id="cgv">Verkaufsbedingungen</h2><p>Der Unterricht wird in Blöcken von 4 Wochen verkauft, im Voraus zahlbar per Karte (Stripe) oder Überweisung. Die Blöcke verlängern sich automatisch alle 4 Wochen; eine Kündigung ist der Verwaltung mindestens 7 Tage vor Ende des laufenden Blocks mitzuteilen. Die Preise sind in Euro auf der Seite <a href="tarifs.html">Preise</a> angegeben. Die 30-minütige Probestunde ist kostenlos und unverbindlich.</p>
+<h2 id="cgv">Verkaufsbedingungen</h2><p>Der Unterricht wird in Blöcken von 4 Wochen verkauft, im Voraus zahlbar per Karte (Stripe) oder Überweisung. Die Kartenzahlung gilt als Abonnement, das sich alle 4 Wochen ohne Mindestlaufzeit automatisch verlängert; die Kündigung wird mindestens 7 Tage vor Ende des laufenden Blocks über das Schülerkonto beantragt. Bei Überweisung besteht kein Abonnement: Jeder Block wird auf Antrag über das Konto vor Ende des vorherigen verlängert. Die Preise sind in Euro auf der Seite <a href="tarifs.html">Preise</a> angegeben. Die 30-minütige Probestunde ist kostenlos und unverbindlich.</p>
 <p>Jede Anmeldung ist verbindlich: Nach Bezahlung eines Blocks werden weder Verschiebung noch Erstattung gewährt, gemäß der <a href="reglement.html">Schulordnung</a>, die Bestandteil dieser Bedingungen ist.</p>
 <p>Schüler mit Wohnsitz in der Europäischen Union haben das 14-tägige Widerrufsrecht nach dem Verbraucherrecht ihres Wohnsitzlandes. Da der Unterricht eine zum vereinbarten Termin beginnende Dienstleistung ist, erkennt ein Schüler, der den Unterrichtsbeginn vor Ablauf dieser Frist wünscht, an, dass das Widerrufsrecht für bereits erbrachte Leistungen erlischt.</p>
 <h2 id="droit">Anwendbares Recht</h2><p>Diese Angaben und das Vertragsverhältnis mit Al-Fissah LLC unterliegen dem Recht des Staates New Mexico (USA), unbeschadet der zwingenden verbraucherschützenden Vorschriften des Landes des gewöhnlichen Aufenthalts. Streitigkeiten werden zunächst einvernehmlich mit der Verwaltung geklärt; kommt keine Einigung zustande, sind die zuständigen Gerichte in New Mexico berufen, es sei denn, das Recht des Wohnsitzlandes des Verbrauchers behält die Zuständigkeit seinen eigenen Gerichten vor.</p>

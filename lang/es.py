@@ -47,7 +47,7 @@ L = {
     part="Parte", lesson="Clase", playlist="Ver esta lista en YouTube", channel="Todos los vídeos del canal", count="{n} vídeos", now="Reproduciendo"),
   adultes_kick="Adultos", adultes_h2="¿Llevas tiempo aprendiendo pero sigues sin hablar árabe?",
   adultes_p="El instituto Al-Fissah también enseña a adultos, e insiste prioritariamente en tu expresión oral y tu comprensión para que seas capaz de mantener una conversación. Hablas y comprendes.",
-  adultes_checks=["Clases exclusivamente en árabe, desde el primer nivel","Principiantes absolutos aceptados: sin requisitos previos","Individual, o en pareja para la lengua árabe","Examen al final de cada libro, diploma a partir del 80 %"],
+  adultes_checks=["Clases exclusivamente en árabe, desde el primer nivel","Principiantes absolutos aceptados: sin requisitos previos","Individual, o en pareja para la lengua árabe","Examen al final de cada libro: 70 % para pasar al nivel superior"],
   big=["Escuchar","Hablar","Comprender"], big_sub="Las competencias trabajadas en inmersión, sin francés ni inglés.",
   app_kick='Aplicación Al-Fissah', app_h2='Descarga nuestra aplicación', app_p='Aprende donde quieras, cuando quieras: en el móvil y en el ordenador, con la misma cuenta.',
   app_checks=["Acceso simplificado a tus clases y a tu seguimiento","Observaciones de los profesores, deberes y notas","Horario en directo y recordatorios de clase"],
@@ -148,7 +148,7 @@ L = {
     ("٢","Clases en pareja","Posible para la lengua árabe: 4,50 € por alumno y hora, es decir, 36 € la sesión de 1 h por semana para dos personas."),
     ("٤","Sesión ≠ nivel","Una sesión dura 4 semanas y es renovable. El nivel es el libro estudiado: suele durar más de 4 semanas.")],
   pay_h2="Pago y renovación",
-  pay_body="""<p>El pago se realiza con tarjeta bancaria mediante un enlace seguro (Stripe) o por transferencia bancaria. Las sesiones se renuevan automáticamente cada 4 semanas con un cobro programado. Para cancelar la suscripción, informa a la administración al menos 7 días antes del final de la sesión en curso.</p>
+  pay_body="""<p>El pago se realiza con tarjeta bancaria mediante un enlace seguro (Stripe) o por transferencia bancaria. Con tarjeta, las sesiones se renuevan automáticamente cada 4 semanas, sin permanencia; para darte de baja, haz la solicitud desde tu cuenta al menos 7 días antes del final de la sesión en curso. Con transferencia no hay suscripción: la renovación se solicita desde tu cuenta antes del final de cada sesión.</p>
 <p>Toda inscripción es definitiva: no se concede ningún aplazamiento ni reembolso tras el pago de la sesión. Inscríbete solo si estás disponible y motivado para aprender. Los libros y el material no se entregan con la inscripción y deben pedirse en <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
 <p>Clases en pareja o en grupo: te inscribes con tu propia pareja o tu propio grupo (de 3 a 10 alumnos). La escuela no forma los grupos. El precio del grupo lo comunica la administración en el momento de la inscripción.</p>""",
   note_b="¿Aún no te has decidido?", note_p="Empieza con una clase de prueba de 30 minutos."),
@@ -195,38 +195,179 @@ L = {
   lang_note="Los testimonios se muestran en su idioma original (francés), tal como los escribieron los alumnos y padres.",
   note_b="¿Eres alumno o padre de un alumno?", note_p="Puedes dejar tu testimonio desde tu", note_a="área del estudiante"),
 
-'reglement': dict(title="Reglamento interno — AL-FISSAH", desc="El reglamento interno de la escuela Al-Fissah: comportamiento, material, horarios, asistencia y ausencias, pago, exámenes, litigios.",
-  h1="El reglamento interno", lead="La escuela Al-Fissah se especializa en la enseñanza de la lengua árabe, del Corán y de sus distintas materias. No tiene ninguna afiliación política y no apoya ninguna actividad contraria a las enseñanzas del Corán y la Sunna.",
-  updated="febrero de 2025", article="Artículo",
-  articles=[
- ("Comportamiento de los estudiantes", """<p>Cada estudiante debe adoptar un comportamiento conforme a los valores islámicos y a los principios del estudiante de ciencias. Debe respetar a sus profesores y a los miembros de la administración. En caso de problema, el estudiante debe informar a la administración para que se encuentre una solución lo antes posible.</p>
-<p>La administración se reserva el derecho, tras observar un comportamiento inapropiado de un estudiante hacia un profesor o un miembro de la administración, de excluir a ese estudiante sin previo aviso.</p>
-<p>Está prohibido el intercambio de datos de contacto personales entre estudiantes y profesores asalariados.</p>"""),
- ("Material", """<p>Se desaconseja el uso de smartphones para los estudios. Se recomienda utilizar como mínimo una tableta, y es preferible un PC. No garantizamos que todas las herramientas funcionen correctamente para los usuarios de smartphones.</p>
-<p>Antes de cada clase, cada alumno debe asegurarse del buen funcionamiento de su material comprobando:</p>
-<ul><li>la conexión del micrófono y de los auriculares;</li><li>el cierre de los programas no relacionados con la clase (en particular las aplicaciones que usan audio o vídeo como Messenger).</li></ul>"""),
- ("Franjas horarias", """<p>Los estudiantes pueden solicitar un cambio de franja horaria contactando con la administración. Haremos todo lo posible por satisfacer esta petición. Sin embargo, la escuela no podrá ser considerada responsable de la pérdida de días si los profesores no están disponibles en la franja deseada por el alumno.</p>
-<p>En caso de necesidad, la escuela puede pedir al estudiante que cambie de franja si un profesor debe dejar de dar clase o si una de las oraciones coincide con la franja elegida.</p>"""),
- ("Organización general de los estudios", """<p>Los estudiantes deben realizar obligatoriamente todos los deberes asignados por los profesores. Se exige un comportamiento respetuoso con el Islam hacia los profesores y la administración.</p>
-<p>También es obligatorio que los estudiantes o sus padres consulten regularmente las observaciones de los profesores. Estos comentarios son esenciales para conocer los deberes, los repasos y saber si la sesión ha terminado. Se espera una cooperación activa de todos para garantizar un seguimiento atento y el buen desarrollo de las clases.</p>"""),
- ("Asistencia y ausencias", """<h3>Retrasos</h3>
-<p>El estudiante debe ser puntual. En caso de retraso de más de 30 minutos en una clase de una hora, o de 15 minutos en una clase de 30 minutos, la clase se cancelará y se contabilizará como realizada.</p>
-<p>Si el profesor llega con más de 10 minutos de retraso, el estudiante debe informar rápidamente a la administración. El estudiante debe esperar 15 minutos antes de desconectarse si el profesor se retrasa; pasado ese tiempo, la clase se considerará una ausencia del alumno.</p>
-<h3>Ausencias</h3>
-<p>Toda ausencia, justificada o no, sin aviso previo de al menos 24 horas y durante el horario de oficina (de 8:00 a 18:00), se descontará de los días de estudio del estudiante. Un estudiante puede ausentarse con justificación un número de días equivalente a sus días de clase semanales. Más allá de ese número, toda ausencia se contabilizará como no justificada, <b>y esto incluye también los cambios de franja en caso de ausencia, incluso si se trata de otro horario el mismo día o en la misma semana.</b></p>
-<div class="note"><b>Ejemplo:</b> un estudiante con dos días de clase por semana puede ausentarse hasta dos días al mes con justificación. Toda ausencia adicional se descontará.</div>
-<h3>Interrupción temporal</h3>
-<p>Para una interrupción prolongada de tres días o más, el estudiante debe informar a la administración con al menos una semana de antelación. El estudiante perderá la prioridad sobre su franja y su profesor al reanudar. El cómputo de los días restantes será válido durante tres meses, tras lo cual las clases perdidas no podrán recuperarse. Si el estudiante no avisa con una semana de antelación, perderá los días restantes de estudio.</p>"""),
- ("Modalidades de pago", """<p>El pago se realiza con tarjeta bancaria mediante un enlace seguro. Las sesiones se renuevan automáticamente cada 4 semanas con un cobro programado. Para cancelar la suscripción, informa a la administración al menos 7 días antes del final de la sesión en curso. Si no avisas, se mantendrá el cobro automático.</p>
-<p><b>Descuento:</b> a partir de dos inscripciones en la misma familia, se concede un descuento del 10 % en las sesiones.</p>"""),
- ("Organización de los exámenes", """<p>Un examen es obligatorio al final de cada sesión o libro. El estudiante no se contará entre los que han completado el nivel sin haber realizado ese examen.</p>
-<p>El estudiante no puede ausentarse el día del examen salvo aviso previo a la administración y justificación válida, valorada por esta. Si el estudiante no se presenta sin justificación, no podrá obtener documentos oficiales (diploma, certificados…).</p>
-<table><tr><th>Resultado</th><th>Consecuencia</th></tr><tr><td>Más del 60 %</td><td>Paso al nivel superior</td></tr><tr><td>Más del 80 % y permiso del profesor</td><td>Obtención del diploma</td></tr></table>
-<p>El examen debe imprimirse antes del inicio de la clase. Sin impresión previa, la clase se cancelará y se contabilizará como realizada.</p>"""),
- ("Organización de los pagos", """<p>No se efectuará ningún reembolso tras el pago de la sesión.</p><p>Si un estudiante es expulsado de la escuela, no se efectuará ningún reembolso.</p>"""),
- ("Situaciones litigiosas", """<ul><li>Toda reclamación debe ser detallada (circunstancias, fecha, hora, naturaleza del problema).</li><li>En caso de disputa, el alumno debe aportar una prueba de audio.</li><li>Se autoriza la grabación de las clases con fines probatorios en caso de litigio.</li><li>Sin prueba, la reclamación no será aceptada.</li><li>La Dirección tratará la reclamación en un plazo de 7 días.</li></ul>"""),
-  ]),
-
+'reglement': {'title': 'Reglamento interno — AL-FISSAH',
+ 'desc': 'El reglamento interno de la escuela Al-Fissah: solicitudes desde la cuenta, aplazamientos, pausa, baja, pago, exámenes, problemas técnicos y reclamaciones.',
+ 'h1': 'El reglamento interno',
+ 'lead': 'La escuela Al-Fissah se especializa en la enseñanza de la lengua árabe, del Corán y de sus diferentes materias. No tiene ninguna afiliación política y no apoya ninguna actividad contraria '
+         'a las enseñanzas del Corán y de la Sunna.',
+ 'updated': 'noviembre de 2026',
+ 'article': 'Artículo',
+ 'intro_title': 'Principios generales',
+ 'intro': '<p>Todas las solicitudes se hacen <b>exclusivamente desde la cuenta del alumno</b>, pulsando «Hacer una solicitud». No se acepta ninguna solicitud por WhatsApp, por correo electrónico ni '
+          'por ninguna otra vía.</p>\n'
+          '<ul>\n'
+          '<li><b>Solicitudes afectadas:</b> aplazamiento de una clase, aviso de ausencia, cambio de horario, solicitud de pausa y solicitud de baja.</li>\n'
+          '<li><b>Mensajes a la administración:</b> todo mensaje se envía desde el soporte de la cuenta. No se acepta ningún mensaje por correo electrónico.</li>\n'
+          '<li><b>Registro horario:</b> la fecha y la hora de una solicitud son las que registra la plataforma. Los plazos de este reglamento se calculan a partir de ese registro.</li>\n'
+          '<li><b>Baja sin solicitud:</b> el alumno que deja de asistir sin haber solicitado una pausa o la baja desde su cuenta verá sus sesiones renovarse. Estas sesiones siguen debiéndose, y el '
+          'alumno queda registrado como deudor ante el instituto.</li>\n'
+          '<li><b>Diagnóstico de la plataforma:</b> ante un problema técnico, el instituto se basa en el diagnóstico de la plataforma para determinar su origen (<a href="#art-13">artículo '
+          '13</a>).</li>\n'
+          '<li>Al inscribirse, el alumno (o su padre o madre, si es menor) acepta el presente reglamento.</li>\n'
+          '</ul>',
+ 'articles': [('Comportamiento y mensajería',
+               '<p>Cada alumno adopta un comportamiento conforme a los valores islámicos y a los principios del estudiante de ciencia, y respeta a sus profesores y a los miembros de la '
+               'administración.</p>\n'
+               '<ul>\n'
+               '<li>Todo problema se comunica a la administración desde el soporte de la cuenta, para encontrar una solución rápidamente.</li>\n'
+               '<li>Si se constata un comportamiento inapropiado hacia un profesor o un miembro de la administración, la administración puede expulsar al alumno sin previo aviso.</li>\n'
+               '<li>Está prohibido el intercambio de datos personales de contacto entre alumnos y profesores.</li>\n'
+               '</ul>\n'
+               '<h3>Mensajes al profesor</h3>\n'
+               '<p>La mensajería con el profesor, desde la cuenta, está reservada a las preguntas relacionadas con la clase.</p>\n'
+               '<ul>\n'
+               '<li>Está prohibido escribir al profesor sobre horarios, un aplazamiento, una baja, el envío de un libro, una consulta jurídica (fatwa) o cualquier otro tema sin relación con la '
+               'clase. Estas solicitudes se hacen mediante «Hacer una solicitud» o el soporte de la cuenta.</li>\n'
+               '<li>En caso de incumplimiento, el alumno recibe un primer y luego un segundo aviso. Al siguiente incumplimiento, se le retira el acceso a la mensajería.</li>\n'
+               '</ul>'),
+              ('Solicitudes desde la cuenta',
+               '<p>Cada solicitud tiene un plazo mínimo, calculado según el registro horario de la plataforma. Una solicitud fuera de plazo o hecha fuera de la cuenta se considera no realizada.</p>\n'
+               '<table><tr><th>Solicitud</th><th>Plazo mínimo</th><th>Artículo</th></tr>\n'
+               '<tr><td>Aplazamiento de una clase</td><td>24 h antes de la clase</td><td><a href="#art-7">7</a></td></tr>\n'
+               '<tr><td>Aviso de ausencia</td><td>24 h antes de la clase</td><td><a href="#art-6">6</a></td></tr>\n'
+               '<tr><td>Cambio de horario</td><td>24 h antes de la clase</td><td><a href="#art-4">4</a></td></tr>\n'
+               '<tr><td>Pausa (3 clases o más)</td><td>7 días antes del inicio de la pausa</td><td><a href="#art-8">8</a></td></tr>\n'
+               '<tr><td>Baja de la suscripción</td><td>7 días antes del final de la sesión</td><td><a href="#art-9">9</a></td></tr>\n'
+               '<tr><td>Renovación (pago por transferencia)</td><td>Antes del final de cada sesión</td><td><a href="#art-10">10</a></td></tr>\n'
+               '<tr><td>Ausencia el día de un examen</td><td>Antes del examen, con justificante</td><td><a href="#art-11">11</a></td></tr>\n'
+               '<tr><td>Problema técnico</td><td>Antes del inicio de la clase</td><td><a href="#art-13">13</a></td></tr>\n'
+               '<tr><td>Reclamación</td><td>Como máximo 24 h después de los hechos</td><td><a href="#art-14">14</a></td></tr></table>\n'
+               '<ul>\n'
+               '<li>El alumno o su padre o madre consulta regularmente la cuenta: respuestas de la administración, observaciones de los profesores, deberes y notificaciones.</li>\n'
+               '<li>Las respuestas de la administración se envían a la cuenta.</li>\n'
+               '</ul>'),
+              ('Material',
+               '<p>Se recomienda un ordenador y una tableta como mínimo; se desaconseja el teléfono móvil y el instituto no garantiza el buen funcionamiento de las herramientas en ese '
+               'dispositivo.</p>\n'
+               '<p>El alumno prepara su material y se conecta con antelación. <b>La clase se abre 15 minutos antes de la hora de inicio</b> para probar el material. El alumno comprueba:</p>\n'
+               '<ul>\n'
+               '<li>su conexión a internet;</li>\n'
+               '<li>la conexión y el funcionamiento del micrófono, de los auriculares y del sonido;</li>\n'
+               '<li>el cierre de los programas ajenos a la clase, en particular los que usan audio o vídeo (Messenger, WhatsApp, etc.).</li>\n'
+               '</ul>\n'
+               '<p>Todo problema detectado durante esta prueba se comunica antes del inicio de la clase (<a href="#art-13">artículo 13</a>).</p>'),
+              ('Horarios',
+               '<p>El alumno cambia él mismo de horario desde su cuenta, al menos 24 h antes de la clase. El cambio se acepta automáticamente.</p>\n'
+               '<ul>\n'
+               '<li>El instituto puede pedir al alumno que cambie de horario si un profesor deja su actividad o si una oración coincide con el horario. El alumno es informado en su cuenta.</li>\n'
+               '<li>Solo los alumnos suscritos (pago con tarjeta bancaria) conservan la prioridad sobre su horario. El horario de un alumno no suscrito no está garantizado (<a '
+               'href="#art-10">artículo 10</a>).</li>\n'
+               '</ul>'),
+              ('Organización general de los estudios',
+               '<p>El alumno debe hacer obligatoriamente todos los deberes que le den sus profesores.</p>\n'
+               '<ul>\n'
+               '<li>Las observaciones de los profesores (deberes, repasos, fin de sesión) se publican en la cuenta después de cada clase. El alumno o sus padres las consultan regularmente.</li>\n'
+               '<li>Se espera la cooperación activa de todos para garantizar un seguimiento atento y el buen desarrollo de las clases.</li>\n'
+               '</ul>'),
+              ('Asistencia, retrasos y ausencias',
+               '<p>Las horas de llegada del alumno y del profesor son las que registra la plataforma.</p>\n'
+               '<h3>Retraso del alumno</h3>\n'
+               '<table><tr><th>Duración de la clase</th><th>Retraso a partir del cual se anula la clase</th><th>Consecuencia</th></tr>\n'
+               '<tr><td>1 hora</td><td>30 minutos</td><td>Clase contada como realizada</td></tr>\n'
+               '<tr><td>30 minutos</td><td>15 minutos</td><td>Clase contada como realizada</td></tr></table>\n'
+               '<h3>Retraso del profesor</h3>\n'
+               '<ul>\n'
+               '<li>Si el profesor se retrasa más de 10 minutos, el alumno lo comunica desde el soporte de la cuenta.</li>\n'
+               '<li>El alumno espera 15 minutos conectado. Si se desconecta antes, la clase cuenta como ausencia del alumno.</li>\n'
+               '<li>Si la plataforma muestra que el profesor no se conectó en esos 15 minutos, la clase se aplaza sin descontarse.</li>\n'
+               '</ul>\n'
+               '<h3>Ausencias</h3>\n'
+               '<ul>\n'
+               '<li>Toda ausencia se avisa desde la cuenta («Hacer una solicitud» → aviso de ausencia), al menos 24 h antes de la clase.</li>\n'
+               '<li>Una ausencia avisada fuera de plazo, o fuera de la cuenta, se descuenta de los días de estudio, justificada o no.</li>\n'
+               '<li>Una ausencia avisada a tiempo da derecho a un aplazamiento, dentro del cupo del <a href="#art-7">artículo 7</a>.</li>\n'
+               '</ul>'),
+              ('Aplazamiento de clases',
+               '<p>En cada sesión de 4 semanas, el alumno puede aplazar tantas clases como clases tiene por semana. La solicitud se hace desde la cuenta («Hacer una solicitud» → aplazamiento), al '
+               'menos 24 h antes de la clase.</p>\n'
+               '<div class="note"><b>Ejemplo:</b> con 2 clases por semana, el alumno dispone de 2 aplazamientos por sesión de 4 semanas.</div>\n'
+               '<ul>\n'
+               '<li>Al hacer la solicitud, el alumno elige entre dos opciones: aplazar la clase a otro día de la misma semana o al final de la sesión.</li>\n'
+               '<li>Por encima del cupo, toda clase perdida se descuenta.</li>\n'
+               '<li>Los aplazamientos no utilizados no se acumulan para la sesión siguiente.</li>\n'
+               '<li>Un aplazamiento decidido por el instituto (ausencia del profesor, fallo de la plataforma) no cuenta en el cupo del alumno.</li>\n'
+               '</ul>'),
+              ('Pausa',
+               '<p>Una ausencia de 3 clases o más es una pausa: se solicita desde la cuenta («Hacer una solicitud» → pausa) al menos 7 días antes de su inicio, indicando la fecha prevista de '
+               'vuelta.</p>\n'
+               '<ul>\n'
+               '<li>Durante la pausa, la suscripción y los cobros quedan suspendidos. Las clases restantes de la sesión se conservan.</li>\n'
+               '<li>Las clases conservadas son válidas durante 3 meses desde el inicio de la pausa. Pasado ese plazo, se pierden.</li>\n'
+               '<li>A la vuelta, el alumno pierde la prioridad sobre su antiguo horario y su antiguo profesor.</li>\n'
+               '<li>Sin solicitud de pausa en la cuenta, o con una solicitud hecha menos de 7 días antes, las clases restantes se pierden. Las sesiones siguen renovándose y siguen debiéndose.</li>\n'
+               '</ul>'),
+              ('Baja de la suscripción',
+               '<p>La suscripción es <b>sin permanencia</b>: el alumno puede darse de baja en cualquier momento desde su cuenta («Hacer una solicitud» → baja), al menos 7 días antes del final de la '
+               'sesión en curso.</p>\n'
+               '<ul>\n'
+               '<li>La sesión en curso continúa hasta su fin; después no se realiza ningún cobro más.</li>\n'
+               '<li>Sin solicitud de baja en ese plazo, la nueva sesión se renueva y se debe.</li>\n'
+               '<li>El alumno que deja las clases sin solicitar la baja en su cuenta verá sus sesiones renovarse. Estas sesiones siguen debiéndose, y el alumno queda registrado como deudor ante el '
+               'instituto.</li>\n'
+               '<li>El alumno que vuelve tras una baja se reinscribe sin prioridad sobre su antiguo horario ni su antiguo profesor.</li>\n'
+               '</ul>'),
+              ('Modalidades de pago',
+               '<p>Se ofrecen dos formas de pago: tarjeta bancaria con suscripción automática, o transferencia bancaria sin suscripción.</p>\n'
+               '<table><tr><th></th><th>Tarjeta bancaria</th><th>Transferencia bancaria</th></tr>\n'
+               '<tr><td>Suscripción</td><td>Sí, renovada automáticamente cada 4 semanas</td><td>No</td></tr>\n'
+               '<tr><td>Permanencia</td><td>Ninguna: baja posible en cualquier momento, 7 días antes del final de la sesión</td><td>Ninguna</td></tr>\n'
+               '<tr><td>Renovación</td><td>Automática, mediante cobro</td><td>Se solicita desde la cuenta antes del final de cada sesión</td></tr>\n'
+               '<tr><td>Prioridad sobre el horario</td><td>Sí</td><td>No, horario no garantizado</td></tr></table>\n'
+               '<ul>\n'
+               '<li><b>Tarjeta bancaria:</b> el pago se realiza mediante un enlace seguro. Sin solicitud de baja al menos 7 días antes del final de la sesión, la nueva sesión se renueva y se '
+               'debe.</li>\n'
+               '<li><b>Transferencia bancaria:</b> antes del final de cada sesión, el alumno solicita la renovación desde su cuenta y paga la sesión siguiente, eligiendo el mismo horario si está '
+               'libre u otro horario. El instituto no garantiza su horario a un alumno no suscrito.</li>\n'
+               '<li><b>Descuento familiar:</b> 10 % en las sesiones a partir de dos inscritos de una misma familia.</li>\n'
+               '</ul>'),
+              ('Exámenes',
+               '<p>Un examen es obligatorio al final de cada sesión o de cada libro; hay que obtener <b>como mínimo un 70 %</b> para pasar al nivel superior.</p>\n'
+               '<ul>\n'
+               '<li>Sin este examen, el nivel no se valida.</li>\n'
+               '<li>El diploma se entrega al final del estudio del nivel, a petición, sin porcentaje mínimo exigido.</li>\n'
+               '<li>La fecha del examen se comunica en la cuenta.</li>\n'
+               '<li>Una ausencia el día del examen solo se acepta si se solicita con antelación desde la cuenta, con un justificante que la administración considere válido. De lo contrario, el '
+               'alumno no puede obtener ningún documento oficial (diploma, certificado…).</li>\n'
+               '<li>El examen se imprime antes del inicio de la clase. Si no está impreso, la clase se anula y se cuenta como realizada.</li>\n'
+               '</ul>'),
+              ('Reembolsos',
+               '<p>No se realiza ningún reembolso después del pago.</p>\n'
+               '<ul>\n'
+               '<li>En cuanto una sesión se renueva, se debe, aunque el alumno no haya empezado a estudiarla.</li>\n'
+               '<li>Un alumno expulsado del instituto no es reembolsado.</li>\n'
+               '<li>Las clases aplazadas por el instituto (ausencia del profesor, fallo de la plataforma) se recuperan, no se reembolsan.</li>\n'
+               '</ul>'),
+              ('Problemas técnicos y diagnóstico',
+               '<p>Ante cualquier problema en la plataforma de enseñanza (micrófono, auriculares, sonido, conexión, acceso), el instituto realiza un diagnóstico en la plataforma para determinar de '
+               'dónde viene el problema.</p>\n'
+               '<table><tr><th>Origen del problema según el diagnóstico</th><th>Qué ocurre con la clase</th></tr>\n'
+               '<tr><td>Plataforma o profesor</td><td>Clase recuperada, no descontada</td></tr>\n'
+               '<tr><td>Alumno (material, conexión, ajustes)</td><td>Clase no aplazada, contada como realizada</td></tr></table>\n'
+               '<ul>\n'
+               '<li>El alumno prueba su material durante los 15 minutos de apertura previos a la clase, y comunica cualquier problema desde el soporte de la cuenta antes del inicio de la '
+               'clase.</li>\n'
+               '<li>El instituto no es responsable del tiempo perdido si el alumno se conecta justo a la hora y tiene entonces un problema técnico.</li>\n'
+               '</ul>'),
+              ('Reclamaciones y litigios',
+               '<p>Toda reclamación se presenta desde el soporte de la cuenta <b>como máximo 24 h después de los hechos</b>; pasado ese plazo, ya no se acepta.</p>\n'
+               '<ul>\n'
+               '<li>La reclamación debe ser detallada: clase afectada, fecha, hora, circunstancias y naturaleza del problema.</li>\n'
+               '<li>En caso de desacuerdo, el diagnóstico de la plataforma y, en su caso, la grabación de la clase hecha por el alumno sirven de prueba. La plataforma no graba las clases '
+               'automáticamente.</li>\n'
+               '<li>La grabación de las clases solo está permitida como prueba en caso de litigio.</li>\n'
+               '<li>No se admite una reclamación hecha fuera de la cuenta, fuera de plazo o sin prueba.</li>\n'
+               '<li>La Dirección tramita la reclamación en un plazo de 7 días.</li>\n'
+               '</ul>')]},
 'apropos': dict(title="Sobre el instituto Al-Fissah — árabe y Corán en línea", desc="Escuela internacional de lengua árabe y Corán: clases en línea para niños y adultos no arabófonos, con profesores arabófonos formados.",
   h1="Clases de árabe y Corán en línea", lead="Al-Fissah es una escuela internacional de lengua árabe y Corán especializada en la enseñanza a niños y adultos no arabófonos, que cuenta con profesores arabófonos formados en la enseñanza.",
   stats=[("12","manuales para niños"),("10","niveles para adultos"),("100 %","en árabe"),("2020","clases en línea desde")],
@@ -261,7 +402,7 @@ L = {
   body="""<h2 id="editeur">Editor</h2><p>Este sitio es editado por <strong>AL-FISSAH LLC</strong>, sociedad de responsabilidad limitada del Estado de Nuevo México (EE. UU.), con domicilio social en 530B Harkle Rd Ste 100, Santa Fe, NM 87505-4739, Estados Unidos. Contacto: <a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a>.</p>
 <h2 id="hebergement">Alojamiento</h2><p>El sitio al-fissah.fr está alojado por LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Propiedad intelectual</h2><p>Todo el sitio — textos, manuales, audios, ilustraciones, logotipo y la denominación «Al-Fissah» — está protegido por el derecho de propiedad intelectual y sigue siendo propiedad exclusiva de Al-Fissah LLC o de sus socios. Queda prohibida toda reproducción, representación, adaptación o difusión, total o parcial, sin autorización escrita previa. Los materiales pedagógicos entregados a los alumnos son de uso estrictamente personal, en el marco de las clases.</p>
-<h2 id="cgv">Condiciones de venta</h2><p>Las clases se venden por sesiones de 4 semanas, pagaderas por adelantado con tarjeta (Stripe) o transferencia. Las sesiones se renuevan automáticamente cada 4 semanas; la cancelación debe comunicarse a la administración al menos 7 días antes del fin de la sesión en curso. Los precios se indican en euros en la página <a href="tarifs.html">Precios</a>. La clase de prueba de 30 minutos es gratuita y sin obligación de compra.</p>
+<h2 id="cgv">Condiciones de venta</h2><p>Las clases se venden por sesiones de 4 semanas, pagaderas por adelantado con tarjeta (Stripe) o transferencia. El pago con tarjeta funciona como suscripción, renovada automáticamente cada 4 semanas sin permanencia; la baja se solicita desde la cuenta del alumno al menos 7 días antes del fin de la sesión en curso. El pago por transferencia no implica suscripción: cada sesión se renueva a petición desde la cuenta, antes del fin de la anterior. Los precios se indican en euros en la página <a href="tarifs.html">Precios</a>. La clase de prueba de 30 minutos es gratuita y sin obligación de compra.</p>
 <p>Toda inscripción es definitiva: no se concede aplazamiento ni reembolso tras el pago de la sesión, conforme al <a href="reglement.html">reglamento interno</a>, que forma parte integrante de estas condiciones.</p>
 <p>Los alumnos residentes en la Unión Europea disfrutan del derecho de desistimiento de 14 días previsto por la legislación de consumo de su país de residencia. Al tratarse de un servicio cuya ejecución comienza en la fecha acordada, el alumno que solicite el inicio de las clases antes de que expire ese plazo reconoce que el derecho de desistimiento se extingue para las prestaciones ya ejecutadas.</p>
 <h2 id="droit">Ley aplicable</h2><p>El presente aviso legal y la relación contractual con Al-Fissah LLC se rigen por la ley del Estado de Nuevo México (EE. UU.), sin perjuicio de las disposiciones imperativas de protección al consumidor aplicables en su país de residencia habitual. Todo litigio se tratará primero de forma amistosa con la administración; a falta de acuerdo, corresponderá a los tribunales competentes de Nuevo México, salvo cuando la ley del país de residencia del consumidor reserve la competencia a sus propios tribunales.</p>

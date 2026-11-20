@@ -1037,8 +1037,9 @@ class Builder:
 
     def build_reglement(self):
         L = self.L; R = L['reglement']
-        toc = ''.join(f'<li><a href="#art-{i+1}">{t}</a></li>' for i, (t, _) in enumerate(R['articles']))
-        arts = ''.join(f'<h2 id="art-{i+1}"><span class="art">{R["article"]} {i+1}</span>{t}</h2>{b}' for i, (t, b) in enumerate(R['articles']))
+        toc = (f'<li class="intro"><a href="#principes">{R["intro_title"]}</a></li>' if R.get('intro') else '') + ''.join(f'<li><a href="#art-{i+1}">{t}</a></li>' for i, (t, _) in enumerate(R['articles']))
+        intro = f'<h2 id="principes">{R["intro_title"]}</h2>{R["intro"]}' if R.get('intro') else ''
+        arts = intro + ''.join(f'<h2 id="art-{i+1}"><span class="art">{R["article"]} {i+1}</span>{t}</h2>{b}' for i, (t, b) in enumerate(R['articles']))
         html = self.page_hero(L['nav']['reglement'], R['h1'], R['lead'], R['updated']) + f'''<div class="page"><div class="wrap">
   <aside class="toc"><b>{L['common']['toc']}</b><ol>{toc}</ol></aside>
   <article class="prose">{arts}</article>
