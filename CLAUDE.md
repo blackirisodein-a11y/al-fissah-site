@@ -3,9 +3,11 @@
 Site vitrine statique de l'**École internationale de langue arabe et Coran** (Al-Fissah LLC,
 Nouveau-Mexique, USA). 6 langues, 12 pages par langue, aucun serveur applicatif.
 
-En ligne (préproduction) : **https://al-fissah.blackirys.com** — hébergement LWS, dépôt par FTP.
-Destination finale : al-fissah.com (le domaine héberge déjà l'application élève : `/fr/login`,
-`/fr/register`, paiements Stripe — **ne pas écraser**).
+En ligne : **https://al-fissah.com** (depuis le 21/11/2026, à la place d'al-fissah.fr ; l'ancien site
+Laravel d'OVH a disparu de cette adresse) — hébergement LWS, dépôt par FTP. al-fissah.fr et www renvoient
+vers al-fissah.com (`.htaccess`). Préproduction : https://al-fissah.blackirys.com (jamais indexée).
+Les comptes ne changent pas : etudiant / enseignant / gestion.al-fissah.com (plateforme, Vercel).
+blog.al-fissah.com et livres.al-fissah.com restent sur le serveur OVH de l'ancien site.
 
 ---
 
@@ -100,10 +102,11 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
 ## Décisions à connaître
 
 - **`site.conf`** : `site=` alimente les balises canoniques et le sitemap ; `preview=oui`
-  ajoute `noindex` + `robots.txt` bloquant. À passer sur `non` le **samedi 21/11/2026** (bascule
-  al-fissah.fr) — marche à suivre : `MISE-EN-LIGNE.md`, « Samedi 21/11 — ouvrir à Google ».
-  Le workflow construit deux fois : al-fissah.fr selon `site.conf`, al-fissah.blackirys.com
-  toujours avec `--preview` (jamais indexé, canonical vers al-fissah.fr). Sitemap avec `lastmod`
+  ajoute `noindex` + `robots.txt` bloquant. Passé sur `non` avec `site=https://al-fissah.com`
+  (bascule du 21/11/2026) — marche à suivre : `MISE-EN-LIGNE.md`, « Bascule vers al-fissah.com ».
+  Le workflow construit deux fois : la version publique selon `site.conf` (dossier `FTP_DOSSIER_FR`,
+  hébergement LWS qui sert al-fissah.com et al-fissah.fr), al-fissah.blackirys.com
+  toujours avec `--preview` (jamais indexé, canonical vers al-fissah.com). Sitemap avec `lastmod`
   (date du dernier commit), `Sitemap:` dans robots.txt dès que `preview=non`.
 - **`appli_publiee=`** (`site.conf`, 16/11/2026) : boutons Google Play / App Store de l'accueil
   masqués tant que `non` (fiches pas encore publiques ; identifiant Play `com.alfissah.app`).
@@ -112,8 +115,9 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   (`assets/img/logo-partage.png`, adresse absolue `{site}/…`) ; page 404 en chemins absolus
   (`absolutiser`, elle s'affiche à toute profondeur) ; boutons orange à texte blanc sur
   `--orange-btn` #B85A00 / `--orange-btn-deep` #9C4A00 (contraste ≥ 4,5:1), `--orange` inchangé
-  ailleurs ; `.htaccess` : en-têtes de sécurité, www → al-fissah.fr, `/en` → `/en/` en https,
-  anciennes adresses `/fr/login`, `/fr/register`, `/fr/commander/…` → etudiant.al-fissah.com ;
+  ailleurs ; `.htaccess` : en-têtes de sécurité, www.al-fissah.com et al-fissah.fr → al-fissah.com (21/11/2026), `/en` → `/en/` en https,
+  anciennes adresses `/fr/login`, `/fr/register`, `/fr/commander/…`, `/fr/password/…` → etudiant.al-fissah.com,
+  anciennes pages de l'ancien site (`/fr/tarifs`, `/fr/pages/faq`, `/fr/programmes/…`…) → page de la vitrine ;
   mention RGPD sous « Envoyer » (`contact.rgpd`).
 - **Deux parcours distincts, à ne pas confondre** :
   - « Commencer maintenant » → `inscription.html` = **inscription aux études** (programme,
@@ -184,7 +188,7 @@ d'ouverture lui-même (index de vitesse, blocage) : rythme voulu par le client, 
   « Éditeur du site » (dénomination, siège, immatriculation, agent enregistré, directeur de
   publication) a été **retirée à la demande du client** (30/09/2026), puis **remise** par le client
   (AL-FISSAH LLC, 530B Harkle Rd Ste 100, Santa Fe — reprise le 16/11/2026, lot 5). Domaine
-  cité : al-fissah.fr.
+  cité : al-fissah.com (al-fissah.fr jusqu'au 20/11/2026).
 - **Formulaires (contact, essai, inscription)** : `assets/main.js`, en haut. Branchés sur **Web3Forms**
   depuis le 29/09/2026 (`FORM_ENDPOINT` + `FORM_KEY`, compte de l'école, formulaire « Site Al-Fissah —
   Contact ») : les messages arrivent directement dans la boîte de l'école, « Répondre » répond au
@@ -301,7 +305,7 @@ la plateforme.
    domaine définitif (app.al-fissah.com) → mettre à jour `app=`.
 2. ~~Compléter les mentions légales~~ (rubrique « Éditeur du site » retirée à la demande du client, 30/09/2026).
 3. ~~Brancher le formulaire de contact sur Web3Forms~~ (fait le 29/09/2026 ; essai réel à faire une fois en ligne).
-4. Basculer vers al-fissah.com en préservant les URL de l'application élève.
+4. ~~Basculer vers al-fissah.com en préservant les URL de l'application élève~~ (21/11/2026).
 
 ## Style de travail attendu
 

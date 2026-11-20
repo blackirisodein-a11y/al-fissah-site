@@ -1,6 +1,51 @@
 # Mettre le site en ligne
 
-## Samedi 21/11 — ouvrir à Google
+## Bascule vers al-fissah.com (21/11/2026) — la vitrine remplace l'ancien site
+
+La vitrine quitte al-fissah.fr pour **al-fissah.com** ; l'ancien site (Laravel, serveur OVH
+193.70.85.109) disparaît de cette adresse. **Les comptes ne changent pas** : etudiant /
+enseignant / gestion.al-fissah.com restent sur la plateforme (Vercel), identifiants inchangés.
+Ce dépôt est déjà prêt (`site.conf` : `site=https://al-fissah.com`, `preview=non` ; `.htaccess` :
+al-fissah.fr et www → al-fissah.com, anciens liens de l'ancien site → bonne page).
+
+⚠ **blog.al-fissah.com et livres.al-fissah.com tournent sur le même serveur OVH** : on ne coupe
+pas ce serveur, on change seulement l'adresse `al-fissah.com` (et `www`).
+
+Dans cet ordre :
+
+1. **Export final de l'ancien site** : juste APRÈS l'étape 5 (le changement d'adresse fige l'ancien
+   site ; sa base reste sur le serveur OVH, lisible par SSH).
+2. **al-fissah.com a son propre hébergement LWS** (constaté le 21/11/2026). Panel LWS →
+   al-fissah.com → *Gérer* → **FTP** : relever le serveur, l'identifiant, le mot de passe, et le
+   dossier du site (souvent `/` ou `/htdocs/`). Noter aussi l'**adresse IP** de cet hébergement.
+3. **GitHub → dépôt `al-fissah-site` → Settings → Secrets and variables → Actions** :
+   secrets `FTP_HOST_COM`, `FTP_USERNAME_COM`, `FTP_PASSWORD_COM` ; onglet *Variables* :
+   `FTP_DOSSIER_COM` = le dossier relevé (avec `/` au début et à la fin).
+4. **Fusionner la demande de fusion de ce dépôt** sur `main` : la mise en ligne publie la vitrine
+   dans l'hébergement d'al-fissah.com (invisible tant que le DNS pointe sur OVH) ET sur al-fissah.fr,
+   qui renvoie dès lors vers al-fissah.com (encore l'ancien site jusqu'à l'étape 5 : faire 4 et 5
+   à la suite).
+5. **Panel LWS → Zone DNS d'al-fissah.com** — ne modifier QUE ces lignes :
+   - `@` et `www`, type **A** : `193.70.85.109` → l'adresse IP de l'hébergement al-fissah.com (étape 2) ;
+   - `@` et `www`, type **AAAA** : supprimer `2001:41d0:302:2200::59c5` (ou mettre l'IPv6 LWS de l'hébergement).
+   **Ne pas toucher** : MX, `mail`, TXT (SPF, DKIM, Amazon SES), `etudiant`, `enseignant`,
+   `gestion` (Vercel), `cours`, `blog`, `livres`.
+   Puis, quelques minutes plus tard : **SSL** de l'hébergement al-fissah.com →
+   certificat Let's Encrypt pour `al-fissah.com` et `www.al-fissah.com`.
+6. Vérifier :
+   - `https://al-fissah.com/` → la vitrine ; code source (Ctrl+U) sans `noindex` ;
+   - `https://www.al-fissah.com/`, `https://al-fissah.fr/` → renvoient vers `https://al-fissah.com/` ;
+   - `https://al-fissah.com/fr/login` → espace étudiant ; `/fr/tarifs`, `/fr/pages/faq` → pages de la vitrine ;
+   - `https://al-fissah.com/robots.txt` → `Allow: /` et `Sitemap: https://al-fissah.com/sitemap.xml` ;
+   - `https://al-fissah.blackirys.com/robots.txt` → toujours `Disallow: /`.
+7. **Google Search Console** : propriété `al-fissah.com` → soumettre
+   `https://al-fissah.com/sitemap.xml`, « Inspection de l'URL » → « Demander une indexation ».
+8. Plus tard (sans urgence) : sur le serveur OVH, retirer le site Laravel d'al-fissah.com en
+   gardant blog et livres ; garder une sauvegarde de la base.
+
+Revenir en arrière : remettre `193.70.85.109` (A) et `2001:41d0:302:2200::59c5` (AAAA) sur `@` et `www`.
+
+## (Historique) Samedi 21/11 — ouvrir à Google
 
 Jusqu'au samedi 21/11/2026, `preview=oui` dans `site.conf` : **les deux adresses**
 (al-fissah.fr et al-fissah.blackirys.com) demandent à Google de ne pas les indexer

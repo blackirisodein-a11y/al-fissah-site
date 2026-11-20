@@ -1,10 +1,11 @@
 # Mise en ligne automatique sur LWS (FTP).
 # À chaque modification poussée sur la branche main, GitHub :
 #   1. reconstruit les 72 pages (python3 build.py --inline) DEUX fois :
-#        - version al-fissah.fr : réglages de site.conf (preview=oui → fermée à Google,
-#          preview=non → ouverte à Google à partir de la bascule) ;
+#        - version publique (al-fissah.com depuis le 21/11/2026 ; même hébergement LWS
+#          qu'al-fissah.fr, qui y renvoie) : réglages de site.conf (preview=oui → fermée à Google,
+#          preview=non → ouverte à Google) ;
 #        - version de test al-fissah.blackirys.com : toujours avec --preview (noindex,
-#          robots.txt bloquant), quel que soit site.conf. Balises canoniques vers al-fissah.fr.
+#          robots.txt bloquant), quel que soit site.conf. Balises canoniques vers l'adresse de site.conf.
 #   2. envoie la version de test par FTP dans /al-fissah.blackirys.com ;
 #   3. envoie la version al-fissah.fr dans le dossier indiqué par la VARIABLE du dépôt
 #      FTP_DOSSIER_FR (Settings → Secrets and variables → Actions → onglet « Variables »).
@@ -99,6 +100,25 @@ jobs:
           port: 21
           local-dir: _site_fr/
           server-dir: ${{ vars.FTP_DOSSIER_FR }}
+          state-name: .ftp-deploy-sync-state.json
+          timeout: 120000
+          log-level: standard
+
+      - name: Envoyer par FTP vers LWS (al-fissah.com)
+        # 21/11/2026 : al-fissah.com a son PROPRE hébergement LWS (distinct de celui d'al-fissah.fr).
+        # Même version que ci-dessus : sur al-fissah.fr, le .htaccess renvoie tout vers al-fissah.com.
+        # Désactivée tant que la variable FTP_DOSSIER_COM n'est pas renseignée (ex. « / » ou « /htdocs/ »).
+        # Secrets : FTP_HOST_COM, FTP_USERNAME_COM, FTP_PASSWORD_COM (compte FTP de l'hébergement al-fissah.com).
+        if: ${{ vars.FTP_DOSSIER_COM != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST_COM }}
+          username: ${{ secrets.FTP_USERNAME_COM }}
+          password: ${{ secrets.FTP_PASSWORD_COM }}
+          protocol: ftp
+          port: 21
+          local-dir: _site_fr/
+          server-dir: ${{ vars.FTP_DOSSIER_COM }}
           state-name: .ftp-deploy-sync-state.json
           timeout: 120000
           log-level: standard
