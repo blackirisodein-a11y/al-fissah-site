@@ -787,9 +787,15 @@ html{overflow-x:hidden}
 /* ========== LOGO OFFICIEL ========== */
 .logomark{height:62px;width:62px;object-fit:contain;background:none;padding:0;box-shadow:none;border-radius:0}
 footer.site .logomark{height:72px;width:72px}
-footer.site .logomark{filter:brightness(0) invert(1)}
 #loader .ld-logo{height:210px;width:auto;background:#fff;padding:14px 18px;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
 @media(max-width:640px){.logomark{height:50px;width:50px}footer.site .logomark{height:60px;width:60px}#loader .ld-logo{height:150px}}
+/* Logo horizontal avec filet (20/11/2026) : calligraphie | trait fin | « al fissah / Cours en ligne » (image officielle) */
+.logo{gap:.75rem}
+.logo-sep{width:1px;height:46px;background:#CFD8E8;flex:none}
+footer.site .logo-sep{background:rgba(255,255,255,.3);height:54px}
+.logoname{height:38px;width:auto;display:block;flex:none}
+footer.site .logoname{height:44px}
+@media(max-width:640px){.logo{gap:.55rem}.logo-sep{height:36px}.logoname{height:30px}footer.site .logo-sep{height:44px}footer.site .logoname{height:36px}}
 
 /* ========== NOM DE L'ÉCOLE — accordé à la typographie du logo ========== */
 .logo-txt b{font-family:'Poppins','Century Gothic','Futura',var(--display);font-weight:600;

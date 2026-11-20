@@ -449,7 +449,14 @@ def _webp(path, height, name):
     im.save(os.path.join(ROOT, 'assets/img', name), 'WEBP', lossless=True, method=6)
     return im.width, im.height
 MARK_IMG, FULL_IMG = 'assets/img/logo-mark.webp', 'assets/img/logo-intro.webp'
-MARK_W, MARK_H = _webp('assets/logo-mark.png', 124, 'logo-mark.webp')
+MARK_W, MARK_H = _webp('assets/logo-calligraphie.png', 124, 'logo-mark.webp')
+# En-tête « horizontal avec filet » (choix du client, 20/11/2026) : calligraphie | « al fissah / Cours en ligne ».
+# Les deux morceaux sont découpés dans le logo officiel (assets/logo.png), rien n'est redessiné ; versions blanches
+# (bleu → blanc, orange gardé) pour le pied de page bleu nuit. Hauteur ×2 pour les écrans haute définition.
+MARKW_IMG, NAME_IMG, NAMEW_IMG = 'assets/img/logo-mark-blanc.webp', 'assets/img/logo-nom.webp', 'assets/img/logo-nom-blanc.webp'
+_webp('assets/logo-calligraphie-blanc.png', 144, 'logo-mark-blanc.webp')
+NAME_W, NAME_H = _webp('assets/logo-nom.png', 80, 'logo-nom.webp')
+_webp('assets/logo-nom-blanc.png', 80, 'logo-nom-blanc.webp')
 FULL_W, FULL_H = _webp('assets/logo.png', 420, 'logo-intro.webp')
 # Section « Téléchargez notre application » (06/11/2026) : capture réelle de l'application PC, une par langue
 # (fr, en, ar ; les autres langues prennent l'anglaise). Source : assets/appli/pc-<langue>.png (captures du
@@ -659,7 +666,7 @@ class Builder:
 
 <header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="index.html"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+    <a class="logo" href="index.html"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none">A</span><span class="logo-sep" aria-hidden="true"></span><img class="logoname" src="{self.rel + NAME_IMG}" width="{NAME_W}" height="{NAME_H}" alt="" onerror="this.style.display='none'"></a>
     <ul class="menu">
       {menu}
     </ul>
@@ -693,7 +700,7 @@ class Builder:
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel + MARK_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span> <span class="logo-txt"><b>al fissah</b><small>{self.L["meta"].get("tagline","")}</small></span></a>
+        <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel + MARKW_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span><span class="logo-sep" aria-hidden="true"></span><img class="logoname" src="{self.rel + NAMEW_IMG}" width="{NAME_W}" height="{NAME_H}" alt="" loading="lazy" onerror="this.style.display='none'"></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
           <a href="https://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
