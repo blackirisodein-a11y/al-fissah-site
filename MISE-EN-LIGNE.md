@@ -13,21 +13,25 @@ pas ce serveur, on change seulement l'adresse `al-fissah.com` (et `www`).
 
 Dans cet ordre :
 
-1. **Avant tout** : l'export final de l'ancien site est fait et reporté sur la plateforme.
-2. **Panel LWS → hébergement d'al-fissah.fr** : ajouter `al-fissah.com` et `www.al-fissah.com`
-   comme domaines de cet hébergement (« Domaine supplémentaire » / « Alias »), **même dossier**
-   qu'al-fissah.fr (celui de la variable `FTP_DOSSIER_FR`).
-3. **Panel LWS → Zone DNS d'al-fissah.com** — ne modifier QUE ces lignes :
-   - `@` et `www`, type **A** : `193.70.85.109` → `194.126.193.52` (adresse d'al-fissah.fr) ;
-   - `@` et `www`, type **AAAA** : `2001:41d0:302:2200::59c5` → `2a00:7ee0:40:0:3:4807:0:338`
-     (ou supprimer la ligne AAAA).
+1. **Export final de l'ancien site** : juste APRÈS l'étape 5 (le changement d'adresse fige l'ancien
+   site ; sa base reste sur le serveur OVH, lisible par SSH).
+2. **al-fissah.com a son propre hébergement LWS** (constaté le 21/11/2026). Panel LWS →
+   al-fissah.com → *Gérer* → **FTP** : relever le serveur, l'identifiant, le mot de passe, et le
+   dossier du site (souvent `/` ou `/htdocs/`). Noter aussi l'**adresse IP** de cet hébergement.
+3. **GitHub → dépôt `al-fissah-site` → Settings → Secrets and variables → Actions** :
+   secrets `FTP_HOST_COM`, `FTP_USERNAME_COM`, `FTP_PASSWORD_COM` ; onglet *Variables* :
+   `FTP_DOSSIER_COM` = le dossier relevé (avec `/` au début et à la fin).
+4. **Fusionner la demande de fusion de ce dépôt** sur `main` : la mise en ligne publie la vitrine
+   dans l'hébergement d'al-fissah.com (invisible tant que le DNS pointe sur OVH) ET sur al-fissah.fr,
+   qui renvoie dès lors vers al-fissah.com (encore l'ancien site jusqu'à l'étape 5 : faire 4 et 5
+   à la suite).
+5. **Panel LWS → Zone DNS d'al-fissah.com** — ne modifier QUE ces lignes :
+   - `@` et `www`, type **A** : `193.70.85.109` → l'adresse IP de l'hébergement al-fissah.com (étape 2) ;
+   - `@` et `www`, type **AAAA** : supprimer `2001:41d0:302:2200::59c5` (ou mettre l'IPv6 LWS de l'hébergement).
    **Ne pas toucher** : MX, `mail`, TXT (SPF, DKIM, Amazon SES), `etudiant`, `enseignant`,
    `gestion` (Vercel), `cours`, `blog`, `livres`.
-4. Attendre que `https://al-fissah.com` réponde depuis LWS (quelques minutes à quelques heures),
-   puis **panel LWS → SSL** : certificat Let's Encrypt pour `al-fissah.com` et `www.al-fissah.com`.
-5. **Fusionner la demande de fusion de ce dépôt** sur `main` : la mise en ligne automatique
-   publie la vitrine avec l'adresse al-fissah.com et l'ouvre à Google. Pas avant l'étape 4 :
-   sinon al-fissah.fr renverrait vers l'ancien site ou vers une adresse sans certificat.
+   Puis, quelques minutes plus tard : **SSL** de l'hébergement al-fissah.com →
+   certificat Let's Encrypt pour `al-fissah.com` et `www.al-fissah.com`.
 6. Vérifier :
    - `https://al-fissah.com/` → la vitrine ; code source (Ctrl+U) sans `noindex` ;
    - `https://www.al-fissah.com/`, `https://al-fissah.fr/` → renvoient vers `https://al-fissah.com/` ;

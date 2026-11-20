@@ -16,7 +16,9 @@ ErrorDocument 404 /404.html
 
   # 2. Forcer HTTPS — si vous voyez une erreur de boucle de redirection,
   #    mettez un # devant les deux lignes ci-dessous jusqu'à l'activation du certificat SSL.
+  #    Sauf /.well-known/ : la vérification du certificat Let's Encrypt passe en http (21/11/2026).
   RewriteCond %{HTTPS} off
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # 3. Dossiers de langue sans barre finale (/en → /en/) : directement en https,

@@ -103,3 +103,22 @@ jobs:
           state-name: .ftp-deploy-sync-state.json
           timeout: 120000
           log-level: standard
+
+      - name: Envoyer par FTP vers LWS (al-fissah.com)
+        # 21/11/2026 : al-fissah.com a son PROPRE hébergement LWS (distinct de celui d'al-fissah.fr).
+        # Même version que ci-dessus : sur al-fissah.fr, le .htaccess renvoie tout vers al-fissah.com.
+        # Désactivée tant que la variable FTP_DOSSIER_COM n'est pas renseignée (ex. « / » ou « /htdocs/ »).
+        # Secrets : FTP_HOST_COM, FTP_USERNAME_COM, FTP_PASSWORD_COM (compte FTP de l'hébergement al-fissah.com).
+        if: ${{ vars.FTP_DOSSIER_COM != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST_COM }}
+          username: ${{ secrets.FTP_USERNAME_COM }}
+          password: ${{ secrets.FTP_PASSWORD_COM }}
+          protocol: ftp
+          port: 21
+          local-dir: _site_fr/
+          server-dir: ${{ vars.FTP_DOSSIER_COM }}
+          state-name: .ftp-deploy-sync-state.json
+          timeout: 120000
+          log-level: standard
