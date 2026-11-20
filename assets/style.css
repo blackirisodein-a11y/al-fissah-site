@@ -462,6 +462,10 @@ footer.site .base{border-top:1px solid rgba(169,188,232,.2);margin-top:2.5rem;pa
 .toc ol a{text-decoration:none;color:var(--muted);display:flex;gap:.5rem}
 .toc ol a::before{content:counter(t);color:var(--orange-deep);font-weight:800;min-width:1.2em}
 .toc ol a:hover{color:var(--navy)}
+.toc li.intro{counter-increment:none}.toc li.intro a::before{content:"•"}
+.prose td a{font-weight:700}
+.page .wrap>*{min-width:0}
+@media(max-width:600px){.prose table{font-size:.84rem}.prose th,.prose td{padding:.6rem .55rem;overflow-wrap:anywhere;hyphens:auto}}
 @media(max-width:880px){.page .wrap{grid-template-columns:1fr}.toc{position:static}}
 .prose{max-width:70ch}
 .prose h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;margin:2.6rem 0 .9rem;padding-top:.5rem;scroll-margin-top:112px}

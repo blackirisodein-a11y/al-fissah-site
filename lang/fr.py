@@ -47,7 +47,7 @@ L = {
     part="Partie", lesson="Cours", playlist="Voir cette playlist sur YouTube", channel="Toutes les vidéos de la chaîne", count="{n} vidéos", now="Vidéo en cours"),
   adultes_kick="Adultes", adultes_h2="Vous apprenez depuis un moment mais vous ne parlez toujours pas l'arabe ?",
   adultes_p="L'institut Al-Fissah enseigne aussi les adultes, et vous propose d'insister en priorité sur votre « oral » et votre « compréhension » afin que vous soyez apte à tenir une conversation. Vous parlez et comprenez.",
-  adultes_checks=["Cours exclusivement en arabe, dès le premier niveau","Grands débutants acceptés : aucun prérequis","Individuel, ou en binôme pour la langue arabe","Examen en fin de livre, diplôme à partir de 80 %"],
+  adultes_checks=["Cours exclusivement en arabe, dès le premier niveau","Grands débutants acceptés : aucun prérequis","Individuel, ou en binôme pour la langue arabe","Examen en fin de livre : 70 % pour passer au niveau supérieur"],
   big=["Écouter","Parler","Comprendre"], big_sub="Les compétences travaillées en immersion, sans français ni anglais.",
   app_kick='Application Al-Fissah', app_h2='Téléchargez notre application', app_p='Apprenez partout, à tout moment : sur téléphone et sur ordinateur, avec le même compte.',
   app_checks=["Accès simplifié à vos cours et à votre suivi","Remarques des professeurs, devoirs et notes","Planning en direct et rappels de cours"],
@@ -148,7 +148,7 @@ L = {
     ("٢","Cours en duo","Possible pour la langue arabe : 4,50 € par élève et par heure, soit 36 € la session d'1 h par semaine pour deux personnes."),
     ("٤","Session ≠ niveau","Une session dure 4 semaines, renouvelable. Le niveau est le livre étudié : il dure en général plus de 4 semaines.")],
   pay_h2="Paiement et renouvellement",
-  pay_body="""<p>Le paiement s'effectue par carte bancaire via un lien sécurisé (Stripe) ou par virement bancaire. Les sessions sont renouvelées automatiquement toutes les 4 semaines avec un prélèvement programmé. Pour annuler l'abonnement, informez l'administration au moins 7 jours avant la fin de la session en cours.</p>
+  pay_body="""<p>Le paiement s'effectue par carte bancaire via un lien sécurisé (Stripe) ou par virement bancaire. Par carte, les sessions sont renouvelées automatiquement toutes les 4 semaines, sans engagement de durée ; pour arrêter, faites la demande depuis votre compte au moins 7 jours avant la fin de la session en cours. Par virement, il n'y a pas d'abonnement : le renouvellement se demande depuis votre compte avant la fin de chaque session.</p>
 <p>Toute inscription est définitive : aucun report ni remboursement n'est accordé après le paiement de la session. Inscrivez-vous uniquement si vous êtes disponible et motivé à apprendre. Les livres et supports ne sont pas fournis lors de l'inscription et sont à commander sur <a href="https://livres.al-fissah.com">livres.al-fissah.com</a>.</p>
 <p>Cours en binôme ou en groupe : vous vous inscrivez avec votre propre binôme ou votre propre groupe (3 à 10 élèves). L'école ne constitue pas les groupes. Le tarif du groupe est communiqué par l'administration lors de l'inscription.</p>""",
   note_b="Pas encore décidé ?", note_p="Commencez par un cours d'essai de 30 minutes."),
@@ -194,38 +194,179 @@ L = {
   lang_note_tr='', orig='Texte original (français)',
   lang_note="", note_b="Vous êtes élève ou parent d'élève ?", note_p="Vous pouvez laisser votre témoignage depuis votre", note_a="espace étudiant"),
 
-'reglement': dict(title="Règlement intérieur — AL-FISSAH", desc="Le règlement intérieur de l'école Al-Fissah : comportement, matériel, créneaux, présence et absences, paiement, examens, litiges.",
-  h1="Le règlement intérieur", lead="L'école Al-Fissah se spécialise dans l'enseignement de la langue arabe, du Coran et de ses différentes matières. Elle n'a aucune affiliation politique et ne soutient aucune activité contraire aux enseignements du Coran et de la Sounnah.",
-  updated="février 2025", article="Article",
-  articles=[
- ("Comportement des étudiants", """<p>Chaque étudiant doit adopter un comportement conforme aux valeurs islamiques et aux principes de l'étudiant en sciences. Il doit respecter ses enseignants ainsi que les membres de l'administration. En cas de problème, l'étudiant doit en informer l'administration pour qu'une solution soit trouvée dans les meilleurs délais.</p>
-<p>L'administration se réserve le droit, après observation d'un comportement inapproprié d'un étudiant à l'égard d'un enseignant ou d'un membre de l'administration, d'exclure cet étudiant sans préavis.</p>
-<p>L'échange de coordonnées personnelles entre étudiants et enseignants salariés est interdit.</p>"""),
- ("Matériel", """<p>L'utilisation de smartphones est déconseillée pour les études. Il est recommandé d'utiliser une tablette au minimum, et un PC est préférable. Nous ne garantissons pas que tous les outils fonctionneront correctement pour les utilisateurs de smartphones.</p>
-<p>Avant chaque cours, chaque élève doit s'assurer du bon fonctionnement de son matériel en vérifiant :</p>
-<ul><li>la connexion du microphone et du casque ;</li><li>la fermeture des programmes non liés au cours (notamment les applications utilisant l'audio ou la vidéo comme Messenger).</li></ul>"""),
- ("Créneaux horaires", """<p>Les étudiants peuvent demander à changer de créneau horaire en contactant l'administration. Nous mettrons tout en œuvre pour satisfaire cette demande. Toutefois, l'école ne pourra être tenue responsable des pertes de jours si les enseignants ne sont pas disponibles dans le créneau souhaité par l'élève.</p>
-<p>En cas de nécessité, l'école peut demander à l'étudiant de changer de créneau si un professeur doit s'arrêter ou si une des prières coïncide avec le créneau choisi.</p>"""),
- ("Organisation générale des études", """<p>Les étudiants doivent obligatoirement accomplir tous les devoirs donnés par les enseignants. Un comportement respectueux de l'Islam envers les enseignants et l'administration est exigé.</p>
-<p>Il est également obligatoire pour les étudiants ou leurs parents de consulter régulièrement les remarques des professeurs. Ces commentaires sont essentiels pour connaître les devoirs, les révisions, et savoir si la session est terminée. Une coopération active est attendue de la part de tous pour assurer un suivi attentif et garantir le bon déroulement des cours.</p>"""),
- ("Présence et absences", """<h3>Retards</h3>
-<p>L'étudiant doit être ponctuel. En cas de retard de plus de 30 minutes pour un cours d'une heure ou de 15 minutes pour un cours de 30 minutes, le cours sera annulé et comptabilisé comme effectué.</p>
-<p>Si le professeur arrive avec plus de 10 minutes de retard, l'étudiant doit en informer l'administration rapidement. L'étudiant doit patienter 15 minutes avant de se déconnecter si le professeur est en retard ; au-delà, le cours sera considéré comme une absence de l'élève.</p>
-<h3>Absences</h3>
-<p>Toute absence, justifiée ou non, sans préavis d'au moins 24 heures et pendant les heures de bureau (de 8h00 à 18h00), sera décomptée des jours d'étude de l'étudiant. Un étudiant peut s'absenter avec justification d'un nombre de jours équivalant à ses jours de cours hebdomadaires. Au-delà de ce nombre, toute absence sera comptabilisée comme une absence non justifiée, <b>et cela inclut également les changements de créneau en cas d'absence, même s'il s'agit d'un autre horaire le même jour ou dans la même semaine.</b></p>
-<div class="note"><b>Exemple :</b> un étudiant ayant deux jours de cours par semaine peut s'absenter jusqu'à deux jours par mois avec justification. Toute absence supplémentaire sera décomptée.</div>
-<h3>Arrêt temporaire</h3>
-<p>Pour un arrêt prolongé de trois jours ou plus, l'étudiant doit en informer l'administration au moins une semaine à l'avance. L'étudiant perdra la priorité sur son créneau et son professeur lors de sa reprise. Le décompte des jours restants sera valable pendant trois mois, après quoi les cours manqués ne pourront plus être récupérés. Si l'étudiant ne prévient pas une semaine à l'avance, il perdra les jours restants à étudier.</p>"""),
- ("Modalités de paiement", """<p>Le paiement se fait par carte bancaire via un lien sécurisé. Les sessions sont renouvelées automatiquement toutes les 4 semaines avec un prélèvement programmé. Pour annuler l'abonnement, veuillez informer l'administration au moins 7 jours avant la fin de la session en cours. Si vous ne prévenez pas, le prélèvement automatique sera maintenu.</p>
-<p><b>Réduction :</b> à partir de deux inscriptions dans une même famille, une réduction de 10 % sur les sessions est accordée.</p>"""),
- ("Organisation des examens", """<p>Un examen est obligatoire à la fin de chaque session ou livre. L'étudiant ne sera pas compté parmi ceux ayant complété le niveau sans avoir passé cet examen.</p>
-<p>L'étudiant ne peut pas s'absenter le jour de l'examen sauf en cas de préavis à l'administration et de justification valable, jugée par celle-ci. Si l'étudiant ne se présente pas sans justification, il ne pourra pas obtenir de documents officiels (diplôme, attestations…).</p>
-<table><tr><th>Résultat</th><th>Conséquence</th></tr><tr><td>Plus de 60 %</td><td>Passage au niveau supérieur</td></tr><tr><td>Plus de 80 % et permission de l'enseignant</td><td>Obtention du diplôme</td></tr></table>
-<p>L'examen doit être imprimé avant le début du cours. Sans impression préalable, le cours sera annulé et comptabilisé comme effectué.</p>"""),
- ("Organisation des règlements", """<p>Aucun remboursement ne sera effectué après le paiement de la session.</p><p>Si un étudiant est expulsé de l'école, aucun remboursement ne sera effectué.</p>"""),
- ("Situations litigieuses", """<ul><li>Toute plainte doit être détaillée (circonstances, date, heure, nature du problème).</li><li>En cas de contestation, l'élève doit fournir une preuve audio.</li><li>L'enregistrement des cours est autorisé à des fins de preuve en cas de litige.</li><li>Sans preuve, la plainte ne sera pas acceptée.</li><li>La Direction traitera la plainte sous 7 jours.</li></ul>"""),
-  ]),
-
+'reglement': {'title': 'Règlement intérieur — AL-FISSAH',
+ 'desc': "Le règlement intérieur de l'école Al-Fissah : demandes depuis le compte, reports, pause, arrêt, paiement, examens, problèmes techniques et réclamations.",
+ 'h1': 'Le règlement intérieur',
+ 'lead': "L'école Al-Fissah se spécialise dans l'enseignement de la langue arabe, du Coran et de ses différentes matières. Elle n'a aucune affiliation politique et ne soutient aucune activité "
+         'contraire aux enseignements du Coran et de la Sounnah.',
+ 'updated': 'novembre 2026',
+ 'article': 'Article',
+ 'intro_title': 'Principes généraux',
+ 'intro': "<p>Toutes les demandes se font <b>exclusivement depuis le compte de l'étudiant</b>, en cliquant sur « Faire une demande ». Aucune demande n'est acceptée par WhatsApp, par e-mail ou par "
+          'toute autre voie.</p>\n'
+          '<ul>\n'
+          "<li><b>Demandes concernées :</b> report d'un cours, déclaration d'une absence, changement de créneau, demande de pause et demande d'arrêt.</li>\n"
+          "<li><b>Messages à l'administration :</b> tout message est envoyé depuis le support du compte. Aucun message n'est accepté par e-mail.</li>\n"
+          "<li><b>Horodatage :</b> la date et l'heure d'une demande sont celles enregistrées par la plateforme. Les délais de ce règlement se calculent à partir de cet horodatage.</li>\n"
+          "<li><b>Arrêt sans demande :</b> un étudiant qui cesse de venir sans avoir fait de demande de pause ou d'arrêt depuis son compte voit ses sessions se renouveler. Elles restent dues, et il "
+          "est inscrit comme débiteur auprès de l'institut.</li>\n"
+          '<li><b>Diagnostic de la plateforme :</b> en cas de problème technique, l\'institut s\'appuie sur le diagnostic de la plateforme pour déterminer son origine (<a href="#art-13">article '
+          '13</a>).</li>\n'
+          "<li>En s'inscrivant, l'étudiant (ou son parent pour un mineur) accepte le présent règlement.</li>\n"
+          '</ul>',
+ 'articles': [('Comportement et messagerie',
+               "<p>Chaque étudiant adopte un comportement conforme aux valeurs islamiques et aux principes de l'étudiant en sciences, et respecte ses enseignants comme les membres de "
+               "l'administration.</p>\n"
+               '<ul>\n'
+               "<li>Tout problème est signalé à l'administration depuis le support du compte, pour qu'une solution soit trouvée rapidement.</li>\n"
+               "<li>Après constat d'un comportement inapproprié envers un enseignant ou un membre de l'administration, l'administration peut exclure l'étudiant sans préavis.</li>\n"
+               "<li>L'échange de coordonnées personnelles entre étudiants et enseignants est interdit.</li>\n"
+               '</ul>\n'
+               "<h3>Messages à l'enseignant</h3>\n"
+               "<p>La messagerie avec l'enseignant, depuis le compte, est réservée aux questions en rapport avec le cours.</p>\n"
+               '<ul>\n'
+               "<li>Il est interdit d'écrire à l'enseignant au sujet des créneaux, d'un report, d'un arrêt, de l'envoi d'un livre, d'un avis juridique ou de tout autre sujet sans rapport avec le "
+               'cours. Ces demandes passent par « Faire une demande » ou par le support du compte.</li>\n'
+               "<li>En cas de manquement, l'étudiant reçoit un premier puis un deuxième avertissement. Au manquement suivant, l'accès à la messagerie lui est retiré.</li>\n"
+               '</ul>'),
+              ('Demandes depuis le compte',
+               "<p>Chaque demande a son délai minimal, calculé sur l'horodatage de la plateforme. Une demande hors délai ou faite en dehors du compte est considérée comme non faite.</p>\n"
+               '<table><tr><th>Demande</th><th>Délai minimal</th><th>Article</th></tr>\n'
+               '<tr><td>Report d\'un cours</td><td>24 h avant le cours</td><td><a href="#art-7">7</a></td></tr>\n'
+               '<tr><td>Déclaration d\'une absence</td><td>24 h avant le cours</td><td><a href="#art-6">6</a></td></tr>\n'
+               '<tr><td>Changement de créneau</td><td>24 h avant le cours</td><td><a href="#art-4">4</a></td></tr>\n'
+               '<tr><td>Pause (3 cours ou plus)</td><td>7 jours avant le début de la pause</td><td><a href="#art-8">8</a></td></tr>\n'
+               '<tr><td>Arrêt de l\'abonnement</td><td>7 jours avant la fin de la session</td><td><a href="#art-9">9</a></td></tr>\n'
+               '<tr><td>Renouvellement (paiement par virement)</td><td>Avant la fin de chaque session</td><td><a href="#art-10">10</a></td></tr>\n'
+               '<tr><td>Absence le jour d\'un examen</td><td>Avant l\'examen, avec justificatif</td><td><a href="#art-11">11</a></td></tr>\n'
+               '<tr><td>Problème technique</td><td>Avant le début du cours</td><td><a href="#art-13">13</a></td></tr>\n'
+               '<tr><td>Réclamation</td><td>Au plus tard 24 h après les faits</td><td><a href="#art-14">14</a></td></tr></table>\n'
+               '<ul>\n'
+               "<li>L'étudiant ou son parent consulte régulièrement son compte : réponses de l'administration, remarques des enseignants, devoirs et notifications.</li>\n"
+               "<li>Les réponses de l'administration sont envoyées dans le compte.</li>\n"
+               '</ul>'),
+              ('Matériel',
+               "<p>Un ordinateur est recommandé, une tablette est le minimum ; le smartphone est déconseillé et l'institut ne garantit pas le bon fonctionnement des outils sur ce support.</p>\n"
+               "<p>L'étudiant prépare son matériel et se connecte en avance. <b>Le cours est ouvert 15 minutes avant l'heure de début</b> pour tester le matériel. L'étudiant vérifie :</p>\n"
+               '<ul>\n'
+               '<li>sa connexion internet ;</li>\n'
+               '<li>le branchement et le fonctionnement du micro, du casque et du son ;</li>\n'
+               "<li>la fermeture des programmes sans lien avec le cours, notamment ceux qui utilisent l'audio ou la vidéo (Messenger, WhatsApp, etc.).</li>\n"
+               '</ul>\n'
+               '<p>Un problème constaté pendant ce test est signalé avant le début du cours (<a href="#art-13">article 13</a>).</p>'),
+              ('Créneaux horaires',
+               "<p>L'étudiant change lui-même de créneau depuis son compte, au moins 24 h avant le cours. Le changement est accepté automatiquement.</p>\n"
+               '<ul>\n'
+               "<li>L'institut peut demander à l'étudiant de changer de créneau si un enseignant cesse son activité ou si une prière coïncide avec l'horaire. L'étudiant en est informé dans son "
+               'compte.</li>\n'
+               '<li>Seuls les étudiants abonnés (paiement par carte bancaire) gardent la priorité sur leur créneau. Le créneau d\'un étudiant non abonné n\'est pas garanti (<a href="#art-10">article '
+               '10</a>).</li>\n'
+               '</ul>'),
+              ('Organisation générale des études',
+               "<p>L'étudiant fait obligatoirement tous les devoirs donnés par ses enseignants.</p>\n"
+               '<ul>\n'
+               "<li>Les remarques des enseignants (devoirs, révisions, fin de session) sont publiées dans le compte après chaque cours. L'étudiant ou ses parents les consultent régulièrement.</li>\n"
+               '<li>Une coopération active de chacun est attendue pour assurer un suivi attentif et le bon déroulement des cours.</li>\n'
+               '</ul>'),
+              ('Présence, retards et absences',
+               "<p>Les heures d'arrivée de l'étudiant et de l'enseignant sont celles enregistrées par la plateforme.</p>\n"
+               "<h3>Retard de l'étudiant</h3>\n"
+               '<table><tr><th>Durée du cours</th><th>Retard au-delà duquel le cours est annulé</th><th>Conséquence</th></tr>\n'
+               '<tr><td>1 heure</td><td>30 minutes</td><td>Cours compté comme effectué</td></tr>\n'
+               '<tr><td>30 minutes</td><td>15 minutes</td><td>Cours compté comme effectué</td></tr></table>\n'
+               "<h3>Retard de l'enseignant</h3>\n"
+               '<ul>\n'
+               "<li>Au-delà de 10 minutes de retard de l'enseignant, l'étudiant le signale depuis le support du compte.</li>\n"
+               "<li>L'étudiant attend 15 minutes connecté. S'il se déconnecte avant, le cours est compté comme une absence de l'étudiant.</li>\n"
+               "<li>Si la plateforme montre que l'enseignant ne s'est pas connecté dans ces 15 minutes, le cours est reporté sans être décompté.</li>\n"
+               '</ul>\n'
+               '<h3>Absences</h3>\n'
+               '<ul>\n'
+               "<li>Toute absence est déclarée depuis le compte (« Faire une demande » → déclaration d'absence), au moins 24 h avant le cours.</li>\n"
+               "<li>Une absence déclarée hors délai, ou en dehors du compte, est décomptée des jours d'étude, justifiée ou non.</li>\n"
+               '<li>Une absence déclarée à temps donne droit à un report, dans la limite du quota de l\'<a href="#art-7">article 7</a>.</li>\n'
+               '</ul>'),
+              ('Reports de cours',
+               "<p>Par session de 4 semaines, l'étudiant peut reporter autant de cours qu'il a de cours par semaine. La demande se fait depuis le compte (« Faire une demande » → report), au moins 24 "
+               'h avant le cours.</p>\n'
+               '<div class="note"><b>Exemple :</b> avec 2 cours par semaine, l\'étudiant dispose de 2 reports par session de 4 semaines.</div>\n'
+               '<ul>\n'
+               "<li>Lors de la demande, l'étudiant choisit entre deux options : un report à un autre jour de la même semaine, ou un report en fin de session.</li>\n"
+               '<li>Au-delà du quota, tout cours manqué est décompté.</li>\n'
+               "<li>Les reports non utilisés ne s'ajoutent pas à la session suivante.</li>\n"
+               "<li>Un report décidé par l'institut (absence de l'enseignant, panne de la plateforme) ne compte pas dans le quota de l'étudiant.</li>\n"
+               '</ul>'),
+              ('Pause',
+               '<p>Une absence de 3 cours ou plus est une pause : elle se demande depuis le compte (« Faire une demande » → pause) au moins 7 jours avant son début, en indiquant la date de reprise '
+               'prévue.</p>\n'
+               '<ul>\n'
+               "<li>Pendant la pause, l'abonnement et les prélèvements sont suspendus. Les cours restants de la session sont conservés.</li>\n"
+               '<li>Les cours conservés restent valables 3 mois à partir du début de la pause. Passé ce délai, ils sont perdus.</li>\n'
+               "<li>À la reprise, l'étudiant perd la priorité sur son ancien créneau et son ancien enseignant.</li>\n"
+               '<li>Sans demande de pause sur le compte, ou avec une demande faite moins de 7 jours avant, les cours restants sont perdus. Les sessions continuent de se renouveler et restent '
+               'dues.</li>\n'
+               '</ul>'),
+              ("Arrêt de l'abonnement",
+               "<p>L'abonnement est <b>sans engagement de durée</b> : l'étudiant peut l'arrêter à tout moment depuis son compte (« Faire une demande » → arrêt), au moins 7 jours avant la fin de la "
+               'session en cours.</p>\n'
+               '<ul>\n'
+               "<li>La session en cours se poursuit jusqu'à son terme ; aucun nouveau prélèvement n'est effectué ensuite.</li>\n"
+               "<li>Sans demande d'arrêt dans ce délai, la nouvelle session se renouvelle et elle est due.</li>\n"
+               "<li>Un étudiant qui s'arrête sans faire de demande d'arrêt sur son compte voit ses sessions se renouveler. Elles restent dues, et il est inscrit comme débiteur auprès de "
+               "l'institut.</li>\n"
+               '<li>Un étudiant qui revient après un arrêt se réinscrit sans priorité sur son ancien créneau ni son ancien enseignant.</li>\n'
+               '</ul>'),
+              ('Modalités de paiement',
+               '<p>Deux modes de paiement sont proposés : la carte bancaire avec abonnement automatique, ou le virement bancaire sans abonnement.</p>\n'
+               '<table><tr><th></th><th>Carte bancaire</th><th>Virement bancaire</th></tr>\n'
+               '<tr><td>Abonnement</td><td>Oui, renouvelé automatiquement toutes les 4 semaines</td><td>Non</td></tr>\n'
+               '<tr><td>Engagement de durée</td><td>Aucun : arrêt possible à tout moment, 7 jours avant la fin de la session</td><td>Aucun</td></tr>\n'
+               '<tr><td>Renouvellement</td><td>Automatique, par prélèvement</td><td>À demander depuis le compte avant la fin de chaque session</td></tr>\n'
+               '<tr><td>Priorité sur le créneau</td><td>Oui</td><td>Non, créneau non garanti</td></tr></table>\n'
+               '<ul>\n'
+               "<li><b>Carte bancaire :</b> le paiement se fait via un lien sécurisé. Sans demande d'arrêt au moins 7 jours avant la fin de la session, la nouvelle session se renouvelle et elle est "
+               'due.</li>\n'
+               "<li><b>Virement bancaire :</b> avant la fin de chaque session, l'étudiant demande le renouvellement depuis son compte et règle la session suivante, en choisissant le même créneau "
+               "s'il est libre ou un autre créneau. L'institut ne garantit pas son créneau à un étudiant non abonné.</li>\n"
+               '<li><b>Réduction famille :</b> 10 % sur les sessions à partir de deux inscrits dans une même famille.</li>\n'
+               '</ul>'),
+              ('Examens',
+               '<p>Un examen est obligatoire à la fin de chaque session ou de chaque livre ; il faut obtenir <b>au minimum 70 %</b> pour passer au niveau supérieur.</p>\n'
+               '<ul>\n'
+               "<li>Sans cet examen, le niveau n'est pas validé.</li>\n"
+               "<li>Le diplôme est délivré à la fin de l'étude du niveau, sur demande, sans pourcentage minimal requis.</li>\n"
+               "<li>La date de l'examen est communiquée dans le compte.</li>\n"
+               "<li>Une absence le jour de l'examen n'est acceptée que si elle est demandée à l'avance depuis le compte, avec un justificatif jugé valable par l'administration. Sans cela, l'étudiant "
+               'ne peut obtenir aucun document officiel (diplôme, attestation…).</li>\n'
+               "<li>L'examen est imprimé avant le début du cours. Sans impression, le cours est annulé et compté comme effectué.</li>\n"
+               '</ul>'),
+              ('Remboursements',
+               "<p>Aucun remboursement n'est effectué après le paiement.</p>\n"
+               '<ul>\n'
+               "<li>Dès qu'une session est renouvelée, elle est due, même si l'étudiant n'a pas commencé à l'étudier.</li>\n"
+               "<li>Un étudiant exclu de l'institut n'est pas remboursé.</li>\n"
+               "<li>Les cours reportés par l'institut (absence de l'enseignant, panne de la plateforme) sont rattrapés, et non remboursés.</li>\n"
+               '</ul>'),
+              ('Problèmes techniques et diagnostic',
+               "<p>Pour tout problème sur la plateforme d'enseignement (micro, casque, son, connexion, accès), l'institut réalise un diagnostic sur la plateforme pour déterminer d'où vient le "
+               'problème.</p>\n'
+               '<table><tr><th>Origine du problème selon le diagnostic</th><th>Suite donnée au cours</th></tr>\n'
+               '<tr><td>Plateforme ou enseignant</td><td>Cours rattrapé, non décompté</td></tr>\n'
+               '<tr><td>Étudiant (matériel, connexion, réglages)</td><td>Cours non reporté, compté comme effectué</td></tr></table>\n'
+               '<ul>\n'
+               "<li>L'étudiant teste son matériel pendant les 15 minutes d'ouverture qui précèdent le cours, et signale tout problème depuis le support du compte avant le début du cours.</li>\n"
+               "<li>L'institut n'est pas responsable du temps perdu si l'étudiant se connecte pile à l'heure et rencontre alors un problème technique.</li>\n"
+               '</ul>'),
+              ('Réclamations et litiges',
+               "<p>Toute réclamation est déposée depuis le support du compte <b>au plus tard 24 h après les faits</b> ; passé ce délai, elle n'est plus acceptée.</p>\n"
+               '<ul>\n'
+               '<li>La réclamation est détaillée : cours concerné, date, heure, circonstances et nature du problème.</li>\n'
+               "<li>En cas de désaccord, le diagnostic de la plateforme et, le cas échéant, l'enregistrement du cours réalisé par l'étudiant servent de preuve. Les cours ne sont pas enregistrés "
+               'automatiquement par la plateforme.</li>\n'
+               "<li>L'enregistrement des cours est autorisé uniquement comme preuve en cas de litige.</li>\n"
+               "<li>Une réclamation faite en dehors du compte, hors délai ou sans preuve n'est pas retenue.</li>\n"
+               '<li>La Direction traite la réclamation sous 7 jours.</li>\n'
+               '</ul>')]},
 'apropos': dict(title="À propos de l'école Al-Fissah — arabe et Coran en ligne", desc="École internationale de langue arabe et Coran : cours en ligne pour enfants et adultes non arabophones, avec des professeurs arabophones formés.",
   h1="Cours d'arabe et de Coran en ligne", lead="Al-Fissah est une école internationale de langue arabe et coran spécialisée dans l'enseignement des enfants et adultes non-arabophones, ayant à sa disposition des professeurs arabophones formés à l'enseignement.",
   stats=[("12","manuels enfants"),("10","niveaux adultes"),("100 %","en arabe"),("2020","cours en ligne depuis")],
@@ -260,7 +401,7 @@ L = {
   body="""<h2 id="editeur">Éditeur</h2><p>Le site est édité par <strong>AL-FISSAH LLC</strong>, société à responsabilité limitée de l'État du Nouveau-Mexique (États-Unis), dont le siège est situé 530B Harkle Rd Ste 100, Santa Fe, NM 87505-4739, États-Unis. Contact : <a href="mailto:c.alfissah@gmail.com">c.alfissah@gmail.com</a>.</p>
 <h2 id="hebergement">Hébergement</h2><p>Le site al-fissah.fr est hébergé par LWS (Ligne Web Services), 10 rue Penthièvre, 75008 Paris, France, <a href="https://www.lws.fr" rel="noopener">www.lws.fr</a>.</p>
 <h2 id="propriete">Propriété intellectuelle</h2><p>L'ensemble du site — textes, manuels, audios, illustrations, logo, dénomination « Al-Fissah » — est protégé par le droit de la propriété intellectuelle et reste la propriété exclusive d'Al-Fissah LLC ou de ses partenaires. Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite. Les supports pédagogiques remis aux élèves sont destinés à un usage strictement personnel, dans le cadre des cours.</p>
-<h2 id="cgv">Conditions de vente</h2><p>Les cours sont vendus par sessions de 4 semaines, payables d'avance par carte bancaire (Stripe) ou virement. Les sessions sont renouvelées automatiquement toutes les 4 semaines ; l'annulation doit être signalée à l'administration au moins 7 jours avant la fin de la session en cours. Les tarifs sont indiqués en euros sur la page <a href="tarifs.html">Tarifs</a>. Le cours d'essai de 30 minutes est gratuit et sans obligation d'achat.</p>
+<h2 id="cgv">Conditions de vente</h2><p>Les cours sont vendus par sessions de 4 semaines, payables d'avance par carte bancaire (Stripe) ou virement. Le paiement par carte vaut abonnement, renouvelé automatiquement toutes les 4 semaines sans engagement de durée ; l'arrêt se demande depuis le compte de l'élève au moins 7 jours avant la fin de la session en cours. Le paiement par virement ne donne lieu à aucun abonnement : chaque session se renouvelle sur demande depuis le compte, avant la fin de la session précédente. Les tarifs sont indiqués en euros sur la page <a href="tarifs.html">Tarifs</a>. Le cours d'essai de 30 minutes est gratuit et sans obligation d'achat.</p>
 <p>Toute inscription est définitive : aucun report ni remboursement n'est accordé après le paiement de la session, conformément au <a href="reglement.html">règlement intérieur</a>, qui fait partie intégrante des conditions de vente.</p>
 <p>Les élèves résidant dans l'Union européenne bénéficient du droit de rétractation de 14 jours prévu par le droit de la consommation de leur pays de résidence. Les cours étant un service dont l'exécution commence à la date convenue, l'élève qui demande le début des cours avant l'expiration de ce délai reconnaît que le droit de rétractation s'éteint pour les prestations déjà exécutées.</p>
 <h2 id="droit">Droit applicable</h2><p>Les présentes mentions et les relations contractuelles avec Al-Fissah LLC sont régies par le droit de l'État du Nouveau-Mexique (États-Unis), sans préjudice des dispositions impératives protectrices du consommateur applicables dans son pays de résidence habituelle. Tout litige sera d'abord traité amiablement avec l'administration ; à défaut d'accord, il relèvera des juridictions compétentes du Nouveau-Mexique, sauf lorsque la loi du pays de résidence du consommateur lui réserve la compétence de ses propres tribunaux.</p>
