@@ -23,7 +23,7 @@ LOGO_PARTAGE = 'assets/img/logo-partage.png'
 LOGO_FILE = 'assets/logo-mark.png'                          # calligraphie seule, dans l'en-tête et le pied de page
 LOGO_FULL = 'assets/logo.png'                               # logo complet, sur l'écran de chargement
 LOGIN = 'https://al-fissah.com/fr/login'
-REGISTER = 'https://al-fissah.com/fr/register'
+REGISTER = 'https://etudiant.al-fissah.com/fr/inscription'   # 21/11/2026 : l'ancienne adresse /fr/register n'est plus qu'un renvoi
 SITE = 'https://al-fissah.com'
 PREVIEW = False
 # appli_publiee= (site.conf) : boutons Google Play / App Store de l'accueil affichés seulement quand « oui ».
@@ -576,8 +576,17 @@ class Builder:
             liens.append(f'<a{c} href="{self.acces_url(APP_GESTION)}">{g}</a>')
         return sep.join(liens)
 
+    # 21/11/2026 (référencement) : la vitrine, domaine principal, ne liait pas les pages
+    # publiques de l'espace élèves (professeurs, articles, ressources) — Google les
+    # découvrait mal et leur donnait peu de poids. Liens dans le pied de page de chaque page.
+    def liens_espace_eleves(self, f, *cles):
+        if not APP:
+            return ''
+        chemins = {'profs': 'professeurs', 'articles': 'articles', 'ressources': 'ressources'}
+        return ''.join(f'<li><a href="{self.app_url(chemins[k])}">{f[k]}</a></li>' for k in cles)
+
     def register_url(self):
-        return self.app_url('register') if APP else REGISTER
+        return self.app_url('inscription') if APP else REGISTER   # 21/11/2026 : plus de lien vers le renvoi /register
 
     # Parcours : dès que la plateforme est reliée (app=), « Demander un essai gratuit » et
     # « Commencer maintenant » y mènent DIRECTEMENT — aucune page intermédiaire sur le site.
@@ -592,13 +601,13 @@ class Builder:
         noindex = '\n<meta name="robots" content="noindex, nofollow">' if PREVIEW else ''
         pp = '' if page == 'index' else page + '.html'
         hreflang = '\n'.join(f'<link rel="alternate" hreflang="{c}" href="{SITE}/{"" if c=="fr" else c+"/"}{pp}">' for c in LANGS)
-        org = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","url":SITE,"logo":LOGO_ABS,
+        org = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","alternateName":["École Al-Fissah","Institut Al-Fissah","AL-FISSAH","الفصاح"],"url":SITE,"logo":LOGO_ABS,
                           "description":m['org_desc'],"email":"c.alfissah@gmail.com",
                           "sameAs":["https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://www.youtube.com/@ecole-al-fissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
         # Données structurées : l'école partout ; le site (accueil) ; le fil d'Ariane (pages internes indexables).
         ld = [org]
         if page == 'index':
-            ld.append(json.dumps({"@context": "https://schema.org", "@type": "WebSite", "name": "Al-Fissah", "url": SITE + '/', "inLanguage": m['html_lang']}, ensure_ascii=False))
+            ld.append(json.dumps({"@context": "https://schema.org", "@type": "WebSite", "name": "Al-Fissah", "alternateName": ["École Al-Fissah", "AL-FISSAH", "الفصاح"], "url": SITE + '/', "inLanguage": m['html_lang']}, ensure_ascii=False))
         elif page not in ('404', 'essai', 'inscription'):
             ld.append(json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": L['nav']['accueil'], "item": self.url('index')},
@@ -737,6 +746,7 @@ class Builder:
           <li><a href="tarifs.html">{n['tarifs']}</a></li>
           <li><a href="temoignages.html">{n['temoignages']}</a></li>
           <li><a href="{self.essai_url()}">{f['essai']}</a></li>
+          {self.liens_espace_eleves(f, 'profs')}
         </ul>
       </div>
       <div>
@@ -744,6 +754,7 @@ class Builder:
         <ul>
           <li><a href="faq.html">{f['faq']}</a></li>
           <li><a href="reglement.html">{n['reglement']}</a></li>
+          {self.liens_espace_eleves(f, 'articles', 'ressources')}
           <li><a href="https://livres.al-fissah.com">{n['livres']}</a></li>
           <li><a href="https://blog.al-fissah.com">{n['blog']}</a></li>
           <li><a href="contact.html">{f['contact']}</a></li>

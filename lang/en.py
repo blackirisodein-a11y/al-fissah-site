@@ -19,7 +19,7 @@ L = {
   essai_mob="Trial lesson — 30 min", cta_float="Request a trial lesson", menu="Open menu", totop="Back to top", language="Language"),
 'footer': dict(desc="Al-Fissah, International School of Arabic Language and Quran, is an online school specialised in teaching non-Arabic speakers. Its aim is to educate children and adults, with native Arabic-speaking teachers trained in teaching non-Arabic speakers.",
   col1="The school", col2="Resources", prog_ind="Individual programmes", prog_col="Group programmes", essai="30-min trial lesson",
-  faq="FAQ — Frequently asked questions", contact="Contact us", copy="Online courses", register="Sign up"),
+  faq="FAQ — Frequently asked questions", contact="Contact us", copy="Online courses", register="Sign up", profs="Our teachers", articles="Articles", ressources="Learning resources"),
 'common': dict(discover="Discover the programme", see_prices="See prices", details="See details", session="session", request="Request one",
   updated="Last updated:", toc="Contents",
   months=['January','February','March','April','May','June','July','August','September','October','November','December']),

@@ -19,7 +19,7 @@ L = {
   essai_mob="Clase de prueba — 30 min", cta_float="Solicitar una clase de prueba", menu="Abrir el menú", totop="Volver arriba", language="Idioma"),
 'footer': dict(desc="El instituto Al-Fissah es un instituto en línea especializado en la enseñanza a no arabófonos, cuyo objetivo es instruir a niños y adultos, con profesores arabófonos formados en la enseñanza a no arabófonos.",
   col1="La escuela", col2="Recursos", prog_ind="Programas individuales", prog_col="Programas en grupo", essai="Clase de prueba de 30 min",
-  faq="FAQ — Preguntas frecuentes", contact="Contáctanos", copy="Clases en línea", register="Registrarse"),
+  faq="FAQ — Preguntas frecuentes", contact="Contáctanos", copy="Clases en línea", register="Registrarse", profs="Nuestros profesores", articles="Artículos", ressources="Recursos pedagógicos"),
 'common': dict(discover="Descubrir el programa", see_prices="Ver precios", details="Ver detalles", session="sesión", request="Solicitarla",
   updated="Última actualización:", toc="Índice",
   months=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']),

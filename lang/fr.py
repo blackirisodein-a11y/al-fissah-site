@@ -19,7 +19,7 @@ L = {
   essai_mob="Cours d'essai — 30 min", cta_float="Demander un cours d'essai", menu="Ouvrir le menu", totop="Retour en haut", language="Langue"),
 'footer': dict(desc="Al-Fissah, école internationale de langue arabe et coran, est une école en ligne spécialisée dans l'enseignement des non-arabophones, ayant pour objectif d'instruire les enfants et les adultes, avec à sa disposition des professeurs arabophones formés à l'enseignement des non-arabophones.",
   col1="L'école", col2="Ressources", prog_ind="Programmes individuels", prog_col="Programmes collectifs", essai="Cours d'essai 30 min",
-  faq="FAQ — Foire aux questions", contact="Nous contacter", copy="Cours en ligne", register="S'inscrire"),
+  faq="FAQ — Foire aux questions", contact="Nous contacter", copy="Cours en ligne", register="S'inscrire", profs="Nos professeurs", articles="Articles", ressources="Ressources pédagogiques"),
 'common': dict(discover="Découvrir le programme", see_prices="Voir les tarifs", details="Voir le détail", session="session", request="Faire la demande",
   updated="Dernière mise à jour :", toc="Sommaire",
   months=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']),
