@@ -193,9 +193,9 @@ body.ready .reveal-seq>*{opacity:0;transform:translateY(24px);animation:up .75s 
 
 /* Classe virtuelle */
 .cr-zone{position:relative;perspective:1200px}
-.classroom{background:var(--card);border:1px solid var(--line);border-radius:30px 12px 30px 12px;border-top:4px solid var(--orange);box-shadow:var(--shadow-lg);overflow:hidden;will-change:transform;opacity:0;transform:translateY(30px) scale(.96);transition:box-shadow .3s}
+.classroom{background:var(--card);border:1px solid var(--line);border-radius:30px 12px 30px 12px;border-top:4px solid var(--orange);box-shadow:var(--shadow-lg);overflow:hidden;will-change:transform;transition:box-shadow .3s}
 .classroom:hover{box-shadow:0 40px 90px rgba(13,32,78,.2)}
-body.ready .classroom{animation:bin .8s .35s ease forwards}
+/* 21/11/2026 : plus de fondu d'apparition sur l'illustration (PageSpeed mesurait ses couleurs à mi-fondu, contraste faussement insuffisant) — demande du client. */
 body:not(.ready) .cr-ar,body:not(.ready) .livedot{animation-play-state:paused}
 @keyframes bin{to{opacity:1;transform:none}}
 .cr-top{display:flex;align-items:center;gap:.55rem;background:var(--navy);color:#fff;font-size:.82rem;padding:.75rem 1.1rem}
