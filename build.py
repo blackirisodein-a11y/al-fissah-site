@@ -579,7 +579,7 @@ class Builder:
         hreflang = '\n'.join(f'<link rel="alternate" hreflang="{c}" href="{SITE}/{"" if c=="fr" else c+"/"}{pp}">' for c in LANGS)
         org = json.dumps({"@context":"https://schema.org","@type":"EducationalOrganization","name":"Al-Fissah","url":SITE,"logo":LOGO_ABS,
                           "description":m['org_desc'],"email":"c.alfissah@gmail.com",
-                          "sameAs":["https://www.facebook.com/Ecole.al.fissah1","https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
+                          "sameAs":["https://www.instagram.com/ecolealfissah/","https://twitter.com/AlFissah","https://www.youtube.com/@ecole-al-fissah","https://blog.al-fissah.com"]}, ensure_ascii=False)
         # Données structurées : l'école partout ; le site (accueil) ; le fil d'Ariane (pages internes indexables).
         ld = [org]
         if page == 'index':
@@ -703,7 +703,6 @@ class Builder:
         <a class="logo" href="index.html" style="color:#fff"><img class="logomark" src="{self.rel + MARKW_IMG}" width="{MARK_W}" height="{MARK_H}" alt="Al-Fissah" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="mark" style="display:none;background:#fff;color:var(--navy)">A</span><span class="logo-sep" aria-hidden="true"></span><img class="logoname" src="{self.rel + NAMEW_IMG}" width="{NAME_W}" height="{NAME_H}" alt="" loading="lazy" onerror="this.style.display='none'"></a>
         <p style="margin-top:.9rem;max-width:26rem">{f['desc']}</p>
         <div class="socials">
-          <a href="https://www.facebook.com/Ecole.al.fissah1" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
           <a href="https://www.instagram.com/ecolealfissah/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
           <a href="https://twitter.com/AlFissah" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l6.5 8.5L4 20h2.2l5.3-6.1L16 20h4l-6.8-9L19.5 4h-2.2l-4.9 5.6L8 4z"/></svg></a>
           <a href="https://www.youtube.com/watch?v=MNiWkEPoGNw" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8zM10 15V9l5.2 3z"/></svg></a>
