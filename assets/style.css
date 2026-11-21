@@ -225,7 +225,7 @@ body:not(.ready) .cr-ar,body:not(.ready) .livedot{animation-play-state:paused}
 @keyframes wv{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 .cr-students{display:flex;gap:.45rem;flex-wrap:wrap}
 .chip{background:#EFF3FC;color:var(--navy-mid);font-size:.78rem;font-weight:800;padding:.32rem .75rem;border-radius:999px}
-.chip.hand{background:var(--orange-soft);color:var(--orange-deep);animation:handup 2.4s ease-in-out infinite}
+.chip.hand{background:var(--orange-soft);color:#A85208;animation:handup 2.4s ease-in-out infinite}
 @keyframes handup{0%,100%{transform:translateY(0)}12%{transform:translateY(-4px)}24%{transform:translateY(0)}}
 .cr-controls{display:flex;gap:.7rem;justify-content:center;background:#F2F5FC;border-top:1px solid var(--line);padding:.8rem}
 .ctrl{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;transition:transform .2s}
