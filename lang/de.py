@@ -2,7 +2,7 @@
 # DEUTSCH
 L = {
 'meta': dict(tagline="Internationale Schule für arabische Sprache und Koran", html_lang='de', og_locale='de_DE', dir='ltr',
-  title_home="AL-FISSAH — Internationale Schule für arabische Sprache und Koran",
+  title_home="Arabisch- und Koranunterricht online — Al-Fissah",
   desc_home="Arabisch- und Koranunterricht online für nicht arabischsprachige Kinder und Erwachsene: muttersprachliche Lehrer, 100 % Immersion, kostenlose Probestunde.",
   org_desc="Internationale Schule für arabische Sprache und Koran, online, für nicht arabischsprachige Kinder und Erwachsene."),
 'js': dict(typew="Willkommen bei Al-Fissah", typew_sub="Internationale Schule für arabische Sprache und Koran", sending="Wird gesendet…",

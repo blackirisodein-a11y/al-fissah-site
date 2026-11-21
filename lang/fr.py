@@ -2,7 +2,7 @@
 # Contenu FRANÇAIS — textes issus de al-fissah.com
 L = {
 'meta': dict(tagline="École internationale de langue arabe et Coran", html_lang='fr', og_locale='fr_FR', dir='ltr',
-  title_home="AL-FISSAH — École internationale de langue arabe et Coran",
+  title_home="Cours d'arabe et de Coran en ligne — École Al-Fissah",
   desc_home="Cours d'arabe et de Coran en ligne pour enfants et adultes non arabophones : professeurs arabophones formés, immersion 100 % arabe, essai gratuit de 30 minutes.",
   org_desc="École internationale de langue arabe et Coran, en ligne, pour enfants et adultes non-arabophones."),
 'js': dict(typew="Bienvenue à Al-Fissah", typew_sub="École internationale de langue arabe et du Coran", sending="Envoi en cours…",
