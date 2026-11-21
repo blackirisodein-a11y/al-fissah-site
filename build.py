@@ -350,6 +350,21 @@ PARCOURS = {
 }
 
 FORMULES = [(1, 28), (2, 48), (3, 72), (4, 96), (5, 120), (6, 144), (7, 168)]   # heures par semaine → prix de la session de 4 semaines
+
+# 21/11/2026 — fiches de cours pour Google (encadré « Cours ») : prix, cours en ligne, rythme.
+# Seuls les programmes dont la page Tarifs affiche le prix : langue arabe (dont la méthode
+# de lecture) et Coran, même grille FORMULES. Mutûn, aide scolaire et cours collectifs n'ont
+# pas de prix publié : pas d'offre (Google exige un prix exact).
+PROGRAMMES_AU_TARIF = {'arabe-enfants', 'arabe-adultes', 'lecture', 'coran'}
+
+def fiche_cours(prog_id, url_tarifs):
+    instance = {"@type": "CourseInstance", "courseMode": "Online",
+                "courseSchedule": {"@type": "Schedule", "duration": "PT1H", "repeatFrequency": "Weekly", "repeatCount": 4}}
+    if prog_id not in PROGRAMMES_AU_TARIF:
+        return {"hasCourseInstance": [instance]}
+    h, prix = FORMULES[0]   # la plus petite formule : 1 h par semaine pendant 4 semaines
+    return {"hasCourseInstance": [instance],
+            "offers": [{"@type": "Offer", "category": "Paid", "price": prix, "priceCurrency": "EUR", "url": url_tarifs}]}
 PICS = json.load(open(os.path.join(ROOT, 'pics.json')))
 
 # --- Vidéothèque de l'accueil : youtube.json (produit par l'action « Inventaire YouTube ») classé par thème ---
@@ -901,7 +916,8 @@ class Builder:
         courses = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "item": {"@type": "Course", "name": strip_tags(p['titre']), "description": strip_tags(p['court']),
              "url": self.url('programmes') + '#' + p['id'], "inLanguage": "ar",
-             "provider": {"@type": "EducationalOrganization", "name": "Al-Fissah", "url": SITE}}} for i, p in enumerate(P['items'])]}, ensure_ascii=False)
+             "provider": {"@type": "EducationalOrganization", "name": "Al-Fissah", "url": SITE},
+             **fiche_cours(p['id'], self.url('tarifs'))}} for i, p in enumerate(P['items'])]}, ensure_ascii=False)
         self.write('programmes.html', self.head(P['title'], P['desc'], 'programmes', f'<script type="application/ld+json">{courses}</script>') + self.chrome('programmes') + html + self.footer())
 
     def appdl(self):
