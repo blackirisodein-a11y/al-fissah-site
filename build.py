@@ -630,7 +630,8 @@ class Builder:
 
     def chrome(self, page, home=False):
         L = self.L; n = L['nav']
-        loader = f'''<div id="loader">
+        # Écran d'ouverture : décoratif (le nom de l'école y est tapé lettre à lettre) → caché aux lecteurs d'écran.
+        loader = f'''<div id="loader" aria-hidden="true">
   <div class="ld-bg" aria-hidden="true"></div>
   <div class="ld-dots" aria-hidden="true"></div>
   {LD_SYMS}
@@ -654,7 +655,7 @@ class Builder:
         mob = '\n    '.join(f'<a href="{h}">{l}</a>' for h, l, k in nav)
         return loader + f'''<div id="progress" aria-hidden="true"></div>
 <button class="totop" id="totop" aria-label="{n['totop']}">↑</button>
-<a class="btn btn-orange cta-float" id="ctafloat" href="{self.insc_url()}">{self.I['btn_insc']}</a>
+<aside aria-label="{self.I['btn_insc']}"><a class="btn btn-orange cta-float" id="ctafloat" href="{self.insc_url()}">{self.I['btn_insc']}</a></aside>
 
 <div class="dots" aria-hidden="true"></div>
 <div class="aur a1" aria-hidden="true"></div>
@@ -691,11 +692,16 @@ class Builder:
   </nav>
 </div>
 
+<main id="contenu">
 '''
 
     def footer(self):
         L = self.L; f = L['footer']; n = L['nav']
+        # 21/11/2026 (PageSpeed, accessibilité) : le contenu de chaque page est dans
+        # <main> (ouvert à la fin de chrome(), fermé ici) — repère « contenu
+        # principal » pour les lecteurs d'écran.
         return f'''
+</main>
 <footer class="site">
   <div class="wrap">
     <div class="cols">
