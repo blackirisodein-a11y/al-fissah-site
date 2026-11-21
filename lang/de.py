@@ -19,7 +19,7 @@ L = {
   essai_mob="Probestunde — 30 Min.", cta_float="Probestunde anfragen", menu="Menü öffnen", totop="Nach oben", language="Sprache"),
 'footer': dict(desc="Al-Fissah, Internationale Schule für arabische Sprache und Koran, ist eine Online-Schule, die auf den Unterricht für Nicht-Arabischsprachige spezialisiert ist. Ihr Ziel ist es, Kinder und Erwachsene zu unterrichten – mit muttersprachlichen arabischen Lehrern, die für den Unterricht von Nicht-Arabischsprachigen ausgebildet sind.",
   col1="Die Schule", col2="Ressourcen", prog_ind="Einzelprogramme", prog_col="Gruppenprogramme", essai="Probestunde 30 Min.",
-  faq="FAQ — Häufige Fragen", contact="Kontakt", copy="Online-Unterricht", register="Registrieren"),
+  faq="FAQ — Häufige Fragen", contact="Kontakt", copy="Online-Unterricht", register="Registrieren", profs="Unsere Lehrkräfte", articles="Artikel", ressources="Lernmaterialien"),
 'common': dict(discover="Programm entdecken", see_prices="Preise ansehen", details="Details ansehen", session="Sitzung", request="Anfragen",
   updated="Zuletzt aktualisiert:", toc="Inhalt",
   months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember']),
