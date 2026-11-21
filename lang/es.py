@@ -2,7 +2,7 @@
 # Contenido en ESPAÑOL
 L = {
 'meta': dict(tagline="Escuela Internacional de Lengua Árabe y Corán", html_lang='es', og_locale='es_ES', dir='ltr',
-  title_home="AL-FISSAH — Escuela Internacional de Lengua Árabe y Corán",
+  title_home="Clases de árabe y Corán en línea — Escuela Al-Fissah",
   desc_home="Instituto en línea de árabe y Corán para niños y adultos no arabófonos. Profesores nativos formados, inmersión 100 % en árabe, clase de prueba de 30 minutos.",
   org_desc="Escuela Internacional de Lengua Árabe y Corán, en línea, para niños y adultos no arabófonos."),
 'js': dict(typew="Bienvenido a Al-Fissah", typew_sub="Escuela Internacional de Lengua Árabe y Corán", sending="Enviando…",
