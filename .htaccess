@@ -51,6 +51,19 @@ ErrorDocument 404 /404.html
   RewriteRule ^(en|ar|ru|es|de)/testimonials/?$ https://%{HTTP_HOST}/$1/temoignages.html [L,R=301]
   RewriteRule ^fr/?$ https://%{HTTP_HOST}/ [L,R=301]
   RewriteRule ^fr/testimonials/?$ https://%{HTTP_HOST}/temoignages.html [L,R=301]
+
+  # 5. Adresses relevées en 404 dans la Search Console le 27/11/2026.
+  #    Anciennes pages sans langue de l'ancien site → page équivalente.
+  RewriteRule ^(a-propos|contact|tarifs)/?$ https://%{HTTP_HOST}/$1.html [L,R=301]
+  RewriteRule ^(testimonials|temoignages)/?$ https://%{HTTP_HOST}/temoignages.html [L,R=301]
+  RewriteRule ^livres-et-support/?$ https://livres.al-fissah.com/ [L,R=301]
+  RewriteRule ^(watch|fissah|fissah\.50)/?$ https://%{HTTP_HOST}/ [L,R=301]
+  #    Règlement sous une langue (/fr/reglement…) → page du règlement.
+  RewriteRule ^fr/reglement/?$ https://%{HTTP_HOST}/reglement.html [L,R=301]
+  RewriteRule ^(en|ar|ru|es|de)/reglement/?$ https://%{HTTP_HOST}/$1/reglement.html [L,R=301]
+  #    Professeurs, articles, ressources : pages de la plateforme (fr / en / ar / ru).
+  RewriteRule ^(fr|en|ar|ru)/(professeurs|articles|ressources)/?$ https://etudiant.al-fissah.com/$1/$2 [L,R=301]
+  RewriteRule ^(es|de)/(professeurs|articles|ressources)/?$ https://etudiant.al-fissah.com/en/$2 [L,R=301]
 </IfModule>
 
 # En-têtes de sécurité (mod_headers est actif chez LWS : le cache ci-dessous fonctionne)
