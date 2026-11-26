@@ -473,6 +473,16 @@ _webp('assets/logo-calligraphie-blanc.png', 144, 'logo-mark-blanc.webp')
 NAME_W, NAME_H = _webp('assets/logo-nom.png', 80, 'logo-nom.webp')
 _webp('assets/logo-nom-blanc.png', 80, 'logo-nom-blanc.webp')
 FULL_W, FULL_H = _webp('assets/logo.png', 420, 'logo-intro.webp')
+# Icône du site (27/11/2026) : Google n'affichait plus le logo dans ses résultats (globe gris). L'icône était
+# intégrée en base64 dans la page (mode --inline), forme que Google ne lit pas, et /favicon.ico était l'icône vide
+# de l'hébergeur. Désormais : un vrai fichier PNG 48 px (multiple de 48, règle de Google) et un favicon.ico.
+def _favicon():
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, 'assets/favicon.png')).convert('RGBA')
+    os.makedirs(os.path.join(ROOT, 'assets/img'), exist_ok=True)
+    im.resize((48, 48), Image.LANCZOS).save(os.path.join(ROOT, 'assets/img/favicon.png'), 'PNG', optimize=True)
+    im.save(os.path.join(ROOT, 'favicon.ico'), sizes=[(16, 16), (32, 32), (48, 48)])
+_favicon()
 # Section « Téléchargez notre application » (06/11/2026) : capture réelle de l'application PC, une par langue
 # (fr, en, ar ; les autres langues prennent l'anglaise). Source : assets/appli/pc-<langue>.png (captures du
 # Microsoft Store). WebP avec perte (photo d'écran) pour 720 px de large.
@@ -621,7 +631,8 @@ class Builder:
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#0D204E">{noindex}
-<link rel="icon" type="image/png" href="{FAVICON_B64 if INLINE else self.rel + 'assets/favicon.png'}">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
 <link rel="canonical" href="{self.url(page)}">
 {hreflang}
 <link rel="alternate" hreflang="x-default" href="{SITE}/{pp}">

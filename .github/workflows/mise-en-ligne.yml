@@ -57,7 +57,7 @@ jobs:
           # Ce qu'on envoie : pages générées uniquement (sans build.py ni lang/)
           preparer () {
             rm -rf "$1" && mkdir "$1"
-            cp -r .htaccess robots.txt sitemap.xml *.html ar de en es ru "$1"/
+            cp -r .htaccess robots.txt sitemap.xml favicon.ico *.html ar de en es ru "$1"/
             rm -f "$1"/part_classroom.html   # fichier de travail (bloc du hero), pas une page
             # Polices hébergées sur le site (les pages y font référence : assets/fonts/*.woff2)
             mkdir -p "$1"/assets/fonts && cp assets/fonts/*.woff2 "$1"/assets/fonts/
